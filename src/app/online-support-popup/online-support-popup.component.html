@@ -1,0 +1,67 @@
+<div class="header">
+    <div classs="row ">
+        <div class="col-md-12 col-sm-12 col-xs-12 mainIcon">
+            <p class="headerText">Online Support</p>
+            <i class="bi bi-x bi-icon-class backIcon icon ms-auto" (click)="closeModel()"></i>
+        </div>
+    </div>
+</div>
+<!-- card -->
+<div class="card">
+    <div class="info-div center">Sorry we don't have online support yet however, you can send us a message or give
+        us a call
+    </div>
+    <!-- text area -->
+    <div class="row">
+        <div class="col-12">
+            <form class="card-details">
+                <textarea placeholder="Please Describe How we can help you" rows="6" cols="10"></textarea>
+            </form>
+        </div>
+    </div>
+    <!-- info -->
+    <div class="row row-padding">
+        <div class="col-12">
+            <div class="info-div align-left">You can also give us a call on</div>
+        </div>
+    </div>
+    <!-- call info -->
+    <div class="row row-padding">
+        <div class="col-12">
+            <div class="call-info">
+                <div class="call-icon">
+                    <span class="material-icons-outlined">
+                        call
+                    </span>
+                </div>
+                <div style="padding: 6px;">
+                    08 7948 8888
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- info -->
+    <div class="row row-padding">
+        <div class="col-12">
+            <div class="info-div align-left">We will try to help you at the best we can</div>
+        </div>
+    </div>
+    <!-- button -->
+    <div class="row btn-row-pad">
+        <div class="col-6" style="text-align: center;">
+            <button class="send-btn">Send</button>
+        </div>
+        <div class="col-6" style="text-align: center;">
+            <button class="cancel-btn" (click)="closeModel()">Cancel</button>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div class="footer">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div style="background: #90C63E;
+        border-radius: 0px 0px 10px 10px; height: 9px;"></div>
+        </div>
+    </div>
+</div>

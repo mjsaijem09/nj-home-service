@@ -1,0 +1,236 @@
+<div class="bg-white">
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<ng-template #content let-modal>
+    <div class="custom-modal">
+        <div class="modal-header">
+            <h4 class="modal-title">Check Your Email</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center"><img src="../../../assets/images/set-password-popup.svg" /></div>
+            <p>We have sent you an email to</p>
+            <p class="btn-thank"> {{registerForm.value.email}}</p>
+            <p>Please set up your new password from your email inbox and back here to login to complete your booking.</p>
+
+            <p><button type="button" class="btn-thank" (click)="modal.close('Save click')">Thank You</button></p>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+<ng-template #accountSetupSuccess let-modal>
+    <div class="custom-modal">
+        <div class=" modal-header">
+            <h4 class="modal-title">Congratulation</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body text-center">
+            <img src="../../../assets/images/login/success.svg" alt="">
+            <p>Your account is now set up.<br>continue with login.</p>
+            <button class="btn continue-login" (click)="modal.close('Close click')">Continue</button>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+
+<div class="container pt-4 register" *ngIf="!isLoading">
+    <div class="row fields" *ngIf="!isOnSuccessRegistration">
+        <div class="col-md-12">
+            <div class="mb-5 p-5 card-body">
+                <div class="text-center">
+                    <div class="companyLogo">
+                        <img src="assets/images/logo.svg" alt="logo">
+                    </div>
+                </div>
+                <div class="heading">
+                    <h3>Getting started</h3>
+                    <p>Create account to continue!</p>
+                </div>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(accountSetupSuccess)"> 
+                    <div class="form-group mb-3">
+                        <div class="form-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <input type="text" class="form-control has-success" formControlName="firstname" placeholder="First Name">
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="form-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <input type="text" class="form-control has-success" formControlName="lastname" placeholder="Last Name">
+                    </div>
+                    <div class="form-group mb-3" [ngClass]="{'has-danger': (submitted || registerForm.get('country').touched) && registerForm.get('country').invalid, 'has-success': registerForm.get('country').valid}">
+                        <div class="form-icon">
+                            <i class="bi bi-compass"></i>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="country"
+                            placeholder="Select Country"
+                            (focus)="focusIn('country')" 
+                            (focusout)="focusOut()"
+                        >
+                        <div *ngIf="input === 'country'" class="tooltip-feedback">
+                            <div class="details" [ngClass]="{'has-danger': registerForm.get('country').invalid, 'has-success': registerForm.get('country').valid}">
+                                <span>
+                                    <img *ngIf="!registerForm.get('country')?.errors?.required" src="/assets/images/auth/check.svg">
+                                    <img *ngIf="registerForm.get('country')?.errors?.required" src="/assets/images/auth/wrong.svg">
+                                </span>
+                                Country Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group email mb-3" [ngClass]="{'has-danger': (submitted || f.email.touched) && f.email.invalid, 'has-success': f.email.valid}">
+                        <div class="form-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <input
+                            type="email"
+                            class="form-control emailField"
+                            formControlName="email"
+                            placeholder="john.doe@gmail.com"
+                            
+                            (focus)="focusIn('email')" 
+                            (focusout)="focusOut()"
+                            (ngModelChange)="emailTemplate($event)"
+                        >
+                        <div class="field-filled" *ngIf="f.email.valid">
+                            <img src="assets/images/checkbox-circle-line.svg" alt="valid">
+                        </div>
+                        <div class="temp" *ngIf="onfocus">
+                            <div class="provider" *ngFor="let prov of showTemp" (click)="mailTemp(prov)">{{prov}}</div>
+                        </div>
+                        <div class="tooltip-feedback" *ngIf="input === 'email' && f.email.invalid">
+                            <div class="details" [ngClass]="!f.email?.errors?.required ? 'has-success' : 'has-danger'">
+                                <span>
+                                    <img [src]="!f.email?.errors?.required ? '/assets/images/auth/check.svg' : '/assets/images/auth/wrong.svg'">
+                                </span>
+                                Email Address is required.
+                            </div>
+                            <div class="details" [ngClass]="f.email.value && !f.email?.errors?.pattern ? 'has-success' : 'has-danger'">
+                                <span>
+                                    <img [src]="f.email.value && !f.email?.errors?.pattern ? '/assets/images/auth/check.svg':'/assets/images/auth/wrong.svg'">
+                                </span>
+                                Please provide a valid Email Address.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group wrapper" [ngClass]="{'has-danger': (submitted || f.mobile.touched) && f.mobile.invalid, 'has-success': f.mobile.valid}">
+                        <ngx-intl-tel-input class="mobile-wrapper" [preferredCountries]="preferredCountries"
+                            [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true" [selectFirstCountry]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Australia"
+                            [phoneValidation]="true" [separateDialCode]="separateDialCode" [numberFormat]="PhoneNumberFormat.National"
+                            name="phone" formControlName="mobile" (focus)="focusIn('mobile')" (focusout)="focusOut()">
+                        </ngx-intl-tel-input>
+                        <div *ngIf="input === 'mobile'" class="tooltip-feedback">
+                            <div class="details" [ngClass]="{'has-danger': registerForm.get('mobile').invalid, 'has-success': registerForm.get('mobile').valid}">
+                                <span>
+                                    <img *ngIf="!registerForm.get('mobile')?.errors?.required" src="/assets/images/auth/check.svg">
+                                    <img *ngIf="registerForm.get('mobile')?.errors?.required" src="/assets/images/auth/wrong.svg">
+                                </span>
+                                Phone Number is required.
+                            </div>
+                            <div class="details"  [ngClass]="{'has-danger': registerForm.get('mobile').invalid, 'has-success': registerForm.get('mobile').valid}">
+                                <span>
+                                    <img *ngIf="!registerForm.get('mobile')?.errors?.pattern" src="/assets/images/auth/check.svg">
+                                    <img *ngIf="registerForm.get('mobile')?.errors?.pattern" src="/assets/images/auth/wrong.svg">
+                                </span>
+                                Please provide a valid Phone Number.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3" [ngClass]="{'has-danger': (submitted || f.password.touched) && f.password.invalid, 'has-success': f.password.valid}">
+                        <div class="form-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <input [type]="pw"
+                            formControlName="password"
+                            class="form-control password"
+                            placeholder="New Password"
+                            (focus)="focusIn('password')" 
+                            (focusout)="focusOut()">
+                            <div class="field-filled pointer" (click)="show_hide_pw('pw')">
+                                <i *ngIf="!pw_is_show" class="bi bi-eye-slash"></i>
+                                <i *ngIf="pw_is_show" class="bi bi-eye"></i>
+                            </div>
+                        <div class="tooltip-feedback" *ngIf="input === 'password' && f.password.invalid">
+                            <div class="details" [ngClass]="!f.password?.errors?.required ? 'has-success' : 'has-danger'">
+                                <span>
+                                    <img [src]="!f.password?.errors?.required ? '/assets/images/auth/check.svg' : '/assets/images/auth/wrong.svg'">
+                                </span>
+                                Password is required
+                            </div>
+                            <div class="details" [ngClass]="f.password.value && !f.password?.errors?.minlength ? 'has-success' : 'has-danger'">
+                                <span>
+                                    <img [src]="f.password.value && !f.password?.errors?.minlength ? '/assets/images/auth/check.svg':'/assets/images/auth/wrong.svg'">
+                                </span>
+                                Password must be at least 8+ characters
+                            </div>
+                            <div class="details" [ngClass]="f.password.value && !f.password?.errors?.maxlength ? 'has-success' : 'has-danger'">
+                                <span>
+                                    <img [src]="f.password.value && !f.password?.errors?.maxlength ? '/assets/images/auth/check.svg':'/assets/images/auth/wrong.svg'">
+                                </span>
+                                Password must not be greater than 12
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-danger': (submitted || f.confirmpassword.touched) && f.confirmpassword.invalid, 'has-success': f.confirmpassword.valid}">
+                        <div class="form-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <input [type]="cpw"
+                        formControlName="confirmpassword" 
+                        class="form-control" 
+                        placeholder="Confirm Password"
+                        (focus)="focusIn('confirmpassword')" 
+                        (focusout)="focusOut()">
+                        <div class="field-filled pointer" (click)="show_hide_pw('cpw')">
+                            <i *ngIf="!cpw_is_show" class="bi bi-eye-slash"></i>
+                            <i *ngIf="cpw_is_show" class="bi bi-eye"></i>
+                        </div>
+                        <div class="tooltip-feedback" *ngIf="input === 'confirmpassword' && f.confirmpassword?.errors?.confirmPasswordValidator">
+                            <div class="details" [ngClass]="!f.confirmpassword?.errors?.required ? 'has-success' : 'has-danger'">
+                                <span>
+                                    <img [src]="!f.confirmpassword?.errors?.required ? '/assets/images/auth/check.svg' : '/assets/images/auth/wrong.svg'">
+                                </span>
+                                Confirm password is required.
+                            </div>
+                            <div class="details" [ngClass]="f.confirmpassword.value && !f.confirmpassword?.errors?.confirmPasswordValidator ? 'has-success' : 'has-danger'">
+                                <span>
+                                    <img [src]="f.confirmpassword.value && !f.confirmpassword?.errors?.confirmPasswordValidator ? '/assets/images/auth/check.svg' : '/assets/images/auth/wrong.svg'">
+                                </span>
+                                Password and Confirm Password not match.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="termsAndConditions" [ngClass]="{'has-danger': (submitted || f.terms.touched) && f.terms.invalid, 'has-success': f.terms.valid}">
+                        <label class="container"> I have read and accept the <a>terms and conditions.</a>
+                            <input type="checkbox" [checked]="f.terms.value" formControlName="terms" required>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill loginbtn" name="login">Create an account</button>
+                    <p class="signup_btn">Already have an account? <span><a (click)="navigateToSignin()">Login</a></span></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row fields" *ngIf="isOnSuccessRegistration">
+        <div class="col-md-12 successScreen">
+            <div class="mb-5 p-5 card-body">
+                <img src="assets/images/success_register_img.svg">
+                <div class="welcomeMessage">Welcome to <span>Bookus</span>, {{registerData.data.firstName}}!</div>
+                <p class="successMessage">Thank you for trusting our services. 
+                    To start with your journey, you may explore and go to Bookus for Business home page.</p>
+                <button class="btn btn-primary w-100 rounded-pill loginbtn" (click)="navigateToSignin()">Go to Bookus Homepage</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

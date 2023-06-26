@@ -1,0 +1,43 @@
+
+  <!--div class="parentLoader" *ngIf="!isHomeComplete">
+  <app-splash-screen>
+  </app-splash-screen>
+</div-->
+<ng-container>
+<!-- <ng-container *ngIf="isHomeComplete"> -->
+    <app-header *ngIf="!url?.includes('/business') && !eventPage && !url?.includes('/wedding')"></app-header>
+</ng-container>
+<!-- <app-sidenav></app-sidenav> -->
+<app-custom-toaster></app-custom-toaster>
+<router-outlet></router-outlet>
+<ng-container>
+<!-- <ng-container *ngIf="isHomeComplete"> -->
+    <app-footer 
+    class="mt-auto" 
+    *ngIf="!url?.includes('/business') && 
+    !eventPage && 
+    !url?.includes('/wedding') && 
+    is_not_shop_subdomain && 
+    !url?.includes('/therapist-detail')"
+    ></app-footer>
+</ng-container>
+  
+<ng-template #wrongLocation let-modal>
+    <div class="custom-modal">
+        <div class="modal-header">
+            <h4 class="modal-title">Wrong Location</h4>
+        </div>
+        <div class="modal-body">
+            <p>The website you have entered is not existing</p>
+            <p>
+                Please double check and try again or click Okay button below to return
+                to our home page
+            </p>
+
+            <div class="actions">
+                <a class="btn bg-green" href="https://home.thebookus.com"> Okay </a>
+            </div>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</ng-template>

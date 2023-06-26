@@ -1,0 +1,389 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<div class="container-fluid" *ngIf="!isLoading">
+    <div class="herbal-center-wrapper">
+        <!-- Therapist DETAIL// -->
+        <a class="heart-icon"><i class="fa"
+                [ngClass]="{'fa-heart-o': !isFavouriteShop, 'fa-heart active': isFavouriteShop}"
+                (click)="addTherapistTofavourite()"></i></a>
+        <div class="row shop-detail therapist-detail">
+            <div class="col-lg-12 p-0" *ngIf="isMobile">
+                <div class="topImg">
+                    <img src="{{imgLink(therapistDetails?.image)}}"
+                        (error)="setDefaultTherapistPic($event, therapistDetails?.gender)" class="w-100 fixHeight"
+                        alt="therapist">
+                    <div class="therapist-ratings-wrapper">
+                        <div class="therapist-name">
+                            <p>{{therapistDetails?.firstName + ' ' + therapistDetails?.lastName}}</p>
+                            <span>
+                                <img src="assets/images/gender-icon.svg" alt="{{therapistDetails?.gender}}">
+                            </span>
+                        </div>
+                        <div class="therapist-ratings">
+                            <div class="rating" (click)="navigateToTherapistRating()">
+                                    <app-star-rating [rating]="therapistDetails?.rating?.star" [size]="18"></app-star-rating>
+                                <div class="total-rating">
+                                    <p *ngIf="therapistDetails?.rating?.star !== undefined">
+                                        <span>{{(therapistDetails?.rating?.star).toFixed(1)}}
+                                            ({{therapistDetails?.rating?.star_count}} Ratings)</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="icons-like">
+                                <ul>
+                                    <li>
+                                        <a><img src="assets/images/thumb-up-fill-white.svg" alt="thumbs-up"></a>
+                                    </li>
+                                    <li>
+                                        <a><img src="assets/images/thumb-down-line-white.svg" alt="thumbs-down"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="desktop-profile" *ngIf="!isMobile">
+                <img src="{{therapistDetails?.image}}"
+                    (error)="setDefaultTherapistPic($event, therapistDetails?.gender)" class="w-100 fixHeight"
+                    alt="therapist">
+            </div>
+            <div class="col-lg-12">
+                <div class="profile-wrapper mt-2">
+                    <div class="store-details">
+                        <div class="therapist-intro section" *ngIf="isMobile">
+                            <span *ngIf="therapistDetails?.descriptions">
+                                <h5 class="heading">Introduction</h5>
+                                <p>{{therapistDescription}}<a (click)="toggleFullDescription()"> Show
+                                        {{showFullDescription ? 'Less' :
+                                        'More'}}</a></p>
+                                <div class="hr mt-3 mb-4"></div>
+                            </span>
+                            <ul>
+                                <li *ngIf="therapistDetails?.staffTitle">
+                                    <p><span><img src="assets/images/briefcase.svg"
+                                                alt="briefcase"></span>{{therapistDetails?.staffTitle}}</p>
+                                </li>
+                                <li *ngIf="languages">
+                                    <p><span><img src="assets/images/global-line.svg"
+                                                alt="global-lines"></span>{{languages}}</p>
+                                </li>
+                                <li>
+                                    <p><span><img src="assets/images/clock.svg" alt="clock"></span>Booked
+                                        {{therapistDetails?.bookedTimes}} time{{therapistDetails?.bookedTimes !== 1 ?
+                                        's' : ''}}</p>
+                                </li>
+                            </ul>
+                            <div class="hr mt-3 mb-3"></div>
+                            <div class="certification">
+                                <p><span><img src="assets/images/certification.svg"
+                                            alt="certification"></span>Certifications
+                                    ({{therapistDetails?.certificates?.length}})
+                                </p>
+                                <a *ngIf="therapistDetails?.certificates?.length > 0">View</a>
+                            </div>
+                        </div>
+                        <div class="hr mt-3 mb-3" *ngIf="isMobile"></div>
+                        <div *ngIf="!isMobile">
+                            <div class="container">
+                                <div class="therapist-info-section">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card" style="width: 100%;">
+                                                <div class="card-body">
+                                                    <h4 class="name">
+                                                        {{therapistDetails?.firstName}} {{therapistDetails?.lastName}}
+                                                        <span class="gender">
+                                                            <img *ngIf="therapistDetails?.gender === 'Female'"
+                                                                src="assets/images/shop/gender-female.svg"
+                                                                alt="{{therapistDetails?.gender}}">
+                                                            <img *ngIf="therapistDetails?.gender === 'Male'"
+                                                                src="assets/images/shop/gender-male.svg"
+                                                                alt="{{therapistDetails?.gender}}">
+                                                        </span>
+                                                    </h4>
+                                                    <div class="rating">
+                                                        <app-star-rating [rating]="therapistDetails?.rating?.star" [size]="18"></app-star-rating>
+                                                        <div class="total-rating">
+                                                            <p *ngIf="therapistDetails?.rating?.star !== undefined">
+                                                                {{(therapistDetails?.rating?.star).toFixed(1)}}
+                                                                ({{therapistDetails?.rating?.star_count}} Ratings)</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="alert alert-warning mt-3" role="alert" *ngIf="!therapistDetails?.onlineBooking">
+                                                        This therapist is currently not available for online booking.
+                                                      </div>
+                                                    <div class="intro">
+                                                        <h4 class="mt-3">Introduction</h4>
+                                                        <p>{{therapistDescription}}</p>
+                                                    </div>
+                                                    <div class="more-info">
+                                                        <div class="icons">
+                                                            <div class="icon">
+                                                                <div class="rounded-icon">
+                                                                    <img src="/assets/icons/therapist-page/role.svg"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="name">{{therapistDetails.staffTitle}}</div>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <div class="rounded-icon">
+                                                                    <img src="/assets/icons/therapist-page/cert.svg"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="name">Certifications(3)</div>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <div class="rounded-icon">
+                                                                    <img src="/assets/icons/therapist-page/language.svg"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="name">English, Mandarin</div>
+                                                            </div>
+                                                            <div class="icon">
+                                                                <div class="rounded-icon">
+                                                                    <img src="/assets/icons/therapist-page/time.svg"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="name">Booked
+                                                                    {{therapistDetails?.bookedTimes}}
+                                                                    time{{therapistDetails?.bookedTimes !== 1 ? 's' :
+                                                                    ''}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="isMobile">
+                            <div *ngIf="therapistDetails?.reviews && therapistDetails?.reviews?.length">
+                                <div class="shop-reviews section">
+                                    <h5 class="heading">customer reviews</h5>
+                                    <div>
+                                        <div *ngFor="let review of therapistDetails?.reviews; let last = last;">
+                                            <div class="customer-feedback" [ngClass]="{'position-relative': last}">
+                                                <div class="client-review-details">
+                                                    <div class="client-details">
+                                                        <div class="client-img" (click)="customerDetail(review)">
+                                                            <img src="{{imgLink(review?.customerId?.image)}}"
+                                                                (error)="setDefaultUserPic($event, review?.clientId?.gender, review)"
+                                                                alt="customer">
+                                                        </div>
+                                                        <div class="customerRating">
+                                                            <div class="customer-name">
+                                                                <h6 *ngIf="review?.anonymous == false">
+                                                                    {{review?.clientId?.firstName + ' ' +
+                                                                    review?.clientId?.lastName}}</h6>
+                                                                <h6 *ngIf="review?.anonymous == true">Anonymous</h6>
+                                                            </div>
+                                                            <div class="rating">
+                                                                <app-star-rating [rating]="review?.star" [size]="18"></app-star-rating>
+                                                                <div class="time-added">
+                                                                    <p>{{ moment(review?.createdAt).fromNow() }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flag">
+                                                        <img src="assets/images/flag.svg" alt="flag">
+                                                    </div>
+                                                </div>
+                                                <div class="feedback" (click)="openCommentPage(review)">
+                                                    <p style="text-transform: none;">{{review?.review}}</p>
+                                                </div>
+                                                <div class="like-icons">
+                                                    <ul>
+                                                        <li><a (click)="likeComment(review?._id)">
+                                                                <img src="assets/images/thumb-up-fill.svg"
+                                                                    *ngIf="checkLikeDislike(review, 'like')"
+                                                                    alt="thumbs-up">
+                                                                <img src="assets/images/thumb-up.svg"
+                                                                    *ngIf="!checkLikeDislike(review, 'like')"
+                                                                    alt="thumbs-up">
+                                                            </a>{{review?.like?.length}}</li>
+                                                        <li><a (click)="dislikeComment(review?._id)">
+                                                                <img *ngIf="checkLikeDislike(review, 'dislike')"
+                                                                    src="assets/images/thumb-down-fill.svg"
+                                                                    alt="thumbs-down">
+                                                                <img *ngIf="!checkLikeDislike(review, 'dislike')"
+                                                                    src="assets/images/thumb-down.svg"
+                                                                    alt="thumbs-down">
+                                                            </a>{{review?.dislike?.length}}</li>
+                                                        <li><a (click)="openScrollableContent(review)"
+                                                                style="color: #90c63e;">
+                                                                Reply
+                                                                <!-- <img src="assets/images/comment.svg" alt="comment" *ngIf="review?.comment?.length == 0">
+                                                            <img src="assets/images/comment-fill.svg" alt="comment" *ngIf="review?.comment?.length > 0"> -->
+                                                            </a>
+                                                            <!-- {{review?.comment?.length}} -->
+                                                        </li>
+                                                        <li>
+                                                            <a><img src="assets/images/share-post.svg" alt="share"></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="blurred-review" *ngIf="last"></div>
+                                            </div>
+
+
+                                            <!-- new code for review -->
+                                            <div *ngIf="review?.comment?.length > 0">
+                                                <div class="div-replies"
+                                                    [ngStyle]="{'overflow': isContentToggled ? 'visible' : 'hidden' , 'display': isContentToggled ? 'inline-block' : '-webkit-box'}">
+                                                    <span style="text-transform: capitalize; font-weight: 500;">
+                                                        {{review?.comment?.length}}
+                                                        {{review?.comment?.length > 1 ? 'Replies' : 'Reply'}}
+                                                        - {{review?.comment[0]?.customerId?.firstName || ''}} {{
+                                                        review?.comment[0]?.customerId?.lastName
+                                                        || ''}} - </span>
+                                                    <!-- <div> -->
+                                                    <!-- <p> -->
+                                                    <!-- <span>{{review?.comment[review?.comment.length -1]?.body | slice:0:40 }}...</span> -->
+                                                    <span>{{displayText(review?.comment[0]?.body)}}</span>
+                                                    <label *ngIf="isReadMore" (click)="toggleContent()"
+                                                        class="read-label"> Read More</label>
+                                                    <label *ngIf="isContentToggled" (click)="toggleContent()"
+                                                        class="read-label">... Read
+                                                        Less</label>
+
+                                                    <!-- <em for="expanded">Read More</em> -->
+                                                    <!-- <label for="expanded">...read more</label> -->
+                                                    <!-- </p> -->
+                                                    <!-- </div> -->
+                                                </div>
+                                            </div>
+                                            <div class="hr mt-3 mb-3" *ngIf="!last"></div>
+                                        </div>
+                                    </div>
+                                    <div class="show-more">
+                                        <a (click)="navigateToTherapistRating()">Show More</a>
+                                    </div>
+                                </div>
+                                <div class="hr mt-3 mb-3"></div>
+                            </div>
+                        </div>
+                        <div *ngIf="!isMobile">
+                            <div class="container">
+                                <div class="review-section"
+                                    *ngIf="therapistDetails?.reviews && therapistDetails?.reviews?.length">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="header">
+                                                <h2 class="mb-3">Customer Reviews</h2>
+                                                <a (click)="navigateToTherapistRating()" class="btn btn-view-all">View
+                                                    All <img src="/assets/icons/arrow_right.png" alt=""></a>
+                                            </div>
+                                            <div class="card" style="width: 100%;">
+                                                <div class="card-body">
+                                                    <div class="customer"
+                                                        *ngFor="let review of therapistDetails?.reviews.slice(0, 2); let i = index">
+                                                        <div class="avatar" (click)="customerDetail(review)">
+                                                            <img src="{{review?.clientId?.image && review?.clientId?.image[0]}}"
+                                                                (error)="setDefaultUserPic($event, review?.clientId?.gender, review)"
+                                                                alt="customer">
+                                                            <div>
+                                                                <h6 class="name" *ngIf="review?.anonymous == false">
+                                                                    {{review?.clientId?.firstName}}
+                                                                    {{review?.clientId?.lastName}}</h6>
+                                                                <h6 class="name" *ngIf="review?.anonymous == true">
+                                                                    Anonymous</h6>
+                                                                <div class="rating" (click)="openCommentPage(review);">
+                                                                    <app-star-rating [rating]="review?.star" [size]="18"></app-star-rating>
+                                                                    <div class="time-added">
+                                                                        <p>{{ moment(review?.createdAt).fromNow() }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div (click)="openCommentPage(review);" class="feedback mt-3">
+                                                            <p style="text-transform: none;">{{review?.review}}</p>
+                                                        </div>
+                                                        <div class="hr mt-3 mb-4" *ngIf="i != 1"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="isMobile">
+                            <div class="services section"
+                                *ngIf="therapistDetails?.service_list && therapistDetails?.service_list?.length">
+                                <h5>Services</h5>
+                                <div class="services-wrapper">
+                                    <div class="outer-box" *ngFor="let service of therapistDetails?.service_list">
+                                        <div class="service-img" (click)="navigateToSelectService()">
+                                            <img src="{{service?.image && service?.image[0] ? service?.image[0] : './assets/images/service.png'}}"
+                                                (error)="setDefaultServicePic($event)" alt="service">
+                                        </div>
+                                        <div class="service-detail">
+                                            <div>
+                                                <h6 (click)="navigateToSelectService()">{{service?.name}}</h6>
+                                                <p (click)="navigateToSelectService()" class="price"
+                                                    *ngIf="service?.pricing_option && service?.pricing_option[0] && service?.pricing_option[0]?.price">
+                                                    <span
+                                                        class="text-green">${{(service?.pricing_option[0]?.price).toFixed(2)}}</span>
+                                                    /for {{service?.pricing_option[0]?.duration}}
+                                                </p>
+                                            </div>
+                                            <a (click)="navigateToSelectService()">Book us</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="show-more">
+                                  <a href="">Show More</a>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div *ngIf="!isMobile">
+                            <div class="container">
+                                <div class="service-section"
+                                    *ngIf="therapistDetails?.service_list && therapistDetails?.service_list?.length">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h2 class="mb-3">Services</h2>
+                                            <owl-carousel-o [options]="customOptions">
+                                                <ng-container *ngFor="let service of therapistDetails?.service_list">
+                                                    <ng-template carouselSlide [id]="service?._id">
+                                                        <div class="card">
+                                                            <img src="{{service?.image && service?.image[0] ? service?.image[0] : './assets/images/service.png'}}"
+                                                                (error)="setDefaultServicePic($event)" alt="service">
+                                                            <div class="card-body">
+                                                                <h6>{{service?.name}}</h6>
+                                                                <!-- <p class="price" *ngFor="let pricing of service?.pricing_option"><span
+                                                                    *ngIf="pricing?.price !== undefined && pricing?.price !== null"
+                                                                    class="text-green">${{(pricing?.price).toFixed(2)}}</span>/for {{pricing?.duration}}
+                                                                </p> -->
+                                                                <p class="price"
+                                                                    *ngIf="service?.pricing_option && service?.pricing_option[0] && service?.pricing_option[0]?.price">
+                                                                    <span
+                                                                        class="text-green">${{(service?.pricing_option[0]?.price).toFixed(2)}}</span>/for
+                                                                    {{service?.pricing_option[0]?.duration}}
+                                                                </p>
+                                                                <button class="btn btn-green w-100 mt-3"
+                                                                    (click)="navigateToSelectService()">Book Me</button>
+                                                            </div>
+                                                        </div>
+                                                    </ng-template>
+                                                </ng-container>
+                                            </owl-carousel-o>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="book-us" *ngIf="isMobile && therapistDetails?.onlineBooking">
+            <a (click)="navigateToSelectService()">Book Me</a>
+        </div>
+    </div>
+</div>

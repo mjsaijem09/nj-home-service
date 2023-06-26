@@ -1,0 +1,8 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<div *ngIf="!isLoading" class="text-center message-container">
+    <img src="/assets/images/login/success.svg">
+    <p class="message mt-5">{{message}}</p>
+    <button class="btn-primary round mt-3" (click)="navigate()">Go back to home page</button>
+</div>

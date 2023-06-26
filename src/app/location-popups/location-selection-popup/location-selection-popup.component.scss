@@ -1,0 +1,29 @@
+.search {
+    position: relative;
+    i.fa-search {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+    }
+    .drop-locations {
+        position: absolute;
+        background-color: #ffffff;
+        top: 50px;
+        right: 0;
+        left: 0;
+        padding: 10px 25px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 64px rgba(15, 34, 67, 0.1);
+        max-height: 218px;
+        overflow: scroll;
+        .loc-item {
+            padding: 5px 0;
+            border-bottom: solid 1px #d6d6d6;
+        }
+        .loc-item:last-child {
+            border: none!important;
+            padding-bottom: 3px;
+        }
+    }
+}
+

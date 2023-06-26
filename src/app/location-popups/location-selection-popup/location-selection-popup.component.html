@@ -1,0 +1,32 @@
+<div class="custom-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">Change Location</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()">
+        </button>
+    </div>
+    <div class="modal-body">
+        Search Your Location
+        <div class="search mt-2">
+            <input matInput google-place
+            type="text"
+            class="search-box w-100"
+            (onSelect)="selectLocation($event)"
+            placeholder="Search City, Post Code"
+            [(ngModel)]="location"
+            >
+            <!--div *ngIf="location == '' || !location" class="drop-locations">
+                <div class="loc-item" *ngFor="let loc of locationList.slice(0,8)" (click)="selectLocation(loc)">
+                    {{loc?.city}}, {{loc?.state}}, {{loc?.country}}, {{loc?.zip}}
+                    <span><img src="assets/images/new-tab.svg"></span>
+                </div>
+            </div-->
+            <i _ngcontent-ngv-c6="" class="fa fa-search"></i>
+        </div>
+        <button class="btn-primary w-100 mt-3" (click)="use_current()">User Currect Location</button>
+        <div class="text-center mt-4">
+            <button type="button" class="btn-primary-outline rounded" (click)="updateLocation()">Confirm</button>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

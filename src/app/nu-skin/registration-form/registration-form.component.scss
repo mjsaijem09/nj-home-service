@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+.registration-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background: url("../../../assets/icons/brand-story-background.svg") no-repeat;
+    background-position: center;
+}
+.form-box {
+    padding-left:20px;
+    padding-right:20px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #d4d4d475;
+    opacity: .9;
+    box-shadow: 7px 9px 12px -1px rgba(212,212,212,0.46);
+    -webkit-box-shadow: 7px 9px 12px -1px rgba(212,212,212,0.46);
+    -moz-box-shadow: 7px 9px 12px -1px rgba(212,212,212,0.46);
+
+    .nuskin-logo {
+        width: 40%;
+    }
+
+    .heading {
+        .main {            
+            font-weight: 500;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .info {
+            font-size: 14px;
+        }
+    }
+}
+
+.info-submit {
+    text-align: center;
+    font-size: 14px;
+    width: 80%;
+}
+
+.input-error {
+    border-color: #be0000;
+}
+.item-center {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.direction-column {
+    flex-direction: column;
+}
+
+.form-label {
+    margin: 0 !important;
+    font-size: 14px !important;
+    color: #8b8b8b !important;
+}
+
+.wd-100 {
+    width: 100%;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.btn-outline-success {
+    color: #72BBCC;
+    border-color: #72BBCC;
+}
+
+.form-control:focus {
+    border-color: #A14292;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #72BBCC;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active{
+    color: #fff;
+    background-color: #72BBCC;
+    border-color: #72BBCC;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus , .btn-outline-success:focus, .btn-outline-success:active:focus {
+    box-shadow:none;
+}
+

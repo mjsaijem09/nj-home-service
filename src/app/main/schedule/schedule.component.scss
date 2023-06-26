@@ -1,0 +1,1263 @@
+// .mt-my-5 {
+//     margin-top : 2.5rem !important;
+// }
+
+// .success-wrapper{
+//   text-align: center;
+//   .successs-icon{
+//       h6{
+//           font-size: 20px;
+//           font-weight: 600;
+//       }
+//   }
+// }
+
+// .appointment-bookBtn {
+//   .btn {
+//       width: calc(100% - 65px);
+//       border-radius: 0;
+//       &:focus {
+//           box-shadow: none;
+//       }
+//   }
+// }
+
+// .imgstyle{
+//     width: 100%;
+//     box-shadow: 0 0px 7px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+//   }
+//   .card {
+//     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//     transition: 0.3s;
+//   }
+//   .card-text{
+//     font-size: 12px;
+//     font-size: 15px;
+//     display: block;
+//     text-align: left;
+//     margin-bottom: 10px;
+//   }
+//   .textsize{
+//       font-size: 12px;
+//       margin-top: 5px;
+//   }
+//   .datestyle{
+//     margin-left: 8px;
+//     color: #989696;
+//     font-weight: 600;
+//   }
+//   .text{
+//       margin-right: 85px;
+//       font-size: 13px;
+//   }
+//   .pricing{
+//      font-size: 12px;
+//   }
+//   .text-right{
+//       margin-top: 25px;
+//   }
+//   .fa-whatsapp:before {
+//    color: #28a745!important;
+// }
+//  .cardposition{
+//      margin-bottom: 50px;
+//      margin-top: 30px;
+//  }
+
+//  .font-20{
+//   font-size: 20px;
+// }
+//  .font-16{
+//   font-size: 16px;
+// }
+// .font-14{
+//   font-size: 14px;
+// }
+//  .font-12{
+//   font-size: 12px;
+// }
+// .upcoming-card{
+//   max-width: 500px;
+// }
+// .therapist-details{
+//   padding: 10px;
+//   display: flex;
+// }
+// .therapist-img {
+//   width: 100px;
+
+//   img {
+//     box-shadow: -1px 0px 10px 0px #9e9e9e;
+//   }
+// }
+// .upcoming-right-block {
+//   margin-left: 10px;
+//   display: flex;
+//   // flex-direction: column;
+//   width: 100%;
+//   justify-content: center;
+// }
+// .upcoming-text{
+//   font-weight: 500;
+//   display: flex;
+//   justify-content: space-between;
+// }
+// .upcoming-text img {
+//   width: 25px;
+//   margin: 0 5px;
+// }
+// .therapist-img img {
+//   width: 80px;
+//   height: 80px;
+//   border-radius: 10px;
+// }
+// .buttons-area {
+//   display: flex;
+//   background-color: #000000;
+// }
+// .buttons-area button {
+//   width: 100%;
+//   border-radius: 0;
+//   color: #fff;
+//   margin: 5px;
+// }
+// .buttons-area .btn {
+//   border-right: 1px solid #fff;
+// }
+// .buttons-area .btn:last-child {
+//   border-right: none;
+// }
+// .buttons-area button:focus{
+//   color: #fff;
+//   outline:none;
+//   box-shadow: none;
+// }
+// .carddetailposition{
+//      padding-right: 0px;
+//      padding-left: 0px;
+// }
+
+// .v-align-super {
+//   vertical-align: super;
+// }
+
+// .float{
+// 	position:fixed;
+// 	width:60px;
+// 	height:60px;
+// 	bottom:68px;
+// 	right:40px;
+// 	background-color:white;
+// 	color:black;
+// 	border-radius:50px;
+// 	text-align:center;
+// 	box-shadow: 0px 4px 11px 4px #999;
+// }
+
+
+// .my-float{
+// 	margin-top:10px;
+// }
+// .bi-calendar-week::before {
+//   margin-top: 20px;
+//   font-size: 22px;
+// }
+// .active{
+//   border-bottom: 3px solid white;
+// }
+// .upcoming,.history{
+//   text-decoration: underline;
+// }
+
+// .scheduleHistory-card {
+//   .business-name {
+//     @media all and (max-width: 767px) {
+//       white-space: nowrap;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//       width: 65%;
+//     }
+//     @media all and (max-width: 374px) {
+//       white-space: nowrap;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//       width: 55%;
+//     }
+//   }
+// }
+// .star {
+//   position: relative;
+//   display: inline-block;
+//   font-size: 1rem;
+//   color: #d3d3d3;
+// }
+// .full {
+//   color: black;
+// }
+// .half {
+//   position: absolute;
+//   display: inline-block;
+//   overflow: hidden;
+//   color: black;
+// }
+// .disable-link{
+//   pointer-events: none;
+// }
+// .enable-link{
+//  pointer-events: painted;
+// }
+
+// .cardposition{
+//   .row{
+//     gap: 2rem;
+//     margin-inline: auto;
+//     width: 97%;
+//   }
+//   .upcoming-card {
+//     flex-basis: 400px;
+//     margin: 0 !important;
+//     padding: 5px 10px;
+//     .shadow {
+//       box-shadow: none !important;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-around;
+//     }
+//   }
+// }
+
+// .tabs {
+//   display: flex;
+//   align-items: center;
+//   * {
+//     border: 1px solid #e4d5d5;
+//     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 0px 0 rgb(0 0 0 / 0%);
+//     color: grey;
+//     flex-basis: 170px;
+//   }
+//   .active{
+//     border-bottom: 3px solid #9e9a9a;
+//   }
+// }
+
+// .schedule-tab{
+//   padding: 25px 25px;
+// }
+
+// // .desktop-view{
+// //   .history-tab{
+// //     .card-body{
+// //       // height: calc(35vh - 100px);
+// //       // .buttons-area{
+// //         // position: absolute;
+// //         // width: 96%;
+// //         // bottom: 5px;
+// //         // left: 10px;
+// //       // }
+// //     }
+// //   }
+// // }
+
+// .mobile-view{
+//   .cardposition{
+//     .row{
+//       // padding: 0 15px;
+//       width: 100%;
+//       gap: 1rem;
+//     }
+//     .upcoming-card{
+//       flex-basis: 100%;
+//       // margin-bottom: 15px !important;
+//     }
+//   }
+// }
+
+// .header {
+//   @media all and (max-width:767px) {
+//     display: flex;
+//     width: 100%;
+//     background-color: black;
+//     justify-content: space-between;
+//     margin-top: 11px;
+//     height: 35px;
+//     padding: 0 20px;
+//   }
+
+// }
+
+// .headerWeb {
+//   width: 100%;
+//   background-color: black;
+//   justify-content: space-between;
+//   margin-top: 5px;
+
+//   @media all and (max-width:767px) {
+//     display: none;
+//   }
+// }
+
+// .therapist-header{
+//   .location {
+//     background-color: #90C63E;
+//     color: white;
+//     text-align: center;
+//   }
+
+//   .locationText {
+//     padding-top: 6px;
+//   }
+
+//   .referalSource {
+//     background-color: #C3C3C3;
+//     color: white;
+//     text-align: center;
+//     padding: 5px 0;
+//   }
+
+//   .locationText {
+//     padding-top: 6px;
+//     color: black;
+//     font-weight: 600;
+//     font-size: 19px;
+//   }
+  
+// }
+
+// // .detail-view-wrapper{
+// //   .column-left{
+// //     max-height: 800px;
+// //     overflow: auto;
+// //     max-width: 30%;
+// //   }
+// // }
+// .column-left{
+//   max-width: 40%;
+//   overflow: auto;
+//   max-height: 800px; 
+//   // flex: none;
+//   @media all and (max-width:767px){
+//     max-width: 100%;
+//   } 
+// }
+// .column-right{
+//   flex: none;
+//   max-width: 60%;
+//   margin-right: 338px;
+//   width: 500px;
+//   @media all and (max-width:767px){
+//     max-width: 0%;
+//   }
+// }
+// .deatilsPage{
+//   display: flex;
+//   justify-content:space-between;
+//   @media all and (max-width:767px){
+//   }
+//   // overflow: auto;
+// }
+// .center-side {
+//   display: flex;
+//   justify-content: center !important;
+// }
+
+// .border-line{
+//   border-bottom: 1px solid;
+//   color:lightgrey
+// }
+
+// .text-button{
+//   color: white;
+//   background-color: black;
+// }
+// .policy-content{
+//   font-size: 13px;
+//   text-align: left;
+//   margin-left: 5px;
+//   margin-top: 3px;
+// }
+// .label-text{
+//   white-space: nowrap;
+//   font-size: 15px;
+//   font-weight: 600;
+// }
+
+
+// .tab-align{
+ 
+//     width: 148px;
+//     height: 32px;
+//     margin-top: 5px;
+//     padding-top: 3px;
+//     background: #EDEDEE;
+//     border-radius: 16px;
+    
+// }
+// .active{
+//   color: #90C63E;
+// }
+// .tab-custom{
+//   margin-top: 49px;
+//   background-color: white;
+    
+// }
+// .tab-main{
+//   margin-left: 10px;
+//     margin-right: 10px;
+// }
+
+// .relationshipMain-page {
+//   margin-bottom: 70px;
+// }
+// .card-custom {
+//   // padding: 15px;
+//   border-radius: 10px !important;
+// }
+// .therapist-details{
+//   display: flex;
+//   height: 65px;
+// }
+// .therapist-imgs {
+//   width: 20%;
+// }
+// .therapist-imgs img {
+//   width: 45px;
+//   height: 45px;
+//   border-radius: 50%;
+  
+// }
+
+// .carddetailposition{
+//   padding-right: 0px; 
+//   padding-left: 0px; 
+//   margin-top: 100px !important;
+// }
+// .carddetailpositions{
+//   padding-right: 0px; 
+//   padding-left: 0px; 
+//   margin-top: 10px !important;
+// }
+// .carddetailsposition{
+//   padding-right: 0px;
+//   padding-left: 0px;
+//   margin-top: 90px !important;
+// }
+// .cardsdetailposition{
+//   padding-right: 0px;
+//   padding-left: 0px;
+//   margin-top: 10px !important;
+// }
+// .card {
+//   // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   background: #FFFFFF;
+//   box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+//   border-radius: 10px;
+//   // transition: 0.3s;
+// }
+// .upcoming-card {
+//   max-width: 500px;
+// }
+// .card-body {
+//   padding-bottom: 0;
+// }
+// .buttons-area {
+//   margin: 0 -20px;
+// }
+
+// .user-name-wrapper {
+//   width:80%;
+  
+  
+//   }
+//   .name-wrapper{
+   
+//     margin-bottom: -5px;
+//     white-space: nowrap;
+//     margin-left: 5px;
+//     width: 118px;
+//     height: 19px;
+//     left: 92px;
+//     top: 194px;
+    
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: 500;
+//     font-size: 16px;
+//     line-height: 19px;
+//     /* identical to box height */
+    
+//     text-transform: capitalize;
+    
+//     color: #000000;
+    
+    
+//   }
+//   .time-range{
+//     width: 196px;
+//     height: 15px;
+//     // left: 92px;
+//     // top: 214px;
+    
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 13px;
+//     line-height: 15px;
+//     text-transform: capitalize;
+    
+//     color: #A6AEC1;
+//     margin-top: 2%;
+//     margin-left: 2%;
+//   }
+
+//   .coin-number-wrapper{
+//     float: right;
+//     border-radius: 10px;
+//     background-color: #fbecbd;
+//     width: 45px;
+//     /* height: 5%; */
+//     height: 22px;
+//     /* margin-bottom: -18px; */
+//     margin-top: -62px;
+//   }
+//   .coin-number{
+//     color: #F2C42C;
+//   }
+//   .coin-icon{
+//     margin: 0px 5%;
+//     width: 14px;
+//     height: 14px;
+//   }
+//   .name-second-wrapper{
+//     width: 102px;
+//     height: 18px;
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: 500;
+//     font-size: 15px;
+//     line-height: 18px;
+//     text-transform: capitalize;
+//     color: #000000;
+//     white-space: nowrap;
+//     margin-left: 5%;
+    
+//   }
+
+//   .button-hr{
+//     width: 58px;
+//     height: 21px;
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 12px;
+//     line-height: 14px;
+//     text-transform: capitalize;
+//     color: #3E9DC6;
+//   }
+//   .button-call{
+//     width: 58px;
+//     height: 21px;
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 12px;
+//     line-height: 14px;
+//     text-transform: capitalize;
+//     color: #FFFFFF;
+//     background-color: #90C63E;
+//   }
+//   .button-hrs{
+//     width: 53px;
+//     height: 21px;
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 12px;
+//     line-height: 14px;
+//     text-transform: capitalize;
+//     color: #3E9DC6;
+//     border: none;
+
+//   }
+//   .button-calls{
+//     width: 53px;
+//     height: 21px;
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 12px;
+//     line-height: 14px;
+//     text-transform: capitalize;
+//     color: #FFFFFF;
+//     background-color: #90C63E;
+//     border: none;
+
+//   }
+//   .button-pays{
+//     width: 53px;
+//     height: 21px;
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 12px;
+//     line-height: 14px;
+//     text-transform: capitalize;
+//     color: 90C63E;
+//     color: #90C63E;
+//     background-color: #EEF6E3;
+//     border: none;
+//   }
+//   .name-hour-wrapper{
+//     margin-bottom: -3%;
+//   }
+//   .time-wrapper{
+//     margin-left: 40%;
+//   }
+
+//   .shop-wrapper{
+//     width: 85px;
+//     height: 14px;
+//     font-family: Rubik;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 12px;
+//     line-height: 14px;
+//     text-transform: capitalize;
+//     color: #979AA2;
+//     margin-left: 4%;
+
+    
+//   }
+//   .zen{
+//     margin-bottom: 4%;
+//   }
+//   .point-review-wrapper{
+//     margin-left: 4%;
+//     margin-bottom: 1%;
+//     .point-wrapper{
+//       width: 78px;
+//       height: 14px;      
+//       font-family: Rubik;
+//       font-style: normal;
+//       font-weight: normal;
+//       font-size: 12px;
+//       line-height: 14px;
+//       text-transform: capitalize;
+//       color: #979AA2;
+//       white-space: nowrap;
+      
+//     }
+//     .review-wrapper{
+//       width: 125px;
+//       height: 13px;
+//       font-family: Rubik;
+//       font-style: normal;
+//       font-weight: normal;
+//       font-size: 11px;
+//       line-height: 13px;
+//       /* identical to box height */
+//       text-transform: capitalize;
+//       color: #F2C42C;
+//       white-space: nowrap;
+//       margin-left: 26%;
+      
+//     }
+//   }
+
+//   .add-review-rating-wrapper{
+//     width: 275px;
+//     height: 27px;
+//     border: 1px solid #DEDEDE;
+//     box-sizing: border-box;
+//     border-radius: 5px;
+//     margin-left: 3%;
+//     margin-bottom: 5%;
+//     .add-review-wrapper{
+//       width: 66px;
+//       height: 14px;
+//       font-family: Rubik;
+//       font-style: normal;
+//       font-weight: normal;
+//       font-size: 12px;
+//       line-height: 14px;
+//       text-transform: capitalize;
+//       color: #4F4F4F;
+//       margin-left: 9%;
+//       margin-top: 2%;
+//     }
+//     .rating-wrapper{
+//       margin-left: 25%;
+//       margin-top: 1%;
+
+//     }
+//   }
+//   .upcoming-right-block {
+//     // margin-left: 10px;
+//     // display: flex;
+//     // flex-direction: column;
+//     width: 100%;
+//     margin-bottom: 15px;
+//     justify-content: space-between;
+//     // padding-top: 20px;
+//     // justify-content: center;
+//   }
+//   .re-book{
+//     background-color: #90C63E;
+//     border: none;
+//   }
+//   .add{
+//   background-color: #3E9DC6;
+//   border: none;
+//   }
+//   .delete{
+//     background-color: #F8EFCC;
+//     border: none;
+//     }
+//     .cancel{
+//     background-color: #FD6D6D;
+//     border: none;
+//     }
+
+//     .button-custom{
+//       width: 83px;
+//       font-family: Rubik;
+//       font-style: normal;
+//       font-weight: normal;
+//       font-size: 12px;
+//       line-height: 14px;
+//       text-transform: capitalize;
+//       color: #FFFFFF;
+
+      
+      
+//     }
+//     .button-customs{
+//       width: 125px;
+//       height: 31px;
+//       border-radius: 6px;
+//     }
+.schedule-page{
+  margin-bottom: 60px;
+  .schedule-tabs{
+    margin-top: 105px;
+    background-color: #fff;
+    padding-bottom: 10px;
+    .tabs-btn{
+      .tab-align{
+        background: transparent;
+        border-radius: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        &.active{
+          span{
+            background: #EFF7E4;
+            color: #90C63E;
+          }
+        }
+        span{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 32px;
+          font-size: 14px;
+          line-height: 17px;
+          color: #A6AEC1;
+          background: #F0F0F0;;
+          border-radius: 16px;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+  .schedule-tab-content{
+    margin-top: 10px;
+    .btns{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      a{
+        border-radius: 6px;
+        font-size: 12px;
+        line-height: 14px;
+        color: #FFFFFF;
+        padding: 7px 0;
+        width: 100%;
+        text-align: center;
+      }
+      .book-us{
+        background: #90C63E;
+      }
+      .delete{
+        background: #FD6D6D;
+      }
+      .invoice{
+        background: #3E9DC6;
+      }
+      .add-tip{
+        color: #F2C42C;
+        background: #F8EFCC;
+      }
+    }
+    .upcoming-content{
+      .upcoming-content-wrapper{
+        background: #FFFFFF;
+        box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+        border-radius: 10px;
+        padding: 17px 16px 23px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .user{
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 9px;
+          img{
+            width: 45px;
+            height: 45px;
+            border-radius: 100%;
+            object-fit: cover;
+          }
+          .therapist-info{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            h3{
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 19px;
+              margin-bottom: 0px;
+            }
+            p{
+              font-size: 12px;
+              line-height: 15px;
+              color: #A6AEC1;
+              margin: 0;
+            }
+          }
+          .points{
+            p{
+              font-weight: 500;
+              font-size: 12px;
+              line-height: 14px;
+              color: #F2C42C;
+              background: #F8EFCC;
+              border-radius: 13px;
+              padding: 4px 5px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              img{
+                width: 14px;
+                height: 14px;
+                margin-right: 3px;
+              }
+            }
+          }
+        }
+        .therapist-shop-details{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          .shop-detail{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 8px;
+            h3{
+              font-weight: 500;
+              font-size: 15px;
+              line-height: 18px;
+              margin: 0;
+            }
+            p{
+              font-size: 12px;
+              line-height: 14px;
+              color: #979AA2;
+              margin: 0;
+            }
+          }
+          .shop-contact{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            a{
+              box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+              border-radius: 3px;
+              font-size: 12px;
+              line-height: 14px;
+              width: 50px;
+              padding: 4px 0;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+              img{
+                max-width: 13px;
+                height: 13px;
+                margin-right: 5px;
+              }
+            }
+            .direction{
+              background: #DEEEF4;
+              color: #3E9DC5;
+            }
+            .call{
+              background: #90C63E;
+              color: #FFFFFF;
+            }
+            .pay{
+              background: #EEF6E3;
+              color: #90C63E;
+            }
+          }
+        }
+      }
+      .emptyArray {
+        text-align: center;
+        margin-top: 40px;
+        img {
+          width: 210px;
+        }
+        h4 {
+          margin-top: 20px;
+          color: #90C63E;
+        }
+        p {
+          font-size: 14px;
+          line-height: 17px;
+          margin-bottom: 10px;
+        }
+        .btn-green {
+          background: #90C63E;
+          border-radius: 10px;
+          color: #fff;
+          border: none;
+          padding: 10px 0;
+          margin-top: 25px;
+        }
+      }
+    }
+    .history-content{
+      .btns{
+        gap: 8px;
+      }
+      .therapist-shop-details{
+        margin-bottom: 3px !important;
+        align-items: flex-start !important;
+      }
+      .earn-points{
+        margin-bottom: 20px;
+        .points-earned{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+          p{
+            font-size: 12px;
+            line-height: 14px;
+            color: #979AA2;
+            margin-bottom: 0;
+          }
+          span{
+            font-size: 11px;
+            line-height: 13px;
+            color: #F2C42C;
+          }
+        }
+        .review{
+          border: 1px solid #DEDEDE;
+          border-radius: 5px;
+          padding: 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          p{
+            font-size: 12px;
+            line-height: 14px;
+            color: #4F4F4F;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal-body {
+  p {
+    text-align: center;
+  }
+}
+
+::ng-deep .modal-content {
+  border-radius: .8rem !important;
+  border: none !important;
+}
+
+.modal-body {
+  .actions {
+    img {
+      height: 18px;
+    }
+    .bg-green {
+      background-color: #91C73E;
+      color: #fff;
+      border-radius: 20px;
+      width: 45%;
+    }
+    .direction{
+      background: #DEEEF4;
+      color: #3E9DC5;
+      border-radius: 20px;
+      width: 45%;
+    }
+  }
+}
+
+.modal-title {
+  margin: 0 auto;
+  width: 100%;
+  color: white;
+}
+
+.failed {
+  .modal-header, .modal-footer {
+    background-color: #FD6D6D;
+  }
+}
+
+// Desktop view
+.schedule-desktop {
+  margin-top: 130px;
+  .card {
+    box-shadow: 0px 8px 64px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    .card-body {
+      .tab-align {
+        background: rgba(166, 174, 193, 0.22);
+        border-radius: 31.5px;
+        padding: 10px 0;
+        cursor: pointer;
+      }
+      .tab-align span {
+          color: #A6AEC1;
+      }
+      .tab-align.active {
+          background: #EFF7E4;
+          border-radius: 31.5px;
+      }
+      .tab-align.active span {
+          color: #90C63E;
+      }
+      .schedule-tab-content {
+        .upcoming-content {
+          .upcoming-content-wrapper {
+            background: #FFFFFF;
+            box-shadow: 0px 8px 64px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 15px;
+            .profile {
+              display: flex;
+              justify-content: space-between;
+              align-items: start;
+              .flex {
+                display: flex;
+                img.avatar {
+                  width: 90px;
+                  height: 90px;
+                  object-fit: cover;
+                  border-radius: 50px;
+                }
+                .service {
+                  font-weight: 500;
+                  font-size: 24px;
+                  line-height: 26px;
+                }
+                
+                .duration-n-date {
+                  font-size: 16px;
+                  color: #A6AEC1;
+                  margin-top: 6px;
+                }
+              }
+              .appointment-amount {
+                background: #90C63E;
+                box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+                border-radius: 5px;
+                color: #fff;
+                padding: 5px 13px;
+              }
+              .amount-and-status {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .status {
+                  text-transform: capitalize;
+                  &.cancelled {
+                    color: #fd6d6d;
+                  }
+                  &.completed {
+                    color: #90c63e;
+                  }
+                }
+              }
+            }
+            .therapist {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              h3.name {
+                font-weight: 500;
+                font-size: 20px;
+                color: #0D0D0D;
+                margin: 0;
+                padding-top: 10px;
+              }
+              p.shop {
+                color: #A6AEC1;
+                font-size: 16px;
+              }
+              .shop-contact {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                a.pay {
+                  background: #EFF7E4;
+                  box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+                  border-radius: 5px;
+                  color: #90C63E!important;
+                  font-size: 18px;
+                  padding: 7px 8px;
+                  margin-right: 13px;
+                  display: flex;
+                  img {
+                    width: 10px;
+                    margin-right: 5px;
+                  }
+                }
+                a.direction {
+                  background: #DEEEF4;
+                  box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+                  border-radius: 5px;
+                  color: #3E9DC6!important;
+                  font-size: 18px;
+                  padding: 7px 8px;
+                  margin-right: 13px;
+                  display: flex;
+                  img {
+                    width: 18px;
+                    margin-right: 5px;
+                  }
+                }
+                a.call {
+                  background: #90C63E;
+                  box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+                  border-radius: 5px;
+                  color: #fff!important;
+                  font-size: 18px;
+                  padding: 7px 8px;
+                  display: flex;
+                  img {
+                    width: 18px;
+                    margin-right: 5px;
+                  }
+                }
+              }
+            }
+            .earn-points{
+              margin-bottom: 20px;
+              .points-earned{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+                p{
+                  font-size: 15px;
+                  line-height: 14px;
+                  color: #979AA2;
+                  margin-bottom: 0;
+                }
+                span{
+                  font-size: 15px;
+                  line-height: 13px;
+                  color: #F2C42C;
+                }
+              }
+              .review{
+                border: 1px solid #DEDEDE;
+                border-radius: 5px;
+                padding: 15px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                p{
+                  font-size: 15px;
+                  line-height: 14px;
+                  color: #4F4F4F;
+                  margin: 0;
+                }
+              }
+            }
+            .actions {
+              display: flex;
+              justify-content: space-between;
+              a.btn-edit {
+                background-color: #90C63E;
+                color: #fff!important;
+                text-align: center;
+                border-radius: 10px;
+                padding: 10px 50px;
+                width: 180px;
+                font-size: 19px;
+              }
+              a.btn-cancel {
+                background-color: #FD6D6D;
+                color: #fff!important;
+                text-align: center;
+                border-radius: 10px;
+                padding: 10px 50px;
+                width: 180px;
+                font-size: 19px;
+              }
+            }
+          }
+        }
+        .history-content {
+          .actions {
+            a {
+              padding: 10px 30px;
+              border-radius: 6px;
+            }
+            .book-us {
+              background-color: #90C63E;
+              color: #fff!important;
+            }
+            .invoice {
+              background-color: #3E9DC6;
+              color: #fff!important;
+            }
+            .add-tip {
+              background-color: #F8EFCC;
+              color: #F7C942!important;
+            }
+          } 
+        }
+      }
+    }
+  }
+}

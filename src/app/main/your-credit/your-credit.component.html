@@ -1,0 +1,73 @@
+<div class="top-spacing">
+    <div class="container">
+        <div class="vote-rate-wrapper d-flex">
+            <div class="my-3 ms-3">
+                <img src="../../../../assets/images/score/shield1.svg" alt="">
+            </div>
+            <div class="ml-5 w-100 shield1">
+                <span>Excellent</span>
+            </div>
+        </div>
+        <div class="vote-rate-wrapper d-flex">
+            <div class="my-3 ms-3">
+                <img src="../../../../assets/images/score/shield2.svg" alt="">
+            </div>
+            <div class="ml-5 w-100 shield2">
+                <span>Average</span>
+            </div>
+        </div>
+        <div class="vote-rate-wrapper d-flex">
+            <div class="my-3 ms-3">
+                <img src="../../../../assets/images/score/shield3.svg" alt="">
+            </div>
+            <div class="ml-5 w-100 shield3">
+                <span>Poor</span>
+            </div>
+        </div>
+        <div class="vote-rate-wrapper d-flex">
+            <div class="my-3 ms-3">
+                <img src="../../../../assets/images/score/shield4.svg" alt="">
+            </div>
+            <div class="ml-5 w-100 shield4">
+                <span>Excellent</span>
+            </div>
+        </div>
+        <div *ngFor="let data of shiedList">
+            <div class="vote-rate-wrapper d-flex" *ngIf="data.points > 0">
+                <div class="vote-icon-wrapper">
+                    <img src="../../../../assets/images/credit-red.svg" alt="">
+                </div>
+                <div class="vote-rate-message">
+                    <span class="rating-number">{{data.type}}</span>
+                </div>
+                <div class="total-rating"><p class=" m-0">+{{data.points}}</p></div>
+            </div>
+            <div class="vote-rate-wrapper d-flex" *ngIf="data.points <= 0">
+                <div class="vote-icon-wrapper2">
+                    <img src="../../../../assets/images/credit-green.svg" alt="">
+                </div>
+                <div class="vote-rate-message">
+                    <span class="rating-number">{{data.type}}</span>
+                </div>
+                <div class="total-rating-red"><p class=" m-0">{{data.points}}</p></div>
+            </div>
+        </div>
+       
+
+        <div class="understand-rate-wrapper">
+            <div class="understand-wrapper">
+                <p>Understand your credit</p>
+            </div>
+            <div class="description1-wrapper">
+                <P>
+                No show, late cancellation and late for appointment will damage business. Bookus created this credit system to avoide
+                such things from happening.<br/>
+                
+                You will lose credit pts when you late,miss, and late cancel your appointments. You will also gain pts if you come to
+                your appointment on time.
+                </P>
+            </div>
+        </div>
+        
+    </div>
+</div>

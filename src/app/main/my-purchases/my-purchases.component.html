@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="tabs">
+        <div class="tab" [class.active]="tab === 'orders'" (click)="switchTab('orders')">Orders</div>
+        <div class="tab" [class.active]="tab === 'complete'" (click)="switchTab('complete')">Complete</div>
+    </div>
+    <ng-container *ngIf="tab === 'orders' && reload">
+        <div class="card mb-3" *ngFor="let order of orders; let last = last;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <ng-container>
+                        <div class="store-details">
+                            <div class="d-flex align-items-center" style="gap: 5px;width: calc(100% - 30%);">
+                                    <img class="logo" *ngIf="order?.sourceLocation?.company?.logo" [src]="order?.sourceLocation?.company?.logo">
+                                    <div class="name">{{order?.sourceLocation?.name}}</div>
+                                </div>
+                            <div class="status">To {{order?.shippingType === 'shipping' ? 'Ship' : 'Pickup'}}</div>
+                        </div>
+                        <div class="order-items">
+                            <ng-container *ngFor="let item of order.orderItems; let last = last;">
+                                <div class="product">
+                                    <img [src]="item?.productId?.productImages[0]?.productImage" alt="product-img" (error)="setDefaultPic($event)">
+                                    <div class="details">
+                                    <div class="name">{{item?.productId?.name}}</div>
+                                    <div class="qty">x{{item?.orderedQuantity}}</div>
+                                    <div class="amount">
+                                        <span class="original-price" *ngIf="item?.productId?.specialPrice != null">A ${{item?.productId?.retailPrice}}</span>
+                                        A ${{item?.productId?.specialPrice != null ? item?.productId?.specialPrice : item?.productId?.retailPrice}}</div>
+                                    </div>
+                                </div>
+                                <div class="hr mt-3 mb-3" *ngIf="!last"></div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </li>
+                <li class="list-group-item total-payment">
+                    <div class="total">
+                        <div class="name">Order Total</div>
+                        <div class="amount">A ${{orderTotal(order.orderItems)}}</div>
+                    </div>
+                    <div class="note">Order paid <span>A ${{orderTotal(order.orderItems)}}</span> online via stripe</div>
+                </li>
+                <li class="list-group-item confirmation">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="note">Confirm this once you have {{order?.shippingType === 'shipping' ? 'Received your order.' : 'Picked your order from the store'}}</div>
+                        <button class="btn bg-theme-green text-white" (click)="orderReceived(order)" [disabled]="order.isOrderReceived">Order {{order?.shippingType === 'shipping' ? 'Received' : 'Picked'}}</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="tab === 'complete'">
+        <div class="card mb-3" *ngFor="let order of completed; let last = last;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <ng-container>
+                        <div class="store-details">
+                            <div class="d-flex align-items-center" style="gap: 5px;width: calc(100% - 30%);">
+                                    <img class="logo" *ngIf="order?.sourceLocation?.company?.logo" [src]="order?.sourceLocation?.company?.logo">
+                                    <div class="name">{{order?.sourceLocation?.name}}</div>
+                                </div>
+                            <div class="status">To {{order?.shippingType === 'shipping' ? 'Ship' : 'Pickup'}}</div>
+                        </div>
+                        <div class="order-items">
+                            <ng-container *ngFor="let item of order.orderItems; let last = last;">
+                                <div class="product">
+                                    <img [src]="item?.productId?.productImages[0]?.productImage" alt="product-img" (error)="setDefaultPic($event)">
+                                    <div class="details">
+                                    <div class="name">{{item?.productId?.name}}</div>
+                                    <div class="qty">x{{item?.orderedQuantity}}</div>
+                                    <div class="amount">
+                                        <span class="original-price" *ngIf="item?.productId?.specialPrice != null">A ${{item?.productId?.retailPrice}}</span>
+                                        A ${{item?.productId?.specialPrice != null ? item?.productId?.specialPrice : item?.productId?.retailPrice}}</div>
+                                    </div>
+                                </div>
+                                <div class="hr mt-3 mb-3" *ngIf="!last"></div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </li>
+                <li class="list-group-item total-payment">
+                    <div class="total">
+                        <div class="name">Order Total</div>
+                        <div class="amount">A ${{orderTotal(order.orderItems)}}</div>
+                    </div>
+                    <div class="note">Order paid <span>A ${{orderTotal(order.orderItems)}}</span> online via stripe</div>
+                </li>
+                <li class="list-group-item confirmation">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="note">Add review to this product you've ordered</div>
+                        <button class="btn bg-theme-green text-white" [class.reviewed]="order.orderReviewed" (click)="addReview(order)" [disabled]="!order.orderReviewed">{{order.orderReviewed ? 'Reviewed': 'Add Review'}}</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+    <br>
+    <br>
+    <br>
+</div>

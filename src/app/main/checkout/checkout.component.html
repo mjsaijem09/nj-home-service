@@ -1,0 +1,342 @@
+<div class="herbal-center-wrapper margin-top">
+    <div class="checkout-page-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="checkout-section">
+                        <div class="profile-wrapper mt-2">
+                            <div class="checkout">
+                                <h4 class="already-paid" *ngIf="paymentDone">
+                                    Payment already Done!
+                                </h4>
+                                <div class="pay-for-orders">
+                                    <h5 class="heading"  *ngIf="!bookingData?.payOnlineLink">how would you like to pay for your order</h5>
+                                    <h5 class="heading"  *ngIf="bookingData?.payOnlineLink">Pay Appointment Online</h5>
+                                    <div class="radios"  *ngIf="!bookingData?.payOnlineLink">
+                                        <div class="row">
+                                            <div class="col-6" *ngIf="payOnline">
+                                                <label class="form-check-label pointer active" for="card" (click)="handlePaymentType('card', $event)">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="radio" id="card" [checked]="paymentType == 'card'">
+                                                        <span class="radio-btn"></span>
+                                                        Credit Card
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-check-label pointer active" for="PayInStore" (click)="handlePaymentType('payInStore', $event)">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="radio" id="PayInStore" [checked]="paymentType == 'payInStore'">
+                                                        <span class="radio-btn"></span>
+                                                        Pay In Store
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-6" *ngIf="payWithGiftcard">
+                                                <label class="form-check-label pointer active" for="GiftCards" (click)="handlePaymentType('gift card', $event)">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="radio" id="GiftCard" [checked]="paymentType == 'gift card'">
+                                                        <span class="radio-btn"></span>
+                                                        Gift Cards
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-6" *ngIf="payWithLoyaltyPoints && bookingData?.service?.loyaltyPointCanRedeem">
+                                                <label class="form-check-label pointer active" for="LoyaltyPoints" (click)="handlePaymentType('loyalty points', $event)">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="radio" id="LoyaltyPoints" [checked]="paymentType == 'loyalty points'">
+                                                        <span class="radio-btn"></span>
+                                                        Loyalty Points
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-6" *ngIf="walletMethod">
+                                                <label class="form-check-label pointer active" for="Wallet" (click)="handlePaymentType('wallet', $event)">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="radio" id="Wallet" [checked]="paymentType == 'wallet'">
+                                                        <span class="radio-btn"></span>
+                                                        Wallet
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mt-4" *ngIf="walletMethod">
+                                                <div class="alert alert-warning" role="alert">
+                                                    Wallet method is temporarily disabled until the next released version.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr"></div>
+                                <div *ngIf="paymentType != 'gift card'">
+                                    <div class="promo-code" *ngIf="!voucherData; else promoApplied">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="promoCode" [(ngModel)]="promoCode" name="promoCode" aria-describedby="promoCode" placeholder="Insert promo code">
+                                            </div>
+                                        </form>
+                                        <a class="apply-btn" (click)="applyVoucher()">Apply</a>
+                                    </div>
+                                </div>
+                                <div class="promo-code mt-3" *ngIf="paymentType == 'gift card'">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="giftVoucher" [(ngModel)]="giftVoucher" name="giftVoucher" aria-describedby="giftVoucher" placeholder="Insert giftcard voucher">
+                                        </div>
+                                    </form>
+                                    <a class="apply-btn" (click)="applyGiftVoucher()">Apply</a>
+                                </div>
+                                <ng-template #promoApplied>
+                                    <div class="applied-promo">
+                                        <div class="innerbox">
+                                            <div class="img-wrapper">
+                                                <img src="assets/images/promo-icon.svg">
+                                            </div>
+                                            <div class="coupon-detail">
+                                                <h6>{{voucherData?.promotionalCode}}</h6>
+                                                <p>Promocode applied</p>
+                                            </div>
+                                        </div>
+                                        <div class="cancel" (click)="removePromoCode()">
+                                            <img src="assets/images/close.svg">
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <div class="hr"></div>
+                                <!-- Pay with Credit Card -->
+                                <div class="pay-creditCard" *ngIf="paymentType == 'card' || bookingData?.payOnlineLink">
+                                    <h5 class="heading">Pay with Credit Card</h5>
+                                    <app-credit-card (cardOutput)="cardOutput($event)"></app-credit-card>
+                                    <div class="bill">
+                                        <div class="card-details">
+                                            <div class="service">
+                                                <p class="service-type">{{ bookingData?.service?.serviceName }} - {{ bookingData?.service?.serviceTime }}</p>
+                                                <p class="amount">{{currency.symbol}}{{ getServicePrice() | number:'1.2-2' }}</p>
+                                            </div>
+                                            <div class="service" *ngIf="voucherData != null">
+                                                <p class="service-type">Promocode</p>
+                                                <p class="amount">
+                                                    <span *ngIf="voucherData?.valueType === 'amount'">{{currency.symbol}}</span>
+                                                    <span *ngIf="voucherData?.valueType === 'amount'">{{voucherData?.value | number:'1.2-2'}}</span>
+                                                    <span *ngIf="voucherData?.valueType === 'percentage'">{{voucherData?.value}}</span>
+                                                    <span *ngIf="voucherData?.valueType === 'percentage'">%</span>
+                                                    <span> Off</span>
+                                                </p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Processing fee</p>
+                                                <p class="amount">{{currency.symbol}}{{processingFee | number : '1.2-2'}}</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Tax</p>
+                                                <p class="amount">{{currency.symbol}}0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pay In-store -->
+                                <div class="pay-creditCard pay-loyaltyPoints" *ngIf="paymentType == 'payInStore'">
+                                    <div class="bill">
+                                        <div class="card-details">
+                                            <div class="service">
+                                                <p class="service-type">{{ bookingData?.service?.serviceName }} - {{ bookingData?.service?.serviceTime }}</p>
+                                                <p class="amount">
+                                                    <!-- <span class="orig-price" *ngIf="bookingData.service.serviceSpecialPrice">{{currency.symbol}}{{bookingData?.service?.servicePrice | number:'1.2-2'}}</span>  -->
+                                                    {{currency.symbol}}{{ getServicePrice() | number:'1.2-2' }}</p>
+                                            </div>
+                                            <div class="service" *ngIf="voucherData != null">
+                                                <p class="service-type">Promocode</p>
+                                                <p class="amount">
+                                                    <span *ngIf="voucherData?.valueType === 'amount'">{{currency.symbol}}</span>
+                                                    <span *ngIf="voucherData?.valueType === 'amount'">{{voucherData?.value | number:'1.2-2'}}</span>
+                                                    <span *ngIf="voucherData?.valueType === 'percentage'">{{voucherData?.value}}</span>
+                                                    <span *ngIf="voucherData?.valueType === 'percentage'">%</span>
+                                                    <span> Off</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pay by giftcard -->
+                                <div class="pay-creditCard pay-loyaltyPoints" *ngIf="paymentType == 'gift card'">
+                                    <div class="current-points">
+                                        <h5 class="heading">Pay with giftcard</h5>
+                                        <p class="text-danger" *ngIf="!giftcard_voucher">Please insert your giftcard voucher</p>
+                                        <p *ngIf="giftcard_voucher">You have <span>{{currency.symbol}}{{giftcard_voucher?.remainingAmount}}</span> gift card expire on {{giftcard_voucher?.expiryDate | date : 'mediumDate'}}</p>
+                                    </div>
+                                    <div class="bill">
+                                        <div class="card-details">
+                                            <div class="service">
+                                                <p class="service-type">Pay with Gift Voucher</p>
+                                                <p class="amount">{{currency.symbol}}{{to_be_paid_with_giftcard() | number:'1.2-2'}}</p>
+                                            </div>
+                                            <div *ngIf="hasDifference" class="service">
+                                                <p class="service-type">Difference pay with {{differenceDetails.paymentType}}</p>
+                                                <p class="amount">{{currency.symbol}}{{differenceDetails.amount}}</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">{{bookingData?.service?.serviceName}} - {{bookingData?.service?.serviceTime}}</p>
+                                                <p class="amount">{{currency.symbol}}{{getServicePrice() | number:'1.2-2'}}</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Processing fee</p>
+                                                <p class="amount">{{currency.symbol}}{{processingFee | number:'1.2-2'}}</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Tax</p>
+                                                <p class="amount">{{currency.symbol}}0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pay with Loyalty Points -->
+                                <div class="pay-creditCard pay-loyaltyPoints" *ngIf="paymentType == 'loyalty points'">
+                                    <div class="current-points">
+                                        <h5 class="heading">Pay with Loyalty Points</h5>
+                                        <p>Current Point you have: <span [ngClass]="{'error': bookingData?.service?.loyaltyPointCanRedeem > loyaltyPoints}">{{loyaltyPoints}} Pts</span></p>
+                                    </div>
+                                    <div class="bill">
+                                        <div class="card-details">
+                                            <div class="service">
+                                                <p class="service-type">Loyalty points needed</p>
+                                                <p class="amount">{{bookingData?.service?.loyaltyPointCanRedeem}} Pts</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">{{bookingData?.service?.serviceName}} - {{bookingData?.service?.serviceTime}}</p>
+                                                <p class="amount">{{currency.symbol}}{{getServicePrice() | number:'1.2-2'}}</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Processing fee</p>
+                                                <p class="amount">{{currency.symbol}}0</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Tax</p>
+                                                <p class="amount">{{currency.symbol}}0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pay with wallet credits -->
+                                <div class="pay-creditCard pay-loyaltyPoints" *ngIf="paymentType == 'wallet'">
+                                    <div class="current-points">
+                                        <h5 class="heading">Pay with Wallet credits</h5>
+                                        <p>Current credits you have: <span [ngClass]="{'error': bookingData?.service?.serviceSpecialPrice || bookingData?.service?.servicePrice > walletCredits}">{{currency.symbol}}{{walletCredits | number:'1.2-2'}}</span></p>
+                                    </div>
+                                    <div class="bill">
+                                        <div class="card-details">
+                                            <div class="service">
+                                                <p class="service-type">Pay with Wallet credits</p>
+                                                <p class="amount">{{currency.symbol}}{{priceToDeductInWallet | number:'1.2-2'}}</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">{{bookingData?.service?.serviceName}} - {{bookingData?.service?.serviceTime}}</p>
+                                                <p class="amount">{{currency.symbol}}{{getServicePrice() | number:'1.2-2'}}</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Processing fee</p>
+                                                <p class="amount">{{currency.symbol}}0</p>
+                                            </div>
+                                            <div class="service">
+                                                <p class="service-type">Tax</p>
+                                                <p class="amount">{{currency.symbol}}0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dashed-divider">
+                                    <img src="assets/images/dashedDivider.svg" alt="dashed line">
+                                </div>
+                                <div class="total">
+                                    <p class="heading">total</p>
+                                    <p *ngIf="paymentType === 'payInStore'">{{currency.symbol}}{{ totalPayment | number:'1.2-2' }}</p>
+                                    <p *ngIf="paymentType === 'wallet'">{{currency.symbol}}{{ totalPayment | number:'1.2-2' }}</p>
+                                    <p *ngIf="paymentType === 'loyalty points'">{{currency.symbol}}{{ totalPayment | number:'1.2-2' }}</p>
+                                    <p *ngIf="paymentType === 'card'">{{currency.symbol}}{{totalPayment | number:'1.2-2'}}</p>
+                                    <p *ngIf="paymentType === 'gift card' && diffPaymentMethod == null">{{currency.symbol}}{{getServicePrice() | number:'1.2-2'}}</p>
+                                    <p *ngIf="diffPaymentMethod === 'card'">{{currency.symbol}}{{getServicePrice() + processingFee | number:'1.2-2'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container-fluid" *ngIf="isMobile">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="book-us">
+                        <button (click)="bookAppointment(multiple_method)">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="confirm" *ngIf="!isMobile">
+            <div class="container">
+                <div class="infoMessage">
+                    <div>Double check with all the information before click the confirm button.</div>
+                </div>
+                <button class="btn-confirm" (click)="bookAppointment(multiple_method)">Confirm</button>
+            </div>
+        </div>
+    </div>    
+</div>
+<div class="loader" *ngIf="submitted">
+    <div class="loading-card">
+        <img src="/assets/images/loader/circle-small-green.svg" alt="Loading...">
+    </div>
+</div>
+<ng-template #multiple_method let-modal>
+    <div class="custom-modal">
+        <div class=" modal-header">
+            <h4 class="modal-title">Has Difference</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body text-center">
+            <div class="ml-2 me-2">
+                <div class="flexy">
+                    <div class="name">Service Price</div>
+                    <div class="price">{{currency.symbol}}{{bookingData.service.servicePrice}}</div>
+                </div>
+                <div class="flexy">
+                    <div class="name">Giftcard Voucher Value</div>
+                    <div class="price">{{currency.symbol}}{{giftcard_voucher?.remainingAmount}}</div>
+                </div>
+                <div class="flexy">
+                    <div class="name">Difference</div>
+                    <div class="price">{{giftcard_voucher?.remainingAmount - bookingData.service.servicePrice}}</div>
+                </div>
+            </div>
+            <!-- The giftcard you entered has value of {{currency.symbol}}{{giftcard_voucher?.remainingAmount}}, but the services you choose cost {{currency.symbol}}{{bookingData.service.servicePrice}}. Please select the payment method for the difference of {{currency.symbol}}{{giftcard_voucher?.remainingAmount - bookingData.service.servicePrice}} -->
+            <br>
+            <div class="text-center">Pay the difference with</div>
+            <div class="row">
+                <div class="col-6">
+                    <label class="form-check-label m-auto" [ngClass]="{'active': payOnline}" (click)="payDifferenceWith('card')">
+                        <div class="form-check">
+                            <input class="form-check-input" [disabled]="!payOnline" type="radio" name="dif">
+                            <span class="radio-btn"></span>
+                            Credit Card
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="pay-creditCard" *ngIf="diffPaymentMethod == 'card'">
+                <h6 class="text-left mt-4">Pay with Credit Card</h6>
+                <app-credit-card (cardOutput)="cardOutput($event)"></app-credit-card>
+            </div>
+            <button class="btn continue-login mt-5 mb-2" (click)="confirmDifference()">Continue</button>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+
+

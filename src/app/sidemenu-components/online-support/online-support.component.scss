@@ -1,0 +1,49 @@
+.pt-3, .py-3 {
+    padding-top: 2rem!important;
+}
+
+.auto-h {
+    margin-top: 46px;
+}
+
+.container{
+    position: relative; 
+    margin-bottom: 0px; 
+}
+.supportbtn{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    clear: both;
+    border-radius: 0px;
+    background-color: black;
+}
+.online_support{
+    // height: calc(100vh - 46px);
+}
+.onlinesupportform{
+    height: calc(100vh - 70px);
+    clear: both;
+}
+
+@media all and (min-width: 1024px){
+    .auto-h {
+        margin-top: 70px;
+    }
+    .onlinesupportform{
+        height: unset;
+        clear: both;
+    }
+    .supportbtn {
+        position: absolute;
+        bottom: -40px;
+        width: 33%;
+        left: 33%;
+        right: 0;
+        clear: both;
+        border-radius: 0px;
+        background-color: black;
+    }
+}

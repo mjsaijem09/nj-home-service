@@ -1,0 +1,66 @@
+.back {
+    button.backButton{
+        font-size: 32px;
+        border: none;
+        background-color: transparent;
+        i::before {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+h3.heading {
+    color: #90c63e;
+}
+.text-container {
+    max-width: 500px;
+    margin: auto;
+    p {
+        color: #909c7f;
+        font-size: 18px;
+    }
+}
+button.btn-resend {
+    color: #90c63e;
+    border: unset;
+    background-color: unset;
+    padding: 0;
+}
+button.btn-resend[disabled] {
+    opacity:.7;
+}
+
+a {
+    color: #90c63e;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.form-floating {
+    max-width: 280px;
+    margin: auto;
+    input#verificationCode {
+        color: #90c63e;
+        text-transform: uppercase;
+    }
+    
+    input#verificationCode:focus {
+        border-color: #90c63e;
+    }
+}
+.verified {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p, i {
+        color: #90c63e;
+    }
+    p {
+        font-size: 32px;
+    }
+    i {
+        font-size: 52px;
+    }
+}

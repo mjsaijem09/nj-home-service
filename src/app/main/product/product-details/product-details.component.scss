@@ -1,0 +1,126 @@
+
+// 
+.product-profile {
+    position: relative;
+    .fixed-action-btns {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        left: 0;
+        right: 0;
+        button {
+            border: none;
+            display: inline-grid;
+            text-align: center;
+            align-items: center;
+            outline: none;
+            padding: 5px 0px;
+            i {
+                font-size: 22px;
+                line-height: 22px;
+            }
+            &.btn-buy-now {
+                width: 50%;
+                background-color: red;
+                color: #ffffff;
+            }
+            &.btn-add-to-cart {
+                width: 25%;
+                background-color: #00b0a6;
+                color: #ffffff;
+                font-size: 12px;
+                position: relative;
+                &::before {
+                    content: "";
+                    height: 29px;
+                    border-left: solid 1px #00746d;
+                    position: absolute;
+                }
+            }
+            &.btn-chat-now {
+                width: 25%;
+                background-color: #00b0a6;
+                color: #ffffff;
+                font-size: 12px;
+            }
+        }
+    }
+}
+.card {
+    border: none;
+    box-shadow: 0px 8px 40px rgb(15 34 67 / 10%);
+    img.card-img-top {
+        height: 170px;
+        object-fit: cover;
+        background: #eff7e4;
+    }
+}
+.hr {
+    border-top: 1px solid #DFE1E4;
+}
+.bg-blue {
+    background-color: #638FD4;
+}
+.border {
+    border: solid 1px #e9e9e9;
+}
+img {
+    object-fit: contain;
+    background-color: #fff;
+}
+.bg-red {
+    background-color: #ff6c61;
+}
+.varation-section {
+    background-color: #ffffff;
+    .variation-name {
+    padding: 7px;
+    font-size: 14px;
+    }
+}
+.variations {
+    display: flex;
+    gap: 10px;
+    .item {
+        width: 90px;
+        background-color: #ededed;
+        text-align: center;
+        padding: 3px 0;
+        font-size: 14px;
+        &:last-child {
+            width: fit-content;
+            padding: 3px 15px;
+        }
+    }
+}
+.customer-review {
+    .customer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 30px;
+        }
+        p.name {
+            margin: 0px;
+        }
+    }
+    .media-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        .media-item {
+            flex-basis: 32.43%;
+            box-sizing: border-box;
+            position: relative;
+            img, video {
+                width: 100%;
+                max-height: 120px;
+                object-fit: cover;
+            }
+        }
+    }
+}

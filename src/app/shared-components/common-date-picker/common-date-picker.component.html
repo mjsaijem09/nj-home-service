@@ -1,0 +1,10 @@
+<div class="date-picker-wrapper mt-5">
+    <div class="mt-5">
+        <div id="commonDatepicker">
+            <form>
+                    <ngb-datepicker #dp class="newDatePicker" (dateSelect)="dateSelect($event)" [(ngModel)]="model" name="model" [minDate]="minDate"></ngb-datepicker>
+            </form>
+        </div>
+    </div>
+</div>
+

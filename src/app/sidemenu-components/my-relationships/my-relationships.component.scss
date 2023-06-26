@@ -1,0 +1,74 @@
+.font-20{
+    font-size: 20px;
+  }
+  .upcoming-card{
+    max-width: 500px;
+  }
+  .therapist-details{
+    padding: 10px 0 0;
+    display: flex;
+  }
+  .therapist-img {
+    width: 100px;
+  }
+  .upcoming-right-block {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
+  .upcoming-text{
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+  }
+  .upcoming-text img {
+    width: 25px;
+    margin: 0 5px;
+  }
+  .therapist-img img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  .buttons-area {
+    display: flex;
+  }
+  .buttons-area button {
+    width: 100%;
+    border-radius: 0;
+    color: #fff;
+    background-color: #000000;
+    padding: 12px;
+  }
+  .buttons-area button:focus{
+    color: #fff;
+    outline:none;
+    box-shadow: none;
+  }
+  .cardposition{
+      margin-bottom: 50px;
+  }
+  .carddetailposition{
+    padding-right: 0px; 
+    padding-left: 0px; 
+    margin-top: 12px !important;
+}
+
+.relationshipMain-page {
+    margin-bottom: 70px;
+}
+.upcoming-card {
+  .card-body {
+    padding-bottom: 0;
+  }
+  .buttons-area {
+    margin: 0 -20px;
+  }
+}
+.delete-right {
+  border-right: 1px solid #fff;
+}
+.relationpage-outerWrapper {
+  margin-top: 45px;
+}

@@ -1,0 +1,128 @@
+
+<div class="mains">
+ <div class="container-fluid main">
+   <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+
+     <div class="col-8">
+       <div class="card card-block card-1" style="background-color:#f39297 ;" (click)="cardselect('#f39297','pink')">
+         <div class="to">
+           <p class="ml-2">To</p>
+         </div>
+         <div class="text-line-wrapper">
+           <hr class="line">
+           <hr class="line">
+           <hr class="line">
+           <hr class="line">
+         </div>
+         <div class="from">
+           <p class="ml-2 mb-5">From</p>
+         </div>
+       </div>
+     </div>
+     <div class="col-8">
+       <div class="card card-block card-2" style="background-color:#b174ae ;" (click)="cardselect('#b174ae','red')">
+         <div class="to">
+           <p class="ml-2">To</p>
+         </div>
+         <div class="text-line-wrapper">
+           <hr class="line">
+           <hr class="line">
+           <hr class="line">
+           <hr class="line">
+         </div>
+         <div class="from">
+           <p class="text-from ms-2 mb-5">From</p>
+         </div>
+       </div>
+     </div>
+     <div class="col-8">
+       <div class="card card-block card-3" style="background-color:#60afb1 ;" (click)="cardselect('#60afb1','blue')">
+         <div class="to">
+           <p class="ml-2">To</p>
+         </div>
+         <div class="text-line-wrapper">
+           <hr class="line">
+           <hr class="line">
+           <hr class="line">
+           <hr class="line">
+         </div>
+         <div class="from">
+           <p class="ml-2 mb-5">From</p>
+         </div>
+       </div>
+     </div>
+     <div class="col-8">
+       <div class="card card-block card-4" style="background-color:#2de77b ;" (click)="cardselect('#2de77b','green')">
+         <div class="to">
+           <p class="ml-2">To</p>
+         </div>
+         <div class="text-line-wrapper">
+           <hr class="line">
+           <hr class="cardline">
+           <hr class="line">
+           <hr class="line">
+         </div>
+         <div class="from">
+           <p class="ml-2 mb-5">From</p>
+         </div>
+       </div>
+     </div>
+
+
+
+
+   </div>
+ </div>
+
+<form [formGroup]="giftForm">
+ <div class="container-fluid mt-1" >
+   <div class=" row flex-row flex-nowrap">
+
+     <div class="col-12">
+       <div class="card card-block1"
+        [ngClass]="{
+          'card-1': colorType == 'pink',
+          'card-2':colorType == 'red',
+          'card-3':colorType == 'blue',
+          'card-4':colorType == 'green'
+        }"
+         >
+         <div class="to">
+           <p class="ml-2">To</p>
+           <p class="ml-2">{{to}}</p>
+         </div>
+         <div class="text-line-wrapper">
+                            <textarea name="" id=""  [ngClass]="{
+                              'card-1': colorType == 'pink',
+                              'card-2':colorType == 'red',
+                              'card-3':colorType == 'blue',
+                              'card-4':colorType == 'green'
+                            }"  cols="22" rows="3" formControlName="write"></textarea>          
+                                    </div>
+         <div class="from">
+           <p class="ml-2 ">From</p>
+           <p class="ml-2">{{from}}</p>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</form>
+
+ <div class="container">
+   <div class="row">
+     <div class="col-12">
+       <div class="tipbtn-wrapper">
+         <button class="btn btn-primary" (click)="skipLetter()">Skip</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="letter-wrapper">
+    <button class="btn btn-primary" (click)="withLetter()" >Next</button>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,509 @@
+.card-body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+  // box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+  // max-width: 500px;
+  margin: 0 auto;
+}
+.container h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+.account {
+  color: black;
+  text-align: center;
+}
+.account {
+  color: #91c73e;
+  text-align: center;
+}
+.text {
+  color: #91c73e;
+  margin-left: 111px;
+  font-size: 14px;
+}
+.mt-3,
+.my-3 {
+  margin-top: 1rem !important;
+  margin-left: 40px;
+}
+p {
+  font-size: 17px;
+  text-align: center;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+  // width: 50%;
+  // padding: 24px !important;
+}
+.facebookbtn {
+  color: #fff;
+  background-color: #3b5998;
+  border-color: #3b5998;
+  border-radius: 23px;
+  &:active {
+    color: #fff;
+    border-color: #3b5998 !important;
+    background-color: #3b5998 !important;
+  }
+}
+.loginbtn {
+  color: #fff;
+  border-color: black;
+  border-radius: 0px;
+  background-color: black;
+  box-shadow: none !important;
+  &:focus {
+    outline: none !important;
+  }
+  &:active {
+    color: #fff;
+    border-color: black !important;
+    // border-radius: 0px !important;
+    background-color: black !important;
+  }
+  &:disabled {
+    background-color: #a6aec1 !important;
+    border: none !important;
+  }
+}
+// .form-control{
+//     border-radius: 0px;
+//     line-height: 1.5;
+//     background-color: #9B948B;
+//     text-align: center;
+// }
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  font-size: 12px;
+}
+
+.wrapper {
+  margin-bottom: 18px;
+}
+
+::ng-deep .mobile-wrapper {
+  // @media all and (max-width:767px){
+  .iti {
+    width: 100% !important;
+  }
+  // }
+  .iti--allow-dropdown .iti__flag-container, .iti--separate-dial-code .iti__flag-container {
+    left: 20px;
+  }
+  input#country-search-box {
+    outline: none;
+    padding: 10px 0;
+  }
+  input#phone {
+    background: #ffffff !important;
+    border: 1px solid;
+    border-color: #90c63e;
+    border-radius: 30px !important;
+    padding: 17px 15px 17px 65px !important;
+    height: 55px;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(13, 13, 13, 0.9);
+    outline: none;
+    width: 100%;
+    &:focus {
+      color: #495057;
+      background-color: #fff;
+      border-color: #90c63e;
+      outline: 0;
+    }
+  }
+  &.ng-invalid.ng-touched {
+    input {
+      border: 1px solid #dc3545!important;
+      color: #dc3545!important;
+    }
+  }
+  &.ng-valid.ng-touched {
+    input {
+    border-color: #90c63e!important;
+    color: #90c63e!important;
+    }
+  }
+}
+.btn-thank{
+  background: transparent;
+    border: none;
+    outline: none;
+    color: #90C63E;
+}
+
+// New Code
+.card-body {
+  padding: 0 !important;
+  .companyLogo {
+    img {
+      width: auto;
+    }
+  }
+  .heading {
+    text-align: left;
+    margin: 26px 0 37px;
+    h3 {
+      font-weight: 500;
+      font-size: 25px;
+      line-height: 30px;
+      color: #90c63e;
+    }
+    p {
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 17px;
+      color: #a6aec1;
+      text-align: left;
+      margin-bottom: 0;
+    }
+  }
+  form {
+    .form-group {
+      position: relative;
+      .form-icon {
+        position: absolute;
+        top: 15px;
+        left: 28px;
+        img {
+          width: 20px;
+          padding: 0 !important;
+        }
+        i {
+          font-size: 19px;
+          color: #959cae;
+        }
+      }
+      .field-filled {
+        position: absolute;
+        top: 15px;
+        right: 17px;
+        img {
+          width: 21px;
+          padding: 0 !important;
+        }
+        i {
+          font-size: 19px;
+          color: #959cae;
+        }
+      }
+      &.has-danger {
+        input.form-control {
+          border: 1px solid #dc3545;
+          color: #dc3545;
+        }
+        .field-filled i {
+          color: #dc3545;
+        }
+        .form-icon i {
+          color: #dc3545;
+        }
+      }
+      &.has-success {
+        input.form-control {
+          color: 1px solid #90c63e;
+          color: #90c63e;
+        }
+        .field-filled i {
+          color: #90c63e;
+        }
+        .form-icon i {
+          color: #90c63e;
+        }
+      }
+    }
+    .form-control {
+      background: #ffffff;
+      border: 1px solid #90c63e;
+      border-radius: 30px;
+      padding: 17px 15px 17px 65px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 19px;
+      color: rgba(13, 13, 13, 0.9);
+      &:focus {
+        box-shadow: none;
+      }
+      &::placeholder {
+        font-size: 16px;
+        line-height: 19px;
+        color: #a6aec1;
+      }
+    }
+    .loginbtn {
+      background: #90c63e;
+      border: 1px solid #90c63e;
+      border-radius: 30px !important;
+      height: 55px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: #ffffff;
+    }
+    .signup_btn {
+      margin-top: 25px;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      color: #a6aec1;
+      a {
+        color: #90c63e;
+        font-weight: 500;
+      }
+    }
+    .mobile {
+      display: flex;
+      flex-flow: row;
+      align-items: baseline;
+      justify-content: flex-start;
+      margin-bottom: 25px;
+      .form-control {
+        padding: 17px 15px 17px 20px !important;
+        margin-left: 10px;
+      }
+      .form-group {
+        margin-bottom: 0;
+      }
+      select {
+        appearance: none;
+        // background: #FAFAFA;
+        border-radius: 30px;
+        border: 0;
+        background: #ffffff url(/assets/images/chevron-down.svg) no-repeat 70%
+          50%/19px 19px !important;
+        border: 1px solid #90c63e !important;
+        max-width: 100px;
+        height: 55px;
+        overflow: hidden;
+        padding: 0 26px;
+      }
+    }
+  }
+}
+
+
+.temp {
+  position: absolute;
+  z-index: 1;
+  bottom: 60px;
+  left: 56px;
+  background-color: #fff;
+  padding: 0 10px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 2%);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  .provider {
+    padding: 14px 0;
+    border-bottom: solid 0.5px #cee4af;
+    cursor: pointer;
+    color: #90c63e;
+  }
+  .provider:nth-child(9) {
+    border-bottom: none;
+  }
+}
+
+.tooltip-feedback {
+  border: solid 1px #c7c7c7;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  width: 95%;
+  position: absolute;
+  top: 63px;
+  left: 30px;
+  z-index: 100;
+  .details {
+    font-size: 12px;
+    &.has-danger {
+      color: #dc3545;
+    }
+    &.has-success {
+      color: #90c63e;
+    }
+  }
+  &:before {
+    content: " ";
+    position: absolute;
+    top: -20px; 
+    left: 30px;
+    width: 20px;
+    height: 20px;
+    background-color: #9e9e9e;
+    clip-path: polygon(50% 50%, 0 100%, 100% 100%);
+  }
+}
+
+.register {
+  background-color: #FFFFFF;
+  height: auto;
+  .card-body {
+    .heading {
+      margin: 26px 0 37px;
+      h3 {
+        font-weight: 500;
+        font-size: 25px;
+        line-height: 30px;
+        color: #90C63E;
+      }
+      p {
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        color: #A6AEC1;
+        margin-bottom: 0;
+      }
+    }
+
+  }
+  
+  form {
+    .form-control {
+      background: #FAFAFA !important;
+      border: 1px solid;
+      border-color: transparent;
+      &:focus {
+        border-color: #90C63E;
+      }
+    }
+  }
+
+  .fields {
+    padding: 0 20px 0 20px;
+  }
+  
+  .termsAndConditions {
+    margin: 20px 0;
+    a {
+      color: #90c63e;
+      font-weight: 500;
+    }
+    
+      /* The container */
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #A6AEC1;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 2px;
+      left: 15px;
+      height: 15px;
+      width: 15px;
+      background-color: #FFFFFF;
+      border-radius: 3px;
+      border: 1px solid #A6AEC1;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+      background-color: #FFFFFF;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+      background-color: #90C63E;
+      border: none;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .container input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .container .checkmark:after {
+      left: 5px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    &.has-danger label {
+      color: #dc3545!important;
+    }
+    &.has-danger label a {
+      color: #dc3545!important;
+    }
+    &.has-danger span.checkmark {
+        background-color: #ffd1d1!important;
+        border-radius: 3px;
+        border: 1px solid #dc3545!important;
+    }
+  }
+}
+
+::ng-deep .mobileView {
+  #phone {
+    background: #FAFAFA !important;
+    border: none !important;
+    border-radius: 30px !important;
+    padding: 17px 15px 17px 65px !important;
+    height: 55px;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(13, 13, 13, 0.9);
+    outline: none;
+    width: 100%;
+  }
+}
+
+.successScreen {
+  margin: 35% 0;
+
+  img {
+    margin-bottom: 30px;
+  }
+
+  .welcomeMessage {
+    color: #515B60;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 20px 0;
+    span {
+      color: #90c63e;
+    }
+  }
+
+  .successMessage {
+    color: #A6AEC1;
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+}

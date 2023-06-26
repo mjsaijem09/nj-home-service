@@ -1,0 +1,35 @@
+.reschedule-main {
+    margin: 140px 0 40px 0;
+}
+.item-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.mutted-text {
+    color: #878c93;
+}
+.action-btns {
+    gap: 20px;
+    align-items: baseline;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(16,25,40,.08)!important;
+}
+
+.booking-img {
+    width: 100px;
+    height: 90px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 10px;
+    border: solid #fff;
+    margin: 0 15px 0 0;
+    box-shadow: rgb(16 25 40 / 8%) 0px 4px 8px 0px;
+}
+
+li.list-group-item {
+    margin: 0;
+}

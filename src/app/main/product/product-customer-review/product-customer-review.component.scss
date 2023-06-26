@@ -1,0 +1,37 @@
+.app-product-customer-review {
+    .customer-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .customer {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .avatar-icon {
+                width: 28px;
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #90c63e4f;
+                color: #90c63e;
+                border-radius: 100px;
+            }
+        }
+    }
+    .media-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        .media-item {
+            flex-basis: 32.43%;
+            box-sizing: border-box;
+            position: relative;
+            img, video {
+                width: 100%;
+                max-height: 120px;
+                object-fit: cover;
+            }
+        }
+    }
+}

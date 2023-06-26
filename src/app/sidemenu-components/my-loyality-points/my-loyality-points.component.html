@@ -1,0 +1,50 @@
+<div class="parentLoader"*ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<div class="walletMainpage" *ngIf="!isLoading">
+    <div class="container">
+        <div class="row py-4 bg-white">
+            <div class="col-auto" (click)="goBack()"><img src="../../../assets/images/arrow-left-black.svg" /></div>
+            <div class="col header-title">Loyalty Pts</div>
+        </div>
+        <div class="row bg-white">
+            <div class="col" [routerLink]="['/nav/wallet']">
+                <div class="tab">Wallet</div>
+            </div>
+            <div class="col p-0" [routerLink]="['/nav/credit-card']">
+                <div class="tab">Credit Cards</div>
+            </div>
+            <div class="col pb-3" >
+                <div class="tab-active">Loyalty Pts</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="loyalityMain-page">
+            <div class="">
+                <div class="row" >
+                    <div class="col-md-6 col-sm-6 col-xs-12 carddetailposition"
+                        *ngFor="let loyalityItem of myLoyalityPointList">
+                        <div class="therapist-card">
+                            <div class="card-body" (click)="openLoyality(loyalityItem?.locationId._id,loyalityItem?.have)"> 
+                                <div class="therapist-details">
+                                    <div class="">
+                                        <span class="therapist-text">{{loyalityItem?.locationId.name}}</span>
+                                        <div class="star-wrapper">
+                                            <span>{{loyalityItem?.locationId.city}}
+                                                {{loyalityItem?.locationId.state}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="point">
+                                        <img src="../../../assets/images/wallet_circle.png"><span>{{loyalityItem?.have}}</span>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+
+<!-- Send card -->
+<div class="offsetAll-10" *ngIf="!isLoading && giftcards.length > 0">
+    <!-- header section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="header-txt">Sent List</div>
+        </div>
+    </div>
+
+    <div class="row offsetTop-10">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3" *ngFor="let data of giftcards" (click)="navigateToShop(data?.message?.giftCardId?.redeemLocation[0]?._id)">
+            <div class="gift-card offsetAll-10">
+                <!-- info row -->
+                <div class="row">
+                    <!-- to info -->
+                    <div class="col-6 giftTo-txt">
+                        To {{data?.message?.to}}
+                    </div>
+                    <!-- at info -->
+                    <div class="col-6 giftat-txt">
+                        At {{data?.message?.giftCardId?.redeemLocation[0]?.name}}
+                    </div>
+                </div>
+                <!-- info row -->
+                <div class="row offsetTop-5">
+                    <!-- sent at info -->
+                    <div class="col-6 sendInfo-txt">
+                        Sent at {{data?.message?.giftCardId?.createdAt | date:'ha d MMM y'}}
+                    </div>
+                    <!-- replied info -->
+                    <div class="col-6 replied-txt">
+                        {{ data?.replied }}
+                    </div>
+                </div>
+                <!-- gift image -->
+                <div class="row offsetTop-5" style="position: relative;">
+                    <div class="col-12" *ngIf="data?.giftImage != ''">
+                        <div [ngStyle]="{'color': data?.color}" class="amount-txt">{{data?.amount}}</div>
+                        <div [ngStyle]="{'color': data?.color}" class="code-txt">
+                            {{data?.message?.giftCardId?.code}}</div>
+                        <img class="giftCard-img" [src]="giftcardImg(data?.giftImage)" (error)="noImg($event)"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

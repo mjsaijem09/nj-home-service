@@ -1,0 +1,43 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+
+<div class="relationpage-outerWrapper" *ngIf="!isLoading">
+    <div class="container">
+        <div class="relationshipMain-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 carddetailposition"
+                        *ngFor="let relationshipitem of myRelationShipList">
+                        <div class="card upcoming-card">
+                            <div class="card-body  shadow">
+                                <div class="therapist-details">
+                                    <div class="therapist-img">
+                                        <img src="../../../assets/images/default_circle.svg" />
+                                    </div>
+                                    <div class="upcoming-right-block">
+                                        <div class="upcoming-text p-1 font-20">
+                                            <span>{{relationshipitem?.firstName}} {{relationshipitem?.lastName}}</span>
+                                        </div>
+                                        <div class="upcoming-text p-1">
+                                            <span>{{relationshipitem?.relationship}}</span>
+                                            <span>{{relationshipitem?.phone1}}</span>
+                                        </div>
+                                        <span class="textposition">{{relationshipitem?.email}}</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="upcoming-text p-1">
+                                    <span class="textposition">{{relationshipitem?.email}}</span>
+                                </div> -->
+                                <div class="buttons-area">
+                                    <button type="button" class="btn delete-right" (click)="deleteRelation(relationshipitem)">Delete</button>
+                                    <button type="button" class="btn" (click)="goToSendGift(relationshipitem)">Send Gift Card</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+.myProfile {
+    // margin-top: 70px;
+    position: relative;
+    @media all and (max-width: 767px) {
+        margin-top: 0px;
+    }
+}
+.profile-Img {
+    position: relative;
+    @media all and (max-width: 767px) {
+        margin: 0 -15px;
+    }
+    img {
+        border-radius: 20px;
+        border: solid 2px #000;
+        @media all and (max-width: 767px) {
+            border-radius: 0;
+            border: none;
+            opacity: 0.5;
+        }
+    }
+    .greenIcon {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+    }
+    .bi-icon-class {
+        position: absolute !important;
+        font-size: 30px !important;
+        font-weight: 600 !important;
+        margin-left: 9px !important;
+    }
+
+    
+}
+
+
+.greenIcon {
+    width: 20px;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+}
+
+form {
+  
+        margin-bottom: 15px;
+    
+    .form-field {
+        width: 100%;
+    }
+    .form-control {
+        border: none !important;
+        border-radius: 0;
+        border-bottom: 1px solid #ced4da !important;
+        padding-left: 0;
+        padding-top: 0;
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    .formIcon {
+        margin-right: 10px;
+    }
+    label {
+        margin-bottom: 0;
+    }
+}
+
+.backIcon{
+    font-size: 25px
+}
+
+// .mobileEditbtn {
+//     display: none;
+//     @media all and (max-width: 767px) {
+//         display: block;
+//         position: absolute;
+//         bottom: 46px;
+//         width: 100%;
+//     }
+//     .btn {
+//         width: 100%;
+//         background-color: #000;
+//         border-color: #000;
+//         border-radius: 0;
+//     }
+// }
+.save{
+    width: 100%;
+    background-color: black;
+    border:0;
+    border-radius: 0;
+    border-bottom: 1px solid #000 !important;
+
+}
+.saveButton{
+    background-color: black;
+    /* border-block-color: white; */
+    border-radius: 0;
+    border: 0;
+    color: white;
+}
+.profileImage{
+    width: 50px;
+    height: 60px;
+}
+
+.fa-plus-circle:before {
+    content: "\f055";
+    margin-left: 13px;
+    font-size: 21px;
+}
+
+
+// .editProfileForm {
+//     .btn {
+//         width: 100%;
+//         background-color: #000;
+//         border-color: #000;
+//         border-radius: 0;
+//         @media all and (max-width: 767px) {
+//             display: none;
+//         }
+//     }
+// }
+
+.cameraButton{
+    width: 100%;
+    height: 52px;
+    color: white;
+    background-color: black;
+    border:0;
+    border-radius: 0;
+    border-bottom: 1px solid #000 !important;
+}
+.camera{
+    width: 100%;
+    height: 52px;
+    color: black;
+    background-color: white;
+    
+    border-bottom: 1px solid #000 !important;
+}
+
+.capture{
+    width: 70px;
+    height: 70px;
+    margin-top: 6px;
+    border-radius: 50px;
+}
+
+.passwordEdit {
+    position: relative;
+    .passwordPencil {
+        position: absolute;
+        top: 15px;
+        right: 0;
+    }
+}
+
+.fullText{
+    width: 100%;
+}
+
+.modal-div {
+    height: calc(100vh - 140px);
+    overflow: auto;
+}
+@media all and (min-width: 767px) {
+    .modal-div {
+        height: calc(100vh - 300px);
+        overflow: auto;
+    }
+}

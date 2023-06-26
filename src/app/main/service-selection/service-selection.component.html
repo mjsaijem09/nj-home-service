@@ -1,0 +1,65 @@
+<div class="selectService-wrapper" *ngIf="serviceGroupList.length > 0" [ngClass]="{'mobile-view': this.isMobile, 'desktop-view': !this.isMobile, 'shop-detail': shopDetail}">
+  <div class="main-wrapper">
+    <div class="container head" id="header-sticky">
+      <div class="navbar-header" >
+        <ul class="slider-nav d-flex">
+          <li *ngFor="let item of serviceNameList; let i=index;" [ngClass]="{'class': true}">
+            <!-- <a class="navbar-toggle massage" [id]="item.name" (click)="activeButton(item.name);scroll(item.name)" data-toggle="collapse" data-target="#myNavbar"> -->
+            <a class="navbar-toggle massage btn btn-dark d-flex" [ngClass]="{'active' : currentSection === item.name.replace(' ','_') || (i==0 && currentSection=='')}" (click)="scrollTo(item.name)" data-toggle="collapse" data-target="#myNavbar">
+              <span>{{item.name}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <!-- new design -->
+    <div class="content-wrapper">
+      <div class="container-fluid" id="parentDiv" scrollSpy [spiedTags]="['DIV']" (sectionChange)="onSectionChange($event)">
+        <!-- SHOP DETAIL -->
+        <ng-container *ngFor="let item of serviceGroupList; let i=index">
+          <div class="service-title" [id]="item.name.replace(' ','_')" *ngIf="item?.serviceName">{{ item.name }}</div>
+          <div class="service-item" (click)="goToPickTherapist(item)">
+            <div class="service-name-block display-flex-align">
+              <div class="service-name">
+                {{item?.services?.name}}
+              </div>
+              <div class="service-price">
+                ${{item?.services?.pricing_option?.price || 0}}
+              </div>
+            </div>
+            <div class="service-time display-flex-align">
+              <div class="service-time-inner display-flex-align">
+                <span>{{item?.services?.pricing_option?.duration || ''}}</span>
+                <span class="grey">{{ item?.services?.pricing_option?.specialPriceFor }}</span>
+              </div>
+              <div class="service-price">
+                <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2">${{ item?.services?.pricing_option?.specialPrice || 0 }}</span>
+              </div>
+            </div>
+            <div class="service-loyalty">
+              <div class="book-loyalty-point display-flex-align">
+                <span>Book using Loyalty Points</span>
+                <span>${{ item?.services?.pricing_option?.loyaltyPointCanRedeem || 0 }}</span>
+              </div>
+              <div class="earn-loyalty-point">
+                <span>Earn Loyalty Point: {{ item?.services?.pricing_option?.loyaltyPointRecieve || 0 }} </span>
+                <i class="fa fa-question-circle sign"></i>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="shopDetail && copyServiceGroupList.length > 3">
+          <div class="text-center">
+            <button class="btn btn-dark mb-2" *ngIf="!showMore" (click)="showMoreList()">Show More</button>
+            <button class="btn btn-dark mb-2" *ngIf="showMore" (click)="showMoreList()">Show Less</button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <!-- end new design -->
+</div>
+<div class="text-center" *ngIf="serviceGroupList && serviceGroupList.length == 0">
+  <h4><b>Services Not Found</b></h4>
+</div>
+  <br/>

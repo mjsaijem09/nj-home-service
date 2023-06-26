@@ -1,0 +1,162 @@
+.header {
+  // margin-top: 45px;
+  background-color: #90c63e;
+}
+.headerText {
+  margin-left: auto;
+  color: white;
+  font-size: 17px;
+  padding: 18px;
+  margin-bottom: 0;
+}
+.mainIcon {
+  display: flex;
+  .icon {
+    font-size: 27px;
+    color: white;
+  }
+}
+
+.add {
+  text-align: center;
+  font-size: 19px;
+  margin: 10px 0 20px;
+}
+
+.inputType {
+  border: 0;
+  border-bottom: 1px solid;
+}
+
+.mainForm {
+  height: 550px;
+}
+
+.addForm {
+  // height: 593px;
+}
+
+.buttonText {
+  text-align: center;
+  height: 46px;
+  color: #fff;
+  padding-top: 4px;
+}
+.addButton {
+  font-size: 24px;
+  text-align: center;
+  button {
+    background: #91c73e;
+    box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06),
+      0px 0px 1px rgba(15, 34, 67, 0.08);
+    border-radius: 75px;
+    width: 143px;
+  }
+}
+
+.info {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #a6aec1;
+}
+.pay-creditCard {
+  padding: 16px;
+  background-color: #ffffff;
+  .card-details {
+    background: #ffffff;
+    margin: 23px 0 0;
+    .label {
+      font-size: 15px;
+      line-height: 18px;
+      color: #212529;
+      margin-bottom: 10px;
+    }
+    form {
+      .form-group {
+        margin-bottom: 10px;
+      }
+    }
+    .infix {
+      position: absolute;
+      margin: 16px 5px 16px 30%;
+    }
+    .input-div {
+      background: #f1f2f7;
+      border: 1.5px dashed #a6aec1;
+      box-sizing: border-box;
+      border-radius: 5px;
+      padding: 20px;
+      color: #ffffff;
+      input {
+        padding-left: 43%;
+        color: #ffffff;
+        &::placeholder {
+          font-size: 15px;
+          line-height: 18px;
+          color: #f1f2f7;
+        }
+      }
+    }
+    input {
+      background: #90c63e;
+
+      border-radius: 5px;
+      border: none;
+      box-shadow: none;
+      font-size: 15px;
+      line-height: 18px;
+      height: 56px;
+      padding: 19px 16px;
+      &::placeholder {
+        font-size: 15px;
+        line-height: 18px;
+        color: #868e96;
+      }
+    }
+  }
+  .save-btn {
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    text-align: center;
+    color: #ffffff;
+    padding: 12px;
+    background: #90c63e;
+    border-radius: 21px;
+    min-width: 155px;
+  }
+  .cancel-btn {
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    text-align: center;
+    color: #ffffff;
+    padding: 12px;
+    background: #fd6d6d;
+    border-radius: 21px;
+  }
+
+  .card-block.active {
+    background: #ffffff;
+    border: 1px solid #90c63e;
+  }
+  .card-block {
+    background: #f1f2f7;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 9px;
+    margin-top: 10px;
+    color: #a6aec1;
+    .card-imge {
+      img {
+        background: #ffffff;
+        border: 0.4px solid rgba(166, 174, 193, 0.5);
+        box-sizing: border-box;
+        border-radius: 4px;
+        padding: 0 9px;
+      }
+    }
+  }
+}

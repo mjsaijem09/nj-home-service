@@ -1,0 +1,160 @@
+.backpackcard {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-top: 56px;
+    .useraddres {
+        padding-top: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .userto,
+        .userfrom {
+            display: flex;
+            align-items: flex-end;
+            h5 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 130px;
+            }
+            span {
+                font-size: 12px;
+            }
+        }
+    }
+    .userdate {
+        padding-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+// .inputType{
+//     border: 0;
+//     border-radius: 1px solid;
+// }
+
+
+// .form-height {
+//     height: calc(100vh - 65px);
+//     padding:  20px;
+//     overflow: auto;
+//     form {
+//         input {
+//             width: 100%;
+//             &:focus {
+//                 outline: none;
+//             }
+//         }
+//     }
+// }
+
+
+
+// .main{
+//     position: fixed;
+//     margin-bottom: 100px;
+// }
+
+
+
+.inputType{
+    border: 0;
+    border-bottom: 1px solid;
+}
+
+// .mainForm{
+//     height: 550px;
+// }
+
+// .addForm{
+//         // height: 593px;
+//     }
+
+
+
+
+.form-height {
+    height: calc(100vh - 65px);
+    padding:  20px;
+    overflow: auto;
+    form {
+        input {
+            width: 100%;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+
+.tipbtn-wrapper {
+    // position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin-top: 20px;
+    width: 100%;
+    .btn {
+        width: 100%;
+        background-color:#fff;
+        border-color: #000;
+        border-radius: 0;
+        color: #000;
+    }
+}
+.letter-wrapper{
+    position: fixed;
+    bottom: 46px;
+    left: 0;
+    right: 0;
+    margin-top: 30px;
+    width: 100%;
+    .btn {
+        width: 100%;
+        background-color:#000;
+        border-color: #000;
+        border-radius: 0;
+        color: #fff;
+    }
+}
+
+.appointment-bookBtn {
+    .btn {
+        width: calc(100% - 75px);
+        border-radius: 0;
+        &:focus {
+            box-shadow: none;
+        }
+    }
+  }
+  .success-message{
+      text-align: center;
+  }
+  .successs-icon{
+      text-align: center;
+  }
+
+  .card-block1{
+	height: 250px;
+	background-color: #fff;
+	border: none;
+	background-position: center;
+	// background-size: cover;
+	transition: all 0.2s ease-in-out !important;
+	// border-radius: 24px;
+	&:hover{
+		transform: translateY(-5px);
+		box-shadow: none;
+	}
+}
+
+.card-1{
+	background-color: #f39297;
+// background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}

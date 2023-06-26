@@ -1,0 +1,154 @@
+<!-- message div -->
+<div class="container">
+<div class="mygiftcard-section" style="padding: 71px 0 15px 0;">
+    <div class="row letter-bg" #outerSection>
+        <!-- <img class="bg-image" src="{{letter_bg}}" /> -->
+        <div class=" col-12 whiteBg-div" #innerSection [ngStyle]="{'width': (outerSection.offsetWidth - 45)+'px'}">
+            <div class="message">
+                <span class="bold-font">To,</span> <br />
+                <span class="bold-font">{{giftCardToName}}</span> <br /> <br />
+
+                {{message}} <br /> <br />
+
+                <span class="bold-font">From</span> <br />
+                <span class="bold-font">{{giftCardFromName}}</span>
+            </div>
+        </div>
+        <img [ngStyle]="{'height': (innerSection.offsetHeight + 30)+'px'}" class="bg-image" src="{{letter_bg}}" />
+    </div>
+    <!-- gift card image -->
+    <div class="row">
+        <div class="col-12 giftCard-img">
+            <div [ngStyle]="{'color': textColor}" class="amount">
+                ${{voucherPrice}}
+            </div>
+            <div [ngStyle]="{'color': textColor}" class="code">
+                {{voucherId}}</div>
+            <img class="img-div" src="{{giftImage}}" />
+        </div>
+    </div>
+    <!-- quick reply header -->
+    <div class="row">
+        <div class="col-12 quickReply-header">
+            quick Reply To Your Friend
+        </div>
+    </div>
+    <!-- quick reply card -->
+    <div class="row">
+        <div class="col-12" style="    padding-bottom: 20px; padding-left: 26px;
+        padding-right: 26px;">
+            <div class="quickReply-card">
+                <!-- message -->
+                <div class="message-txt">
+                    <span class="txt-bold">To,</span> <br />
+                    <span class="txt-bold">{{giftCardToName}}</span> <br />
+
+                    <div class="marginT_B-15">
+                        <textarea rows="4" style="padding: 10px;
+                        width: 100%;" placeholder="Type your message here"></textarea>
+                    </div>
+
+                    <span class="txt-bold">From</span> <br />
+                    <span class="txt-bold">{{giftCardFromName}}</span>
+                </div>
+                <!-- btn -->
+                <div class="btn-div">
+                    <button class="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- line divider -->
+    <div class="row">
+        <div class="col-12">
+            <div style="border: 0.5px solid #A6AEC1; width: 92%;
+            margin: auto;"></div>
+        </div>
+    </div>
+    <!-- Redeem header -->
+    <div class="row">
+        <div class="col-12 redeem-header">How To Redeem ?</div>
+    </div>
+    <!-- redeem instruction step 1 -->
+    <div class="row">
+        <div class="col-12 redeem-txt" style="text-align: left;
+        padding: 0px 30px;">
+            1. Book Online at the shop Below by click Book US
+        </div>
+    </div>
+    <!-- redeem instruction step 1 image -->
+    <div class="row">
+        <div class="col-12" style="padding: 26px;">
+            <!-- shop card -->
+            <div class="shop-div">
+                <!-- shop image thumbnail -->
+                <div style="width: 35%;">
+                    <img class="shop-img" src="assets/images/giftcard/shop_thumbnail.png" />
+                </div>
+                <!-- shop info -->
+                <div style="width: 90%; margin-left: 10px;">
+                    <div style="display: flex;">
+                        <!-- shop details -->
+                        <div style="width: 80%;">
+                            <!-- shop name -->
+                            <div class="shop-name">{{shopName}}</div>
+                            <!-- rating -->
+                            <div class="rating" style="padding: 10px 0px;">
+                                <app-star-rating [rating]="5" [size]="18"></app-star-rating>
+                                <div class="total-rating">
+                                    <p class="shop-rating">{{(shopRating?.star).toFixed(1)}}
+                                        ({{shopRating?.star_count}})</p>
+                                </div>
+                            </div>
+                            <!-- shop address -->
+                            <div class="shop-address">{{shopStreet}}</div>
+                            <div class="shop-address">{{shopCity}}, <span>{{shopState}}</span>
+                            </div>
+                        </div>
+                        <!-- direction arrow -->
+                        <div class="arrow-div">
+                            <img class="arrow-img" src="assets/images/giftcard/direction-line.svg" />
+                        </div>
+                    </div>
+                    <!-- buttons -->
+                    <div style="display: flex; padding: 10px 0px;">
+                        <div style="width: 50%;">
+                            <button class="btn bg-red">call Us</button>
+                        </div>
+                        <div style="width: 50%;">
+                            <button class="btn bg-green">book us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding: 15px;">
+        <div class="col-12">
+            <p class="info-txt"> select giftcard payment method at checkout page </p>
+        </div>
+    </div>
+    <!-- redeem instruction step 2 image -->
+    <div class="row">
+        <div class="col-12 redeemStep-div" style="padding-top: 0px; padding-left: 26px;
+        padding-right: 26px;
+        padding-bottom: 15px;">
+            <img class="step-image" src="assets/images/giftcard/receivedCardStep-2.png" />
+        </div>
+    </div>
+    <!-- redeem instruction step 2 -->
+    <div class="row">
+        <div class="col-12 redeem-txt" style="text-align: left;
+        padding: 0px 30px;">
+            2. Redeem at shop
+        </div>
+    </div>
+    <!-- voucher code -->
+    <div class="row" style="padding-bottom: 10px;padding-right: 10px; padding-left: 20px;">
+        <div class="col-12 voucherCode-txt">
+            Show this code before you make your payment<span class="code-color">{{voucherId}}</span>
+        </div>
+    </div>
+</div>
+</div>

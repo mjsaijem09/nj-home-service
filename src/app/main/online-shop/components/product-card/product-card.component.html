@@ -1,0 +1,12 @@
+<div class="card" (click)="navigate()">
+    <img class="product-img" [src]="data?.images[0]?.productImage" (error)="handleErrorImage($event)" alt="Sample" />
+    <div class="percent-off">{{percentDiscount}}% <br> OFF</div>
+    <div class="card-body p-2">
+        <small class="product-name">{{data?.name}}</small>
+        <small class="status-badge">New Arrival</small>
+        <div class="price d-flex align-items-center">
+            <small class="original-price">{{originalPrice}}</small>
+            <p class="discounted-price m-0 ms-1">{{specialPrice}}</p>
+        </div>
+    </div>
+</div>

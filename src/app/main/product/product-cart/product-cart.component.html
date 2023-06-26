@@ -1,0 +1,105 @@
+<div [ngStyle]="{'margin-top': smallDevice ? '110px' : '180px' }"></div>
+<section *ngIf="false" class="cart-section section-b-space">
+    <div class="container">
+        <div class="text-center" [ngStyle]="{'padding-top': smallDevice ? '110px' : '180px' }" *ngIf="checkoutData?.length <= 0 || checkoutData == null">
+            <img src="/assets/images/product/empty-cart.svg" alt="Empty Cart" width="270px">
+            <h5 class="mt-5">Load your cart.</h5>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table cart-table table-responsive-xs" *ngIf="checkoutData?.length > 0">
+                    <thead *ngIf="!smallDevice">
+                        <tr class="table-head">
+                            <th scope="col">image</th>
+                            <th scope="col">product name</th>
+                            <th scope="col">price</th>
+                            <th scope="col">quantity</th>
+                            <th scope="col">action</th>
+                            <th scope="col">total</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of checkoutData">
+                        <tr>
+                            <td>
+                                <a (click)="productProfile(item)">
+                                    <img [src]="item?.productImages[0]?.productImage" alt="yellow" (error)="setDefaultPic($event)">
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="productProfile(item)">{{item?.name}}<span *ngIf="smallDevice"> - {{item?.shop?.currency?.symbol}}{{item?.price | number:'1.2-2':'en-US'}}</span></a>
+
+                                <div class="mobile-cart-content mt-2" *ngIf="smallDevice">
+                                    <div class="qty-box">
+                                        <div class="input-group">
+                                            <span class="input-group-prepend">
+                                                <button type="button" data-type="minus" class="btn quantity-left-minus" (click)="decreaseQty(item)">
+                                                    <span class="material-icons-outlined">chevron_left</span>
+                                                </button>
+                                            </span>
+                                            <input type="text" name="quantity" class="form-control input-number" [value]="item?.orderedQuantity" disabled>
+                                            <span class="input-group-prepend">
+                                                <button type="button" data-type="plus" class="btn quantity-right-plus" (click)="increaseQty(item)">
+                                                    <span class="material-icons-outlined" >chevron_right</span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <h6 class="td-color mt-2"> {{item?.shop?.currency?.symbol}}{{item?.totalPrice | number:'1.2-2':'en-US'}} </h6>
+                                </div>
+                            </td>
+                            <td *ngIf="!smallDevice">
+                                <h2> {{item?.shop?.currency?.symbol}}{{item?.price | number:'1.2-2':'en-US'}} </h2>
+                            </td>
+                            <td *ngIf="!smallDevice">
+                                <div class="qty-box">
+                                    <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button type="button" data-type="minus" class="btn quantity-left-minus" (click)="decreaseQty(item)">
+                                                <span class="material-icons-outlined">chevron_left</span>
+                                            </button>
+                                        </span>
+                                        <input type="text" name="quantity" class="form-control input-number" [value]="item?.orderedQuantity" disabled>
+                                        <span class="input-group-prepend">
+                                            <button type="button" data-type="plus" class="btn quantity-right-plus" (click)="increaseQty(item)">
+                                                <span class="material-icons-outlined" >chevron_right</span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a class="icon" (click)="removeToCart(item)">
+                                    <span class="material-icons-outlined"> close </span>
+                                </a>
+                            </td>
+                            <td *ngIf="!smallDevice">
+                                <h2 class="td-color"> {{item?.shop?.currency?.symbol}}{{item?.totalPrice | number:'1.2-2':'en-US'}} </h2>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table cart-table table-responsive-md" *ngIf="checkoutData?.length > 0">
+                    <tfoot>
+                        <tr>
+                            <td>total price:</td>
+                            <td>
+                                <h2> {{totalForALLItems() | number:'1.2-2':'en-US'}}</h2>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="cart-buttons" *ngIf="checkoutData?.length > 0">
+            <div class="ml-auto">
+                <a (click)="checkout()" class="btn-large bg-theme-green text-white uppercase corner-flat">checkout</a>
+            </div>
+        </div>
+    </div>
+</section>
+<app-shopping-cart [data]="items"></app-shopping-cart>
+<br>
+<br>
+<br>
+<br>
+<!--section end-->

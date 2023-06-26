@@ -1,0 +1,144 @@
+.main-wrapper {
+  margin-top: 60px;
+  position: relative;
+  height: calc(100vh - 106px);
+  .shop-header {
+    h4 {
+      color: grey;
+      font-size: 16px;
+  
+    }
+  }
+  .shop-name {
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      padding-left: 5px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 280px;
+      overflow: hidden;
+    }
+  }
+  .service-header {
+    h4 {
+      font-size: 16px;
+      color: grey;
+    }
+  }
+  .service-name {
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      padding-left: 5px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 236px;
+      overflow: hidden;
+    }
+  }
+  .duration-header {
+    h4 {
+      font-size: 16px;
+      color: grey;
+    }
+  }
+  .duration-timing {
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      padding-left: 5px;
+    }
+  }
+  .duration-ammount {
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      padding-left: 5px;
+    }
+  }
+  .main-content-wrapper {
+    background-color: #e6e6e6;
+    padding: 10px 0;
+    .date-wrapper {
+      label {
+        font-size: 15px;
+        color: #544e4e;
+      }
+      h4 {
+        font-size: 18px;
+      }
+    }
+    .time-wrapper {
+      label {
+        font-size: 15px;
+        color: #544e4e;
+      }
+      h4 {
+        font-size: 18px;
+      }
+    }
+    .book-for-wrapper{
+      .booked-for{
+        h4{
+          font-size: 15px;
+          font-weight: 600;
+        }
+      }
+    }
+    .therapist-wrapper{
+      .therapist{
+        h4{
+          font-size: 15px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .confirm-button-wrapper {
+    position: fixed;
+    bottom: 46px;
+    width: 100%;
+    z-index: 999;
+    .submit_button {
+      width: 100% !important;
+      border-radius: 0rem !important;
+      position: sticky;
+      position: -webkit-sticky;
+      position: -moz-sticky;
+      position: -ms-sticky;
+      position: -o-sticky;
+      bottom: 47px;
+      z-index: 999;
+    }
+  }
+}
+.modal-body{
+  .success-wrapper{
+    text-align: center;
+    .successs-icon{
+      i{
+        font-size: 50px;
+      }
+    }
+  }
+  .appointment-bookBtn {
+    .btn {
+      width: calc(100% - 65px);
+      border-radius: 0;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// .gender {
+//   label {
+//     font-size: 15px;
+//     color: #544e4e;
+//   }
+//   h4 {
+//     font-size: 18px;
+//   }
+// }

@@ -1,0 +1,94 @@
+.a-o-i {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+}
+.a-o-i-t {
+  @extend .a-o-i;
+  font-size: 25px;
+  padding: 15px;
+  border-bottom: 1px solid lightgray;
+}
+
+.o-t-p {
+  display: block;
+  margin-top: 10px;
+  font-size: 19px;
+}
+
+.card {
+  padding: 2rem;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  border-radius: 4px;
+  background: white;
+  text-align: center;
+  width: 550px;
+  margin: 0 auto;
+  @media all and (max-width: 767px) {
+      width: 100%;
+  }
+  
+}
+.otp-wrapper {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resend{
+  display:flex;
+  justify-content: flex-end;
+  text-align: end;
+  margin-right: 2px
+
+}
+.verify{
+  background-color: black;
+  border: black;
+  height: 41px;
+  color: white;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 15px;
+  background-color: #ffffff;
+  p.title {
+    margin: 0;
+    font-weight: 500 !important;
+    font-size: 19px;
+    line-height: 23px;
+    color: #0d0d0d;
+  }
+}
+
+// new
+h3.heading {
+  color: #90c63e;
+}
+.text-container {
+  max-width: 500px;
+  margin: auto;
+  p {
+      color: #909c7f;
+      font-size: 18px;
+  }
+}
+button.btn-resend {
+  color: #90c63e;
+  border: unset;
+  background-color: unset;
+  padding: 0;
+}
+a {
+  color: #90c63e;
+  &:hover {
+      text-decoration: underline;
+  }
+}
+input {
+  color: #90c63e!important;
+}

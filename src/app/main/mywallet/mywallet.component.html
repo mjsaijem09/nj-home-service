@@ -1,0 +1,20 @@
+<div class="container mywallet-section">
+    <div class="header-nav">
+        <div class="container">
+            <div class="pills pointer" [class.active] = "selected === 'c'" (click)="nav('c')">Credits</div>
+            <div class="pills pointer" [class.active] = "selected === 'cc'" (click)="nav('cc')">Credit Cards</div>
+            <div class="pills pointer" [class.active] = "selected === 'lp'" (click)="nav('lp')">Loyalty Pts</div>
+        </div>
+    </div>
+    <div class="content">
+        <app-credits *ngIf="selected === 'c'"></app-credits>
+        <app-credit-card *ngIf="selected === 'cc'"></app-credit-card>
+        <app-loyalty-points *ngIf="selected === 'lp'"></app-loyalty-points>
+    </div>
+</div>  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

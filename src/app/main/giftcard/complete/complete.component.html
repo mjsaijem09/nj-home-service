@@ -1,0 +1,159 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="gc-letter"
+          style="background-image:url({{imgBaseUrl}}/uploads/{{card?.card?.letter_bg}})">
+          <div
+            class="card"
+            [ngStyle]="{'background-color': card?.card?.name == 'Default' ? '#EFF7E4' : ''}">
+            <div class="card-body">
+              <div class="to">To,</div>
+              <input
+                disabled
+                type="text"
+                class="no-border"
+                placeholder="Receiver Name"
+                [value]="receiver"
+              />
+              <textarea
+                disabled
+                class="no-border mt-2 mb-2"
+                id=""
+                rows="5"
+                [ngModel]="message"
+                placeholder="Your letter..."
+              ></textarea>
+              <div class="from">From</div>
+              <input
+                disabled
+                type="text"
+                class="no-border"
+                placeholder="Your Name"
+                [value]="sender"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <div class="card-theme-container text-center">
+          <div class="{{ card?.card?.name }}">
+            <img
+              src="{{imgBaseUrl}}/uploads/{{ card?.card?.card }}"
+              alt="{{ card?.card?.name }}"
+              width="100%"/>
+            <div class="value">{{ card?.card?.giftcard_value }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="help mt-5">
+      <h5 class="mb-3">How To Redeem?</h5>
+      <h6>1. Book Online at the shop Below by click Book US</h6>
+      <div class="shop">
+        <div class="shop-img">
+          <img src="{{ card?.shopDetails?.profileImage[0].img }}" />
+          <div class="distance"></div>
+        </div>
+        <div class="details">
+          <h6 class="name">{{ card?.shopDetails?.companyName }}</h6>
+          <div class="star-rating">
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) >= 1"
+              src="/assets/images/select-time/star-fill.svg"
+              alt="star-fill"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) >= 2"
+              src="/assets/images/select-time/star-fill.svg"
+              alt="star-fill"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) >= 3"
+              src="/assets/images/select-time/star-fill.svg"
+              alt="star-fill"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) >= 4"
+              src="/assets/images/select-time/star-fill.svg"
+              alt="star-fill"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) >= 5"
+              src="/assets/images/select-time/star-fill.svg"
+              alt="star-fill"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) % 1 != 0"
+              src="/assets/images/select-time/star-half.svg"
+              alt="star-half"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) == 0"
+              src="/assets/images/select-time/star-empty.svg"
+              alt="star-empty"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) <= 1"
+              src="/assets/images/select-time/star-empty.svg"
+              alt="star-empty"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) <= 2"
+              src="/assets/images/select-time/star-empty.svg"
+              alt="star-empty"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) <= 3"
+              src="/assets/images/select-time/star-empty.svg"
+              alt="star-empty"
+            />
+            <img
+              *ngIf="rating(card?.shopDetails?.locationRating.star) <= 4"
+              src="/assets/images/select-time/star-empty.svg"
+              alt="star-empty"
+            />
+            <div class="count">
+              {{ rating(card?.shopDetails?.locationRating.star) }} ({{
+                card?.shopDetails?.locationRating.star_count
+              }})
+            </div>
+          </div>
+          <div class="location">
+            <div class="address">
+              {{ card?.shopDetails?.companyBuilding }}
+              {{ card?.shopDetails?.companyStreet }},
+              {{ card?.shopDetails?.companyCity }}
+              {{ card?.shopDetails?.companyState }}
+              {{ card?.shopDetails?.companyZip }}
+            </div>
+            <img src="assets/images/direction.svg" class="route" />
+          </div>
+          <div class="action-btns">
+            <a href="{{ businessPhone }}" class="btn-call">Call Us</a>
+            <!-- <button class="btn-call">Call Us</button> -->
+            <button
+              class="btn-book"
+              (click)="navigateToShop(card?.shopDetails?.locationId)"
+            >
+              Book Us
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="mt-3 mb-3">select giftcard payment method at checkout page</p>
+      <img
+        src="/assets/images/giftcard/checkout-with-card.svg"
+        alt="checkout-with-card"
+        width="100%"
+      />
+      <h6 class="mt-3 mb-0">2. Redeem at shop</h6>
+      <p class="ml-3">
+        Show this code before you make your payment
+        <span style="color: #90c63e">{{ card?.purchaseData?.code }}</span>
+      </p>
+    </div>
+  </div>
+  <!-- <button class="btn btn-light-green btn-submit" (click)="next()">NEXT</button> -->
+</div>

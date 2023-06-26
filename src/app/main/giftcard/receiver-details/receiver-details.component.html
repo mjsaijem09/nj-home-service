@@ -1,0 +1,311 @@
+<div class="section mt-5 mobile">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="giftcard-value-selection text-center">
+            <img src="/assets/images/giftcard/receiver/gifts.svg" class="featured-img mt-3">
+            <h5 class="mt-3">Gift Card Value</h5>
+            <p class="mb-0 mt-2 for-input-label">Enter gift card value below</p>
+            <input
+                type="text"
+                class="form-control gc-value w-100"
+                #gc_value formControlName="giftCardValue"
+                [ngClass]="{'is-valid': form.get('giftCardValue').valid, 'is-invalid': form.get('giftCardValue').invalid}">
+            <div class="values mt-3">
+                <div class="item" *ngFor="let value of giftCard" (click)="gcValue(value)">{{value}}</div>
+            </div>
+        </div>
+        <div class="receiver-details">
+            <div class="form-title">
+                Receiver’s Details
+            </div>
+            <div class="row">
+                <div class="form-group mb-3 col-12">
+                    <div class="input-group rounded-input">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <img src="/assets/images/giftcard/avatar.svg" >
+                        </div>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="firstName"
+                        name="firstName"
+                        placeholder="First Name"
+                        [ngClass]="{'is-valid': form.get('firstName').valid, 'is-invalid': form.get('firstName').invalid}">
+                    </div>
+                </div>
+                
+                <div class="form-group mb-3 col-12">
+                    <div class="input-group rounded-input">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <img src="/assets/images/giftcard/avatar.svg" >
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" formControlName="lastName" name="lastName" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group col-3">
+                    <div class="input-group rounded-input">
+                        <ngx-intl-tel-input 
+                            [cssClass]="'form-control tel_input_rounded'" 
+                            [preferredCountries]="preferredCountries" 
+                            [enableAutoCountrySelect]="true"
+                            [enablePlaceholder]="true" 
+                            [searchCountryFlag]="false"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" 
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="selectedCountryISO" 
+                            [phoneValidation]="false"
+                            [separateDialCode]="separateDialCode" 
+                            name="tel_input">
+                        </ngx-intl-tel-input>
+                    </div>
+                </div>
+                <div class="form-group mb-3 col-9">
+                    <div class="input-group rounded-input">
+                        <input type="number" class="form-control" formControlName="phone"  name="phone" placeholder="Phone Number">
+                    </div>
+                </div>
+                <div class="form-group mb-3 col-12">
+                    <div class="input-group rounded-input">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <img src="/assets/images/giftcard/email.svg" >
+                        </div>
+                      </div>
+                      <input
+                        type="email"
+                        class="form-control is-invalid"
+                        formControlName="email"
+                        name="email"
+                        placeholder="Email Address"
+                        [ngClass]="{'is-valid': form.get('email').valid, 'is-invalid': form.get('email').invalid}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button *ngIf="!isMobile" class="btn btn-light-green">NEXT</button>
+    <button *ngIf="isMobile" class="btn btn-fixed btn-light-green">NEXT</button>
+    </form>
+</div>
+<div class="section desktop">
+    <div class="banner">
+        <h1>Buy a Gift Card</h1>
+        <img class="confetti" src="assets/images/giftcard/confetti.svg">
+        <img class="illustration" src="assets/images/giftcard/gc-illustration.svg">
+    </div>
+    <div class="container">
+        <div class="user-guide">
+            <div class="step active">
+                <div class="num"><img src="assets/images/giftcard/check.svg" style="width: 16px;"></div>
+                <div class="guide">
+                    <div class="title"><p class="m-0" style="width: 295px;">Choose Gift Card</p><span class="border-indicator" style="border-color: #90C63E;"></span></div>
+                    <div class="some-texts">We have gift cards for every occasion.<br>
+                        Pick your favorite card.</div>
+                </div>
+            </div>
+            <div class="step active">
+                <div class="num">2</div>
+                <div class="guide">
+                    <div class="title"><p class="m-0" style="width: 392px;">Message and recipient</p><span class="border-indicator"></span></div>
+                    <div class="some-texts">Write a message and set the <br>
+                        recipient of your gift card.</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="num">3</div>
+                <div class="guide">
+                    <div class="title"><p class="m-0">Review and send</p></div>
+                    <div class="some-texts">Review the details before sending <br>
+                        your card out.</div>
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="form">
+            <div class="gc-theme mt-5">
+                <div class="header-title">
+                    <h4>Message and Recipient</h4>
+                    <div class="action-btns">
+                        <button class="btn btn-back" type="submit" (click)="back()"><img src="assets/images/giftcard/back.svg" alt="next"> Back</button>
+                        <button class="btn btn-next" type="submit" (click)="next()">Next <img src="assets/images/giftcard/next.svg" alt="next"></button>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="row mt-3">
+                            <div class="col-lg-6">
+                                <div class="receiver-details mt-0">
+                                    <div class="form-title">
+                                        Gift Card Message
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <div class="rounded-input">
+                                                <textarea 
+                                                class="form-control no-border mt-2 mb-2" 
+                                                formControlName="message" 
+                                                rows="8" 
+                                                placeholder="Your message here..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr mt-3 mb-4"></div>
+                                <div class="receiver-details mt-0">
+                                    <div class="form-title">
+                                        Recipient Details
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <div class="input-group rounded-input">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <img src="/assets/images/giftcard/avatar.svg" >
+                                                </div>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                formControlName="firstName"
+                                                name="firstName"
+                                                placeholder="First Name"
+                                                [ngClass]="{'is-valid': form.get('firstName').valid, 'is-invalid': form.get('firstName').invalid}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <div class="input-group rounded-input">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <img src="/assets/images/giftcard/phone.svg" style="width: 20px;">
+                                                    </div>
+                                                </div>
+                                                <input type="number" class="form-control" formControlName="phone"  name="phone" placeholder="Phone Number">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <div class="input-group rounded-input">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <img src="/assets/images/giftcard/email.svg" >
+                                                </div>
+                                            </div>
+                                            <input
+                                                type="email"
+                                                class="form-control is-invalid"
+                                                formControlName="email"
+                                                name="email"
+                                                placeholder="Email Address"
+                                                [ngClass]="{'is-valid': form.get('email').valid, 'is-invalid': form.get('email').invalid}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="giftcard-value-selection text-center">
+                                    <img src="/assets/images/giftcard/receiver/gifts.svg" class="featured-img" width="126">
+                                    <p class="mb-0 mt-3 for-input-label">Enter gift card value below</p>
+                                    <input type="text"
+                                        class="form-control gc-value w-100"
+                                        #gc_value formControlName="giftCardValue"
+                                        [ngClass]="{'is-valid': form.get('giftCardValue').valid, 'is-invalid': form.get('giftCardValue').invalid}">
+                                    <div class="values mt-3">
+                                        <div class="item" *ngFor="let value of giftCard" (click)="gcValue(value)">{{value}}</div>
+                                    </div>
+                                </div>
+                                <div class="hr mb-4" style="margin-top: 2.1em;"></div>
+                                <div class="receiver-details mt-0">
+                                    <div class="form-title">
+                                        Delivery Date and Time
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group m-0 col-12">
+                                            <div class="radio-container">
+                                                <div class="radio-btn-q">
+                                                    <div class="form-check-radio m-0" [class.active] = "option === 'send_now'">
+                                                        <input type="radio" id="send_now" name="radio-group" (click)="sendOption('send_now')" [checked]="option === 'send_now'">
+                                                        <label for="send_now">Send now</label>
+                                                    </div>
+                                                    <div class="form-check-radio m-0" [class.active] = "option === 'send_later'">
+                                                        <input type="radio" id="send_later" name="radio-group" (click)="sendOption('send_later')" [checked]="option === 'send_later'">
+                                                        <label for="send_later">Set delivery date</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-0 col-12" [class.disabled]="option === 'send_now'">
+                                            <div class="input-group rounded-input" style="width: 70%;">
+                                                <input class="form-control pointer" placeholder="Select date when to send the gift card"
+                                                       name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker" [minDate]="minDate"
+                                                       [placement]="placement" (click)="d.toggle()" [ngModelOptions]="{standalone: true}">
+                                                    <img class="calendar pointer" src="/assets/images/giftcard/calendar.svg">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12 mt-3" [class.disabled]="option === 'send_now'">
+                                            <label for="time" class="mb-2" style="color: #A6AEC1;">Pick a Time</label>
+                                            <div class="d-flex" style="gap: 15px;width: 70%;">
+                                                <div class="input-group rounded-input pointer">
+                                                    <select class="form-control pointer" (change)="hour = $event.target.value">
+                                                        <option selected hidden [value]="hours[11].hour">{{hours[11].hour}}</option>
+                                                        <option *ngFor="let h of hours" [value]="h.hour">{{h.hour < 10 ? '0' : ''}}{{h.hour}}</option>
+                                                    </select>
+                                                    <img class="dropdown" src="/assets/images/giftcard/dropdown.svg">
+                                                </div>
+                                                <div class="input-group rounded-input pointer">
+                                                    <select class="form-control pointer" (change)="minute = $event.target.value">
+                                                        <option selected hidden [value]="minutes[0].min">0{{minutes[0].min}}</option>
+                                                        <option *ngFor="let min of minutes" [value]="min.min">{{min.min < 10 ? '0' : ''}}{{min.min}}</option>
+                                                    </select>
+                                                    <img class="dropdown" src="/assets/images/giftcard/dropdown.svg">
+                                                </div>
+                                                <div class="input-group rounded-input pointer">
+                                                    <select class="form-control pointer" (change)="meridiem = $event.target.value">
+                                                        <option value="am" selected>AM</option>
+                                                        <option value="pm">PM</option>
+                                                    </select>
+                                                    <img class="dropdown" src="/assets/images/giftcard/dropdown.svg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+        </form>
+        <div class="sample-template mt-3">
+            <div class="header-title">
+                <h4>Sample Gift Card and Message</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card-theme-container text-center">
+                        <div class="value" [ngStyle]="{'color': card.card.colorCode}">{{form.get('giftCardValue').value}}</div>
+                        <img [src]="env+card.card.card" alt="theme" width="100%">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="gc-letter m-0 h-100" [class.p-0]="card.card.name == 'Default'" [ngStyle]="{'background-image': getBackgroundImage()}">
+                        <div class="card h-100" [ngStyle]="{'background-color': card.card.name == 'Default' ? '#EFF7E4' : ''}">
+                            <div class="card-body">
+                                <div class="to">To,</div>
+                                <input type="text" class="no-border" placeholder="Your Friend" [value]="form.get('firstName').value + form.get('lastName').value">
+                                <textarea class="no-border mt-2 mb-2" id="" rows="{{card.card.name == 'Default' ? 4 : 3}}" [value]="f.message.value" placeholder="Bookus giftCard allow your to send a gift to your friends and faimilies whenever and wherever your are by just few clicks. you can also write whatever you would like to say to them in this letter. This is just a preview of our giftcard. Thank you for choosing bookus."></textarea>
+                                <div class="from">From</div>
+                                <input disabled type="text" class="no-border" placeholder="Your Name" [value]="sender">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

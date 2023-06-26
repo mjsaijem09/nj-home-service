@@ -1,0 +1,126 @@
+p {
+    margin: 0 !important;
+}
+
+.card-box {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    gap: 10px;
+    border-radius: 8px;
+    padding: 15px 20px 15px 15px;
+    box-shadow: 0px 3px 10px 4px rgba(105,105,105,0.1);
+    -webkit-box-shadow: 0px 3px 10px 4px rgba(105,105,105,0.1);
+    -moz-box-shadow: 0px 3px 10px 4px rgba(105,105,105,0.1);
+
+    .card-image {
+        // flex: 2;
+        background-position: center;
+        // background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 5px;
+        min-width: 110px;
+    }
+
+    .card-details {
+        min-width: 0;
+        .details-main {
+            .name_gender {
+                .name {
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+            }
+            .role {
+                line-height: 1;
+                color: #838383;
+                font-size: 15px;
+            }
+        }
+
+        .details-sub {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5px;
+        
+            .info {
+                line-height: 1.5;
+                font-size: 15px;
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                .material-icons, .material-icons-outlined {
+                    color: #aeaeae;
+                    font-size: 20px;
+                }
+                span.text {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+            .details-action{
+                display: flex;
+                gap: 5px;
+                align-items: center;
+
+                .relationship {
+                    padding: 0px 9px;
+                    background-color: #EBF7FD;
+                    color: #42B4EB;
+                    font-size: 15px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .edit-btn {
+                    background-color: transparent;
+                    color: #90C63E;
+                    font-size: 15px;
+                    border: none;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    span {
+                        font-size: 15px;
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+.name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+// Small Devices
+@media screen and (max-width: 767px) {
+    .card-box {
+        width: 90vw !important;
+    }
+
+    .name {
+        font-size: 16px !important;
+    }
+
+    .info, .relationship, .edit-btn {
+        font-size: 13px !important;
+    }
+
+    .role {
+        font-size: 14px !important;
+    }
+
+    .card-details {
+
+    }
+
+}

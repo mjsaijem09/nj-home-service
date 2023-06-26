@@ -1,0 +1,26 @@
+<div class="app-product-customer-review">
+    <div class="customer-details">
+        <div class="customer">
+            <div class="avatar-icon">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="name">Customer Name</div>
+        </div>
+        <div class="actions">
+            <i class="bi bi-hand-thumbs-up-fill"></i>
+            32
+            <i class="bi bi-three-dots"></i>
+        </div>
+    </div>
+    <div style="margin-left: 37px;">
+        <app-star-rating [rating]="productData.stars" [size]="18"></app-star-rating>
+        <p class="description">TEst</p>
+        <div class="media-container">
+            <div class="media-item" *ngFor="let mediaURL of productData.images">
+                <img *ngIf="mediaURL.includes('.png')" [src]="mediaURL">
+                <video *ngIf="mediaURL.includes('.webm')" [src]="mediaURL"></video>
+            </div>
+        </div>
+        <p class="date-time">16-03-2022 10:43</p>
+    </div>
+</div>

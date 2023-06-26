@@ -1,0 +1,50 @@
+
+
+.shop-section {
+    * {
+        color: #ffffff;
+    }
+    small {
+        font-weight: 300;
+    }
+    background-image: linear-gradient(to bottom right, #2A2E54, #585052);
+    img.shop-logo {
+        width: 70px;
+        height: 70px;
+        border: solid 2px #fff;
+        border-radius: 70px;
+    }
+    .details {
+        width: 100%;
+        small.separator {
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: 100;
+            opacity: .5;
+        }
+        small.ratings {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            i.bi.bi-star-fill {
+                color: #e9b004!important;
+                font-size: 11px;
+            }
+        }
+    }
+    button.btn-sp {
+        background-color: transparent;
+        border: solid 1px;
+        width: 100%;
+        font-weight: 100;
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+}
+
+
+
+
+
+
+

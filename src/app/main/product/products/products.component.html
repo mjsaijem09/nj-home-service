@@ -1,0 +1,12 @@
+<div class="margin-top"></div>
+<div class="container page-height">
+    <div class="header">
+        <button type="button" class="btn btn-link" (click)="back()"><img src="assets/images/arrow-right.svg"/></button>
+        <p class="title">All Products</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-6 col-12 mb-4"  *ngFor="let product of products">
+            <app-product [product]="product" [shop]="shopDetails"></app-product>
+        </div>
+    </div>
+</div>

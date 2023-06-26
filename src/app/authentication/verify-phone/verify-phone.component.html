@@ -1,0 +1,18 @@
+<div class="container pt-4">
+    <div class="mb-5 p-5">
+        <div class="text-center">
+            <div class="companyLogo">
+                <img src="assets/images/logo.svg" alt="logo">
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <h3 class="heading mt-5">Hi Mark!, we are trying to verify your identity</h3>
+        <div class="text-container mt-4">
+            <p>We just sent an OTP code to your phone number 09638069762. Please check your SMS for a message from the Bookus team, and enter the code here.</p>
+        </div>
+        <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" placeholder="0" [config]="config"></ng-otp-input>
+        <p class="text-muted">Did not get the code? <button type="button" class="btn-resend" (click)="resend()">Resend</button></p>
+        <a href="auth/verify-email">or use email address for verification</a>
+    </div>
+</div>

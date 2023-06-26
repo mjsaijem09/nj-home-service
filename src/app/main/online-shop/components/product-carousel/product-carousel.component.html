@@ -1,0 +1,16 @@
+<div class="product-carousel">
+    <div class="header">
+        <h6>{{title}}</h6>
+        <a href="http://">See All <i class="bi bi-arrow-right-short"></i></a>
+    </div>
+    <div class="product-list">
+        <swiper-container nested="true" space-between="10" slides-per-view="2.3">
+            <div class="default-space"></div>
+            <ng-container *ngFor="let product of products; let i = index">
+                <swiper-slide>
+                    <app-product-card [data]="product" [shop]="shop" class="product-box"></app-product-card>
+                </swiper-slide>
+            </ng-container>
+        </swiper-container>
+    </div>
+</div>

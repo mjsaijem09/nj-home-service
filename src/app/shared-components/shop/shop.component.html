@@ -1,0 +1,62 @@
+<div class="listing" *ngIf="shop?.city != 'Default City' && shop?.city.length != 0" [ngClass]="{'selected-shop': selectedShopIndex !== undefined && index === selectedShopIndex}" (click)="setSelectedShopIndex()">
+    <div class="row">
+        <div class="col-12">
+            <div class="listing-wrapper">
+                <div class="shop-img" (click)="navigateToShopDetail()">
+                    <img [src]="imgLink(shop?.profileImg)" (error)="setDefaultPic($event)" class="shop-round-img"/>
+                    <div class="shop-location">
+                        <p *ngIf="shop?.distance"><img
+                                src="assets/images/icon-shop-location.svg" />
+                            {{(shop?.distance * 1).toFixed(1)}} km</p>
+                    </div>
+                    <div class="service_offers">
+                        <div class="item" *ngIf="shop?.onlineBooking"><img src="assets/images/mobile-payment.svg"></div>
+                        <div class="item" *ngIf="shop?.onlineGiftCard"><img src="assets/images/giftcard.svg"></div>
+                    </div>
+                </div>
+                <div class="shop-detail">
+                    <div class="shop-detail_wrapper">
+                        <div class="boxHead"> 
+                        <h4 (click)="navigateToShopDetail()">
+                            <span>{{shop?.name}}</span>
+                        </h4>
+                        <div class="like-dislike" (click)="toggleHeart()">
+                            <img src="{{shop?.favFlag ? 'assets/images/heart.svg' :
+                                'assets/images/dislike.svg'}}" />
+                        </div>
+                        </div>
+
+                        <h5 class="rating" (click)="navigateToShopDetail()">
+                            <span>
+                            <app-star-rating [rating]="shop?.rating?.star" [size]="18"></app-star-rating>
+                            </span>
+                            <span *ngIf="shop?.rating?.star !== undefined">{{(shop?.rating?.star).toFixed(1)}}
+                                ({{shop?.rating?.star_count}})</span>
+                        </h5>
+                        <p>
+                            <span (click)="navigateToShopDetail()">{{shop?.city}} {{shop?.street}}</span>
+                            <a *ngIf="isSelectShopsPage; else mapView;">
+                                <img src="{{selectedShopIndex !== undefined && index === selectedShopIndex ? 'assets/images/selected-shop.svg' : 'assets/images/unselected-shop.svg'}}" />
+                            </a>
+                            <ng-template #mapView>
+                                <a href="http://maps.google.com/?q={{shop?.street}}"
+                                target="_blank">
+                                    <img src="assets/images/direction.svg" />
+                                </a>
+                            </ng-template>
+                        </p>
+                    </div>
+                    <div class="btn-group" *ngIf="isBusinessPage || !isSelectShopsPage; else selectShopsPage;">
+                        <button (click)="navigateToShopDetail()" *ngIf="!isBusinessPage" class="btn btn-availabel">Available Today</button>
+                        <button class="btn btn-book" [ngClass]="{'business-page': isBusinessPage}" (click)="selectShop()" [disabled]="!shop?.onlineBooking">{{shop.onlineBooking ? 'Book Us' : 'Not For Online Booking'}}</button>
+                    </div>
+                    <ng-template #selectShopsPage>
+                        <div class="btn-group btn-group--moreInfoOuter" *ngIf="isSelectShopsPage; else selectShopsPage">
+                            <button class="btn more-info" [ngClass]="{'btn-book': index === selectedShopIndex, 'btn-availabel': index !== selectedShopIndex}" (click)="moreInfo()">More Info</button>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

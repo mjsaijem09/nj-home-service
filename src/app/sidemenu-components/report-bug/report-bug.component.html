@@ -1,0 +1,61 @@
+<div class="online_support">
+    <div class="container auto-h">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="onlinesupportform">
+                    <form [formGroup]="reportBugForm">
+                        <div class="row mt-4">
+                            <div class="col-md-12 pb-3">
+                                <label for="uname1">Title</label>
+                                <input class="form-control" formControlName="title" placeholder="Enter Title" type="text">
+                            </div>
+                            <div class="col-md-12 pb-3">
+                                <textarea class="form-control" formControlName="query" placeholder="Enter Your query here"
+                                    id="complexExampleMessage" cols="10" rows="10"></textarea>
+                            </div>
+                            <div class="customAttach">
+                                <div class="pb-3 " (click)="attchModal(content)">
+                                    <p class="fileposition">Attach File <i class="fa fa-paperclip" aria-hidden="true"></i>
+                                    </p>
+                                    <canvas #canvas id="canvas" style="width: 50px;
+                                            height: 50px"></canvas>
+                                    <div class="attachImg">
+                                        <div id="app" *ngIf="cameraOn==true" >
+                                            <div><video #video id="video" style="width:324px" autoplay></video></div>
+                                            <div><button id="snap" (click)="capture()">Capture</button></div>
+                                            
+                                            
+                                        </div> 
+                                        <!-- <img src="../../../assets/images/no_image.png"> -->
+                                        <!-- <img src="{{image ? image : '../../../assets/images/default_circle.svg'}}"  (click)="attchModal(content)" class="ml-3 profileImage capture" alt="badge" /> -->
+                                         
+                                       </div>
+                                </div>
+                                
+                            </div>
+                            <div>
+                                <button class="btn btn-dark supportbtn" type="button" (click)="report()">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal for attach file -->
+<ng-template #content let-modal>
+    <div class=" text-center mt-3" >
+      <h5 class=" text-center" >Book Us</h5>
+    </div>
+    <div class="text-center" >
+     <p class="text-center" >Pick Image</p>
+    </div>
+    <div class="modal-body">
+        <button class="camera">Gallery</button>
+    </div>
+    <div class="modal-body">
+        <button class="cameraButton" (click)="cameraOpen()">Camera</button>
+    </div>
+    
+  </ng-template>

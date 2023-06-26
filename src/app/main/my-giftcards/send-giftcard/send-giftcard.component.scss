@@ -1,0 +1,388 @@
+
+.mygiftcard-section {
+    height: 100vh;
+    .letter-bg {
+        position: relative;
+        margin-bottom: 15px;
+
+        .bg-image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .whiteBg-div {
+            background: rgba(252, 253, 253, 0.75);
+            position: absolute;
+            // bottom: 20px;
+            // left: 20px;
+            // left: 30px;
+            // right: 19px;
+            width: 85%;
+            top: 15px;
+            // right: 8%;
+            left: 0px;
+            margin: auto;
+            right: 0px;
+            // right: 27px;
+            // bottom: 25px;
+            // width: 90%;
+            box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .message {
+            font-family: Rubik;
+            font-style: normal;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: justify;
+            text-transform: capitalize;
+            color: #000000;
+        }
+
+        .bold-font {
+            font-weight: 500;
+        }
+    }
+
+    .giftCard-img {
+        position: relative;
+        text-align: center;
+        padding: 0px 26px;
+
+        .amount {
+            position: absolute;
+            bottom: 22px;
+            left: 306px;
+            font-weight: 500;
+        }
+
+        .code {
+            position: absolute;
+            bottom: 22px;
+            left: 186px;
+            font-weight: 500;
+        }
+
+        .img-div {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+    }
+
+    .quickReply-header {
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: left;
+        text-transform: capitalize;
+        padding: 15px 26px;
+        color: #000000;
+    }
+
+    .quickReply-card {
+        background: #FFFFFF;
+        box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        margin: auto;
+        
+        .message-txt {
+            font-family: Rubik;
+            font-style: normal;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: justify;
+            text-transform: capitalize;
+            color: #000000;
+        }
+
+        .txt-bold {
+            font-weight:500;
+        }
+
+        .marginT_B-15 {
+            margin: 15px 0px;
+        }
+
+        .btn-div {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .send-btn {
+            border: none;
+            background: #90C63E !important;
+            border-radius: 5px; font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            text-transform: capitalize;
+            color: #FFFFFF !important;
+            width: 100%;
+            padding: 10px;
+        }
+    }
+
+    .redeem-header {
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: 500;
+        margin: auto;
+        font-size: 18px;
+        line-height: 22px;
+        padding: 20px 0px 10px 26px;
+        // text-align: center;
+        text-transform: capitalize;
+        color: #000000;
+        margin: auto;
+    }
+
+    .sendBtn-div {
+        padding: 20px 26px 10px 0px;
+        text-align: center;
+        margin: auto;
+        .header-send-btn {
+            
+            padding: 6px 12px;
+            background: #90C63E;
+            box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 22px;
+            border: none;
+            width: 100%;
+            text-transform: capitalize;
+            color: #FFFFFF;
+        }
+    }
+
+    .line-divider {
+        border: 0.5px solid #A6AEC1;
+        width: 100%;
+        margin: auto;
+    }
+
+    .shop-card {
+        display: flex;
+        background: #FFFFFF;
+        box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+        border-radius: 10px;
+        padding: 8px;
+
+        .shop-image-div {
+            width: 30%;
+
+            .shop-thumbnail {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+            }
+        }
+
+        .shop-info {
+            width: 90%;
+            margin-left: 10px;
+
+            .shop-name {
+                font-family: Rubik;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                text-transform: capitalize;
+                color: #0D0D0D;
+            }
+
+            .address {
+                font-family: Rubik;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 12px;
+                line-height: 14px;
+                text-transform: capitalize;
+                color: #A6AEC1;
+            }
+
+            .direction-div {
+                width: 20%;
+                align-items: end;
+                text-align: end;
+                padding-top: 53px;
+
+                .arrow-img {
+                    width: 85%;
+                    height: 53%;
+                }
+            }
+
+            .btn-row {
+                display: flex;
+                padding: 10px 0px;
+
+                .btn-col {
+                    width: 50%;
+                }
+            }
+
+            .shop-btn {
+                border: none;
+                border-radius: 6px;
+                justify-content: center;
+                align-items: center;
+                padding: 8px 12px;
+                font-size: 12px;
+                line-height: 14px;
+                text-transform: capitalize;
+                color: #FFFFFF !important;
+                width: 70%;
+            }
+
+            .bg-red {
+                background: #FD6D6D;
+            }
+
+            .bg-green {
+                background: #90C63E;
+            }
+        }
+    }
+
+    // .redeemStep-div {
+    //     padding-top: 15px;
+    //     background: #FFFFFF;
+    //     text-align: center;
+    //     box-sizing: border-box;
+    //     border-radius: 10px;
+
+    //     .step-image {
+    //         width: 100%;
+    //         border: 1px solid #A6AEC1;
+    //         height: 100%;
+    //         border-radius: 10px;
+    //     }
+    // }
+
+    // .info-txt {
+    //     font-style: normal;
+    //     font-weight: normal;
+    //     font-size: 16px;
+    //     line-height: 22px;
+    //     margin-bottom: 0px !important;
+    //     text-transform: capitalize;
+    //     color: #0D0D0D;
+    // }
+
+    // .voucherCode-txt {
+    //     font-weight: normal;
+    //     font-size: 16px;
+    //     line-height: 24px;
+    //     text-transform: capitalize;
+    //     padding-left: 25px;
+    //     color: #0D0D0D;
+
+    //     .code-color {
+    //         color: #90C63E;
+    //         padding-left: 5px;
+    //     }
+    // }
+
+    .total-rating {
+        margin-left: 2px;
+        p {
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+        color: #a6aec1;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 330px){
+    .mygiftcard-section {
+
+        .giftCard-img {
+            .code {
+                bottom: 19px;
+                left: 166px;
+            }
+
+            .amount {
+                bottom: 19px;
+                left: 273px;
+            }
+        }
+    }
+}
+
+
+// iphone 6/7/8 & iphone X
+@media only screen and (max-width: 380px) and (min-width: 365px) {
+    .mygiftcard-section {
+
+        .giftCard-img {
+            .code {
+                bottom: 24px;
+                left: 200px;
+            }
+
+            .amount {
+                bottom: 24px;
+                left: 318px;
+            }
+        }
+    }
+}
+
+//phone with width 411
+@media only screen and (max-width: 415px) and (min-width: 410px) {
+    .mygiftcard-section {
+    
+        .giftCard-img {
+            .amount {
+                bottom: 27px;
+                left: 348px;
+            }
+
+            .code {
+                bottom: 27px;
+                left: 220px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 545px) and (min-width: 500px) {
+
+    .mygiftcard-section {
+        .letter-bg {
+            .whiteBg-div {
+                width: 88%;
+            }
+        }
+
+        .giftCard-img {
+            .img-div{
+                width: 93%;
+            }
+            .amount {
+                left: 450px;
+                font-size: 23px;
+                bottom: 35px;
+            }
+
+            .code {
+                font-size: 23px;
+                left: 227px;
+                width: 204px;
+                bottom: 35px;
+            }
+        }
+    }
+}

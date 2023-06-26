@@ -1,0 +1,132 @@
+<div class="parentLoader"*ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+
+<div class="mybackpack">
+    <div class="row bg-dark fixed-top mt-my-5">
+        <div class="col-4 text-center text-white" (click)="showContent('giftcard')">
+            <div [ngClass]="{'active': currTab=='giftcard'}">
+            <span>
+                Gift Card
+            </span>
+        </div>
+        </div>
+        <div class="col-4 text-center text-white" (click)="showContent('tipcard')">
+            <div [ngClass]="{'active': currTab=='tipcard'}">
+            <span>
+                Tip Card
+            </span>
+            </div>
+        </div>
+        <div class="col-4 text-center text-white" (click)="showContent('point')">
+            <div [ngClass]="{'active': currTab=='point'}">
+            <span>
+                Point
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="giftCard" *ngIf="currTab == 'giftcard'">
+        <div class="container" *ngIf="!isLoading">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12" *ngFor="let giftCardItem of myBackPackList">
+                    <div class="backpackcard">
+                        <div class="useraddres">
+                            <div class="userto">
+                                <span>To</span>
+                                <h5>{{giftCardItem?.message.to}}</h5>
+                            </div>
+                            <div class="userfrom">
+                                <span>From</span>
+                                <h5>{{giftCardItem?.message.from}}</h5>
+                            </div>
+                        </div>
+                        <div class="userdate">
+                            <div class="date">
+                                <span>{{giftCardItem?.date |date :'yyyy-MM-dd'}}</span>
+                            </div>
+                            <div class="money">
+                                <span>${{giftCardItem?.amount}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="myBackPackList?.length == 0">
+                <div class="col-12 mt-2">
+                    <p class="text-center text-muted">No Gift Cards Available</p>
+                </div>
+              </div>
+        </div>
+       
+    </div>
+    <div class="myTipCard" *ngIf="currTab == 'tipcard'">
+        <div class="container" *ngIf="!isLoading">
+            <!-- <div class="giftCard-outerWrapper"> -->
+            <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12" *ngFor="let tipItem of tipList[0]?.purchased">
+              <div class="card">
+                <img class="card-img-top img-fluid" src="../../../assets/images/gift_card (1).svg" alt="">
+                <div class="card-body" >
+                  <h4 class="card-title font-weight-bold">{{tipItem?.tipCardId.title}}</h4>
+                  <p class="card-text">amount: ${{tipItem?.tipCardId.amount}}</p>
+                  <p class="card-text text-muted">You have:{{tipList[0]?.purhchasedCount}}</p>
+                </div>
+                <div class="card-footer" (click)="sendTip(tipItem)">Send</div> 
+              </div>
+               <div class="tipbtn-wrapper">
+                <button class="btn btn-primary" (click)="goToBuy(tipItem)">Purchase Tip Card</button>
+            </div>
+
+
+            </div>
+          </div>
+        <!-- </div> -->
+        <div class="row" *ngIf="tipList?.length == 0">
+            <div class="col-12 mt-2">
+                <p class="text-center text-muted">No Tip Cards Available</p>
+            </div>
+          </div>
+        </div>
+        
+       
+    </div>
+
+
+    <div class="myTipCard" *ngIf="currTab == 'point'">
+        <div class="container" *ngIf="!isLoading">
+            <div class="loyalityMain-page" >
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 carddetailposition" *ngFor="let pointItem of pointList">
+                            <div class="card therapist-card" (click)="goToLoyalityPoint(pointItem?.locationId?._id,pointItem?.have)">
+                                <div class="card-body shadow">
+                                    <div class="therapist-details">
+                                        <div class="therapist-img">
+                                            <img src="{{ (pointItem.locationId && pointItem.locationId.company && pointItem.locationId.company.logo) ? pointItem.locationId.company.logo : '../../../assets/images/no_image.png'}}" alt="rere" />
+                                        </div>
+                                        <div class="therapist-text">
+                                            <h6 class="font-weight-bold">{{pointItem?.locationId.name}}</h6>
+                                            <div class="star-wrapper">
+                                                <span>{{pointItem?.locationId.city}} {{pointItem?.locationId.state}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="point">
+                                            <span>{{pointItem?.have}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="pointList?.length == 0">
+            <div class="col-12">
+                <p class="text-center text-muted">No Points Available</p>
+            </div>
+          </div>
+    </div>
+    
+</div>

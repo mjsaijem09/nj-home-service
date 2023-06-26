@@ -1,0 +1,229 @@
+.main-wrapper{
+    background: #fff;
+    margin-bottom: 135px;
+
+}
+.side-head{
+    width: 389px;
+    height: 170px;
+    left: 0px;
+    top: 0px;
+    background: #fff;
+  
+  }
+  .app-logo-container{
+    flex: 0 0 16.666667%;
+    margin-left: 4%;
+    margin-top: 6%;
+    max-width: 16.666667%;
+  }
+  .line-wrapper{
+    position: absolute;
+    width: 343px;
+    height: 0px;
+    left: 0px;
+    top: 168px;
+    /* right: 14px; */
+    left: 15px;
+    /* padding-left: 5px; */
+    border: 1px solid #E1E3EA;
+    
+  }
+  .image-logo{
+    width: 84px;
+    height: 84px;
+    // left: 123px;
+    // top: 37px;
+    
+    /* James Gouse */
+    
+    // background: url(Unsplash-Avatars_0004s_0005_laurence-cruz-P7yvmajPvkM-unsplash.jpg);
+    border-radius: 100px;
+    margin-top: 75%;
+    // transform: matrix(-1, 0, 0, 1, 0, 0);
+  }
+  .green-color{
+    position: absolute;
+    color: #90C63E;
+    left: 113%;
+    top: 72%;
+      
+  }
+  .location-wrapper{
+    display: flex!important;
+    justify-content: center;
+    margin-left: 18%;
+
+    .location-name{
+        margin-left: 3%;
+        width: 88px;
+        height: 17px;
+        left: 152px;
+        /* top: 140px; */
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        text-transform: capitalize;
+        color: #A6AEC1;
+        margin-top: 4px;
+    }
+  }
+  .form-wrapper{
+    background-color: #fff;
+    .form-inner{
+        margin-top: 5%;
+        background: #FAFAFA;
+        border-radius: 30px;
+        width: 340px;
+        height: 57px;
+        /* padding: 6%; */
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    .form-inner-unique{
+        margin-top: 5%;
+        background: #FAFAFA;
+        border-radius: 30px;
+        width: 85px;
+        height: 57px;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    .form-inner-uniques{
+        width: 237px;
+        height: 53px;
+        left: 156px;
+        top: 592px;
+        background: #FAFAFA;
+        border-radius: 30px;
+        margin-top: 19px;
+    }
+    .image-icon{
+        margin-left: 123.5%;
+        width: 18px;
+        height: 20px;
+    }
+
+    .form-field{
+        margin-left: 14%;
+        margin-top: 7%;
+        width: 97px;
+        height: 42px;
+    }
+    .tick{
+
+    margin-left: 39.5%;
+    width: 18px;
+    height: 20px;
+    }
+  }
+  
+  .bi-icon-color {
+     position: absolute;
+      margin-left: -6px;
+      margin-top: 24px;
+      width: 15px;
+      background-color: white;
+      height: 15px;
+      border-radius: 25px;
+      text-align: center;
+      line-height: 0.42857;
+      color: #90C63E;
+  }
+  .user-wedge-wrapper{
+    display: flex;
+    margin-top: -37%;
+    margin-left: 25%;
+    .user-name{
+      width: 84px;
+      height: 23px;
+      margin-left: 20%;
+      margin-top: 14%;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 19px;
+      line-height: 23px;
+      /* identical to box height */
+      
+      text-transform: capitalize;
+      
+      color: #0D0D0D;
+    }
+    .red-icon-wrapper{
+      margin-top: 13%;
+      margin-left: 4%;
+    .circle{
+      position: relative;
+      /* border: 3px solid #000; */
+      height: 26px;
+      width: 26px;
+      border-radius: 50%;
+      /* background: #8E2818; */
+      color: #fff;
+      border: 4px solid #8E2818;
+  }
+    .red-number{
+        position: absolute;
+        top: -4px;
+        color: white;
+        left: 4px;
+      
+  }
+  }
+}
+
+.address-wrapper{
+    display: flex !important;
+    justify-content: start;
+    margin-left: 45px;
+    .location-icon{
+        width: 18px;
+        height: 20px;
+        color: #0D0D0D;
+    }
+    .address-name{
+        margin-left: 6%;
+    }
+  }
+  .form-inner-address{
+    margin-top: 5%;
+    background: #FAFAFA;
+    border-radius: 30px;
+    width: 340px;
+    height: 40px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .form-inner-city{
+    margin-top: 5%;
+    background: #FAFAFA;
+    border-radius: 30px;
+    width: 205px;
+    height: 40px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .form-inner-state{
+    margin-top: 5%;
+    background: #FAFAFA;
+    border-radius: 30px;
+    width: 205px;
+    height: 40px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .save{
+    width: 370px;
+    height: 64px;
+    /* left: 0px; */
+    /* top: 1113px; */
+    background: #90C63E;
+    box-shadow: 0px -8.832px 35.328px rgb(70 96 135 / 5%);
+    border: none;
+    position: fixed;
+    /* margin-bottom: -114px; */
+    bottom: 60px;
+  }

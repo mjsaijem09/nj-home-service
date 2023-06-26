@@ -1,0 +1,57 @@
+.card {
+    padding: 20px;
+}
+
+.ok-btn {
+    font-size: 16.6078px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 10px 25px;
+    background: #91C73E;
+    border: none;
+    width: 50%;
+    color: white;
+    box-shadow: 0px 8px 64px rgb(15 34 67 / 6%), 0px 0px 1px rgb(15 34 67 / 8%);
+    border-radius: 75px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.txt-grey {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #A6AEC1;
+}
+
+.txt-thankyou {
+    text-align: center;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #0D0D0D;
+}
+
+.thumbup-img {
+    width :184.87px;
+    height:185.06px;
+    border-radius: 14px
+}
+
+.pad-15 {
+    padding: 15px 0px;
+}
+
+.center {
+    text-align: center;
+}

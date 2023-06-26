@@ -1,0 +1,15 @@
+<div class="product-overview-section">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between">
+            <h6>Specification</h6>
+            <div>Stock, Brand, Ships Fr... <i class="bi bi-chevron-right"></i></div>
+        </li>
+        <li class="list-group-item" [class.see-less]="seeLess">
+            <h6>Description</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </li>
+        <li class="list-group-item toggle" (click)="seeLess = !seeLess">
+            See {{seeLess ? 'More' : 'Less'}} <i class="bi bi-chevron-down" *ngIf="seeLess"></i><i class="bi bi-chevron-up" *ngIf="!seeLess"></i>
+        </li>
+    </ul>
+</div>

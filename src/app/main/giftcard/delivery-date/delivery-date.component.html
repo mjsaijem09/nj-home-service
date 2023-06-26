@@ -1,0 +1,38 @@
+<p>delivery-date works!</p>
+<div class="section-delivery-date">
+    <div class="container">
+        <div class="row">
+            <div class="form-group col-12">
+                <div class="radio-container">
+                    <div class="radio-btn-q">
+                        <div class="form-check-radio card m-0" [class.active] = "option === 'send_now'">
+                            <div class="card-body">
+                                <img src="/assets/images/giftcard/delivery-date/gift-send-now-active.svg" class="featured-img">
+                                <div class="hr"></div>
+                                <input type="radio" id="send_now" name="radio-group" (click)="sendOption('send_now')" [checked]="option === 'send_now'">
+                                <label for="send_now">Send now</label>
+                                <p class="text">Your giftcard will be send once the payment applied.</p>
+                            </div>
+                        </div>
+                        <div class="form-check-radio card m-0 mt-4" [class.active] = "option === 'send_later'">
+                            <div class="card-body">
+                                <img src="/assets/images/giftcard/delivery-date/gift-send-later-active.svg" class="featured-img">
+                                <div class="hr"></div>
+                                <input type="radio" id="send_later" name="radio-group" (click)="sendOption('send_later')" [checked]="option === 'send_later'">
+                                <label for="send_later">Set delivery date</label>
+                                <p class="text">You can set a date and time to send the giftcard.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-12">
+                <div class="alert alert-primary">
+                    Set delivery date option is temporarily unavailable!
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <button *ngIf="!isMobile" class="btn btn-light-green mt-5" (click)="next()">NEXT</button>
+    <button *ngIf="isMobile" class="btn btn-next mt-5" (click)="next()">NEXT</button>
+</div>

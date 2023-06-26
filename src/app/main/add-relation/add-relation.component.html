@@ -1,0 +1,186 @@
+<div class="header">
+  <!-- <div classs="row ">
+    <div class="col-md-12 col-sm-12 col-xs-12 mainIcon">
+      
+      <p class="headerText">Add Client</p>
+      <i class="fa fa-close" (click)="navigateBack()"></i>
+    </div>
+  </div> -->
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><span class="headerText">Add Client</span></h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="navigateBack()">
+    </button>
+  </div>
+</div>
+<div class="form form-height">
+  <form class="addForm" [formGroup]="addRelationForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4 mt-4">
+      <input type="text" class="inputType" formControlName="firstName" placeholder="First Name"
+        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+      <!-- <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+      </div> -->
+    </div>
+    <div class="mb-4">
+      <input type="text" class="inputType" formControlName="lastName" placeholder="Last Name"
+        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+      <!-- <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+      </div> -->
+    </div>
+    <div class="mb-4" (click)="selectGender(genderContent)">
+      <input type="text" class="inputType" placeholder="Gender" formControlName="gender"
+        [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" />
+      <!-- <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+        <div *ngIf="f.gender.errors.required">Gender is required</div>
+      </div> -->
+    </div>
+    <div class="mb-4" (click)="selectRelation(relationContent)">
+      <input type="text" class="inputType" placeholder="Relation" formControlName="relation"
+        [ngClass]="{ 'is-invalid': submitted && f.relation.errors }" />
+      <!-- <div *ngIf="submitted && f.relation.errors" class="invalid-feedback">
+        <div *ngIf="f.relation.errors.required">Relation is required</div>
+      </div> -->
+    </div>
+    <div class="mb-4">
+      <input type="number" class="inputType" formControlName="mobile" placeholder="Phone Number"
+        [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+      <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+        <!-- <div *ngIf="f.mobile.errors.required">Phone Number is required</div> -->
+        <div *ngIf="f.mobile.errors.pattern">Phone Number is invalid</div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <input type="text" class="inputType" formControlName="email" placeholder="Email"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.pattern">Email is invalid</div>
+      </div>
+    </div>
+
+    <div class="addButton">
+      <button type="submit" ngbAutofocus class="btn buttonText">Add</button>
+    </div>
+    <ng-template #relationContent let-modal>
+      <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="select-gender-wrapper">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="relation" id="Radios1" value="Father"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios1">
+              Father
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="relation" id="Radios2" value="Mother"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios2">
+              Mother
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="relation" id="Radios3" value="Brother"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios3">
+              Brother
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="relation" id="Radios4" value="Sister"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios4">
+              Sister
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="relation" id="Radios5" value="Husband"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios5">
+              Husband
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="relation" id="Radios6" value="Wife"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios6">
+              Wife
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="relation" id="Radios7" value="Friend"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios7">
+              Friend
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="relation" id="Radios8" value="Other"
+              formControlName="relation">
+            <label class="form-check-label" for="Radios8">
+              Other
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="gender-input-wrapper" *ngIf="addRelationForm.controls['relation'].value === 'Other'">
+        <div class="container">
+          <div class="form-group">
+            <input type="text" class="form-control" id="ifOtheGender" placeholder="If Other please Specify"
+              formControlName="relation">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="col text-center">
+          <button type="button" class="btn btn-dark btn-lg w-100"
+            (click)="modal.close('Close click'); setRelation()">Submit</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #genderContent let-modal>
+      <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="select-gender-wrapper">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="Radios1" value="Male"
+              formControlName="gender">
+            <label class="form-check-label" for="Radios1">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="Radios2" value="Female"
+              formControlName="gender">
+            <label class="form-check-label" for="Radios2">
+              Female
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="gender" id="Radios3" value="Other"
+              formControlName="gender">
+            <label class="form-check-label" for="Radios3">
+              Other
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col text-center">
+          <button type="button" class="btn btn-dark btn-lg w-100"
+            (click)="modal.close('Close click'); setGender()">Submit</button>
+        </div>
+      </div>
+    </ng-template>
+  </form>
+
+</div>

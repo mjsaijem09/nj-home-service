@@ -1,0 +1,161 @@
+.mt-my-5 {
+    margin-top : 2.5rem !important;
+}
+.mybackpack {
+    margin: 82px 0 0;
+    height: calc(100vh - 128px);
+    position: relative;
+    margin-bottom: 100px;
+    .backpackcard {
+        background: #000;
+        color: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 30px;
+        .useraddres {
+            padding-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .userto,
+            .userfrom {
+                display: flex;
+                align-items: flex-end;
+                h5 {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 130px;
+                }
+                span {
+                    font-size: 12px;
+                }
+            }
+        }
+        .userdate {
+            padding-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
+.therapist-card{
+    // max-width: 500px;
+  }
+  .therapist-details{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    @media all and (max-width: 1024px) {
+        justify-content: space-between;
+    }
+  }
+  .therapist-img {
+    width: 70px;
+  }
+  .therapist-text {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    width: calc(100% - 150px);
+  }
+  .therapist-img img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  .star-wrapper img{
+    margin: 0 2px;
+    width: 15px;
+  }
+  .carddetailposition{
+    padding-right: 0px; 
+    padding-left: 0px; 
+    margin-top: 12px !important;
+}
+.point{
+    width: 70px;
+    background: #000;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.star-wrapper {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+//   width: 135px;
+}
+.card-title{
+    text-align: center;
+    font-size: 17px;
+}
+.card-text{
+    text-align: center;
+}
+.card-footer{
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+.myTipCard {
+    // position: relative;
+    .card-columns {
+        &.lastCard{
+            margin-bottom: 50px;
+        }
+    }
+    .tipbtn-wrapper {
+        position: fixed;
+        bottom: 46px;
+        left: 0;
+        margin-top: 30px;
+        width: 100%;
+        .btn {
+            width: 100%;
+            background-color: #000;
+            border-color: #000;
+            border-radius: 0;
+            color: #fff;
+        }
+    }
+}
+.card {
+    margin-bottom: 20px;
+}
+.active{
+    border-bottom: 3px solid white;
+  }
+  .giftcard,.tipcard,.point{
+    text-decoration: underline;
+  }
+
+@media all and (min-width: 1024px) {
+    .mybackpack {
+        overflow: auto;
+        height: auto;
+        margin: 82px 0 0;
+    }
+
+    .mt-my-5 {
+        margin-top : 70px !important;
+    }
+
+    .giftCard, .myTipCard {
+        padding-top: 20px;
+    }
+
+    .carddetailposition{
+        padding-right: 15px; 
+        padding-left: 15px; 
+        margin-top: 12px !important;
+    }
+}

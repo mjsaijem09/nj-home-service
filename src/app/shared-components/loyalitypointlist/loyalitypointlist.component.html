@@ -1,0 +1,107 @@
+<!-- <div class="loyalityModal">
+    <div class="awardImg">
+        <i class="bi bi-arrow-left-circle-fill" (click)="moveLoyalityPage()"></i>
+    </div>
+    <div class="award-amount d-flex align-items-center justify-content-center">
+        <img src="../../../assets/images/gift-card.svg" alt="" class="me-2" width="30" />
+        <span>{{have}}</span>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12" *ngFor="let loyalityItem of loyalityPointList ">
+                <div class="loyalityCard-wrapper">
+                    <div class="card-heading">
+                        <h5 class="mb-0">{{loyalityItem?.service}}</h5>
+                    </div>
+                    <div class="pointWrapper">
+                        <div class="wid-80">
+                            <p class="mb-0">Points earned :</p>
+                        </div>
+                        <div class="wid-40">
+                            <div class="point-value">
+                                <img src="../../../assets/images/giftbox@2x.png" alt="">
+                                {{loyalityItem?.have}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pointWrapper">
+                        <div class="wid-80">
+                            <p class="mb-0">Points redeemed :</p>
+                        </div>
+                        <div class="wid-40">
+                            <div class="point-value">
+                                <img src="../../../assets/images/openBox@2x.png" alt="">
+                                {{loyalityItem?.redeemed}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="earnedDate">
+                        <span>Earned on {{loyalityItem?.createdAt | date:'yyyy-MM-dd hh:mm a'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="walletMainpage">
+    <div class="container">
+        <div class="row py-4 bg-header">
+            <div class="col-auto" (click)="moveLoyalityPage()"><img src="../../../assets/images/arrow-left.svg" /></div>
+            <div class="col header-title">Loyalty Pts</div>
+        </div>
+        <!-- <div class="row bg-white">
+            <div class="col">
+                <a class="tab-active" [routerLink]="['/nav/wallet']">Wallet</a>
+            </div>
+            <div class="col p-0">
+                <a class="tab"  [routerLink]="['/nav/credit-card']">Credit Cards</a>
+            </div>
+            <div class="col pb-3" >
+                <a class="tab" [routerLink]="['/nav/my-points']">Loyalty Pts</a>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="container mt-3">
+        <div class="p-3 amount-div text-center">
+            <div class="title">Your current points at </div>
+            <div class="location-name">zen body massage</div>
+            <div class="amount">{{have}} Points</div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="" *ngIf="loyalityPointList?.length == 0">
+            <div class="no-trans">No Details</div>
+        </div>
+        <div class="transactionsheader" *ngIf="loyalityPointList?.length > 0">
+            <div class="">
+                <h5 class="">Details</h5>
+            </div>
+        </div>
+        <table class="table" *ngIf="loyalityPointList?.length > 0">
+            <tbody>
+                <tr *ngFor="let loyalityItem of loyalityPointList">
+                    <td>
+                        <div class="transaction-img "><img [src]="loyalityItem?.have > 0 ? '../../../assets/images/point-gain.svg' : '../../../assets/images/point-redeeem.svg'" /></div>
+
+                    </td>
+                    <td>
+                        <div class="tableLeft">
+                            <div class="transactions">Points {{loyalityItem?.have > 0 ? 'Gain' : 'Redeem'}}</div>
+                            <div class="transactions-date">{{loyalityItem?.service || 'Remedial massage'}}</div>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div>
+                            <div class="transactionsmoney" *ngIf="loyalityItem?.have > 0"> + ${{loyalityItem?.have}}</div>
+                            <div class="transactionsmoney-red" *ngIf="loyalityItem?.have <= 0"> - ${{loyalityItem?.reedem}}</div>
+                            <div class="transactions-date"> {{loyalityItem?.createdAt |date: 'yyyy-MM-dd'}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

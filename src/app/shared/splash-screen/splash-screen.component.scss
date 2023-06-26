@@ -1,0 +1,103 @@
+.splash-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  @keyframes slider {
+    0% {
+      left: 0;
+    }
+    25% {
+      left: 0;
+    }
+    30% {
+      left: -100%;
+    }
+    50% {
+      left: -100%;
+    }
+    55% {
+      left: -200%;
+    }
+    75% {
+      left: -200%;
+    }
+    80% {
+      left: -300%;
+    }
+    95% {
+      left: -300%;
+    }
+    100% {
+      left: 0;
+    }
+  }
+
+  .splash-screen {
+    width: 400%;
+    display: flex;
+    position: relative;
+    animation: 20s slider infinite;
+  }
+  .splash-screen .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 30px;
+  }
+  .splash-screen .item img {
+    width: 310px;
+  }
+  .splash-screen .item .text {
+    width: 360px;
+    margin: 0 auto 0;
+    line-height: 29px;
+    font-size: 21px;
+  }
+  .inner-spinner {
+    margin-top: 30px;
+    text-align: center;
+  }
+  .inner-spinner img {
+    width: 50px;
+  }
+
+  .brand img {
+    width: 100%;
+  }
+  .brand.desktop {
+    position: absolute;
+    bottom: 0;
+  }
+  @media screen and (min-width: 768px) {
+    .brand.mobile {
+      display: none;
+    }
+    .splash-screen {
+      margin-top: 90px;
+    }
+    .splash-screen .item img {
+      width: 360px !important;
+    }
+    .brand.desktop {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -60px;
+      z-index: -1;
+    }
+    img.logo.desktop {
+      display: block;
+      width: 170px;
+      margin: auto;
+    }
+    .splash-screen .item .text {
+      margin: 30px auto 0;
+    }
+}

@@ -1,0 +1,328 @@
+<div *ngIf="isMobile" class="page-layout top-spacing mobile" class="{{!isChild ? ' pt-84' : ''}}" [ngClass]="{'d-flex': !ShowMobile}">
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-12 dp-container" *ngIf="loadDisabledDates">
+        <div class="heading">
+          <h2 class="mb-2 mt-3">select Date</h2>
+        </div>
+        <ngb-datepicker *ngIf="refreshCalendar" [displayMonths]="displayMonths" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers"
+          [outsideDays]="outsideDays" #d1 [(ngModel)]="model" #c1="ngModel" [minDate]="currectDays" 
+          [markDisabled]="isDisabled" (ngModelChange)="dateSelected($event)" (navigate)="navigateMonth(date = $event.next)">
+        </ngb-datepicker>
+      </div>
+      <div class="col-12 text-center mt-5 mb-5" *ngIf="slotLoader || !loadDisabledDates">
+        <img src="assets/loader/spinner.svg" alt="Loading data..." width="50px">
+      </div>
+      <div class="col-12 mt-3" *ngIf="!slotLoader && loadDisabledDates">
+        <div class="row">
+          <div class="col-12">
+            <div class="date-sl">
+              <h5>Select Time</h5>
+              <img class="cal-fg" src="assets/images/clock-000.svg">
+            </div>
+          </div>
+          <div class="col-12" *ngIf="timeData?.length == 0">
+            <div class="not-available">
+              <ng-container *ngIf="therapistName">
+                <p class="text-muted">{{therapistName}} is not available on this day <br>but you can book <span *ngIf="staff?.gender">{{denote()}}</span> on {{nextAvailableDate | date:'MMM d'}}</p>
+                <button class="btn bg-theme-green text-white" (click)="navigateDate(nextAvailableDate)">Go to {{nextAvailableDate | date:'MMM d'}}</button>
+              </ng-container>
+              <ng-container *ngIf="!therapistName">
+                <p class="text-muted">The shop is fully booked for this day. Please select another date.</p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-12" (click)="requestSlot()" *ngIf="timeData?.length == 0 && therapistId">
+            <div class="next-btn">
+              <a class="my-btn mb-3" style="background: #638FD4">
+                <span class="clk-txt"><img class="cal-fg me-2" src="/assets/images/clock.png">Apply For A Different Time</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row me-1 ms-1" *ngIf="timeData?.length != 0 && !slotLoader">
+              <div class="col-12 p-0" *ngIf="newTime?.length != 0">
+                <div class="time-management">
+                  <p>Please select these time to help business manage max booking</p>
+                  <div class="card-data">
+                    <div class="box-structure">
+                      <div *ngFor="let item of newTime" class="card-dynamic m-auto">
+                        <div class="mat-card-2 card-vertical pointer" [class.active] = "item?.slot === timeSlot" (click)="selectSpecificTime(item)" >
+                          <h5 class="card_data_size" >{{item?.slot | date : 'shortTime'}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 p-0">
+                <div class="card-data">
+                  <div class="box-structure">
+                    <div *ngFor="let item of timeData" class="card-dynamic pointer">
+                      <div class="mat-card card-vertical" [class.active] = "item?.slot === timeSlot" (click)="selectSpecificTime(item)" >
+                        <h5 class="card_data_size" >{{item?.slot | date : 'shortTime'}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 p-0" (click)="requestSlot()" *ngIf="!slotLoader && therapistId">
+                <div class="next-btn">
+                  <a class="my-btn mb-3" style="background: #638FD4">
+                    <span class="clk-txt"><img class="cal-fg me-2" src="/assets/images/clock.png">Apply For A Different Time</span>
+                  </a>
+                </div>
+              </div>
+              <div class="col-12 p-0" (click)="bookSlot()" *ngIf="!slotLoader">
+                <div class="next-btn">
+                  <a class="my-btn">
+                    <span class="clk-txt">Next</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div id="staff-{{slotStaffId}}"></div>
+</div>
+
+<div class="datepicker-desktop-view" *ngIf="!isMobile ">
+  <div class="container">
+    <div class="appointment-details-wrapper">
+      <div class="card shop">
+        <div class="card-body">
+          <img *ngIf="bookingData?.shop?.image.length >= 1" src="{{bookingData?.shop?.image[0]?.img}}" alt="" class="shop-img">
+          <img *ngIf="bookingData?.shop?.image.length <= 0" src="/assets/images/select-time/shop-img.jpg" alt="" class="shop-img">
+          <div class="shop-details">
+            <h3>{{bookingData.shop.name}}</h3>
+            <div class="star-rating">
+              <img *ngIf="rating(bookingData.shop.rating.star)>=1" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+              <img *ngIf="rating(bookingData.shop.rating.star)>=2" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+              <img *ngIf="rating(bookingData.shop.rating.star)>=3" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+              <img *ngIf="rating(bookingData.shop.rating.star)>=4" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+              <img *ngIf="rating(bookingData.shop.rating.star)>=5" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+              <img *ngIf="rating(bookingData.shop.rating.star)%1!=0" src="/assets/images/select-time/star-half.svg" alt="star-half">
+              <img *ngIf="rating(bookingData.shop.rating.star)==0" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+              <img *ngIf="rating(bookingData.shop.rating.star)<=1" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+              <img *ngIf="rating(bookingData.shop.rating.star)<=2" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+              <img *ngIf="rating(bookingData.shop.rating.star)<=3" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+              <img *ngIf="rating(bookingData.shop.rating.star)<=4" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+              <div class="count">{{rating(bookingData.shop.rating.star)}} ({{bookingData.shop.rating.star_count}} Ratings)</div>
+            </div>
+            <div class="location">
+              <img src="/assets/images/select-time//map-pin.svg" alt="map-pin">
+              <div class="address">{{bookingData.shop.address.bldg}} {{bookingData.shop.address.street}}, {{bookingData.shop.address.city}}, {{bookingData.shop.address.state}}, {{bookingData.shop.address.zip}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="stick"></div>
+        <div class="plain-w">
+          <div class="cover1"></div>
+        </div>
+        <div class="shark-teeth">
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+        </div>
+
+        <div class="shark-teeth-1">
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+        </div>
+        <div class="plain-z">
+          <div class="cover2"></div>
+          <div class="name-price">
+            <div class="name">{{bookingData.service.serviceName}} <br>{{bookingData.service.serviceTime}}</div>
+            <div class="price">{{currency}}{{bookingData.service.serviceSpecialPrice ? bookingData.service.serviceSpecialPrice : bookingData.service.servicePrice}}</div>
+          </div>
+          <div class="hr"></div>
+          <div class="total">
+            <p class="name">Total</p>
+            <p class="amount">{{currency}}{{bookingData.service.serviceSpecialPrice ? bookingData.service.serviceSpecialPrice : bookingData.service.servicePrice}}</p>
+          </div>
+          <div class="cover3"></div>
+        </div>
+        <div class="shark-teeth-2">
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+          <div class="tooth"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row therapist-section">
+      <div class="col-lg-5" *ngIf="bookingData?.actionType != 'selectDate' && selectStaff">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="header">Select Therapist</h4>
+            <div class="scroll-container">
+              <div class="therapist" *ngIf="therapists?.length >=2">
+                <div class="anonymous-user-img">
+                  <img alt="anonymous-user" src="assets/images/unselected-user.svg">
+                </div>
+                <div class="details">
+                  <!-- <h4 class="name">BOOK ANYONE</h4> -->
+                  <div class="quote">This will maximize the availability</div>
+                  <button class="btn-bookme w-100" [class.selected] = "bookAnyone === true" (click)="bookanyone()">Book Anyone</button>
+                </div>
+              </div>
+              <ng-container *ngFor="let therapist of therapists">
+                <div class="therapist" *ngIf="therapist.workschedule">
+                  <img [src]="therapist?.image" alt="therapist" class="therapist-img" (error)="defaultImg($event, therapist?.gender)">
+                  <div class="details">
+                    <h4 class="name">{{therapist?.firstName}}</h4>
+                    <div class="star-rating">
+                      <img *ngIf="rating(therapist?.rating.star)>=1" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+                      <img *ngIf="rating(therapist?.rating.star)>=2" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+                      <img *ngIf="rating(therapist?.rating.star)>=3" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+                      <img *ngIf="rating(therapist?.rating.star)>=4" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+                      <img *ngIf="rating(therapist?.rating.star)>=5" src="/assets/images/select-time/star-fill.svg" alt="star-fill">
+                      <img *ngIf="rating(therapist?.rating.star)%1!=0" src="/assets/images/select-time/star-half.svg" alt="star-half">
+                      <img *ngIf="rating(therapist?.rating.star)==0" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+                      <img *ngIf="rating(therapist?.rating.star)<=1" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+                      <img *ngIf="rating(therapist?.rating.star)<=2" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+                      <img *ngIf="rating(therapist?.rating.star)<=3" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+                      <img *ngIf="rating(therapist?.rating.star)<=4" src="/assets/images/select-time/star-empty.svg" alt="star-empty">
+                      <div class="count">{{rating(therapist?.rating.star)}} ({{therapist?.rating.star_count}})</div>
+                    </div>
+                    <div class="quote" *ngIf="therapist?.descriptions">{{therapist?.descriptions?.slice(0, 70) + '...'}}</div>
+                    <div class="quote" *ngIf="!therapist?.descriptions">...</div>
+                    <button class="btn-bookme w-100" [class.selected] = "therapist?._id === therapistId" (click)="selectTherapist(therapist)">Book Me</button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="select-dateTime" class="{{bookingData?.actionType === 'selectDate' || !selectStaff ? 'col-12' : 'col-lg-7'}}">
+        <div class="datepicker-section" *ngIf="reload">
+          <div class="container">
+            <div class="row">
+              <div class="{{bookingData?.actionType === 'selectDate' ? 'col-6' : 'col-12'}}" *ngIf="loadDisabledDates">
+                <div class="card">
+                  <div class="card-body">
+                  <h5 class="fw-medium mb-3 mt-2">Select Appointment day</h5>
+                    <ngb-datepicker *ngIf="refreshCalendar" [displayMonths]="displayMonths" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers"
+                      [outsideDays]="outsideDays" #d1 [(ngModel)]="model" #c1="ngModel" [minDate]="currectDays" 
+                      [markDisabled]="isDisabled" (ngModelChange)="dateSelected($event)" (navigate)="navigateMonth(date = $event.next)">
+                    </ngb-datepicker>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-5 mb-5 {{bookingData?.actionType === 'selectDate' ? 'col-6' : 'col-12'}}" *ngIf="slotLoader || !loadDisabledDates">
+                <img src="assets/loader/spinner.svg" alt="Loading data..." width="50px">
+              </div>
+              <div class="{{bookingData?.actionType === 'selectDate' ? 'col-6' : 'col-12 mt-5'}}" *ngIf="!slotLoader && loadDisabledDates">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="date-sl">
+                          <h5 class="m-0">Select Time</h5>
+                          <img class="cal-fg" src="assets/images/clock-000.svg">
+                        </div>
+                      </div>
+                      <div class="col-12 text-center" *ngIf="slotLoader">
+                        <img _ngcontent-pjb-c109="" src="/assets/images/spinn.gif">
+                      </div>
+                      <div class="col-12 not-available" *ngIf="timeData?.length == 0 !slotLoader">
+                        <ng-container *ngIf="therapistName">
+                          {{therapistName}} is not available on this day <br>
+                          <p class="text-muted mt-3">but you can book for {{nextAvailableDate | date:'MMM d'}}</p>
+                          <button class="btn bg-theme-green text-white" (click)="navigateDate(nextAvailableDate)">Go to {{nextAvailableDate | date:'MMM d'}}</button>
+                        </ng-container>
+                        <ng-container *ngIf="!therapistName">
+                          The shop is fully booked for this day. Please select another date.
+                        </ng-container>
+                      </div>
+                      <div class="row me-1 ms-1" *ngIf="timeData?.length != 0 && !slotLoader">
+                        <div class="col-12" *ngIf="newTime?.length != 0">
+                          <div class="time-management">
+                            <p class="mt-3">Please select these time to help business manage max booking</p>
+                            <div class="card-data">
+                              <div class="box-structure">
+                                <div *ngFor="let item of newTime" class="card-dynamic">
+                                  <div class="mat-card-2 card-vertical" [ngClass]="{'active': timeSlot === item?.slot}" (click)="selectSpecificTime(item)" >
+                                    <h5 class="card_data_size" >{{item?.slot | date : 'shortTime'}}</h5>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="card-data scroll-slot">
+                            <div class="box-structure">
+                              <div *ngFor="let item of timeData" class="card-dynamic">
+                                <div class="mat-card card-vertical" [ngClass]="{'active': timeSlot === item?.slot}" (click)="selectSpecificTime(item)" >
+                                  <h5 class="card_data_size" >{{item?.slot | date : 'shortTime'}}</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-5 mb-3">
+        <button *ngIf="timeSlot?.length > 1" class="btn-continue" (click)="bookSlot()">Continue <img src="/assets/images/select-time/arrow-right.svg" alt=""></button>
+      </div>
+    </div>
+  </div>
+</div>

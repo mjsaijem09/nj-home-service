@@ -1,0 +1,7 @@
+<nav class="shop-navbar">
+    <ul>
+        <li [class.active]="shopNav === 'shop'" (click)="navigate('shop')">Shop</li>
+        <li [class.active]="shopNav === 'products'" (click)="navigate('products')">Products</li>
+        <li [class.active]="shopNav === 'categories'" (click)="navigate('categories')">Categories</li>
+    </ul>
+</nav>

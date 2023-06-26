@@ -1,0 +1,58 @@
+<div class="section">
+  <div class="container">
+    <div class="card-theme-container text-center mb-5 mt-3">
+      <div class="{{ card.card.name }}">
+        <img
+          src="{{imgBaseUrl}}/uploads/{{ card.card.card }}"
+          alt="{{ card.card.name }}"
+          width="100%"
+        />
+        <div class="value-container">
+          <div class="value">{{ card.card.giftcard_value }}</div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="gc-letter"
+      style="background-image:url({{imgBaseUrl}}/uploads/{{card.card.letter_bg}});">
+      <div
+        class="card"
+        [ngStyle]="{'background-color': card.card.name == 'Default' ? '#EFF7E4' : ''}">
+        <div class="card-body">
+          <div class="to">To,</div>
+          <input
+            type="text"
+            class="no-border"
+            placeholder="Receiver Name"
+            [value]="receiver"
+          />
+          <textarea
+            name=""
+            class="form-control no-border mt-2 mb-2"
+            id=""
+            rows="5"
+            [(ngModel)]="message"
+            placeholder="Send your regards..."
+          >
+          </textarea>
+          <div class="from">From</div>
+          <input
+            type="text"
+            class="no-border"
+            placeholder="Your Name"
+            [value]="sender"
+          />
+        </div>
+      </div>
+    </div>
+    <button *ngIf="!isMobile" class="btn btn-light-green mt-5" (click)="next()">
+      NEXT
+    </button>
+  </div>
+  <button
+    *ngIf="isMobile"
+    class="btn btn-light-green btn-submit"
+    (click)="next()">
+    NEXT
+  </button>
+</div>

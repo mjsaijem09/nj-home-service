@@ -1,0 +1,20 @@
+i.bi {
+    font-size: 26px;
+    &.bi-search {
+        position: absolute;
+        font-size: 16px;
+        top: 32px;
+        left: 61px;
+    }
+}
+
+input.input-search {
+    width: 100%;
+    margin: 0px 10px;
+    background-color: #00000047;
+    border: unset;
+    outline: unset;
+    padding-left: 35px;
+    color: #ffffff;
+    font-weight: 100;
+}

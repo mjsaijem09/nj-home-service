@@ -1,0 +1,105 @@
+{
+  "family": "prod-thebookus-frontend-customerpwa",
+  "containerDefinitions": [
+      {
+          "name": "frontend-customerpwa",
+          "image": "%REPOSITORY_URI%:prod-1.0.%BUILD_NUMBER%",
+          "cpu": 0,
+          "links": [],
+          "portMappings": [],
+          "essential": true,
+          "entryPoint": [],
+          "command": [],
+          "environment": [],
+          "environmentFiles": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "linuxParameters": {
+              "devices": [],
+              "tmpfs": []
+          },
+          "secrets": [],
+          "dependsOn": [
+              {
+                  "containerName": "Frontendcustomerpwa_ResolvConf_InitContainer",
+                  "condition": "SUCCESS"
+              }
+          ],
+          "dnsServers": [],
+          "dnsSearchDomains": [],
+          "extraHosts": [],
+          "dockerSecurityOptions": [],
+          "dockerLabels": {},
+          "ulimits": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-group": "/docker-compose/prod-thebookus",
+                  "awslogs-region": "ap-southeast-2",
+                  "awslogs-stream-prefix": "prod-thebookus"
+              },
+              "secretOptions": []
+          },
+          "healthCheck": {
+              "command": [
+                  "CMD-SHELL",
+                  ". /tmp/healthcheck.sh"
+              ],
+              "interval": 20,
+              "timeout": 60,
+              "retries": 3,
+              "startPeriod": 5
+          },
+          "systemControls": []
+      },
+      {
+        "name": "Frontendcustomerpwa_ResolvConf_InitContainer",
+        "image": "docker/ecs-searchdomain-sidecar:1.0",
+        "cpu": 0,
+        "links": [],
+        "portMappings": [],
+        "essential": false,
+        "entryPoint": [],
+        "command": [
+            "ap-southeast-2.compute.internal",
+            "prod-thebookus.local"
+        ],
+        "environment": [],
+        "environmentFiles": [],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "secrets": [],
+        "dnsServers": [],
+        "dnsSearchDomains": [],
+        "extraHosts": [],
+        "dockerSecurityOptions": [],
+        "dockerLabels": {},
+        "ulimits": [],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/docker-compose/prod-thebookus",
+                "awslogs-region": "ap-southeast-2",
+                "awslogs-stream-prefix": "prod-thebookus"
+            },
+            "secretOptions": []
+        },
+        "systemControls": []
+    }
+  ],
+  "executionRoleArn": "arn:aws:iam::448447674442:role/prod-thebookus-FrontendcustomerpwaTaskExecutionRol-SNMQQXF9BQFL",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": [],
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "tags": [
+      {
+          "key": "com.docker.compose.project",
+          "value": "prod-thebookus"
+      }
+  ]
+}

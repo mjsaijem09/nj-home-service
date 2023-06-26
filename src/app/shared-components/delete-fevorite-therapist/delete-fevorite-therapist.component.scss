@@ -1,0 +1,22 @@
+::ng-deep .delete-therapist-modal {
+    .modal-content{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .btn-default {
+        border: 1px solid;
+    }
+    .btn-default:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    .custom-button {
+  color: #fff !important;
+  background: #91c73e;
+  /* elevation/100 */
+
+  box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06),
+    0px 0px 1px rgba(15, 34, 67, 0.08);
+  border-radius: 75px;
+}
+}

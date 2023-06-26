@@ -1,0 +1,96 @@
+<div [style.margin-top]="isMobile ? '0px' : '160px'">
+<div class="confirm-booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="service-wrapper">
+          <ul>
+            <li>
+              <img src="assets/images/shop.svg" alt="shop icon">
+              <p>{{ bookingData?.shop?.name }}</p>
+            </li>
+            <li>
+              <img src="assets/images/Deep-Tissue.svg" alt="tissue">
+              <p>{{ bookingData?.service?.serviceName }}</p>
+            </li>
+            <li>
+              <img src="assets/images/availability-clock.svg" alt="clock">
+              <p>{{ bookingData?.service?.serviceTime }}</p>
+            </li>
+            <li>
+              <img src="assets/images/money-bag.svg" alt="money">
+              <p>{{currency}}{{ bookingData?.service?.serviceSpecialPrice || bookingData?.service?.servicePrice || 0 }}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="service-wrapper">
+          <div class="service-hours">
+            <div>
+            <p class="heading">Date</p>
+            <!-- 25 Jul 2022 -->
+            <p  class="content">{{ bookingData?.startTime | date: 'd MMM y' }}</p>
+            </div>
+            <a class="edit-text" (click)="gotoDateTime()">Edit</a>
+          </div>
+        </div>
+        <div class="service-wrapper">
+          <div class="service-hours">
+            <div>
+              <p class="heading">Time</p>
+              <!-- 04:15 pm - 5:15 pm -->
+              <p  class="content">{{ bookingData?.startTime | date: 'h:mm a' }} - {{ bookingData?.endTime | date: 'h:mm a' }}</p>
+            </div>
+            <div class="edit-text" routerLink="/select-time" fragment="select-dateTime">Edit</div>
+          </div>
+        </div>
+        <div class="service-wrapper">
+          <div class="service-hours">
+            <div>
+            <p class="heading">Book for</p>
+            <p  class="content">{{ bookingData?.bookFor?.firstName }} {{ bookingData?.bookFor?.lastName }}</p>
+            </div>
+            <div class="edit-text" (click)="gotoBookFor()">Edit</div>
+          </div>
+        </div>
+        <div class="service-wrapper">
+          <div class="service-hours">
+            <div>
+            <p class="heading">Therapist</p>
+            <p  class="content">{{ bookingData?.therapist?.firstName }} {{ bookingData?.therapist?.lastName }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-wrapper">
+          <div class="notes">
+            <p class="heading">Booking Rules</p>
+            <p  class="content">You can edit your booking for free {{freeTime()}} hours prior to your booking, if you are going to cancel or edit</p>
+          </div>
+        </div>
+        <div class="service-wrapper">
+          <div class="notes">
+            <p class="heading">Add booking notes</p>
+            <p class="content">Include comments or requests about your booking</p>
+            <textarea rows="4" [(ngModel)]="notes" class="text-content"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" *ngIf="isMobile">
+    <div class="row">
+      <div class="col-12 px-0">
+        <div class="book-us">
+          <a (click)="goToConfirm()">Confirm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="confirm" *ngIf="!isMobile">
+    <div class="container">
+      <div class="infoMessage">
+        <div>Double check with all the information before click the confirm button.</div>
+      </div>
+      <button class="btn-confirm" (click)="goToConfirm()">Confirm</button>
+    </div>
+  </div>
+</div>

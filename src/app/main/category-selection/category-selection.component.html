@@ -1,0 +1,62 @@
+<div class="categorySection">
+    <div class="container">
+        <div class="search-field mb-3">
+            <form>
+                <div class="input-group">
+                    <input type="search" name="search-d" class="form-control rounded" placeholder="Search the business name"
+                        aria-label="Search" aria-describedby="search-addon" [(ngModel)]="searchText" (input)="search()"
+                        autocomplete="off" />
+                    <div class="searchIcon">
+                        <img src="assets/images/icon-search.svg" />
+                    </div>
+                    <div class="closeIcon">
+                        <img src="assets/images/icon-close.svg" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="location-filters">
+                    <div class="search-location">
+                        <div class="form-group">
+                            <input type="text" class="form-control pointer" [(ngModel)]="searchLocation" placeholder="Search Location" (click)="navigateToSearchCity()" />
+                        </div>
+                        <div class="map-pin">
+                            <img src="assets/images/map-pin-black.svg" alt="location-pin">
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{shopType === 'mostBooked' ? 'Most Booked' : shopType === 'mostLiked' ? 'Most Liked' : shopType === 'nearest' ? 'Nearest' : shopType === 'prriceSortAsc' ? 'Price - Low to High' : shopType === 'priceSortDesc' ? 'Price - High to Low' : ''}}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" (click)="getShopList('mostBooked')">Most Booked</a>
+                                    <a class="dropdown-item" (click)="getShopList('mostLiked')">Most Liked</a>
+                                    <a class="dropdown-item" (click)="getShopList('nearest')">Nearest</a>
+                                    <a class="dropdown-item" (click)="getShopList('prriceSortAsc')">Price - Low to High</a>
+                                    <a class="dropdown-item" (click)="getShopList('priceSortDesc')">Price - High to Low</a>
+                                </div>
+                            </li>
+                        </nav>
+                        <!-- <div class="down-icon">
+                            <img src="assets/images/chevron-down.svg" alt="chevron">
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parentLoader" *ngIf="isLoading; else shopListing;">
+          <app-custom-spinner></app-custom-spinner>
+        </div>
+        <ng-template #shopListing>
+            <app-shop [shop]="shop" *ngFor="let shop of shops"></app-shop>
+            <div class="emptyArray" *ngIf="shops.length === 0">
+                Sorry, we couldn’t find any match.
+                <!-- <button class="btn-green w-100">Let’s Go</button> -->
+            </div>
+        </ng-template>
+    </div>
+</div>

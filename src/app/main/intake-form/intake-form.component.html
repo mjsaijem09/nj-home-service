@@ -1,0 +1,460 @@
+<div class="margin-top"></div>
+<div class="loader text-center" *ngIf="isLoading">
+  <span class="text-theme-green fw-medium me-2">Loading data</span>
+  <img src="/assets/images/loader/circle-small-green.svg" alt="">
+</div>
+<div class="container mt-4">
+   <div id="stepper1" class="bs-stepper">
+     <div class="bs-stepper-header d-flex">
+       <div class="step" data-target="#test-l-1">
+         <button class="step-trigger d-block">
+           <span class="bs-stepper-circle">1</span>
+           <span class="bs-stepper-label">Personal Infromation</span>
+         </button>
+       </div>
+       <div class="arrow"></div>
+       <div class="step" data-target="#test-l-2">
+         <button class="step-trigger d-block">
+           <span class="bs-stepper-circle">2</span>
+           <span class="bs-stepper-label">Medical Information</span>
+         </button>
+       </div>
+       <div class="arrow"></div>
+       <div class="step" data-target="#test-l-3">
+         <button class="step-trigger d-block">
+           <span class="bs-stepper-circle">3</span>
+           <span class="bs-stepper-label">Massage Information</span>
+         </button>
+       </div>
+       <div class="arrow"></div>
+       <div class="step" data-target="#test-l-4">
+        <button class="step-trigger d-block">
+          <span class="bs-stepper-circle">4</span>
+          <span class="bs-stepper-label">Authentic Information</span>
+        </button>
+      </div>
+     </div>
+     <br>
+     <div class="bs-stepper-content">
+       <form (ngSubmit)="onSubmit()" [formGroup]="intakeForm">
+         <div id="test-l-1" class="content">
+           <fieldset formGroupName="client_info">
+            <div class="row">
+              <div class="form-group col-6">
+                <input type="text" class="form-control" id="firstName" aria-describedby="frist-name"
+                  placeholder="First Name" (blur)="logValidationErrors()"formControlName="firstName">
+                  <span class="text-danger" *ngIf="formErrors.firstName">
+                    {{formErrors.firstName}}
+                  </span>
+              </div>
+              <div class="form-group col-6">
+                <input type="text" class="form-control" id="lastName" aria-describedby="last-name"
+                  placeholder="Last Name" (blur)="logValidationErrors()"formControlName="lastName">
+                  <span class="text-danger" *ngIf="formErrors.lastName">
+                    {{formErrors.lastName}}
+                  </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                placeholder="Enter email" (blur)="logValidationErrors()"formControlName="email">
+                <span class="text-danger" *ngIf="formErrors.email">
+                {{formErrors.email}}
+              </span>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" id="number" aria-describedby="number"
+                placeholder="Enter your contact number" (blur)="logValidationErrors()"formControlName="phone1">
+                <span class="text-danger" *ngIf="formErrors.phone1">
+                {{formErrors.phone1}}
+              </span>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd(date of birth)" name="dob" ngbDatepicker [minDate]="{year: 1930, month: 1, day: 1}"
+                  #d="ngbDatepicker" (click)="d.toggle()" (blur)="logValidationErrors()" formControlName="dob">
+                <!-- <span class="text-danger" *ngIf="formErrors.dob">
+                  {{formErrors.dob}}
+                </span> -->
+              </div>
+            </div>
+            <div class="form-group">
+              <h6>Gender</h6>
+              <div class="w-100 d-inline-flex">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="genderMale" value="Male"
+                    (blur)="logValidationErrors()"formControlName="gender">
+                  <label class="form-check-label" for="genderMale">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="genderFemale" value="Female"
+                    (blur)="logValidationErrors()"formControlName="gender">
+                  <label class="form-check-label" for="genderFemale">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="genderUnknown" value="Unknown"
+                    (blur)="logValidationErrors()"formControlName="gender">
+                  <label class="form-check-label" for="genderUnknown">Unknown</label>
+                </div>
+              </div>
+            </div>
+           </fieldset>
+           <div class="button-wrapper">
+            <!-- <button (click)="skipIntakeForm()" class="btn btn-outline me-2">Skip</button> -->
+            <button (click)="next()" class="btn btn-green">Next</button>
+           </div>
+         </div>
+         <div id="test-l-2" class="content">
+           <fieldset formGroupName="medical_info">
+                   <label for="" class="question">Are you taking any medication?</label>
+                   <div class="form-group w-100 d-inline-flex ">
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="medicationStatusYes" value="True"
+                         (blur)="logValidationErrors()"formControlName="medicationStatus">
+                       <label class="form-check-label" for="medicationStatusYes">Yes</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="medicationStatusNo" value="False"
+                         (blur)="logValidationErrors()"formControlName="medicationStatus">
+                       <label class="form-check-label" for="medicationStatusNo">No</label>
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="If yes, please list" (blur)="logValidationErrors()"formControlName="medicationDetails">
+                       <span class="text-danger" *ngIf="formErrors.medicationDetails">
+                        {{formErrors.medicationDetails}}
+                      </span>
+                   </div>
+                  <div class="form-group">
+                    <label for="" class="question">Are you currently pregnant?</label>
+                    <div class="w-100 d-inline-flex">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="pregnancyStatusYes" value="True"
+                          (blur)="logValidationErrors()"formControlName="pregnancyStatus">
+                        <label class="form-check-label" for="pregnancyStatusYes">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="pregnancyStatusNo" value="False"
+                          (blur)="logValidationErrors()"formControlName="pregnancyStatus">
+                        <label class="form-check-label" for="pregnancyStatusNo">No</label>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="If yes, how far long?" (blur)="logValidationErrors()"formControlName="pregnancyDuration">
+                       <span class="text-danger" *ngIf="formErrors.pregnancyDuration">
+                        {{formErrors.pregnancyDuration}}
+                      </span>
+                   </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="Any high risk factor?" (blur)="logValidationErrors()"formControlName="pregnancyRiskFactor">
+                       <span class="text-danger" *ngIf="formErrors.pregnancyRiskFactor">
+                        {{formErrors.pregnancyRiskFactor}}
+                      </span>
+                   </div >
+                 <div class="form-group">
+                   <label for="" class="question">Do you suffer from chronic pain?</label>
+                   <div class="w-100 d-inline-flex ">
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="inlineCheckbox1" value="True"
+                         (blur)="logValidationErrors()"formControlName="chronicPainStatus">
+                       <label class="form-check-label" for="inlineCheckbox1">Yes</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="inlineCheckbox2" value="False"
+                         (blur)="logValidationErrors()"formControlName="chronicPainStatus">
+                       <label class="form-check-label" for="inlineCheckbox2">No</label>
+                     </div>
+                   </div>
+                 </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="If yes, Please explain" (blur)="logValidationErrors()"formControlName="chronicPainDetails">
+                       <span class="text-danger" *ngIf="formErrors.chronicPainDetails">
+                        {{formErrors.chronicPainDetails}}
+                      </span>
+                   </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="What makes it better?" (blur)="logValidationErrors()"formControlName="chronicPainMakesBetter">
+                       <span class="text-danger" *ngIf="formErrors.chronicPainMakesBetter">
+                        {{formErrors.chronicPainMakesBetter}}
+                      </span>
+                   </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="What makes it worst?" (blur)="logValidationErrors()"formControlName="chronicPainMakesWorse">
+                       <span class="text-danger" *ngIf="formErrors.chronicPainMakesWorse">
+                        {{formErrors.chronicPainMakesWorse}}
+                      </span>
+                   </div>
+                 <div class="form-group">
+                   <label for="" class="question">Have you had any orthopadic injuries?</label>
+                   <div class="w-100 d-inline-flex ">
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="orthoInjuriesStatusYes" value="True"
+                         (blur)="logValidationErrors()"formControlName="orthoInjuriesStatus">
+                       <label class="form-check-label" for="orthoInjuriesStatusYes">Yes</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="orthoInjuriesStatusNo" value="False"
+                         (blur)="logValidationErrors()"formControlName="orthoInjuriesStatus">
+                       <label class="form-check-label" for="orthoInjuriesStatusNo">No</label>
+                     </div>
+                   </div>
+                 </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                      placeholder="If yes, Please list" (blur)="logValidationErrors()"formControlName="orthoInjuriesDetails">
+                      <span class="text-danger" *ngIf="formErrors.orthoInjuriesDetails">
+                      {{formErrors.orthoInjuriesDetails}}
+                    </span>
+                  </div>
+                  <div class="form-group">
+                   <label for="" class="question">Please indicate any of the following that apply to you.</label>
+                   <div class="row">
+                    <div class="col-md-6" *ngFor="let choice of Desisese; let i=index">
+                      <div class="form-check" >
+                        <input class="form-check-input" type="checkbox" [id]="choice.name" (change)="setDiseases(choice.name, $any($event.target).checked)">
+                        <label class="form-check-label" [for]="choice.name">{{choice.name}}</label>
+                      </div>
+                    </div>
+                   </div>
+                  </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="diseases" aria-describedby="relation"
+                        placeholder="Explain any conditions you have marked above" (blur)="logValidationErrors()"formControlName="diseasesDescription">
+                        <span class="text-danger" *ngIf="formErrors.diseasesDescription">
+                        {{formErrors.diseasesDescription}}
+                      </span>
+                    </div>
+                   <br>
+                   <br>
+                   <br>
+           </fieldset>
+           <div class="button-wrapper">
+              <button (click)="previous(1)" class="btn btn-outline">Previous</button>
+              <!-- <button (click)="skipIntakeForm()" class="btn btn-outline me-2">Skip</button> -->
+              <button (click)="next()" class="btn btn-green">Next</button>
+           </div>
+         </div>
+         <div id="test-l-3" class="content">
+           <fieldset formGroupName="massage_info">
+             <div class="form-group">
+               <!-- content here -->
+               <div class="massage-info-wrapper">
+                 <div class="male-massage-wrapper">
+                   <label for="" class="question">Would you mind MALE therapist to give you massage?</label>
+                   <div class="form-check">
+                     <input class="form-check-input" type="radio" name="therapistGender" id="inlineRadio1"
+                       value="I am fine with MALE therapist" (blur)="logValidationErrors()"formControlName="therapistGender">
+                     <label class="form-check-label" for="inlineRadio1">I am fine with MALE therapist</label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="radio" name="therapistGender" id="inlineRadio2"
+                       value="I cannot accept MALE therapist" (blur)="logValidationErrors()"formControlName="therapistGender">
+                     <label class="form-check-label" for="inlineRadio2">I cannot accept MALE therapist</label>
+                   </div>
+                 </div>
+                 <div class="professional-massage-wrapper">
+                   <label for="" class="question">Have you ever had a professional massage?</label>
+                   <div class="w-100 d-inline-flex ">
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="priorMassageYes" value="True"
+                         (blur)="logValidationErrors()"formControlName="priorMassage">
+                       <label class="form-check-label" for="priorMassageYes">Yes</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="priorMassageNo" value="False"
+                         (blur)="logValidationErrors()"formControlName="priorMassage">
+                       <label class="form-check-label" for="priorMassageNo">No</label>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="what-pressure-wrapper">
+                   <label for="" class="question">What pressure you prefer?</label>
+                   <div class="form-check">
+                     <input class="form-check-input" type="radio" name="pressure" id="inlineRadio1" value="soft"
+                       (blur)="logValidationErrors()"formControlName="pressure">
+                     <label class="form-check-label" for="inlineRadio1">Soft</label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="radio" name="pressure" id="pressureMed" value="mediume"
+                       (blur)="logValidationErrors()"formControlName="pressure">
+                     <label class="form-check-label" for="pressureMed">Mediume</label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="radio" name="pressure" id="pressureHard" value="hard"
+                       (blur)="logValidationErrors()"formControlName="pressure">
+                     <label class="form-check-label" for="pressureHard">Hard</label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="radio" name="pressure" id="pressureXterm" value="extremely"
+                       (blur)="logValidationErrors()"formControlName="pressure">
+                     <label class="form-check-label" for="pressureXterm">Extremely hard</label>
+                   </div>
+                 </div>
+                 <div class="allergies-wrapper">
+                   <label for="" class="question">Do you have any allergies or senstivities? <br>(essential oils)</label>
+                   <div class="w-100 d-inline-flex ">
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="allergiesStatusYes" value="True"
+                         (blur)="logValidationErrors()"formControlName="allergiesStatus">
+                       <label class="form-check-label" for="allergiesStatusYes">Yes</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="allergiesStatusNo" value="False"
+                         (blur)="logValidationErrors()"formControlName="allergiesStatus">
+                       <label class="form-check-label" for="allergiesStatusNo">No</label>
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="If yes, please explain" (blur)="logValidationErrors()"formControlName="allergiesDetails">
+                       <span class="text-danger" *ngIf="formErrors.allergiesDetails">
+                        {{formErrors.allergiesDetails}}
+                      </span>
+                   </div>
+                 </div>
+                 <div class="do-not-want-massaged-wrapper">
+                   <label for="" class="question">Are there any areas you do not want massaged?</label>
+                   <div class="w-100 d-inline-flex ">
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="avoidingAreasStatusYes" value="True"
+                         (blur)="logValidationErrors()"formControlName="avoidingAreasStatus">
+                       <label class="form-check-label" for="avoidingAreasStatusYes">Yes</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="avoidingAreasStatusNo" value="False"
+                         (blur)="logValidationErrors()"formControlName="avoidingAreasStatus">
+                       <label class="form-check-label" for="avoidingAreasStatusNo">No</label>
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" id="relation" aria-describedby="list-reason"
+                       placeholder="If yes, please explain?" (blur)="logValidationErrors()"formControlName="avoidingAreasDetails">
+                       <span class="text-danger" *ngIf="formErrors.avoidingAreasDetails">
+                        {{formErrors.avoidingAreasDetails}}
+                      </span>
+                   </div>
+                 </div>
+                 <div class="form-group">
+                  <label for="" class="question">Is there any areas you do not want massaged? please tick the area below</label>
+                  <div class="row">
+                   <div class="col-md-6" *ngFor="let choice of massageArea; let i=index">
+                     <div class="form-check" >
+                       <input class="form-check-input" type="checkbox" [id]="choice.name" (change)="setDiscomfortArea(choice.name, $any($event.target).checked)">
+                       <label class="form-check-label" [for]="choice.name">{{choice.name}}</label>
+                     </div>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="quite-talk-wrapper">
+                   <label for="" class="question">Do you want your therapist to be quite or talkative?</label>
+                   <div class="w-100 d-inline-flex ">
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="therapistTalk" value="Talk"
+                         (blur)="logValidationErrors()"formControlName="therapist">
+                       <label class="form-check-label" for="therapistTalk">Talk</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="therapistQuite" value="Quite"
+                         (blur)="logValidationErrors()"formControlName="therapist">
+                       <label class="form-check-label" for="therapistQuite">Quite</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="radio" id="therapistDntMind" value="I don't mind"
+                         (blur)="logValidationErrors()"formControlName="therapist">
+                       <label class="form-check-label" for="therapistDntMind">I don't mind</label>
+                     </div>
+                   </div>
+                 </div>
+                 <br><br><br>
+               </div>
+             </div>
+           </fieldset>
+           <div class="button-wrapper">
+              <button (click)="previous(2)" class="btn btn-outline">Previous</button>
+              <button (click)="next()" class="btn btn-green">Next</button>
+           </div>
+         </div>
+         <div id="test-l-4" class="content consent-section">
+           <p>By Signing below, you agree to the following:</p>
+           <p>1. I have completed this form to the best of my ability and knowledge and agree to inform
+            my therapist if any of the above information changes at any time that there shall be no liability
+            on the therapist s part should I forget to do so.</p>
+            <p>2. I understand that a massage therapist does not diagnose disease, illness and prescribe any
+              treatment and drugs nor do they provide spinal manipulation.</p>
+            <p>3. I agree to inform the therapist of any experience of pain during the session. if I become uncomfortable
+              for any reason that I may ask the therapist to end the massage session, and they will end the session.</p>
+            <p>4. I freely give my permission to be massaged.I understand this does not deter me
+              from seeking medical treatment for medical conditions</p>
+            <p>5. I understand that draping will be used at all times and no inappropriate comments or conduct
+              will be tolerated. Any indication of such behavior will automatically end the session.</p>
+            <br>
+            <br>
+            <br>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="signature-section">
+                    <div class="label">Client signature: &nbsp;</div>
+                    <div class="signature-area" (click)="openVerticallyCentered(content)">
+                      <span *ngIf="!signature">Click here to add e-signature</span>
+                      <img *ngIf="signature" [src]="signature" alt="Signaturex">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="signature-section">
+                    <div class="label">Date: &nbsp;</div>
+                    <div class="signature-area" style="color: #000;">{{currentDate | date:'d/M/y'}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+          <div class="button-wrapper">
+            <button (click)="previous(3)" class="btn btn-outline">Previous</button>
+            <!-- <button (click)="skipIntakeForm()" class="btn btn-outline me-2">Skip</button> -->
+            <button (click)="submitForm()" class="btn btn-green">Next</button>
+         </div>
+         </div>
+       </form>
+     </div>
+   </div>
+ </div>
+ <!-- Modal -->
+ <ng-template #content let-modal>
+   <div class="modal-header">
+     <h6>Complete By Signing Below </h6>
+     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+     </button>
+   </div>
+   <div class="modal-body">
+     <div class="success-wrapper">
+       <div class="signature-info mb-4">
+         <p>There completed this form to the best of my ability and knowledge and agree to inform my therapist if any of
+           the above information changes at any time that there shall be no liability on the therapist's part should I
+           forget to do so. </p>
+       </div>
+       <signature-pad #signatureCanvas [options]="signaturePadOptions" (onBeginEvent)="drawStart()" id="signatureCanvas"
+         (onEndEvent)="drawComplete($event)"></signature-pad>
+     </div>
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-green" (click)="modal.close('Save click')">Save</button>
+     <button type="button" class="btn btn-outline" (click)="drawClear()">Clear</button>
+   </div>
+ </ng-template>

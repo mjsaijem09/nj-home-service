@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="21px" viewBox="0 0 23 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>bronze_badge</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bronze_badge" fill-rule="nonzero">
+            <polygon id="Path_867" fill="#E23B4E" points="17.149 10.442 5.686 10.442 0 16.101 4.772 16.101 4.772 20.829 11.417 14.139 18.062 20.829 18.062 16.101 22.834 16.101"></polygon>
+            <polygon id="Path_868" fill="#E63950" points="18.062 16.101 22.834 16.101 17.148 10.442 11.417 10.442 11.417 14.142 18.062 20.832"></polygon>
+            <circle id="Ellipse_35" fill="#C05805" cx="11.375" cy="7" r="7"></circle>
+            <circle id="Ellipse_36" fill="#F28936" cx="11.375" cy="7" r="5"></circle>
+        </g>
+    </g>
+</svg>

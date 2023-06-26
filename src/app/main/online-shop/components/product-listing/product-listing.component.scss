@@ -1,0 +1,43 @@
+.product-sort-nav {
+    background-color: #ffffff;
+    ul {
+        display: flex;
+        list-style: none;
+        margin: unset;
+        padding: 15px 0px;
+        li {
+            width: 100%;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            color: #777777;
+            font-size: 14px;
+            &.active {
+                color: red;
+            }
+            &:before {
+                content: '|';
+                position: absolute;
+                left: 0;
+                font-size: 12px;
+                top: 3px;
+                opacity: 0.6;
+            }
+            &:first-child {
+                &:before {
+                    content: '';
+                }
+            }
+        }
+    }
+}
+
+.product-list {
+    // padding: 0px 3px;
+    .row {
+        margin: 0px;
+        .item {
+            padding: 3px;
+        }
+    }
+}

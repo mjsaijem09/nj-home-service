@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Spirax&display=swap');
+
+.section {
+    padding: 80px 0;
+}
+
+.container {
+    position: relative;
+}
+
+.card-theme-container {
+    margin: 0 auto;
+    .value-container {
+        position: absolute;
+        right: 3px;
+        z-index: 12;
+        width: 20%;
+        height: 35%;
+        bottom: 4px;
+    }
+    .Default {
+        position: relative;
+            .value {
+                font-family: "Spirax", sans-serif;
+                color: #90C63E;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+        }
+        
+    .Valentine {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #FD375F;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    .Birthday {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #3B276D;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    .Halloween {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #180015;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    .Christmas {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #006087;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    .Dad.Day {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #12659B;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    .Mom.Day {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #856BFF;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    .New.Year {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #187F35;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    .Anniv {
+        position: relative;
+        .value {
+            font-family: 'Spirax', sans-serif;
+            color: #FE3690;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    
+    
+}
+.gc-style h3 {
+    font-family: 'Spirax', sans-serif;
+    color: #fff;
+}
+.card.gc-style {
+    height: 180px;
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    margin: auto;
+    width: 330px;
+}
+.gc-letter {
+    margin: -15px;
+    padding: 15px;
+}
+.gc-letter .card {
+    background-color: #ffffff9c;
+    border: none;
+}
+.no-border {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.btn-light-green {
+    background-color: #90C63E;
+    color: #fff!important;
+    width: 100%;
+    border-radius: 0;
+    padding: 15px 0;
+}
+
+.btn.btn-submit {
+    position: fixed;
+    bottom: 0;
+}
+@media only screen and (max-width: 3200px){
+    .card-theme-container {
+        width: 360px;
+    }
+    
+}
+@media only screen and (max-width: 600px) {
+    .card.gc-style {
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 425px) {
+    .card-theme-container {
+        width: 100%!important;
+    }
+}

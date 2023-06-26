@@ -1,0 +1,79 @@
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-top: 65px;
+  }
+  .card-slot{
+    margin-top: 71px;
+  }
+  .shield{
+    // width: 38%;
+    width: 100%;
+    height: auto;
+    // margin-top: 70px;
+    
+  }
+  .imageIcon{
+    position: relative;
+  }
+  .centered{
+    position: absolute;
+    left: 36px;
+    font-size: 22px;
+    transform: translate(-50%, -50%);
+    top: 25px;
+  }
+  .myScore{
+    // margin-top: 50px;
+    margin-bottom: 19px;
+  }
+  .scoreBlock{
+    padding-left: 3%;
+  }
+  .border_type {
+    border-bottom : 1px solid rgba(0,0,0,.1) !important;
+    
+  
+  }
+  
+  .line-text {
+    display: flex;
+    align-items: center;
+}
+  div.scoreDetaiil{
+    white-space: nowrap; 
+    width: 82%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+   
+  }
+.score
+{
+    position: absolute;
+    left: 88%;
+}
+.date{
+    font-size: 14px;
+    font-family: serif;
+    margin-top: 15px;
+  }
+
+  .scoreList{
+    height: 70px;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.3s;
+    margin-bottom: 20px;
+  }
+
+  .current-score{
+    color: green;
+  }
+
+  
+
+  
+

@@ -1,0 +1,342 @@
+<div class="top-spacing">
+  <div class="container">
+    <div class="customer-level-badge-wrapper">
+        <div class="customer-level-wrapper">
+            <p>Customer Level System</p>
+        </div>
+        <div class="progress-1">
+            <div class="barOverflow">
+                <div class="bar"></div>
+            </div>
+            
+        </div>
+        <div class="frame-meter-level-wrapper">
+            <div class="frame-meter-wrapper">
+                <!-- <img src="../../../../assets/images/frame.png" alt=""> -->
+               
+            
+            <div class="badge-type-level">
+                <div class="badge-wrapper">
+                    <img class="badge-size" src="../../../../assets/images/bronze-badge.png" alt="">
+                    <p class="badge-type">are you in {{loginData?.level?.color || 'bronze'}}</p>
+                    <p class="level">Level {{loginData?.level?.label || 1}}</p>
+                </div>
+
+                <div class="level-score-wrapper">
+                    <div class="lavel1">
+                        <p class="level-1">Level 1</p>
+                    </div>
+                    <div class="level5">
+                        <p class="level-5">Level 5</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+           
+        </div>
+
+        <div class="badge-type-customer">
+            <div class="row ms-1 me-1">
+                <div class="col-2 type-1">
+                    <img class="badge-1" src="../../../../assets/images/bronze-badge.png" alt="">
+                    <p class="type-text">Bronze</p>
+                </div>
+                <div class="col-2 type-1 me-1">
+                    <img class="badge-1" src="../../../../assets/images/silver-badge.png" alt="">
+                    <p class="type-text">Silver</p>
+
+                </div>
+                <div class="col-2 type-1 me-1">
+                    <img class="badge-1 me-1" src="../../../../assets/images/gold-badge.svg" alt="">
+                    <p class="type-text">Gold</p>
+
+                </div>
+                <div class="col-2 type-1 me-1">
+                    <img class="badge-1" src="../../../../assets/images/platinum-badge.svg" alt="">
+                    <p class="type-text">Platinum</p>
+
+                </div>
+                <div class="col-2 type-1 me-1">
+                    <img class="badge-1" src="../../../../assets/images/diamond-badge.svg" alt="">
+                    <p class="type-text">Diamond</p>
+
+                </div>
+                
+            </div>
+        </div>
+       
+    </div>
+    <div class="understand-rate-wrapper">
+        <div class="understand-wrapper">
+            <p>How to gain pts?</p>
+        </div>
+        <div class="description1-wrapper">
+            <P>
+                You will gain 0.1 point for every dollar spent via bookus platform online payments include buying giftcard, book
+                services and give tips via platform. Payment made in shop will not gain any pts
+            </P>
+        </div>
+    </div>
+   
+    <div class="badge-block">
+        <div class="text-center mb-3">
+            <img src="../../../../assets/images/bronze-badge.png" />
+            <span class="badge-title">Bronze</span>
+        </div>
+        <div>
+            <div class="row text-center p-3 ">
+                <div class="col-6 badge-lable bb">Level</div>
+                <div class="col-6 badge-lable bb">points</div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6"><div class="bonze1">1</div><img src="../../../../assets/images/bonze/1.png" /></div>
+                <div class="col-6"><div class="coin-block"><img src="../../../../assets/images/coin-icon.svg"/> 100</div></div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6"><div class="bonze1">2</div><img src="../../../../assets/images/bonze/1.png" /></div>
+                <div class="col-6"><div class="coin-block"><img src="../../../../assets/images/coin-icon.svg"/> 200</div></div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock1">
+                <div class="col-6"><div class="bonze1">3</div><img src="../../../../assets/images/bonze/1.png" /></div>
+                <div class="col-6"><div class="coin-block"><img src="../../../../assets/images/coin-icon.svg"/> 300</div></div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock1">
+                <div class="col-6"><div class="bonze1">4</div><img src="../../../../assets/images/bonze/1.png" /></div>
+                <div class="col-6"><div class="coin-block"><img src="../../../../assets/images/coin-icon.svg"/> 400</div></div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock1">
+                <div class="col-6"><div class="bonze1">5</div><img src="../../../../assets/images/bonze/1.png" /></div>
+                <div class="col-6"><div class="coin-block"><img src="../../../../assets/images/coin-icon.svg"/> 500</div></div>
+            </div>
+            <div class="showmore">
+                <div class="lable" (click)="displayblock1 = !displayblock1">{{!displayblock1 ? 'Show more' : 'Show less'}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="badge-block">
+        <div class="text-center mb-3">
+            <img src="../../../../assets/images/silver-badge.png" />
+            <span class="badge-title2">Silver</span>
+        </div>
+        <div>
+            <div class="row text-center p-3 ">
+                <div class="col-6 badge-lable bb">Level</div>
+                <div class="col-6 badge-lable bb">points</div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze2">1</div><img src="../../../../assets/images/bonze/2.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 100</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze2">2</div><img src="../../../../assets/images/bonze/2.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 200</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock2">
+                <div class="col-6">
+                    <div class="bonze2">3</div><img src="../../../../assets/images/bonze/2.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 300</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock2">
+                <div class="col-6">
+                    <div class="bonze2">4</div><img src="../../../../assets/images/bonze/2.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 400</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock2">
+                <div class="col-6">
+                    <div class="bonze2">5</div><img src="../../../../assets/images/bonze/2.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 500</div>
+                </div>
+            </div>
+            <div class="showmore">
+                <div class="lable" (click)="displayblock2 = !displayblock2">{{!displayblock2 ? 'Show more' : 'Show less'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="badge-block">
+        <div class="text-center mb-3">
+            <img src="../../../../assets/images/gold-badge.svg" />
+            <span class="badge-title3">Gold</span>
+        </div>
+        <div>
+            <div class="row text-center p-3 ">
+                <div class="col-6 badge-lable bb">Level</div>
+                <div class="col-6 badge-lable bb">points</div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze3">1</div><img src="../../../../assets/images/bonze/3.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 100</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze3">2</div><img src="../../../../assets/images/bonze/3.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 200</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock3">
+                <div class="col-6">
+                    <div class="bonze3">3</div><img src="../../../../assets/images/bonze/3.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 300</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock3">
+                <div class="col-6">
+                    <div class="bonze3">4</div><img src="../../../../assets/images/bonze/3.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 400</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock3">
+                <div class="col-6">
+                    <div class="bonze3">5</div><img src="../../../../assets/images/bonze/3.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 500</div>
+                </div>
+            </div>
+            <div class="showmore">
+                <div class="lable" (click)="displayblock3 = !displayblock3">{{!displayblock3 ? 'Show more' : 'Show less'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="badge-block">
+        <div class="text-center mb-3">
+            <img src="../../../../assets/images/platinum-badge.png" />
+            <span class="badge-title4">Platinum</span>
+        </div>
+        <div>
+            <div class="row text-center p-3 ">
+                <div class="col-6 badge-lable bb">Level</div>
+                <div class="col-6 badge-lable bb">points</div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze4">1</div><img src="../../../../assets/images/bonze/4.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 100</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze4">2</div><img src="../../../../assets/images/bonze/4.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 200</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock4">
+                <div class="col-6">
+                    <div class="bonze4">3</div><img src="../../../../assets/images/bonze/4.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 300</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock4">
+                <div class="col-6">
+                    <div class="bonze4">4</div><img src="../../../../assets/images/bonze/4.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 400</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock4">
+                <div class="col-6">
+                    <div class="bonze4">5</div><img src="../../../../assets/images/bonze/4.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 500</div>
+                </div>
+            </div>
+            <div class="showmore">
+                <div class="lable" (click)="displayblock4 = !displayblock4">{{!displayblock4 ? 'Show more' : 'Show less'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="badge-block">
+        <div class="text-center mb-3">
+            <img src="../../../../assets/images/diamond-badge.png" />
+            <span class="badge-title5">Diamond</span>
+        </div>
+        <div>
+            <div class="row text-center p-3 ">
+                <div class="col-6 badge-lable bb">Level</div>
+                <div class="col-6 badge-lable bb">points</div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze5">1</div><img src="../../../../assets/images/bonze/5.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 100</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <div class="bonze5">2</div><img src="../../../../assets/images/bonze/5.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 200</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock5">
+                <div class="col-6">
+                    <div class="bonze5">3</div><img src="../../../../assets/images/bonze/5.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 300</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock5">
+                <div class="col-6">
+                    <div class="bonze5">4</div><img src="../../../../assets/images/bonze/5.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 400</div>
+                </div>
+            </div>
+            <div class="row text-center mb-2" *ngIf="displayblock5">
+                <div class="col-6">
+                    <div class="bonze5">5</div><img src="../../../../assets/images/bonze/5.png" />
+                </div>
+                <div class="col-6">
+                    <div class="coin-block"><img src="../../../../assets/images/coin-icon.svg" /> 500</div>
+                </div>
+            </div>
+            <div class="showmore">
+                <div class="lable" (click)="displayblock5 = !displayblock5">{{!displayblock5 ? 'Show more' : 'Show less'}}
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

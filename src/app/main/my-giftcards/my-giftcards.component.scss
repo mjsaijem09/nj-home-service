@@ -1,0 +1,45 @@
+.mygiftcard-section {
+    height: 100vh;
+    position: relative;
+    .nav {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 71px 0 15px 0;
+        background: #fff;
+        .pills {
+            background: #EDEDEE;
+            color: #A6AEC1;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 14px;
+            padding: 7px 20px;
+        }
+        .pills.active {
+            background: #EFF7E4;
+            color: #90C63E;
+            text-align: center;
+        }
+    }
+    
+}
+
+.offsetLeft-32 {
+    padding-left: 32px;
+}
+
+.offsetRight-32 {
+    padding-right: 32px;
+}
+
+@media only screen and (min-width: 1024px) {
+    .mygiftcard-section {
+        padding-top: 75px !important;
+
+        .nav .pills{
+            width: 75% !important;
+            margin: auto !important;
+            cursor: pointer;
+        }
+    }
+}
+

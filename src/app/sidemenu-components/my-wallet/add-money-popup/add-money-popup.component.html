@@ -1,0 +1,55 @@
+<div class="header">
+    <div classs="row ">
+        <div class="col-md-12 col-sm-12 col-xs-12 mainIcon">
+            <p class="headerText">Add Money</p>
+            <i class="bi bi-x bi-icon-class backIcon icon ms-auto" (click)="navigateBack()"></i>
+        </div>
+    </div>
+</div>
+<div class="pay-creditCard">
+    <form class="card-details">
+        <div class="row">
+            <div class="col-12">
+                <div class="label">How Much Would You Like To Top Up?</div>
+                <div class="form-group card-holder input-div">
+                    <div class="info text-center mb-2">enter Your Top up amount</div>
+                   <span class="infix">$</span> <input type="text" class="form-control" id="card-holder" aria-describedby="cardHolder"
+                        placeholder="100">
+                </div>
+            </div>
+        </div>
+       
+    </form>
+    <div class="row">
+        <div class="col-12">
+            <div class="label">How Would You Like To Pay?</div>
+            <div class="info">Use An Existing Card</div>
+            <div class="card-block active">
+                <div class="row">
+                <div class="col-auto "><input type="checkbox" class="form-check-input ms-0"></div>
+                <div class="col-auto card-imge"><img src="../../../../assets/images/payment/uim_master-card.svg"/></div>
+                <div class="col-auto">**** **** **** 3234</div>
+                </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                <div class="col-auto"><input type="checkbox" class="form-check-input ms-0"></div>
+                <div class="col-auto card-imge"><img src="../../../../assets/images/payment/uim_master-card.svg"/></div>
+                <div class="col-auto">**** **** **** 3234</div>
+                </div>
+            </div>
+
+            <div class="text-center my-4">or</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-12 text-center"><img class="me-3" src="../../../../assets/images/plus-circle.svg" />add a new card</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row mt-4">
+            <div class="col-12 text-center"><button class="btn save-btn">Confirm</button></div>
+        </div>
+    </div>
+</div>

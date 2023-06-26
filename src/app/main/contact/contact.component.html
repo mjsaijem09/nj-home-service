@@ -1,0 +1,43 @@
+<div class="margin-top"></div>
+<div class="container">
+    <div class="contacts-container">
+        <div class="contacts-top-bar">
+            <h1 class="top-bar-heading">My Contacts</h1>
+            <div class="top-bar-action-box">
+                <button mat-button class="new-btn" (click)="createContact()">
+                    <span class="material-icons">
+                        add_circle
+                    </span>
+                    New Contact</button>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control" [(ngModel)]="searchContactText" placeholder="Search contact"
+                        aria-label="Search" type="search" name="search-d" autocomplete="off">
+                    <div class="search">
+                        <img src="assets/images/icon-search.svg" alt="search-icon">
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+        <div class="row" *ngIf="contacts.length > 0">
+            <app-contact-card class="col-xl-4 col-lg-6 mb-4" *ngFor="let contact of contacts | searchFilter: searchContactText" [data]="contact"
+                [image]="generateImage(contact.image)" [_size]="generateImageSize(contact.image)">
+            </app-contact-card>
+        </div>
+    
+        <div *ngIf="contacts.length == 0" class="no-data">
+            <img class="empty-image" src="assets/images/empty.svg" alt="No Contacts">
+            <div class="empty-text">No Contacts Found</div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="button_fab" (click)="createContact()">
+    <span class="material-icons-outlined">
+        add
+    </span>
+</button>
+
+<br>
+<br>
+<br>

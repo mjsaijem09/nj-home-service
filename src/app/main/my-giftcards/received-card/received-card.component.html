@@ -1,0 +1,66 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<!-- No Cards found -->
+<div class="row" *ngIf="noCardPresent && !isLoading">
+    <div class="col-md-12">
+        <div class="noCard-section">
+            <div class="noCard-header">My Gift Cards</div>
+            <div class="noCard-img">
+                <img class="walletGirl-pic" src="/assets/images/giftcard/wallet_girl.svg" />
+            </div>
+            <div class="noCard-txt">
+                Opps, you have not yet receive any giftcard.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- cards found -->
+<div class="offsetAll-10" *ngIf="!noCardPresent && !isLoading">
+    <!-- header section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="header-txt">My Gift Cards</div>
+        </div>
+    </div>
+
+    <div class="row offsetTop-10" *ngFor="let data of giftcards" (click)="navigateToShop(data?.message?.giftCardId?.redeemLocation[0]?._id)">
+        <div class="col-12">
+            <div class="gift-card offsetAll-10">
+                <!-- info row -->
+                <div class="row">
+                    <!-- from info -->
+                    <div class="col-6 giftFrom-txt">
+                        From {{data?.message?.from}}
+                    </div>
+                    <!-- at info -->
+                    <div class="col-6 giftat-txt">
+                        At {{data?.message?.giftCardId?.redeemLocation[0]?.name}}
+                    </div>
+                </div>
+                <!-- info row -->
+                <div class="row offsetTop-5">
+                    <!-- received at info -->
+                    <div class="col-6 receivedInfo-txt">
+                        Received at {{data?.message?.giftCardId?.createdAt | date:'ha d MMM y'}}
+                    </div>
+                    <!-- expire info -->
+                    <div class="col-6 giftLimit-txt" [ngClass]="{'color-red': data?.expDat < '10 days'}">
+                        {{data?.message?.giftCardId?.expiryDate | date:'ha d MMM y'}} To Expire
+                    </div>
+                </div>
+                <!-- gift image -->
+                <div class="row offsetTop-5">
+                    <div class="col-12" *ngIf="data?.giftImage != ''">
+                        <div [ngStyle]="{'color': data?.color}" class="amount-txt">${{data?.amount}}</div>
+                        <div [ngStyle]="{'color': data?.color}" class="code-txt">
+                            {{data?.message?.giftCardId?.code}}</div>
+                        <img class="giftCard-img" [src]="giftcardImg(data?.giftImage)" (error)="noImg($event)"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

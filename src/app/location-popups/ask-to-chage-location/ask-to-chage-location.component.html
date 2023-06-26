@@ -1,0 +1,18 @@
+<div class="custom-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">Is  The Location Correct?</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('keep')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="text-center mt-1 mb-3">
+            We will be displaying shops around <span style="color: #90C63E;">Perth, AU</span> area. Do you want to change the default location?
+        </div>
+        <div class="actions mt-4">
+            <button type="button" class="btn btn-accept" (click)="change()">Change</button>
+            <button type="button" class="btn btn-cancel" (click)="activeModal.close('keep')">Keep</button>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

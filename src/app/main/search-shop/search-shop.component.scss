@@ -1,0 +1,436 @@
+
+
+.top-spacing {
+  margin-top: 100px;
+  padding-bottom: 0;
+}
+.homeimg{
+  width: 45% !important;
+  margin-left: 27px;
+}
+.search-field {
+  .input-group {
+    position: relative;
+    .searchIcon {
+      position: absolute;
+      left: 10px;
+      top: 9px;
+      z-index: 3;
+    }
+  }
+  
+}
+.form-control {
+  height: calc(2.5em + .75rem + 2px);
+}
+
+.image-div-1{
+  position: absolute;
+
+  img{
+    margin: 24% 12% 0% 14%;
+    width: calc(100vw - 2rem - 26%);
+  }
+  .d-flex{
+    font-size: 38px;
+    font-weight: bold;
+    margin: 4% 2% 0% 10%;
+    width: calc(100vw - 2rem - 26%);
+  }
+  .viewmorebtn {
+    border: 1px solid;
+    font-size: 33px;
+    padding: 20px;
+    margin: 20% 0%;
+  }
+}
+.mt-my-5 {
+    margin-top : 2.5rem !important;
+}
+.imgstyle{
+    width: 100%;
+    box-shadow: 0 0px 7px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .card {
+    border: none;
+  }
+  .card-text{
+    font-size: 12px;
+    font-size: 15px;
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  .textsize{
+      font-size: 12px;
+      margin-top: 5px;
+  }
+  .datestyle{
+    margin-left: 8px;
+    color: #989696;
+    font-weight: 600;
+  }
+  .text{
+      margin-right: 85px;
+      font-size: 13px;
+  }
+  .pricing{
+     font-size: 12px;
+  }
+  .text-right{
+      margin-top: 25px;
+  }
+  .fa-whatsapp:before {
+   color: #28a745!important;
+}
+ .cardposition{
+     margin-bottom: 50px;
+     margin-top: 30px;
+ }
+
+ .font-20{
+  font-size: 20px;
+}
+ .font-16{
+  font-size: 16px;
+}
+.font-14{
+  font-size: 14px;
+}
+ .font-12{
+  font-size: 12px;
+}
+
+.therapist-details{
+  padding: 10px;
+  display: flex;
+}
+.therapist-img {
+  width: 100px;
+
+  img {
+    box-shadow: -1px 0px 10px 0px #9e9e9e;
+  }
+}
+.upcoming-right-block {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  border-bottom: 1px solid #cac8c8;
+}
+.upcoming-text{
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+.upcoming-text img {
+  width: 25px;
+  margin: 0 5px;
+}
+.therapist-img img {
+  width: 70px;
+  height: 66px;
+  border-radius: 10px;
+}
+
+.full {
+  color: black;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: black;
+}
+.disable-link{
+  pointer-events: none;
+}
+.enable-link{
+ pointer-events: painted;
+}
+.search-field {
+  .input-group {
+    position: relative;
+    .form-control {
+      height: 44px;
+      border-color: #fff;
+      box-shadow: none;
+    }
+  }
+  .closeIcon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+}
+
+
+.shop-list {
+  .form-group {
+    .form-control {
+      height: 44px;
+      border-color: #fff;
+      box-shadow: none;
+    }
+  }
+  .listing {
+    background: #fff;
+    padding: 11px 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    .like-deslike {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 11;
+      img {
+        width: 100%;
+        max-width: 20px;
+      }
+    }
+    .shop-img {
+      position: relative;
+      img {
+        width: 100%;
+        &.shop-round-img {
+          height: 140px;
+          border-radius: 10px;
+          object-fit: cover;
+        }
+      }
+      .shop-location {
+        background: #FFFFFF;
+        box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+        border-radius: 4px;
+        position: absolute;
+        top: 5px;
+        right: 6px;
+        padding: 2px 4px;
+        p {
+          font-size: 12px;
+          color: #A6AEC1;
+          margin: 0;
+          img {
+            width: 100%;
+            max-width: 10px;
+          }
+        }
+      }
+    }
+    .shop-detail {
+      h4 {
+        font-size: 16px;
+        width: 150px;
+        font-weight: 500;
+      }
+      h5.rating {
+        font-size: 12px;
+        color: #A6AEC1;
+        font-weight: 400;
+      }
+      p {
+        font-size: 12px;
+        color: #A6AEC1;
+        margin: 0;
+        display: flex;
+        align-items: flex-start;
+        line-height: 14.22px;
+        img {
+          margin-left: 11px;
+        }
+      }
+      .btn-group {
+        margin-top: 5px;
+        float: right;
+        button {
+          padding: 6px 10px;
+          font-size: 12px;
+          margin: 0 5px;
+          border-radius: 6px;
+          &.btn-availabel {
+            background: #eff7e3;
+            color: #90C63E;
+            min-width: 110px;
+          }
+          &.btn-book {
+            background: #90C63E;
+            color: #fff;
+          }
+          &.btn-unavailabel {
+            color: #FD6D6D;
+            background: #fee9e9;
+            min-width: 110px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+.search-field {
+  padding-top: 80px;
+}
+
+.listing {
+  background: #fff;
+  padding: 11px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  .like-dislike {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 11;
+    img {
+      width: 100%;
+      max-width: 20px;
+    }
+  }
+  .shop-img {
+    position: relative;
+    img {
+      width: 100%;
+      &.shop-round-img {
+        height: 140px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+    }
+    .shop-location {
+      background: #FFFFFF;
+      box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+      border-radius: 4px;
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      padding: 2px 4px;
+      p {
+        font-size: 12px;
+        color: #A6AEC1;
+        margin: 0;
+        img {
+          width: 100%;
+          max-width: 10px;
+        }
+      }
+    }
+  }
+  .shop-detail {
+    h4 {
+      font-size: 16px;
+      width: 150px;
+      font-weight: 500;
+      overflow:hidden !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .rating {
+      font-size: 12px;
+      color: #A6AEC1;
+      font-weight: 400;
+    }
+    p {
+      font-size: 12px;
+      color: #A6AEC1;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      line-height: 14.22px;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      span{
+        overflow:hidden !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      img {
+        margin-left: 11px;
+      }
+    }
+    .btn-group {
+      margin-top: 5px;
+      // float: right;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      button {
+        padding: 6px 10px;
+        font-size: 12px;
+        margin-right: 10px;
+        border-radius: 6px;
+        &.btn-availabel {
+          background: #eff7e3;
+          color: #90C63E;
+        }
+        &.btn-book {
+          background: #90C63E;
+          color: #fff;
+          margin: 0;
+        }
+        &.btn-unavailabel {
+          color: #FD6D6D;
+          background: #fee9e9;
+        }
+      }
+    }
+  }
+}
+.search-field {
+  .input-group {
+    position: relative;
+    .searchIcon {
+      position: absolute;
+      left: 10px;
+      top: 9px;
+      z-index: 3;
+    }
+  }
+}
+.search-field {
+  .input-group {
+    position: relative;
+    .form-control {
+      height: 44px;
+      border-color: #fff;
+      box-shadow: none;
+    }
+  }
+  .closeIcon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+}
+
+.search-location.form-group {
+  .form-control {
+    height: 44px;
+    border-color: #fff;
+    box-shadow: none;
+  }
+}
+
+.map-pin{
+  position: absolute;
+  top: 9px;
+  left: 10px;
+}
+@media screen and (min-width: 1024px) {
+  section.shop-list {
+    padding-top: 150px;
+  }
+  .search-fields {
+    display: none;
+  }
+}

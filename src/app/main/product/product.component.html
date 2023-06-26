@@ -1,0 +1,12 @@
+<div class="card h-100 pointer" (click)="productProfile()">
+    <img [src]="product?.images[0]?.productImage" class="card-img-top" (error)="updateUrl($event)">
+    <div class="card-body d-flex justify-content-between" style="flex-direction: column;">
+        <h6>{{product?.name}}</h6>
+        <p class="m-0 text-theme-green fw-bold" *ngIf="product.enableRetailSales">{{currency.symbol}}{{product.specialPrice ? product.specialPrice : product.retailPrice | number:'1.2-2':'en-US'}} 
+            <span class="text-decoration-line-through text-muted fw-normal" *ngIf="product.specialPrice">{{currency.symbol}}{{ product.retailPrice | number:'1.2-2':'en-US'}}</span>
+        </p>
+        <p class="m-0 text-theme-green fw-bold" *ngIf="!product.enableRetailSales">{{currency.symbol}}{{product.supplyPrice | number:'1.2-2':'en-US'}} 
+        </p>
+        <p class="m-0" style="color: #F75F5F">{{product.sold?product.sold:0}} Sold</p>
+    </div>
+</div>

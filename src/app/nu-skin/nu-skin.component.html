@@ -1,0 +1,26 @@
+<div *ngIf="nextPage" class="succes-registration item-center">
+    <div class="box item-center direction-column">
+        <div class="thank-you">Thank you for signing up</div>
+        <div class="contact-shortly">Someone will contact you shortly for the confirmation</div>
+        <div class="see-you">See you @ Max's Restaurant Banilad Town Center,
+            Banilad Cebu City</div>
+
+        <div class="redirect" (click)="backToRegister()">Create new</div>
+        <div class="redirect" (click)="nextPage = false">Prev Page</div>
+    </div>
+</div>
+
+<div *ngIf="!nextPage" class="succes-registration item-center">
+    <div class="box item-center direction-column">
+        <div class="thank-you">Friendly Reminder</div>
+
+        <div class="contact-shortly">Share this <a href="https://www.facebook.com/events/1343076936200473?ref=newsfeed"
+                target="_blank">post</a> to your Facebook timeline
+            in public and collect 50 likes to receive
+            a small gift worth ₱250. If you invite 10 people(must attend) to the event, you will receive a small
+            gift worth ₱420.</div>
+        <div class="see-you">Event is FREE also the Food and drink will be supplied!</div>
+
+        <div class="redirect" (click)="nextPage = true">Next Page</div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<div class="container-fluid p-0" *ngIf="!isLoading" ngClass="this.isMobile ? 'mobile-view' : 'desktop-view'">
+    <div class="herbal-center-wrapper">
+        <!-- customer DETAIL// -->
+        <div class="row shop-detail customer-detail">
+            <div class="col-md-12 p-0">
+                <div class="topImg">
+                    <img src="{{customerDetail?.image}}"
+                        (error)="setDefaultTherapistPic($event, customerDetail?.gender)" class="w-100 fixHeight"
+                        alt="customer">
+                    <div class="customer-ratings-wrapper">
+                        
+                        <div class="customer-ratings">
+                            <div class="rating-div">
+                                <div class="customer-name">
+                                    <span class="name">{{customerDetail?.firstName + ' ' + customerDetail?.lastName}}</span>
+                                    <span *ngIf="customerDetail?.verified">
+                                        <img src="assets/images/verified-user.svg" class="verified">
+                                    </span>
+                                </div>
+                                <div class="d-flex mt-2">
+                                    <app-star-rating [rating]="customerDetail?.rating?.star" [size]="18"></app-star-rating>
+                                <div class="total-rating">
+                                    <p *ngIf="customerDetail?.rating?.star !== undefined">
+                                        {{(customerDetail?.rating?.star).toFixed(1)}}
+                                        ({{customerDetail?.rating?.star_count}} Ratings)</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="icons-like">
+                                <ul>
+                                    <li><div class="bonze">{{customerDetail?.level?.label}}</div><img [src]="'../../../../assets/images/bonze/' + customerDetail?.level?.label +'.png'" style="width:50px"/></li>
+                                    <li><div  class="score" [ngStyle]="{'background-image': getBackgound(customerDetail.badgeScore)}">{{customerDetail?.badgeScore}}</div>
+                                        <!-- <img *ngIf="customerDetail?.badgeScore >= 75" src="../../../../assets/images/score/surface1.png" style="width:50px"/>
+                                        <img *ngIf="customerDetail?.badgeScore >= 50 && customerDetail?.badgeScore < 75" src="../../../../assets/images/score/surface2.png"  style="width:50px"/>
+                                        <img *ngIf="customerDetail?.badgeScore >= 25 && customerDetail?.badgeScore < 50" src="../../../../assets/images/score/surface3.png"  style="width:50px"/>
+                                        <img *ngIf="customerDetail?.badgeScore < 25" src="../../../../assets/images/score/surface4.png"  style="width:50px"/> -->
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                       
+                    </div>
+                  
+                </div>
+                <div class="detail-div">
+                    <div class="block bb">
+                        <div class="row">
+                            <div class="col-auto"><img src="../../../../assets/images/calendar-icon.png" /></div>
+                            <div class="col-auto text">User since {{customerDetail?.createdAt | date:'yyyy'}}</div>
+                        </div>
+                    </div>
+                    <div class="block bb">
+                        <div class="row">
+                            <div class="col-auto"><img src="../../../../assets/images/user-since.png" /></div>
+                            <div class="col-auto text">Service Booked {{customerDetail?.bookedTimes || 0}} time</div>
+                        </div>
+                    </div>
+                    <div class="block bb">
+                        <div class="row">
+                            <div class="col-auto"><img src="../../../../assets/images/finance.png" /></div>
+                            <div class="col-auto text">Average tip ${{customerDetail?.averageTip || 0}} Per services</div>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="row">
+                            <div class="col-auto"><img src="../../../../assets/images/money-bag.png" /></div>
+                            <div class="col-auto text">Total Spent $ {{customerDetail?.totalSpent || 0}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+           
+        </div>
+       
+    </div>
+</div>

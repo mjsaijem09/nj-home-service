@@ -1,0 +1,197 @@
+<app-product-header [product]="product"></app-product-header>
+<div class="product-profile">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <!-- <div class="product-cover-img">
+                <img [src]="productCover" class="border w-100" height="320" alt="Shop Image" (error)="setDefaultPic($event)">
+            </div> -->
+            <owl-carousel-o [options]="productImages">
+                <ng-container *ngFor="let item of product?.productImages">
+                    <ng-template carouselSlide class="slide" [id]="item?._id">
+                    <img [src]="item?.productImage" height="320" alt="Shop Image" (error)="setDefaultPic($event)">
+                    </ng-template>
+                </ng-container>
+                <ng-container *ngIf="product?.productImages?.length == 0">
+                    <ng-template carouselSlide class="slide" id="1">
+                        <img src="./assets/images/product/default-product.svg" class="border" height="320" alt="Shop Image">
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+            <div class="varation-section" *ngIf="variationSlide.length >= 1">
+                <div class="variation-name">10 Variations Available</div>
+                <owl-carousel-o class="variation-images" [options]="variationImages">
+                    <ng-container *ngFor="let item of variationSlide">
+                        <ng-template carouselSlide class="slide" [id]="item?.id">
+                            <img [src]="item?.img" class="pointer" alt="Shop Image" (error)="setDefaultPic($event)">
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <div class="card h-100">
+                <div class="card-body d-flex p-3" style="flex-direction:column;">
+                    <p>{{product?.name}}</p>
+                    <p class="rating m-0 pointer" *ngIf="product?.overall_rating">
+                        <span (click)="navigateToReview()">
+                            <app-star-rating [rating]="product?.overall_rating" [size]="18"></app-star-rating>
+                            <span>
+                            {{(product?.overall_rating).toFixed(1)}}
+                            <span class="text-gray">({{product?.ratings?.length}} Ratings)</span>
+                            </span>
+                        </span>
+                    </p>
+                    <p class="m-0 text-theme-green" style="font-size: 18px">
+                        <small class="text-decoration-line-through text-muted fw-normal me-1" *ngIf="product?.specialPrice && product?.enableRetailSales">
+                            {{currency}}{{product?.retailPrice}}
+                        </small>
+                        {{currency}}{{productPrice | number:'1.2-2':'en-US'}}
+                    </p>
+                    <p class="m-0 text-muted">Stock: {{productStocks?.stockQuantity}}</p>
+                    <!-- <div class="hr"></div>
+                    <h4>Introduction</h4>
+                    <div class="h-100">
+                        <p>{{description(product?.description)}} 
+                            <span class="text-theme-green pointer" *ngIf="product?.description?.length > 300" (click)="lessDescription = !lessDescription">{{lessDescription ? '...see more': '...see less'}}</span> 
+                        </p>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="d-flex justify-content-between mt-3" style="gap: 15px;">
+                        <button class="btn w-100 text-white bg-theme-green m-0" (click)="checkout()" [disabled]="product?.stocks === 0">Buy It Now <span *ngIf="product?.stocks === 0">(Sold Out)</span></button>
+                        <button *ngIf="!addedToCard" class="btn w-100 text-white bg-blue m-0" (click)="addToCart()" [disabled]="product?.stocks === 0">Add to Cart <span *ngIf="product?.stocks === 0">(Out of stock)</span></button>
+                        <button *ngIf="addedToCard" class="btn w-100 text-white bg-red m-0" (click)="removeToCart()" [disabled]="product?.stocks === 0">Remove to Cart <span *ngIf="product?.stocks === 0">(Out of stock)</span></button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 mt-3" *ngIf="product?.variations?.length >= 1">
+            <div class="card" (click)="addToCart()">
+                <div class="card-body p-3">
+                    <div class="header d-flex justify-content-between">
+                        <p style="font-weight:500;">{{product?.variationLabel}} <span class="text-muted" style="font-weight:400;">({{product?.variations?.length}} variant)</span></p>
+                        <i class="bi bi-chevron-right"></i>
+                    </div>
+                    <div class="variations">
+                        <ng-container *ngFor="let item of product?.variations; let i = index">
+                            <div class="item" *ngIf="i < 3">{{item?.variationName}}</div>
+                        </ng-container>
+                        <div class="item text-muted" *ngIf="product?.variations?.length > 3">+{{product?.variations?.length > 3 ? product?.variations?.length % 3 : 0}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 mt-3" *ngIf="shop">
+            <app-product-shop [shop]="shop"></app-product-shop>
+        </div>
+        <!-- <div class="col-lg-4 col-sm-12 mt-3">
+            <div class="card">
+                <div class="card-body" style="flex-direction:column;gap:5px;">
+                    <h4 class="m-0">Shop Information</h4>
+                    <p class="fw-medium mt-2 mb-1 text-theme-green">{{shop?.locationName}}</p>
+                    <p class="rating m-0 pointer" *ngIf="shop?.locationRating?.star !== undefined">
+                        <span (click)="navigateToReview()">
+                            <app-star-rating [rating]="shop?.locationRating?.star" [size]="18"></app-star-rating>
+                            <span style="margin-bottom: 7px;margin-left: 10px;">
+                            {{(shop?.locationRating?.star).toFixed(1)}}
+                            <span class="text-gray">({{shop?.locationRating?.star_count}} Ratings)</span>
+                            </span>
+                        </span>
+                    </p>
+                    <a href="tel:+{{shop?.companyPhone}}" class="d-block text-gray mt-2">
+                        <span><img src="assets/images/product/phone-gray.svg" alt="phone" width="24px"></span>
+                        {{shop?.companyPhone}}
+                    </a>
+                    <a href="http://maps.google.com/?q={{shop?.companyStreet}}" target="_blank" class="d-block text-gray mt-2">
+                        <span><img src="assets/images/shop/pinned-location.svg" alt="location" width="18px"></span>
+                        {{shop?.companyBuilding}} {{shop?.companyStreet}},
+                        {{shop?.companyCity}}, {{shop?.companyState}}, {{shop?.companyZip}}
+                    </a>
+                    <a href="mailto:{{shop?.companyEmail}}" class="d-block text-gray mt-2">
+                        <span><img src="assets/images/product/email-gray.svg" alt="mail" width="18px"></span>
+                        {{shop?.companyEmail}}
+                    </a>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-lg-4 col-sm-12 mt-3" *ngIf="product">
+            <app-product-overview [product]="product"></app-product-overview>
+        </div>
+        <div class="col-lg-8 col-sm-12 mt-3">
+            <div class="card h-100">
+                <div class="card-body d-flex justify-content-between" style="flex-direction: column">
+                    <h4 class="m-0">Delivery Information</h4>
+                    <p class="d-flex m-0"><span style="width: 90px;">Postage</span>:<span class="text-gray ms-4">Ecart Express</span></p>
+                    <p class="d-flex m-0"><span style="width: 90px;">Delivery</span>:<span class="text-gray ms-4">Estimated between {{ today | date:'EEE d MMM'}} to {{deliveryDate | date:'EEE d MMMM'}}</span></p>
+                    <p class="d-flex m-0"><span style="width: 90px;">Returns</span>:<span class="text-gray ms-4">No Return Accepted if defective we can change return policies only 10 days.</span></p>
+                    <p class="d-flex m-0"><span style="width: 90px;">Payment</span>:<span class="text-gray ms-4 d-flex align-items-center" style="gap: 15px;"><img src="assets/images/product/stripe.svg" alt="stripe" height="20"><!--img src="assets/images/product/g-pay.svg" alt="g-pay" height="20"><img src="assets/images/product/paypal.svg" alt="paypal" height="20"><img src="assets/images/product/master-card.svg" alt="master-card" height="20"><img src="assets/images/product/ae-card.svg" alt="ae-card" height="20"--></span></p>
+                    <p class="d-flex m-0"><span style="width: 90px;">charges</span>:<span class="text-gray ms-4">Minimum $3 Delivery Charges Extra depends your pincode </span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-3" *ngIf="product?.ratings?.length >= 1">
+            <div class="card">
+                <div class="card-body">
+                    <h6>Product Ratings</h6>
+                    <p class="rating m-0 pointer" *ngIf="product?.overall_rating">
+                        <span (click)="navigateToReview()">
+                            <app-star-rating [rating]="product?.overall_rating" [size]="18"></app-star-rating>
+                            <span>
+                            {{(product?.overall_rating).toFixed(1)}}/5
+                            <span class="text-gray">({{product?.ratings?.length}} Ratings)</span>
+                            </span>
+                        </span>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-0"></li>
+                    <li class="customer-review list-group-item" *ngFor="let item of product?.ratings">
+                        <div class="customer">
+                            <img class="avatar" [src]="item.customerId.image" alt="sample">
+                            <p class="name">{{item.customerId?.firstName}} {{item.customerId?.lastName}}</p>
+                        </div>
+                        <div class="review-content mt-2">
+                            <app-star-rating [rating]="item.stars" [size]="18"></app-star-rating>
+                            <p class="message mt-2">{{item.message}}</p>
+                            <div class="media-container">
+                                <ng-container *ngFor="let media of item.images">
+                                    <div class="media-item">
+                                        <img [src]="media" *ngIf="media.includes('.png')" />
+                                        <video [src]="media" *ngIf="media.includes('.webm')" controls></video>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <p class="date">{{item.createdAt | date: 'medium'}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="fixed-action-btns">
+        <button class="btn-chat-now"><i class="bi bi-chat-left-dots"></i>Chat Now</button>
+        <button class="btn-add-to-cart"><i class="bi bi-cart-plus" (click)="addToCart()"></i>Add to Cart</button>
+        <button class="btn-buy-now" (click)="checkout()">Buy Now</button>
+    </div>
+</div>
+<br>
+<ng-template #selectLocation let-modal>
+    <div class="custom-modal">
+        <div class="modal-header">
+            <h4 class="modal-title">Select Shop Location</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('keep')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center mt-1 mb-3">
+                Please select the shop location where you want to order the product.
+            </div>
+            <div class="actions mt-4">
+                <button type="button" class="btn btn-accept" (click)="activeModal.close('change')">Change</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>

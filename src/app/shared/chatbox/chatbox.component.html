@@ -1,0 +1,76 @@
+<div class="chat-box">
+    <div class="header">
+        <img *ngIf="data?.companyLogo" [src]="data?.companyLogo" alt="Shop Logo">
+        <span class="shop-name">{{data?.locationName}}</span>
+        <span class="close" (click)="close()"><i class="bi bi-x-lg"></i></span>
+    </div>
+    <div #chatScroll class="convo" [scrollTop]="chatScroll.scrollHeight">
+        <ng-container *ngFor="let item of convo; let i = index">
+            <div [class]="item.sentBy">
+                <!-- <img *ngIf="item.sentBy == 'owner'" [src]="data.companyLogo" alt="Shop Logo"> -->
+                <div class="files-included">
+                    <ng-container *ngFor="let item of item.media">
+                        <img class="media" [src]="item" alt="media file">
+                    </ng-container>
+                    <ng-container *ngFor="let file of item.files">
+                        <div class="file">
+                            <div class="file-content">
+                                <p class="file-name">{{fileName(file)}}</p>
+                                <div class="file-icon">
+                                    <i class="file-ico bi bi-file-earmark-pdf" *ngIf="file.includes('.pdf')"></i>
+                                    <i class="file-ico bi bi-file-earmark-word" *ngIf="file.includes('.doc')"></i>
+                                    <i class="file-ico bi bi-file-earmark-spreadsheet" *ngIf="file.includes('.xl')"></i>
+                                    <span>File</span>
+                                </div>
+                            </div>
+                          <button class="download" (click)="downloadArchiveFile(fileName(file), file)">Download</button>
+                        </div>
+                    </ng-container>
+                </div>
+                <p *ngIf="item?.message.trim().length > 0" class="msg">{{item.message}}</p>
+                <small class="time">{{moment(item.createdAt).calendar()}}</small>
+            </div>
+        </ng-container>
+        <p style="margin: 0; color: #7e7e7e;font-size: 14px;" *ngIf="ownerTyping">{{data?.locationName}} is typing . . .</p>
+    </div>
+    
+    <div class="message-box">
+        <div class="media-and-files" *ngIf="previewFile.length >= 1">
+            <ng-container *ngFor="let file of previewFile; let i = index">
+                <div class="image" *ngIf="file?.type.includes('image')">
+                    <i class="close bi bi-x-lg" (click)="remove(i)"></i>
+                    <img [src]="file?.src" alt="image">
+                </div>
+                <div class="video" *ngIf="file?.type.includes('video')">
+                    <i class="close bi bi-x-lg" (click)="remove(i)"></i>
+                    <!-- <i class="play bi bi-play"></i> -->
+                    <video [src]="file?.src" [controls]="true"></video>
+                </div>
+                <div class="file" *ngIf="file?.type.includes('application')">
+                    <i class="close bi bi-x-lg" (click)="remove(i)"></i>
+                    <i class="file-ico bi bi-file-earmark-pdf" *ngIf="file.name.includes('.pdf')"></i>
+                    <i class="file-ico bi bi-file-earmark-word" *ngIf="file.name.includes('.doc')"></i>
+                    <i class="file-ico bi bi-file-earmark-spreadsheet" *ngIf="file.name.includes('.xl')"></i>
+                    <p class="filename">{{file.name}}</p>
+                    <small class="size">{{file.size | filesize}}</small>
+                </div>
+            </ng-container>
+        </div>
+        <div class="actions">
+            <button class="open-emoji-picker" (clickedOutside)="showEmojiPicker = $event">
+                <i class="bi bi-emoji-smile"></i>
+                <div *ngIf="showEmojiPicker" class="emoji-picker">
+                    <emoji-mart [darkMode]="false" class="emoji-mart" (emojiSelect)="addEmoji($event)" isNative="true"></emoji-mart>
+                </div>
+            </button>
+            <button class="add-media">
+                <label for="formFile" class="form-label m-0">
+                    <i class="bi bi-file-earmark-plus-fill"></i>
+                </label>
+                <input class="form-control d-none" type="file" id="formFile" accept=".png, .jpg, jpeg, .gif, .doc, .docx, .pdf, .mp4, .webm" multiple (change)="addFile($event.target.files)">
+            </button>
+            <textarea (keyup)="textAreaAdjust($event)" (keypress)="typing()"  (focus)="onFocus($event)" placeholder="Enter message here" rows="1" [(ngModel)]="message"></textarea>
+            <button type="submit" class="btn-send" (click)="send(message)"><i class="bi bi-send-fill"></i></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+.voucher-carousel {
+    padding: 13px 0px;
+    background-color: #ffffff;
+    .default-space::before {
+        content: "H";
+        visibility: hidden;
+    }
+}

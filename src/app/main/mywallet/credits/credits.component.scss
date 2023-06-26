@@ -1,0 +1,91 @@
+.credits-section {
+    .card {
+        box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+        border-radius: 5px;
+        border: none;
+        .atm {
+            background-image: url('/assets/images/wallet/card_mask.svg');
+            border-radius: 10px;
+            padding: 45px 0;
+            width: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            .text{
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            .credits {
+                font-weight: 500;
+                font-size: 26px;
+                line-height: 31px;
+            }
+        }
+    }
+    .shop-credits{
+        h5{
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 21px;
+            text-transform: capitalize;
+        }
+    }
+    .btn-green {
+        background-color: #90C63E;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 0;
+    }
+    .mutted-text {
+        font-size: 12px;
+        color: #A6AEC1;
+    }
+    .shop {
+        display: flex;
+        align-items: flex-start;
+        .name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .points {
+            background-color: #90c63e;
+            padding: 0 15px;
+            border-radius: 30px;
+        }
+    }
+    .details {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .gained {
+        color: #90c63e;
+    }
+    .redeemed {
+        color: #FD6D6D;
+    }
+    .toggle {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        color: #90C63E;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .toggle.dropped {
+        color: #FD6D6D!important;
+    }
+    .custom-accordion {
+        height: auto;
+    }
+}
+.hr {
+    border-top: 1px solid #E1E3EA;
+}
+button:disabled {opacity: 0.6;}

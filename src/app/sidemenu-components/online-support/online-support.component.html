@@ -1,0 +1,24 @@
+<div class="online_support">
+<div class="container auto-h">
+    <div class="row">
+      <div class="col-md-12"> 
+          <div class="onlinesupportform">
+            <form [formGroup]="onlineSupportForm" (ngSubmit)="onSubmit()">
+                <div class="row mt-4">
+                 <div class="col-md-12 pb-3">
+                  <label for="uname1">Title</label> 
+                    <input class="form-control" formControlName="title" placeholder="Enter Title" type="text">
+                    </div>
+                  <div class="col-md-12 pb-3">
+                    <textarea class="form-control" formControlName="query" placeholder="Enter Your query here" id="complexExampleMessage" cols="10" rows="10"></textarea> 
+                  </div>
+                  <div>
+                    <button class="btn btn-dark supportbtn" type="button">Send</button>
+                  </div>
+            </div>
+            </form>
+            </div>
+          </div>
+    </div>
+  </div>
+  </div>

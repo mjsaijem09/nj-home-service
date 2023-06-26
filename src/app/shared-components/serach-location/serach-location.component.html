@@ -1,0 +1,21 @@
+<div class="container">
+<div class="container my-style">
+    
+    <div class="row" (click)="closeModal('Cross click')">
+        <div class="col-10 float-center text-style">
+            <span class="">Select Location</span>
+        </div>
+        <div class=" col-2 float-right">
+            <i class="bi bi-x-circle"></i>
+        </div>
+        
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-12 searchbox">
+            <input class="locationBox" google-place (onSelect)="setAddress($event)"
+            (input)="OnAddrChg($event)" class="form-control" placeholder="e.g. 120 Queen Street">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="top-spacing container">
+  <div class="pt-4">
+    <div class="search-field">
+      <form>
+        <div class="search-field-wrapper">
+          <div class="input-group">
+            <input matInput google-place (onSelect)="setAddress($event)" class="form-control rounded" name="loc"
+              placeholder="Search City, Post Code"  [(ngModel)]="searchText">
+            <div class="searchIcon">
+              <img src="assets/images/icon-search.svg" />
+            </div>
+            <div class="closeIcon">
+              <img src="assets/images/icon-close.svg" />
+            </div>
+          </div>
+          <div class="search-location">
+            <a href="http://maps.google.com/?q={{searchText}}" target="_blank"><img src="assets/images/search-direction.svg" alt="location-pin"></a>
+          </div>
+        </div>
+        <button class="btn btn-search" (click)="useCurrentLoc()"><img src="assets/images/search-location.svg" /> use current location</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="suggest-location" *ngIf="searchText == '' || !searchText">
+    <ul>
+      <li *ngFor="let loc of locationList.slice(0,8)" (click)="goLocation(loc)">
+        <a>
+          {{loc?.city}}, {{loc?.state}}, {{loc?.country}}, {{loc?.zip}}
+          <span><img src="assets/images/new-tab.svg"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+  </div>
+</div>

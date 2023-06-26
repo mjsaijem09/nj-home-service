@@ -1,0 +1,184 @@
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 50px;
+    // box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+    max-width: 500px;
+    margin: 0 auto;
+}
+.container h2{
+    font-family: 'Times New Roman',
+      Times, serif;
+    font-weight: bold;
+
+}
+.login-txt{
+    color:#91C73E; 
+}
+.signUp-btn{
+    color: #3b5998 !important;
+}
+
+.mt-3, .my-3 {
+    margin-top: 1rem!important;
+}
+ p {
+    font-size: 17px;
+    text-align: center;
+}
+.companyLogo img {
+    vertical-align: middle;
+    border-style: none;
+    width: 50%;
+}
+.facebookbtn{
+    color: #fff;
+    background-color: #3b5998;
+    border-color:#3b5998;
+    border-radius: 23px;
+    &:active {
+        color: #fff;
+    border-color:  #3b5998!important;
+    background-color: #3b5998!important;
+    }
+}
+.loginbtn{
+    color: #fff;
+    border-color: #91c73e;
+    background-color: #91c73e;
+    box-shadow: none !important;
+    
+}
+.form-control{
+    border-radius: 0px;
+    line-height: 1.5;
+    background-color: #9B948B;
+    text-align: left;
+}
+::placeholder {
+    color: white; 
+    font-size: 12px
+}
+//Mobile View 
+@media only screen and (max-width: 425px) {
+    .card-body {
+        padding: 20px!important;
+    }
+    .form-control {
+        text-align: left!important;
+    }
+    .form-group {
+        text-align: left!important;
+    }
+    .fg-pw {
+        color: #3b5998 !important
+    }
+}
+
+// New Code
+.card-body{
+    padding: 0 !important;
+    .companyLogo{
+        img{
+            width: auto;
+        }
+    }
+    .heading{
+        text-align: left;
+        margin: 26px 0 37px;
+        h3{
+            font-weight: 500;
+            font-size: 25px;
+            line-height: 30px;
+            color: #90C63E;
+        }
+        p{
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 17px;
+            color: #A6AEC1;
+            text-align: left;
+            margin-bottom: 0;
+        }
+    }
+    form{
+        .form-group{
+            position: relative;
+            .form-icon{
+                position: absolute;
+                top: 15px;
+                left: 28px;
+                img{
+                    width: 20px;
+                }
+            }
+            .field-filled{
+                position: absolute;
+                top: 15px;
+                right: 17px;
+                img{
+                    width: 21px;
+                }
+            }
+            .see-password{
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                img{
+                    width: 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .form-control{
+            background: #FFFFFF !important;
+            border: 1px solid #90C63E !important;
+            border-radius: 30px !important;
+            padding: 17px 15px 17px 65px !important;
+            height: 55px;
+            font-size: 16px;
+            line-height: 19px;
+            color: rgba(13, 13, 13, 0.9);
+            &:focus {
+                box-shadow: none;
+            }
+            &::placeholder{
+                font-size: 16px;
+                line-height: 19px;
+                color: #A6AEC1;
+            }
+        }
+        .forgot_pass{
+            text-align: right !important;
+            margin-bottom: 37px !important;
+            a{
+                font-size: 14px;
+                line-height: 17px;
+                color: #A6AEC1  !important;
+            }
+        }
+        .loginbtn{
+            background: #90C63E;
+            border: 1px solid #90C63E;
+            border-radius: 30px !important;
+            height: 55px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            color: #FFFFFF;
+        }
+        .signup_btn{
+            margin-top: 25px;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            color: #A6AEC1;
+            a{
+                color: #90C63E;
+            }
+        }
+    }
+}
+
+

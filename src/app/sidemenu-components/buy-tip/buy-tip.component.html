@@ -1,0 +1,48 @@
+<!-- <div class="container main">
+    <div class="giftCard-outerWrapper">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                    <img class="card-img-top img-fluid" [src]=tipImage alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">{{title}}</h4>
+                        <p class="card-text">amount: ${{amount}}</p>
+                        
+                    </div>
+                    <div class="card-footer" (click)="buyTip()">Buy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="myTipCard main" >
+    <div class="container" >
+        <div class="giftCard-outerWrapper">
+        <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12" *ngFor="let tipItem of tipList[0]?.purchased">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="../../../assets/images/gift_card (1).svg" alt="">
+            <div class="card-body" >
+              <h4 class="card-title">{{tipItem?.tipCardId.title}}</h4>
+              <p class="card-text">amount: ${{tipItem?.tipCardId.amount}}</p>
+              <p class="card-text">You have:{{tipList[0]?.purhchasedCount}}</p>
+            </div>
+            <div class="card-footer" (click)="buyTip(tipItem)">Buy</div> 
+          </div>
+           <!-- <div class="tipbtn-wrapper">
+            <button class="btn btn-primary" (click)="goToBuy(tipItem)">Purchase Tip Card</button>
+        </div> -->
+
+
+      </div>
+      </div>
+    </div>
+    </div>
+    
+    <div class="row" *ngIf="tipList?.length == 0">
+        <div class="col-12">
+          <p class="text-center text-muted">No Tip Cards Available</p>
+        </div>
+      </div>
+</div>

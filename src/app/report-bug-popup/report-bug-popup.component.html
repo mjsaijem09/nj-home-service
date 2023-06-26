@@ -1,0 +1,56 @@
+<!-- header -->
+<div class="header">
+    <div classs="row ">
+        <div class="col-md-12 col-sm-12 col-xs-12 mainIcon" style="text-align: center;">
+            <p class="headerText">Report A Bug</p>
+            <i class="bi bi-x bi-icon-class backIcon icon ms-auto" (click)="closeModel()"></i>
+        </div>
+    </div>
+</div>
+<!-- card -->
+<div class="main-card">
+    <!-- text -->
+    <div class="row txt-offset">
+        <div class="col-12">
+            <p class="txt">what is the problem?</p>
+        </div>
+    </div>
+    <!-- text area -->
+    <div class="row set-offset-space">
+        <div class="col-12">
+            <textarea class="text-area" placeholder="Description of bug" cols="10" rows="5"></textarea>
+        </div>
+    </div>
+    <!-- image btn -->
+    <div class="row" style="padding: 25px 15px;">
+        <div class="col-4 col-lg-3 padding-pic">
+            <div class="logo-div">
+                <div class="camera-div">
+                    <span class="material-icons-outlined camera-icon">
+                        cloud_upload
+                    </span>
+                </div>
+                <div class="pic-txt">add
+                    a picture</div>
+            </div>
+        </div>
+        <!-- if pic is there -->
+        <div class="col-4 col-lg-3 padding-pic">
+            <!-- <div class="pic-div"> -->
+            <img class="pic-div" src="../../assets/images/landing/business.png" />
+            <!-- </div> -->
+        </div>
+    </div>
+    <!-- btn -->
+    <div class="row" style="padding: 10px 10px;">
+        <div class="col-6" style="text-align: center;">
+            <button class="send-btn" (click)="sendBug()">Send</button>
+        </div>
+        <div class="col-6" style="text-align: center;">
+            <button class="cancel-btn" (click)="closeModel()">Cancel</button>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div class="footer">
+</div>

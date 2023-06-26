@@ -1,0 +1,19 @@
+<div class="custom-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">We Just Wanted To Say</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()">
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        <img src="/assets/images/notification-popups/medal.svg" alt="">
+        <div class="notification-event">Recevied {{data?.points}} Loyalty point</div>
+        <div class="mutted-text mt-3">
+            You Just recevied {{data?.points}} loyalty point at {{data?.locationName}}. Thank you so much for taking time review your therapist. Your kind review will not only help other people make decisions, but also help therapists keep up the good works.
+        </div>
+        <div class="text-center mt-4 mb-3">
+            <button type="button" class="btn-primary round" (click)="navigate()">Redeem</button>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

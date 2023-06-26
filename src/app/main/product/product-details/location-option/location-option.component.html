@@ -1,0 +1,36 @@
+<div class="custom-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">Select Shop Location</h4>
+        <svg (click)="close()" width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.08687 3.08785C3.31468 2.86004 3.68402 2.86004 3.91183 3.08785L6.99935 6.17537L10.0869 3.08785C10.3147 2.86004 10.684 2.86004 10.9118 3.08785C11.1396 3.31565 11.1396 3.685 10.9118 3.9128L7.82431 7.00033L10.9118 10.0878C11.1396 10.3157 11.1396 10.685 10.9118 10.9128C10.684 11.1406 10.3147 11.1406 10.0869 10.9128L6.99935 7.82528L3.91183 10.9128C3.68402 11.1406 3.31468 11.1406 3.08687 10.9128C2.85906 10.685 2.85906 10.3157 3.08687 10.0878L6.17439 7.00033L3.08687 3.9128C2.85906 3.685 2.85906 3.31565 3.08687 3.08785Z" fill="#ffffff" stroke="#ffffff" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <div class="modal-body">
+        <div class="text-center mt-1 mb-3  text-muted">
+            Product is sold out in the current location. Please select other shop location instead.
+            <!-- Please select the shop location where you want to order the product. -->
+        </div>
+        <div class="options">
+            <div class="item" *ngFor="let item of locationList" [class.disabled]="item?.stockQuantity === 0">
+                <label class="form-check-label pointer w-100 active" (click)="selectLocation(item)">
+                    <div class="form-check">
+                        <input type="radio" name="radio" class="form-check-input">
+                        <span class="radio-btn"></span>
+                        <div class="details d-flex">
+                            <img [src]="item?.location?.profileImg[0]?.img" class="shop-pic">
+                            <div class="">
+                                <h6>{{item?.location?.name}}</h6>
+                                <p class="text-muted m-0">{{item?.stockQuantity}} in stock</p>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="actions mt-4 text-center">
+            <button type="button" class="btn bg-theme-green text-white pl-5 pr-5 m-auto round" (click)="activeModal.close(locationId)" [disabled]="locationId == null">Confirm</button>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

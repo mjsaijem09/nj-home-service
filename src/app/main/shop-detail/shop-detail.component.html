@@ -1,0 +1,842 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<app-online-shop *ngIf="!isLoading && shopDetails.isOnlineStore" [shopDetails]="shopDetails"></app-online-shop>
+<div class="container-fluid p-0" *ngIf="!isLoading && !shopDetails.isOnlineStore"
+  [ngClass]="{'mobile-view': isMobile, 'desktop-view': !isMobile}">
+  <div class="page-wrapper" *ngIf="isMobile" (scroll)="onScroll($event)">
+    <div class="page-header" [class.active]="scrolled >= 300" *ngIf="!isBusinessPage">
+      <div class="arrow-back" (click)="back()">
+          <img src="assets/images/arrow-left-black.svg" alt="back-arrow" *ngIf="scrolled >= 300">
+          <img src="assets/images/arrow-left.svg" alt="back-arrow" *ngIf="scrolled < 300">
+      </div>
+      <div class="heart-icon" (click)="addShopTofavourite()">
+        <i class="fa" [ngClass]="{'fa-heart-o': !isFavouriteShop, 'fa-heart active': isFavouriteShop}"></i>
+      </div>
+    </div>
+    
+    <div class="row shop-detail">
+      <div class="col-md-12 p-0 shop-details-image">
+        <div class="topImg">
+          <owl-carousel-o [options]="customOptions"
+            *ngIf="shopDetails && shopDetails.profileImage && shopDetails.profileImage.length;">
+            <ng-container *ngFor="let item of shopDetails.profileImage; let i=index">
+              <ng-template carouselSlide class="slide" carouselSlide [id]="'item_' + i">
+                <img [src]="imgLink(item?.img)" class="w-100" alt="">
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+          <div *ngIf="(!shopDetails && !shopDetails?.profileImage) || shopDetails?.profileImage.length <= 0">
+            <div class="default-image">
+              <img src="assets/images/no_image.svg" class="w-100" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="profile-wrapper">
+          <div class="store-details">
+            <div class="shop-names">
+              <h3>{{shopDetails?.locationName}}</h3>
+            </div>
+            <div class="store-location-detail d-flex justify-content-between mb-1" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+              <div class="location-name">
+                <p class="rating" *ngIf="shopDetails?.locationRating?.star !== undefined">
+                  <span (click)="navigateToReview()" [class.avoid-clicks]="!shopDetails?.onlineBookingRules?.shopReview">
+                    <app-star-rating [rating]="shopDetails?.locationRating?.star" [size]="18"></app-star-rating>
+                    {{(shopDetails?.locationRating?.star).toFixed(1)}} ({{shopDetails?.locationRating?.star_count}}
+                    Ratings)
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="contact-section-wrapper">
+              <div class="alert alert-warning mt-4" role="alert" *ngIf="!shopDetails?.onlineBooking">
+                The shop is not available for online booking.
+              </div>
+              <div class="alert alert-warning mt-4 text-center" role="alert" *ngIf="userData && !userData?.result?.verified">
+                <a (click)="navigateToVerification()">Get verified now <i class="bi bi-arrow-right"></i></a>
+              </div>
+              <div class="contact-section-container">
+                <div class="contact-section" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+                  <div class="contact-btn-container book">
+                    <a class="contact-btn" href="javascript:void(0)" (click)="book()">
+                      <span class="contact-btn-icon">
+                        <img src="assets/images/calendar-book.svg" alt="calendar-icon">
+                      </span>
+                      Book Now
+                    </a>
+                  </div>
+                </div>
+                <div class="contact-section" *ngIf="shopDetails?.companyPhone" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+                  <div class="contact-btn-container call">
+                    <a class="contact-btn" href="tel:{{shopDetails?.companyPhone}}">
+                      <span class="contact-btn-icon">
+                        <img src="assets/images/phone.svg" alt="phone-icon">
+                      </span>
+                      Call
+                    </a>
+                  </div>
+                </div>
+                <div class="contact-section" 
+                *ngIf="shopDetails?.companyEmail" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+                  <div class="contact-btn-container mail">
+                    <a class="contact-btn" href="mailto:{{shopDetails?.companyEmail}}">
+                      <span class="contact-btn-icon">
+                        <img src="assets/images/mail.svg" alt="mail-icon">
+                      </span>
+                      Mail
+                    </a>
+                  </div>
+                </div>
+                <div class="contact-section" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+                  <div class="contact-btn-container navigation">
+                    <a class="contact-btn" 
+                    href="http://maps.google.com/?q={{shopDetails?.companyStreet}}"
+                      target="_blank">
+                      <span class="contact-btn-icon">
+                        <img src="assets/images/navigation.svg" alt="navigation-icon">
+                      </span>
+                      Navigate
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div>
+              <div class="shop-intro" *ngIf="shopDetails?.descriptions">
+                  <h5>Introduction</h5>
+                  <p>{{shopDetails?.descriptions}}</p>
+                </div>
+                <div class="hr"></div>
+                <div class="location" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+                  <div class="overall-rating">
+                    <p>
+                      <span class="bill-icon">
+                        <img src="assets/images/bill.svg" alt="bill-icon">
+                      </span>
+                      <span>Average Cost per Person</span>
+                      <span class="avg-cost" *ngIf="shopDetails?.avgCost !== undefined && shopDetails?.avgCost !== ''">
+                        {{currency.symbol}}{{(shopDetails?.avgCost * 1).toFixed()}}
+                      </span>
+                    </p>
+                  </div>
+                  <div class="address">
+                    <a href="http://maps.google.com/?q={{shopDetails?.companyStreet}}" target="_blank">
+                      <p><span><img src="assets/images/location-pin.svg"
+                            alt="location-icon"></span>{{shopDetails?.companyBuilding}} {{shopDetails?.companyStreet}},
+                        {{shopDetails?.companyCity}},
+                        {{shopDetails?.companyState}}, {{shopDetails?.companyZip}}</p>
+                    </a>
+                  </div>
+                  <div class="timing-area">
+                    <div class="therapy">
+                      <p><span><img src="assets/images/users.svg" alt="user-icon"></span>{{shopDetails?.therapist?.length}}
+                        Therapist</p>
+                    </div>
+                    <div class="timing">
+                      <p><span><img src="assets/images/clock.svg" alt="clock-icon"></span>{{shopDetails?.availibity}}</p>
+                    </div>
+                    <div class="view-all" *ngIf="shopDetails?.openHours && shopDetails?.openHours?.length">
+                      <p (click)="showPopup(viewAll)">View all</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="hr"></div>
+                <div class="gift-card-section" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+                  <div class=gift-img>
+                    <img 
+                      src="{{shopDetails?.onlineBooking ? 'assets/images/online-booking.svg' : 'assets/images/online-booking-not-avail.svg'}}"
+                      alt="online-booking">
+                  </div>
+                  <div class="gift-card-content" (click)="book()">
+                    <h6>Instant Online Booking Available</h6>
+                    <p>You can confirm your booking once you selected services and time</p>
+                  </div>
+                </div>
+                
+                <div class="gift-card-section" [ngClass]="{'disable': !onlineGiftcard || !shopDetails?.onlineBooking}" (click)="gotoGiftCardPage()">
+                  <div class=gift-img>
+                    <img
+                      src="{{shopDetails?.onlineGiftCard ? 'assets/images/gift-card-offer.svg' : 'assets/images/gift-card-not-avail.svg'}}"
+                      alt="gift-card">
+                  </div>
+                  <div class="gift-card-content">
+                    <h6>Buy a gift card</h6>
+                    <p>Buy gift cards from {{shopDetails?.companyName}} and email it to your friends/families right away</p>
+                  </div>
+                </div>
+                <div class="hr" [ngStyle]="{'visibility': !shopDetails?.onlineBooking ? 'hidden' : 'visible'}"></div>
+                <div *ngIf="shopDetails?.facilities && shopDetails?.facilities?.length">
+                  <div class="facilities">
+                    <h5>facilities</h5>
+                    <div class="row">
+                      <div class="col-sm-6 mb-2" *ngFor="let facility of shopDetails?.facilities">
+                        <img src="assets/images/shop/check.svg" [alt]="facility?.name" width="21">
+                        <span class="ml-3">{{facility?.name}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hr"></div>
+                </div>
+                <div *ngIf="shopDetails?.payment && shopDetails?.payment?.length && shopDetails?.onlineBooking">
+                  <div class="payment-methods">
+                    <h5>Payment Methods</h5>
+                    <ul>
+                      <li *ngFor="let type of shopDetails?.payment"><a><img [src]="imgLink(type?.icon)" alt="{{type?.name}}"></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="hr"></div>
+                </div>
+                  <div class="shop-reviews" *ngIf="shopDetails?.reviews && shopDetails?.reviews?.length && shopDetails?.onlineBooking">
+                    <h5>Shop Reviews</h5>
+                    <!--div *ngFor="let review of shopDetails?.reviews; let last = last;let i = index">
+                      <div class="customer-feedback"
+                        [ngClass]="{'position-relative': last && (!review.comment || review.comment.length == 0)}">
+                        <div class="client-review-details">
+                          <div class="client-details">
+                            <div class="client-img">
+                              <img [src]="imgLink(review?.clientId?.image && review?.clientId?.image[0])" alt="customer"
+                                (error)="setDefaultUserPic($event, review?.clientId?.gender, review)">
+                            </div>
+                            <div class="customerRating">
+                              <div class="customer-name">
+                                <h6 *ngIf="review?.anonymous == false">{{review?.clientId?.firstName}}
+                                  {{review?.clientId?.lastName ?
+                                  review?.clientId?.lastName : ''}}</h6>
+                                <h6 *ngIf="review?.anonymous == true">Anonymous</h6>
+                              </div>
+                              <div class="rating">
+                                <app-star-rating [rating]="review?.star" [size]="16"></app-star-rating>
+                                <div class="time-added">
+                                  <p>{{ moment(review?.createdAt).fromNow() }}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="flag">
+                            <img src="assets/images/flag.svg" alt="flag">
+                          </div>
+                        </div>
+                        <div class="feedback">
+                          <p style="text-transform: none;">{{review?.review}}</p>
+                        </div>
+                        <div class="like-icons">
+                          <ul>
+                            <li (click)="likeComment(review?._id)">
+                              <img src="assets/images/thumb-up-fill.svg" *ngIf="checkLikeDislike(review, 'like')"
+                                alt="thumbs-up">
+                              <img src="assets/images/thumb-up.svg" *ngIf="!checkLikeDislike(review, 'like')"
+                                alt="thumbs-up">{{review?.like?.length}}</li>
+                            <li (click)="dislikeComment(review?._id)">
+                              <img *ngIf="checkLikeDislike(review, 'dislike')" src="assets/images/thumb-down-fill.svg"
+                                alt="thumbs-down">
+                              <img *ngIf="!checkLikeDislike(review, 'dislike')" src="assets/images/thumb-down.svg"
+                                alt="thumbs-down">{{review?.dislike?.length}}</li>
+                            <li (click)="openScrollableContent(review)" style="color: #90c63e;">
+                              Reply
+                            </li>
+                            <li><img src="assets/images/share-post.svg" alt="share"></li>
+                          </ul>
+                        </div>
+                        <div class="blurred-review" (click)="navigateToReview()"
+                          *ngIf="last && (!review.comment || review.comment.length == 0)"></div>
+                      </div>
+
+                      <div *ngIf="review?.comment?.length > 0">
+                        <div class="div-replies">
+                          <span style="text-transform: capitalize; font-weight: 500;">
+                            {{review?.comment?.length}}
+                            {{review?.comment?.length > 1 ? 'Replies' : 'Reply'}}
+                            - {{review?.comment[review?.comment.length -1]?.customerId?.firstName || ''}} {{
+                            review?.comment[review?.comment.length -1]?.customerId?.lastName || ''}} - </span>
+                          <span>{{isContentToggled? readMoreReply(review?.comment[review?.comment.length -1]?.body) :
+                            displayText(review?.comment[0]?.body)}}</span>
+                          <label *ngIf="review?.comment[0]?.body.length >= 50 && !isContentToggled"
+                            (click)="toggleContent(review?.comment[0]?.body)" class="read-label"> Read
+                            More</label>
+                          <label *ngIf="isContentToggled && isReadMore"
+                            (click)="toggleContent(review?.comment[review?.comment.length -1]?.body)" class="read-label">...
+                            Read
+                            Less</label>
+                        </div>
+                      </div>
+                      <div class="hr" *ngIf="!last"></div>
+                    </div!-->
+                    <app-rating-n-review [locationId]="locationId" [shopWall]="true"></app-rating-n-review>
+                    <div class="show-more" style="margin-top: 25px;" *ngIf="shopDetails?.reviews?.length > 2">
+                      <a (click)="navigateToReview()">Show More</a>
+                    </div>
+                    <div class="hr"></div>
+                  </div>
+                  <div class="shop-reviews" *ngIf="shopDetails?.ourShop && shopDetails?.onlineBooking">
+                    <h5>Our Shops</h5>
+                    <div *ngFor="let shop of ourShops | slice:0:2; let last = last;">
+                      <div class="customer-feedback" [ngClass]="{'position-relative': last}">
+                        <app-shop [shop]="shop" [isBusinessPage]="true"></app-shop>
+                        <div class="blurred-review" (click)="navigateToSelectShops()" *ngIf="last && ourShops.length > 2"></div>
+                      </div>
+                    </div>
+                    <div class="show-more" *ngIf="ourShops?.length > 2">
+                      <a (click)="navigateToSelectShops()">Show More</a>
+                    </div>
+                    <div class="hr"></div>
+                  </div>
+                  <div class="services" *ngIf="shopDetails?.services && shopDetails?.services?.length && shopDetails?.onlineBooking">
+                    <h5>Services</h5>
+                    <div class="services-wrapper">
+                      <div class="outer-box" *ngFor="let service of shopDetails?.services; let last = last;"
+                        [ngClass]="{'position-relative': last}">
+                        <div class="service-img" (click)="book()">
+                          <img [src]="imgLink(service?.image[0],'service')"
+                            (error)="updateUrl($event)" alt="service">
+                        </div>
+                        <div class="service-detail">
+                          <div>
+                            <h6 (click)="book()">{{service?.name}}</h6>
+                            <p (click)="book()" class="price"
+                              *ngIf="service?.pricing_option && service?.pricing_option[0] && service?.pricing_option[0]?.price">
+                              <span class="text-green">{{currency.symbol}}{{(service?.pricing_option[0]?.price).toFixed(2)}}</span>/for
+                              {{service?.pricing_option[0]?.duration}}
+                            </p>
+                            <p>{{truncateString(service?.description, 'service')}}</p>
+                          </div>
+                          <a (click)="book()">Book us</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="show-more">
+                      <a (click)="book()">Show More</a>
+                    </div>
+                  </div>
+                  <div class="product-section" *ngIf="products.length >= 1">
+                    <h5 class="mb-3">Products</h5>
+                    <div class="row m-0">
+                      <ng-container *ngFor="let product of products">
+                        <div class="col-xl-2 col-lg-3 col-sm-6 col-6 mb-4">
+                          <app-product [product]="product" [shop]="shopDetails"></app-product>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div id="therapists"></div>
+                  <div class="services therapist" *ngIf="shopDetails?.therapist && shopDetails?.therapist?.length && shopDetails?.onlineBooking">
+                    <h5>Therapists</h5>
+                    <div class="services-wrapper">
+                      <div *ngFor="let therapist of shopDetails?.therapist; let i = index;">
+                        <div class="outer-box" [ngClass]="{'active': selectedTherapistIndex === i}">
+                          <div class="service-img" (click)="bookTherapist(therapist)">
+                            <img 
+                              [src]="imgLink(therapist?.image)" alt="therapist"
+                              (error)="setDefaultTherapistPic($event, therapist?.gender)">
+                          </div>
+                          <div class="service-detail" (click)="bookTherapist(therapist)">
+                            <div>
+                              <h6>{{therapist?.firstName + ' ' + therapist?.lastName}}</h6>
+                              <div class="rating">
+                                <app-star-rating [rating]="therapist?.rating?.star" [size]="16"></app-star-rating>
+                                <div class="overall-rating">
+                                  <p *ngIf="therapist?.rating?.star !== undefined">{{(therapist?.rating?.star).toFixed(1)}}
+                                    ({{therapist?.rating?.star_count}})</p>
+                                </div>
+                              </div>
+                              <div class="therapist-intro">
+                                <p>{{truncateString(therapist?.descriptions, 'therapist')}}</p>
+                              </div>
+                            </div>
+                            <div class="btns">
+                              <p (click)="bookTherapist(therapist)" class="{{(therapist?.gender).toLowerCase()}}">
+                                {{therapist?.gender}}</p>
+                              <a (click)="book(therapist)">Book Me</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br *ngIf="shopDetails?.onlineBooking">
+        <br *ngIf="shopDetails?.onlineBooking">
+        <br *ngIf="shopDetails?.onlineBooking">
+        <div class="book-us" [style.display]="scrolled < 400 ? 'none' : ''" *ngIf="shopDetails?.onlineBooking">
+          <a (click)="book()">Book US</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------------------------------- Desktop Version --------------------------------------------------------->
+  <!--------------------------------------------------------- Desktop Version --------------------------------------------------------->
+  <!--------------------------------------------------------- Desktop Version --------------------------------------------------------->
+  <!--------------------------------------------------------- Desktop Version --------------------------------------------------------->
+  <!--------------------------------------------------------- Desktop Version --------------------------------------------------------->
+  <div class="desktop-view mt-5 new-version" *ngIf="!isMobile">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <br>
+          <br>
+        </div>
+        <div class="col-8">
+          <img [src]="shopCoverImg" (error)="$event.target.src='assets/images/no_image.png'" class="img-border pointer" alt="Cover" width="100%" height="350px" style="object-fit: cover" (click)="showPopup(shopImages, 'shopImages')">
+          <div class="row">
+            <div class="col-12 mt-3 child-shop-images-carousel">
+              <owl-carousel-o [options]="ShopImgsDesktop">
+                <ng-container *ngFor="let item of shopDetails?.profileImage">
+                  <ng-template carouselSlide class="slide" carouselSlide>
+                    <img class="img-border img-item pointer" [src]="imgLink(item?.img)" (click)="shopCoverImg = item?.img" height="130px" style="object-fit: cover" alt="Shop Image">
+                  </ng-template>
+                </ng-container>
+                <ng-template carouselSlide class="slide" carouselSlide *ngIf="shopDetails?.profileImage?.length <= 0">
+                  <img class="img-border img-item img-contain" src="assets/images/BookUs_logo.png" style="object-fit: cover" alt="Shop Image">
+                </ng-template>
+                <ng-template carouselSlide class="slide" carouselSlide *ngIf="shopDetails?.profileImage?.length <= 1">
+                  <img class="img-border img-item img-contain" src="assets/images/BookUs_logo.png" style="object-fit: cover" alt="Shop Image">
+                </ng-template>
+                <ng-template carouselSlide class="slide" carouselSlide *ngIf="shopDetails?.profileImage?.length <= 2">
+                  <img class="img-border img-item img-contain" src="assets/images/BookUs_logo.png" style="object-fit: cover" alt="Shop Image">
+                </ng-template>
+                <ng-template carouselSlide class="slide" carouselSlide *ngIf="shopDetails?.profileImage?.length <= 3">
+                  <img class="img-border img-item img-contain" src="assets/images/BookUs_logo.png" style="object-fit: cover" alt="Shop Image">
+                </ng-template>
+              </owl-carousel-o>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card h-100">
+            <div class="card-body d-flex justify-content-between" style="flex-direction: column;">
+              <h2>{{shopDetails?.locationName}}</h2>
+              <p class="rating mt-4 pointer" *ngIf="shopDetails?.locationRating?.star !== undefined">
+                <span (click)="navigateToReview()" [class.avoid-clicks]="!shopDetails?.onlineBookingRules?.shopReview">
+                  <app-star-rating [rating]="shopDetails?.locationRating?.star" [size]="21"></app-star-rating>
+                  <span style="font-size: 19px;" style="font-size: 19px;margin-left: 10px;">
+                    {{(shopDetails?.locationRating?.star).toFixed(1)}}
+                    <span class="text-gray">({{shopDetails?.locationRating?.star_count}} Ratings)</span>
+                  </span>
+                </span>
+              </p>
+              <p class="text-gray m-0" style="font-size: 19px;">
+                <span><img src="assets/images/shop/pinned-location.svg" alt="location" width="18px"></span>
+                {{shopDetails?.companyBuilding}} {{shopDetails?.companyStreet}},
+                {{shopDetails?.companyCity}}, {{shopDetails?.companyState}}, {{shopDetails?.companyZip}}
+              </p>
+              <div class="alert alert-warning mt-4" role="alert" *ngIf="!shopDetails?.onlineBooking">
+                The shop is not available for online booking.
+              </div>
+              <div class="alert alert-warning mt-4 text-center" role="alert" *ngIf="userData && !userData?.result?.verified">
+                <a (click)="navigateToVerification()">Get verified now <i class="bi bi-arrow-right"></i></a>
+              </div>
+              <div class="action-btns m-0">
+                <button class="btn btn-bookus w-100 rounded d-flex align-items-center" style="font-weight: 600;" (click)="book()" [disabled]="!shopDetails?.onlineBooking">
+                  <img src="assets/images/shop/click-bookus.svg" style="width: 45px;margin-right: 25px;margin-left: 20px;">
+                  Book Us</button>
+                <button class="btn btn-buy-giftcard w-100 rounded d-flex align-items-center mt-4" style="font-weight: 600;" (click)="gotoGiftCardPage()" [disabled]="!shopDetails?.onlineGiftCard || !shopDetails?.onlineBooking">
+                  <img src="assets/images/shop/click-buy-gc.svg" style="width: 45px;margin-right: 25px;margin-left: 20px;">
+                  Buy a Gift Card</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <br>
+          <br>
+        </div>
+        <div class="col-8">
+          <h3>Introduction</h3>
+          <div class="d-flex align-items-center">
+            <img class="me-2" src="assets/images/shop/review-staff.svg" width="23px">
+            <span class="me-5" style="font-size: 19px;">Staff Review Available</span>
+            <img class="me-1" src="assets/images/shop/instant-booking.svg" width="28px">
+            <span style="font-size: 19px;">Instant Booking Available</span>
+          </div>
+          <p class="mt-3">{{shopDetails?.descriptions}}</p>
+        </div>
+        <div class="col-4">
+          <div class="card" [ngClass]="{'disable': !shopDetails?.onlineBooking}">
+            <div class="card-body about">
+              <h3>About</h3>
+              <div class="action-btns mt-4 pb-3 d-flex justify-content-between align-items-center" style="gap: 8px;">
+                <a class="btn btn-call w-100 rounded m-0" href="tel:{{shopDetails?.companyPhone}}"><img src="assets/images/shop/call.svg" alt=""> Call</a>
+                <a class="btn btn-mail w-100 rounded m-0" href="mailto:{{shopDetails?.companyEmail}}"><img src="assets/images/shop/mail.svg" alt=""> Mail</a>
+                <a class="btn btn-map w-100 rounded m-0" href="http://maps.google.com/?q={{shopDetails?.companyStreet}}" target="_blank"><img src="assets/images/shop/map.svg" alt=""> Map</a>
+              </div>
+              <div class="d-flex align-items-center mt-2">
+                <img src="assets/images/shop/receipt.svg" class="me-2">
+                <p class="text-gray mb-0" style="font-size: 18px;">Average Cost per Person</p>
+                <p class="text-theme-green mb-0 ms-auto" style="font-size: 18px;">{{currency.symbol}}{{(shopDetails?.avgCost * 1).toFixed()}}</p>
+              </div>
+              <div class="d-flex align-items-center mt-2">
+                <img src="assets/images/shop/staff.svg" class="me-2">
+                <p class="text-gray mb-0" style="font-size: 18px;">{{shopDetails?.therapist?.length}} Therapist</p>
+              </div>
+              <div class="d-flex align-items-center mt-2">
+                <img src="assets/images/shop/time.svg" class="me-2">
+                <p class="text-gray mb-0" style="font-size: 18px;" >{{shopDetails?.availibity}}</p>
+                <div class="dropdown ms-auto" (click)="showPopup(viewAll)">
+                  <p class="mb-0 text-theme-green" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
+                    View All
+                  </p>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item d-flex justify-content-between" style="gap: 5px;"
+                      *ngFor="let hour of shopDetails.openHours | slice:1:7">
+                      <span>{{hour.day_of_week | slice:0:3}}</span>
+                      <span>{{hour.start | date:'h:mm a'}} - {{hour.end | date:'h:mm a'}}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" *ngIf="shopDetails?.onlineBooking">
+          <br>
+          <br>
+        </div>
+        <div class="col-6" *ngIf="shopDetails?.facilities && shopDetails?.facilities?.length && shopDetails?.onlineBooking">
+          <div class="card">
+            <div class="card-body">
+              <h3>Facilities</h3>
+              <div class="row">
+                <div class="col-6 mt-4" *ngFor="let item of shopDetails?.facilities">
+                  <div class="d-flex align-items-center">
+                    <img src="assets/images/shop/check.svg" class="me-4">
+                    <p class="m-0">{{item.name}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6" *ngIf="shopDetails?.payment && shopDetails?.payment?.length && shopDetails?.onlineBooking">
+          <div class="card">
+            <div class="card-body">
+              <h3>Payment Methods</h3>
+              <div class="row">
+                <div class="col-3 mt-4" *ngFor="let item of shopDetails?.payment">
+                  <div class="card p-4">
+                    <img [src]="item?.icon" style="height: 24px;" [alt]="item?.name">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-5 mt-5" *ngIf="shopDetails?.onlineBookingRules?.shopReview">
+          <h3>Shop Reviews</h3>
+          <p style="font-size: 15px">Shop review demonstrates the management, cleanness and facility of the business, if you are interested to know how individual staff performance, you can check staff review instead.</p>
+          <div class="rating-section" *ngIf="overallRating">
+            <div class="rating">
+                <app-star-rating [rating]="overallRating?.star" [size]="21"></app-star-rating>
+                <div class="rating-score">
+                    <p class="m-0 text-gray">{{overallRating?.star | number:'1.0-1'}} out of 5</p>
+                </div>
+                <div class="total-rating ms-auto">
+                    <p class="m-0 text-gray">{{overallRating?.star_count | number: '1.0-0'}} Total ratings</p>
+                </div>
+            </div>
+            <div class="progress-ratings" *ngIf="percentRatings">
+                <div class="progressBar-wrapper" *ngIf="percentRatings?.five_star !== undefined"> 
+                    <div class="rating-stars">
+                        <p class="m-0 text-gray">5 star</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]="percentRatings?.five_star + '%'" aria-valuenow="percentRatings?.five_star" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="rating-percent">
+                        <p class="m-0 text-gray">{{percentRatings?.five_star || 0}}%</p>
+                    </div>
+                </div>
+                <div class="progressBar-wrapper" *ngIf="percentRatings?.four_star !== undefined"> 
+                    <div class="rating-stars">
+                        <p class="m-0 text-gray">4 star</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]="percentRatings?.four_star + '%'" aria-valuenow="percentRatings?.four_star" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="rating-percent">
+                        <p class="m-0 text-gray">{{percentRatings?.four_star || 0}}%</p>
+                    </div>
+                </div>
+                <div class="progressBar-wrapper" *ngIf="percentRatings?.three_star !== undefined"> 
+                    <div class="rating-stars">
+                        <p class="m-0 text-gray">3 star</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]="percentRatings?.three_star + '%'" aria-valuenow="percentRatings?.three_star" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="rating-percent">
+                        <p class="m-0 text-gray">{{percentRatings?.three_star || 0}}%</p>
+                    </div>
+                </div>
+                <div class="progressBar-wrapper" *ngIf="percentRatings?.two_star !== undefined"> 
+                    <div class="rating-stars">
+                        <p class="m-0 text-gray">2 star</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]="percentRatings?.two_star + '%'" aria-valuenow="percentRatings?.two_star" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="rating-percent">
+                        <p class="m-0 text-gray">{{percentRatings?.two_star || 0}}%</p>
+                    </div>
+                </div>
+                <div class="progressBar-wrapper" *ngIf="percentRatings?.one_star !== undefined"> 
+                    <div class="rating-stars">
+                        <p class="m-0 text-gray">1 star</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]="percentRatings?.one_star + '%'" aria-valuenow="percentRatings?.one_star" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="rating-percent">
+                        <p class="m-0 text-gray">{{percentRatings?.one_star || 0}}%</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <p class="text-theme-green fw-medium mb-1"><img src="assets/images/shop/shield.svg" class="me-2" width="25px">Genuine reviews</p>
+          <p>Review only can be given by <span class="text-theme-green">SMS</span> sent to customers after their visit.</p>
+        </div>
+        <div class="col-7 mt-5 pt-5" *ngIf="shopDetails?.onlineBookingRules?.shopReview">
+          <!--div class="card pb-4">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item mb-1 p-4" *ngFor="let review of shopDetails?.reviews.slice(0, 2); let last = last;">
+                <div class="customer-feedback">
+                  <div class="client-review-details">
+                    <div class="client-details">
+                      <div class="client-img" (click)="customerDetail(review)">
+                        <img src="{{review?.clientId?.image && review?.clientId?.image[0]}}" alt="customer"
+                          (error)="setDefaultUserPic($event, review?.clientId?.gender, review)">
+                      </div>
+                      <div class="customerRating">
+                        <div class="customer-name">
+                          <h6 *ngIf="review?.anonymous == false">{{review?.clientId?.firstName}}
+                            {{review?.clientId?.lastName ?
+                            review?.clientId?.lastName : ''}}</h6>
+                          <h6 *ngIf="review?.anonymous == true">Anonymous</h6>
+                        </div>
+                        <div class="rating">
+                          <app-star-rating [rating]="review?.star" [size]="16"></app-star-rating>
+                          <div class="time-added">
+                            <p class="m-0">{{ moment(review?.createdAt).fromNow() }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flag">
+                      <img src="assets/images/flag.svg" alt="flag">
+                    </div>
+                  </div>
+                  <div class="feedback">
+                    <p style="text-transform: none;">{{review?.review}}</p>
+                  </div>
+                  <div class="like-icons">
+                    <ul>
+                      <li (click)="likeComment(review?._id)">
+                        <img src="assets/images/thumb-up-fill.svg" *ngIf="checkLikeDislike(review, 'like')"
+                          alt="thumbs-up">
+                        <img src="assets/images/thumb-up.svg" *ngIf="!checkLikeDislike(review, 'like')"
+                          alt="thumbs-up">{{review?.like?.length}}</li>
+                      <li (click)="dislikeComment(review?._id)">
+                        <img *ngIf="checkLikeDislike(review, 'dislike')" src="assets/images/thumb-down-fill.svg"
+                          alt="thumbs-down">
+                        <img *ngIf="!checkLikeDislike(review, 'dislike')" src="assets/images/thumb-down.svg"
+                          alt="thumbs-down">{{review?.dislike?.length}}</li>
+                      <li (click)="openScrollableContent(review)" style="color: #90c63e;">
+                        Reply
+                      </li>
+                      <li><img src="assets/images/share-post.svg" alt="share"></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="show-more">
+              <p class="m-0 fw-medium pointer" (click)="navigateToReview()">Show all {{totalshopRating}} reviews</p>
+            </div>
+          </div-->
+          <app-rating-n-review   [locationId]="locationId" [shopWall]="true"></app-rating-n-review>
+          <div class="show-more">
+            <p class="m-0 fw-medium pointer" (click)="navigateToReview()">Show all {{totalshopRating}} reviews</p>
+          </div>
+        </div>
+        <div class="col-12" *ngIf="shopDetails?.onlineBooking">
+          <br>
+          <br>
+        </div>
+        <div class="col-12" *ngIf="shopDetails?.onlineBooking">
+          <h3>Services</h3>
+          <br>
+          <div class="card pl-5 pr-5">
+            <div class="card-body serviceNav">
+              <owl-carousel-o [options]="servicesCarousel">
+                <ng-container *ngFor="let group of serviceGroupList">
+                  <ng-template carouselSlide [id]="'cat-'+group.groupName">
+                    <a class="category" [class.active] = "group.groupName === activeCategory" (click)="selectCategory(group.groupName)">{{group?.groupName}}<span>({{group?.services?.length}})</span></a>
+                  </ng-template>  
+                </ng-container>
+              </owl-carousel-o>
+            </div>
+          </div>
+          <br>
+          <div class="row service-list">
+            <div class="col-3 mb-4" *ngFor="let service of selectedCategory?.services">
+              <div class="card h-100">
+                <div class="bookedTimes">Booked {{service?.services?.bookedTimes}} Times</div>
+                <img [src]="imgLink(service?.services?.image[0], 'service')" class="card-img-top" (error)="updateUrl($event)">
+                <div class="card-body d-flex justify-content-between" style="flex-direction: column;">
+                  <h5>{{service?.services?.name}}</h5>
+                  <p class="text-gray">{{service?.services?.description | slice:0:50}} <span *ngIf="service?.services?.description.length > 50">. . .</span></p>
+                  <p style="color: #696969">From <span class="fw-bold text-theme-green" style="font-size: 21px">{{currency.symbol}}{{service?.services?.pricing_option[0].price | number:'1.2-2':'en-US'}}</span></p>
+                  <button class="btn bg-theme-green rounded text-white" (click)="book()">Book Us</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-5" *ngIf="products.length >= 1">
+          <div class="header d-flex justify-content-between align-items-center">
+            <h3 class="mb-3">Product</h3>
+            <a (click)="viewAllProducts()" class="btn btn-view-all p-0" *ngIf="products.length > 4"> View All <img src="assets/icons/arrow_right.png" ></a>
+          </div>
+          <br>
+          <div class="row">
+            <ng-container *ngFor="let product of products | slice:0:4">
+              <div class="col-3 mb-4">
+                <app-product [product]="product" [shop]="shopDetails"></app-product>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div id="therapists"></div>
+        <div class="col-12 mt-5" *ngIf="shopDetails?.onlineBooking">
+          <div class="therapist-section">
+            <div class="header">
+              <h3 class="mb-3">Therapists</h3>
+              <!-- <a href="" class="btn btn-view-all">View All <img src="assets/icons/arrow_right.png" ></a> -->
+            </div>
+            <div class="row" *ngIf="shopDetails?.therapist && shopDetails?.therapist?.length">
+              <div class="col-4 mt-4" *ngFor="let therapist of shopDetails?.therapist; let i = index;">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="therapist-img pointer" (click)="bookTherapist(therapist)">
+                      <img [src]="imgLink(therapist?.image)" alt="therapist"
+                        (error)="setDefaultTherapistPic($event, therapist?.gender)">
+                    </div>
+                    <div class="details">
+                      <div class="d-flex pointer" style="gap: 10px">
+                        <h6 (click)="bookTherapist(therapist)" class="mt-2">{{therapist?.firstName + ' ' +
+                          therapist?.lastName}}</h6>
+                          <img *ngIf="therapist?.gender == 'Female'" src="assets/images/shop/gender-female.svg" alt="therapist?.gender">
+                          <img *ngIf="therapist?.gender == 'Male'" src="assets/images/shop/gender-male.svg" alt="therapist?.male">
+                      </div>
+                      <div class="rating">
+                        <app-star-rating [rating]="therapist?.rating?.star" [size]="16"></app-star-rating>
+                        <div class="overall-rating">
+                          <p *ngIf="therapist?.rating?.star !== undefined" class="m-0 mutted-text">
+                            {{(therapist?.rating?.star).toFixed(1)}} ({{therapist?.rating?.star_count}})</p>
+                        </div>
+                      </div>
+                      <div class="therapist-intro mutted-text">
+                        {{therapist?.descriptions}}
+                      </div>
+                      <button class="btn w-100 bg-theme-green text-white rounded" (click)="book(therapist)">Book Me</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #viewAll let-modal>
+  <div class="custom-modal" *ngIf="shopDetails?.openHours && shopDetails?.openHours?.length">
+    <div class="modal-header">
+      <h4 class="modal-title">Open Hours</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let openHour of shopDetails?.openHours" class="row">
+        <div class="col-md-6 col-6 week-day">{{openHour?.day_of_week}}</div>
+        <div class="col-md-6 col-6 day-time" *ngIf="openHour?.start && openHour?.end; else notAvailableForDay">
+          {{formatAMPM(openHour?.start)}} - {{formatAMPM(openHour?.end)}}</div>
+        <ng-template #notAvailableForDay>
+          <div class="col-md-6 col-6 day-time">Not Available</div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</ng-template>
+<div *ngIf="isMobile" class="user-guide-popup">
+  <div *ngIf="bookus" class="bookus">
+    <div class="text">Click here to start your booking.</div>
+    <img class="arrow" src="assets/images/user-guide-popups/pointer.svg">
+    <div class="btn" (click)="gotIt('bookus')">Got It</div>
+    <div class="icon">Book Us
+      <!-- <img src="assets/images/footer/home-green.svg"> -->
+    </div>
+  </div>
+</div>
+
+<ng-template #shopImages let-modal>
+  <div class="modal-header">
+    <div class="container-fluid">
+      <div class="container d-flex align-items-center">
+        <h4 class="modal-title d-flex align-items-center">{{shopDetails.locationName}} 
+          <span class="material-icons-outlined ms-2">
+          image
+          </span>{{activeSlides?.startPosition+1}}/{{shopDetails?.profileImage.length}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-10">
+            <owl-carousel-o [options]="ShopImgsFullPage" (translated)="getPassedData($event)">
+              <ng-container *ngFor="let item of shopDetails.profileImage">
+                <ng-template carouselSlide class="slide" [id]="item._id">
+                  <img [src]="imgLink(item?.img)" (click)="shopCoverImg = item?.img" height="100%" style="object-fit: cover" alt="Shop Image">
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+          <div class="col-2" style="max-height: 550px;overflow: auto">
+            <div class="card mb-2" *ngFor="let item of shopDetails.profileImage" 
+            style="border: solid 4px #ffffff;" [style.border-color]="currectSlide == item._id ? '#90c63e' : '#ffffff'">
+              <img [src]="imgLink(item?.img)" alt="item._id" class="w-100" height="150px" style="object-fit: cover">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="btn bg-blue text-white rounded" style="width: 140px" href="tel:{{shopDetails?.companyPhone}}">Call</a>
+    <button class="btn bg-theme-green text-white rounded" style="width: 140px" (click)="book()">BookUs</button>
+  </div>
+</ng-template>
+<!---------------------------------------------------------------------------- CHAT BOT ---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------- CHAT BOT ---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------- CHAT BOT ---------------------------------------------------------------------------->
+<div *ngIf="shopDetails" class="chat-bot" [class.adjust]="scrolled >= 300">
+  <button *ngIf="!chatOpened" class="chat-btn"  (click)="openChat()"><img [src]="shopDetails?.companyLogo" [alt]="shopDetails?.locationName"></button>
+    <app-chatbox *ngIf="chatOpened" (output)="chatOutput($event)" [data]="shopDetails"></app-chatbox>
+</div>

@@ -1,0 +1,47 @@
+<section class="shop-list">
+  <div class="container">
+    <div class="search-fields">
+      <div class="search-field ">
+        <form>
+          <div class="input-group">
+            <input
+              id="searchShop"
+              type="search"
+              name="search-d"
+              class="form-control rounded"
+              placeholder="Search the business name"
+              aria-label="Search"
+              aria-describedby="search-addon"
+              [(ngModel)]="searchText"
+              (ngModelChange)="search($event)"
+              autofocus>
+          </div>
+        </form>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="search-location form-group">
+            <input type="text" class="form-control" placeholder="Search Location"  [(ngModel)]="searchLocation" (focus)="navigateToSearchCity()" />
+          </div>
+          <!-- <div class="map-pin">
+              <img src="assets/images/map-pin-black.svg" alt="location-pin">
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="parentLoader" *ngIf="isLoading; else shopListing;">
+      <app-custom-spinner></app-custom-spinner>
+    </div>
+    <ng-template #shopListing>
+      <app-shop [shop]="shop" *ngFor="let shop of shops"></app-shop>
+      <div class="emptyArray" *ngIf="shops.length === 0">
+        <img src="../../../../assets/images/category-search/no-buninessfound.svg" alt="">
+        <h4>Sorry !</h4>
+        <p>We do not have any business in this area.</p>
+        <p>Do you want to try other location?</p>
+        <p>Bookus is working hard to<br>have more business to join us.</p>
+        <!-- <button class="btn-green w-100">Let’s Go</button> -->
+      </div>
+    </ng-template>
+  </div>
+</section>

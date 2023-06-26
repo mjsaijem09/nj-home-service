@@ -1,0 +1,136 @@
+<div class="section giftcard-section">
+    <div class="container mobile">
+        <p class="swipe-left" *ngIf="ShowSwipeIndication"><span><img src="/assets/images/giftcard/arrow-left.svg" alt=""></span> Swipe left for more</p>
+        <div class="gifcard-carousel">
+            <owl-carousel-o [options]="customOptions" (translated)="drag($event)">
+                <ng-container *ngFor="let item of themes">
+                    <ng-template carouselSlide [id]="item._id">
+                        <div class="theme" (click)="selectTheme(item)">
+                            <div class="card" [class.selected]="item.name === theme.name">
+                                <img src="{{item.img}}" alt="">
+                            </div>
+                            <div class="text-center mt-2">
+                                <div class="theme-name mb-1">{{item.name}}</div>
+                                <div *ngIf="item._id == 0"class="theme-value">Free</div>
+                                <div *ngIf="item._id != 0" class="theme-value"><div class="pills">${{item.price}}</div></div>
+                                <!-- <div *ngIf="item._id != 0" class="theme-value"><div class="pills"><span class="coin"><img src="/assets/images/giftcard/coin.svg" alt=""></span>{{theme.price}}</div></div> -->
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+        </div>
+
+        <div class="card-theme-container text-center mt-5 mb-5">
+            <!-- <div class="card gc-style" style="background-image: url(/assets/images/giftcard/default-gc.jpg);background-size: cover;">
+                <div class="card-body">
+                    <h3>Gift Voucher</h3>
+                </div>
+            </div> -->
+            <img [src]="env+theme.card" alt="theme" width="100%">
+        </div>
+        <div class="gc-letter" [ngStyle]="{'background-image': getBackgroundImage()}">
+            <div class="card" [ngStyle]="{'background-color': theme.name == 'Default' ? '#EFF7E4' : ''}">
+                <div class="card-body">
+                    <div class="to">To,</div>
+                    <input disabled type="text" class="no-border" placeholder="Your Friend">
+                    <textarea disabled class="no-border mt-2 mb-2" id="" rows="5" placeholder="Bookus giftCard allow your to send a gift to your friends and faimilies whenever and wherever your are by just few clicks. you can also write whatever you would like to say to them in this letter. This is just a preview of our giftcard. Thank you for choosing bookus."></textarea>
+                    <div class="from">From</div>
+                    <input disabled type="text" class="no-border" placeholder="Your Name">
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-light-green btn-submit" (click)="next()">NEXT</button>
+    </div>
+    <div class="desktop">
+        <div class="banner">
+            <h1>Buy a Gift Card</h1>
+            <img class="confetti" src="assets/images/giftcard/confetti.svg">
+            <img class="illustration" src="assets/images/giftcard/gc-illustration.svg">
+        </div>
+        <div class="container">
+            <div class="user-guide">
+                <div class="step active">
+                    <div class="num">1</div>
+                    <div class="guide">
+                        <div class="title"><p class="m-0" style="width: 295px;">Choose Gift Card</p><span class="border-indicator"></span></div>
+                        <div class="some-texts">We have gift cards for every occasion.<br>
+                            Pick your favorite card.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="num">2</div>
+                    <div class="guide">
+                        <div class="title"><p class="m-0" style="width: 392px;">Message and recipient</p><span class="border-indicator"></span></div>
+                        <div class="some-texts">Write a message and set the <br>
+                            recipient of your gift card.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="num">3</div>
+                    <div class="guide">
+                        <div class="title"><p class="m-0">Review and send</p></div>
+                        <div class="some-texts">Review the details before sending <br>
+                            your card out.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="gc-theme mt-5">
+                <div class="header-title">
+                    <h4>Choose Gift Card</h4>
+                    <button class="btn btn-next" (click)="next()">Next <img src="assets/images/giftcard/next.svg" alt="next"></button>
+                </div>
+                <div class="theme-selection-container mt-3">
+                    <br>
+                    <owl-carousel-o [options]="customOptions" (translated)="drag($event)">
+                        <ng-container *ngFor="let item of themes">
+                            <ng-template carouselSlide [id]="item._id">
+                                <div class="theme" (click)="selectTheme(item)">
+                                    <div class="card pointer" [class.selected]="item.name === theme.name">
+                                        <img src="{{item.img}}" alt="">
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <div class="theme-name mb-1">{{item.name}}</div>
+                                        <div class="theme-value">
+                                            <img src="/assets/images/giftcard/dollar-sign.svg" style="width:16px"/>
+                                            {{item.price != 0 ? item.price+'.00' : 'Free'}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                    <br>
+                </div>
+                <br>
+                <br>
+            </div>
+            <div class="sample-template mt-5">
+                <div class="header-title">
+                    <h4>Sample Gift Card and Message</h4>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card-theme-container text-center" style="width: 100%">
+                            <img [src]="env+theme.card" alt="theme" width="100%">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="gc-letter m-0 h-100" [class.p-0]="theme.name == 'Default'" [ngStyle]="{'background-image': getBackgroundImage()}">
+                            <div class="card h-100" [ngStyle]="{'background-color': theme.name == 'Default' ? '#EFF7E4' : ''}">
+                                <div class="card-body">
+                                    <div class="to">To,</div>
+                                    <input disabled type="text" class="no-border" placeholder="Your Friend">
+                                    <textarea disabled class="no-border mt-2 mb-2" id="" rows="{{theme.name == 'Default' ? 4 : 3}}" placeholder="Bookus giftCard allow your to send a gift to your friends and faimilies whenever and wherever your are by just few clicks. you can also write whatever you would like to say to them in this letter. This is just a preview of our giftcard. Thank you for choosing bookus."></textarea>
+                                    <div class="from">From</div>
+                                    <input disabled type="text" class="no-border" placeholder="Your Name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

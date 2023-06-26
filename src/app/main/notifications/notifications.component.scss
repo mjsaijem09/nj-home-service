@@ -1,0 +1,135 @@
+.notification {
+  padding-bottom: 10px;
+  p {
+    line-height: 17px;
+    margin: 0;
+  }
+  .card {
+    box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+    border-radius: 10px;
+    border: none;
+     .user-avtar{
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    .card-body {
+      img {
+        margin-right: 8px;
+      }
+     
+      .profile-section {
+        display: flex;
+        align-items: start;
+        .details {
+          p.note {
+            font-size: 14px;
+            span {
+              color: #90C63E;
+            }
+          }
+          p.mutted-text {
+            font-size: 10px;
+            color: #A6AEC1;
+          }
+        }
+      }
+      .appointment-details {
+        background-color: rgb(239 247 228 / 75%);
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        gap: 10px;
+        .service-details {
+          padding: 0;
+          .name-n-duration {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            p.name {
+              color: #90C63E;
+              font-size: 12px;
+              line-height: 20px;
+              font-weight: 500;
+            }
+          }
+          .date {
+            display: flex;
+            align-items: center;
+            p.sched-date {
+              font-size: 12px;
+              color: #90C63E;
+              line-height: 20px;
+              font-weight: 500;
+            }
+          }
+        }
+        .actions {
+          // width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          gap: 10px;
+          button{
+            text-transform: capitalize;
+            font-size: 12px;
+            border-radius: 5px;
+            font-weight: 500;
+            line-height: 18px;
+            padding: 5px 10px;
+            border: none;
+            color: #fff;
+            &.btn-confirm {
+              background-color: #90C63E;
+            }
+            &.btn-edit {
+              background: #FD6D6D;
+            }
+          }
+        }
+      }
+    }
+  }
+  .card.liked {
+    .details {
+      display: flex;
+      align-items: center;
+    }
+    .card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .post {
+      p.action {
+        color: #0D0D0D;
+        font-size: 14px;
+      }
+      p.comment {
+        font-size: 12px;
+        color: #90C63E;
+        font-weight: 500;
+      }
+      p.date-time {
+        color: #A6AEC1;
+        font-size: 10px;
+      }
+    }
+  }
+}
+.bonze {
+      position: absolute;
+      margin-left: 10px;
+      margin-top: 1px;
+      color: #000000;
+    }
+    .img-notify{
+          width: 54px;
+          height: auto;
+          border-radius: 100%;
+          background-color: #e9f5d7;
+          padding: 12px;
+          margin-right: 10px;
+    }

@@ -1,0 +1,50 @@
+.mywallet-section {
+    min-height: 100vh;
+    position: relative;
+    .header-nav {
+        background: #fff;
+        padding-top: 70px;
+        padding-bottom: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        position: fixed;
+        top: 0px;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        border-bottom: solid 1px #e5e5e5;
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            .pills {
+                background: #EDEDEE;
+                color: #A6AEC1;
+                font-size: 14px;
+                border-radius: 14px;
+                padding: 7px 20px;
+            }
+            .pills.active {
+                background: #EFF7E4;
+                color: #90C63E;
+            }
+        }
+    }
+    .content {
+        margin-top: 145px;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    .mywallet-section {
+        .header-nav {
+            top: 80px;
+            .container {
+                justify-content: space-evenly;
+            }
+        }
+        .content {
+            margin-top: 220px;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="p-5">
+    </div>
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item product-details">
+                <img [src]="product.productId.productImages[0].productImage" />
+                <div class="infos">
+                    <p class="name">{{product.productId.name}}</p>
+                    <p class="variant" *ngIf="product.productId?.variation">Variation: White</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="product-quality">
+                    <p>Product Quality</p>
+                    <ngx-stars [color]="'#F7C942'" [size]="2" [maxStars]="5" (ratingOutput)="productStarRate($event)"></ngx-stars>
+                    <p [class]="'quality ' + quality" >{{quality}}</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <label class="form-label">Add proof</label>
+                <div class="add-photo-video" *ngIf="photos.length == 0 && !video">
+                    <button class="add-photo" (click)="openCamera('photo')">
+                        <i class="bi bi-camera"></i>
+                        Add Photo
+                    </button>
+                    <button class="add-video">
+                        <i class="bi bi-camera-video" (click)="openCamera('video')"></i>
+                        Add Video
+                    </button>
+                </div>
+                <div class="medias" [ngClass]="{ 'd-none': photos.length == 0 && !video }">
+                    <div class="flex-container">
+                        <ng-container *ngFor="let img of photos; let i = index">
+                            <div class="flex-item">
+                                <img [src]="img" />
+                                <div class="remove" (click)="removePhoto(i)">
+                                    <i class="bi bi-x-lg"></i>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="flex-item video" [ngClass]="{ 'd-none': !video }">
+                            <video id="videoThumbnail" #videoThumbnail></video>
+                            <div class="video-details">
+                                <i class="bi bi-camera-video"></i>
+                                <p class="duration">{{videoDuration}}</p>
+                            </div>
+                            <div class="remove" (click)="video = null">
+                                <i class="bi bi-x-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-item" *ngIf="photos.length < 5">
+                            <div class="add-media" (click)="openCamera('photo')">
+                                <i class="bi bi-camera-fill"></i>
+                                <p class="text">{{photos.length}}/5</p>
+                            </div>
+                        </div>
+                        <div class="flex-item" *ngIf="!video">
+                            <div class="add-media" (click)="openCamera('video')">
+                                <i class="bi bi-camera-video-fill"></i>
+                                <p class="text">Video</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" rows="4" [(ngModel)]="message"></textarea>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <button class="btn btn-primary w-100" (click)="post()">Submit</button>
+
+</div>

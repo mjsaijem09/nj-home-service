@@ -1,0 +1,33 @@
+<p>delivery-date-picker works!</p>
+<div class="section-delivery-date">
+    <div class="deliver-date col-12">
+        <h5>Select a date</h5>
+        <div class="card">
+            <div class="card-body">
+                <div class="dp-container">
+                    <ngb-datepicker
+                        [displayMonths]="displayMonths"
+                        [navigation]="navigation"
+                        [showWeekNumbers]="showWeekNumbers" 
+                        [outsideDays]="outsideDays"
+                        #d1 
+                        [(ngModel)]="model"
+                        #c1="ngModel"
+                        [minDate]="minDate"
+                        (ngModelChange)="selectDate(model)">
+                    </ngb-datepicker>
+                </div>
+            </div>
+        </div>
+        <h5 class="mt-4">Pick a time</h5>
+        <div class="card">
+            <div class="card-body">
+                <div class="timepicker-container">
+                    <ngb-timepicker size="small" [meridian]="meridian" [(ngModel)]="time" (ngModelChange)="selectTime(time)"></ngb-timepicker>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button *ngIf="!isMobile" class="btn btn-light-green mt-5" (click)="next()">NEXT</button>
+    <button *ngIf="isMobile" class="btn btn-next mt-5" (click)="next()">NEXT</button>
+</div>

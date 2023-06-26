@@ -1,0 +1,625 @@
+
+.rr-wrapper{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+.rr-pageheading{
+    margin-bottom: 26px;
+}
+.ratingCount{
+    font-size: x-large;
+}
+.col{
+    text-align: center;
+}
+.vl {
+    border-left: 1px solid grey;
+    height: 180px;
+  }
+.rr-rating-star{
+    margin-top: 40px;
+    @media all and (max-width: 767px) {
+        margin-top: 70px;
+    }
+    .col-md-5 {
+        @media all and (max-width: 767px) {
+            width: 33%;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+    }
+    .col-md-2 {
+        @media all and (max-width: 767px) {
+            width: 33%;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+    }
+}
+
+.starsSvg{
+    height: 22px;
+    @media all and (max-width: 767px) {
+        height: 14px;
+    }
+}
+.starIcon {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    @media all and (max-width: 767px) {
+        margin-bottom: 6px;
+    }
+    .iconwrapper {
+        display: flex;
+        span {
+            margin-left: 12px;
+            font-size: 20px;
+            width: 60px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            @media all and (max-width: 767px) {
+                font-size: 12px;
+                width: 22px;
+            }
+        }
+    }
+}
+.outer-progressLine{
+    margin-bottom: 16px;
+    .progress {
+        border-radius: 0 !important;
+        height: 25px !important;
+        @media all and (max-width: 768px) {
+            height: 10px !important;
+        }
+    }
+
+}
+
+
+.searchReview-wrapper {
+    &.mobileView {
+        @media all and (max-width: 767px) {
+            flex-direction: column;
+        }
+    }
+    .review-counts {
+        &.mobile-review {
+            width: 100%;
+            .review-Tag {
+                @media all and (max-width: 767px) {
+                    // justify-content: space-between;
+                }
+            }
+        }
+        .review-Tag {
+            h6 {
+                font-size: 26px;
+                font-weight: 600;
+                margin-right: 26px;
+            }
+        }
+    }
+}
+.search-review {
+    @media all and (max-width: 767px) {
+        display: flex;
+        // margin-top: 10px;
+    }
+    .sort-button {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 10px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        box-shadow: 0 3px 7px 0 rgba(163, 159, 159, 0.5);
+        margin-right: 40px;
+        @media all and (max-width: 767px) {
+            order: 1;
+            margin-right: 0;
+            margin-left: 10px;
+        }
+    }
+}
+.searchbox{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 0px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 1.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    padding-right: 35px;
+    &:focus {
+        box-shadow: none;
+    }
+}
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    @media all and (max-width: 767px) {
+        width: 125px;
+    }
+    .searchIcon {
+        position: absolute;
+        top: 7px;
+        right: 12px;
+    }
+}
+.card-wrapper{
+    width: 80%;
+    box-shadow: 0 3px 7px 0 rgba(163, 159, 159, 0.5);
+    @media all and (max-width: 767px) {
+        width: 100%;
+    }
+    // .comment-wrapper {
+    //     @media all and (max-width: 767px) {
+    //         flex-direction: column;
+    //     }
+    // }
+}
+// .otherReviewDevider-wrapper{
+//     width: 90%;
+//     box-shadow: 0 3px 7px 0 rgba(163, 159, 159, 0.5);
+//     margin-top: 26px;
+// }
+.otherReview-wrapper{
+    margin-top: 26px;
+}
+.rounded-circle{
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+    @media all and (max-width : 767px){
+        object-fit: cover;
+    height: 50px;
+    width: 50px;
+    }
+}
+.comments-rating{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.user-name{
+    font-size: 20px;
+    .user {
+        h4 {
+            @media all and (max-width: 767px) {
+                font-size: 22px;
+            }
+        }
+    }
+}
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: #ffa13e;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffa13e;
+  }
+  .therapy{
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .therapy-review-description{
+    font-size: 59%;
+    font-weight: 400;
+    @media all and (max-width: 767px) {
+       display: none;
+    }
+  }
+  .profile-picture-wrapper{
+      margin-right: 20px;
+      @media all and (max-width: 767px) {
+          margin-bottom: 20px;
+          margin-right: 10px;
+      }
+  }
+  .like-share-comment{
+      ul {
+          padding: 0;
+          list-style: none;
+          display: flex;
+          align-items: center;
+          font-size: 19px;
+          margin-bottom: 0;
+          li {
+              margin-right: 15px;
+              cursor: pointer;
+          }
+      }
+      @media all and (max-width: 767px) {
+          // display: none;
+      }
+  }
+
+.therapy-review-description {
+    p {
+        font-size: 14px;
+    }
+}
+.mobile-social-items {
+    display: none;
+    margin-top: 20px;
+    @media all and (max-width: 767px) {
+        display: block;
+    }
+    ul {
+        display: flex;
+        padding: 0;
+        list-style: none;
+        li {
+            margin-right: 20px;
+            a {
+                color: #000;
+            }
+            i {
+                margin: 0 5px;
+            }
+        }
+    }
+    .mobile-socialWrapper {
+        display: flex;
+        align-items: center;
+    }
+}
+.user-comment-wrapeer {
+    @media all and (max-width: 767px) {
+        width: 100%;
+    }
+}
+.rr-rating-innerWrapper-service {
+    @media all and (max-width: 767px) {
+        text-align: center;
+    }
+    h1 {
+        @media all and (max-width: 767px) {
+            font-size: 22px;
+        }
+    }
+    span {
+        @media all and (max-width: 767px) {
+          font-size: 16px;
+        }
+    }
+}
+
+#faqs{
+    background-color: #dbe5e6;
+    height: 100%;
+    padding:50px 0 ;
+}
+#faqs h1 {
+    font-weight: 900;
+    font-size: 34px;
+    text-align:center;
+    padding:20px 0 50px 0
+}
+.accordion .card{
+    border-radius: 0;
+    background: none;
+    border-left-width:0 ;
+    border-right-width:0 ;
+}
+.accordion .card .card-header{
+    background: none;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 0;
+}
+.accordion .card-header h2 {
+    font-size:1rem;
+}
+.accordion .card-header .btn{
+    color: black;
+    width: 100%;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+}
+.accordion .card-header i {
+    font-size: 1.3rem;
+    position: absolute;
+    top:15px;
+    right: 1rem;
+}
+.accordion .card-body{
+    color: #666;
+}
+.collapsed{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.starsSvgimg{
+ height: 20px;
+}
+.slectbox{
+    margin-right: 70px;
+    width: 31%;
+}
+
+.mobile-response-head {
+    @media all and (max-width: 767px) {
+        .w-100 {
+            align-items: center;
+        }
+        .col-md-3 {
+            width: 25%;
+            h5 {
+                font-size: 12px;
+                margin-bottom: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 50px;
+            }
+        }
+        .col-md-4 {
+            width: 33%;
+            .starsSvgimg {
+                height: 11px;
+            }
+            h5 {
+                font-size: 12px;
+                margin-bottom: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 50px;
+            }
+        }
+        .fontIcondown {
+            i {
+                font-size: 1.3rem;
+                position: absolute;
+                top: -21px;
+                right: 1rem;
+            }
+        }
+    }
+}
+.another-right{
+    display: flex;
+    align-items: center;
+    .slectbox {
+        width: 100%;
+    }
+
+}
+.card-bottomIcon{
+    cursor: pointer;
+    span{
+      font-size: 16px;
+    }
+}
+.commentProfile{
+    width: 50%;
+    @media all and (max-width: 767px) {
+        width: 100%;
+    }
+}
+.Imgcircle {
+  width: 40px;
+  height: 40px;
+  margin-top: -8px;
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    @media all and (max-width: 767px) {
+        display: none;
+    }
+}
+.commentName,
+.date {
+    h5 {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    span{
+      font-size: 12px;
+      font-weight: bold
+    }
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.commentPostion{
+    margin-left: 78px;
+}
+
+.fontIcon {
+    i {
+        &::before {
+            font-size: 38px;
+        }
+    }
+}
+.user-comment-wrapeer{
+    width: 100%;
+}
+.comment{
+ text-decoration: none;
+}
+
+.comment-outer-wrapper {
+    @media all and (max-width: 767px) {
+        margin-top: 10px;
+    }
+}
+.mobile-flex {
+    .col-md-11 {
+        width: 80%;
+    }
+    .col-md-1 {
+        width: 10%;
+    }
+}
+.container {
+  max-width: 100%;
+}
+
+.review-headers{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  h4{
+    margin-bottom: 0;
+  }
+  flex-wrap: wrap;
+  .sorting-dropdown{
+    margin-left: auto;
+    @media all and (max-width: 800px) {
+      margin-left: 0;
+    }
+    @media all and (max-width: 520px) {
+      display: contents;
+    }
+  }
+  .search-input{
+    position: relative;
+    @media all and (max-width: 520px) {
+      width: 100%;
+    }
+  }
+  .searchIcon{
+    position: absolute;
+    top: 7px;
+    right: 15px;
+  }
+}
+
+.comment-wrapper{
+  gap: 1rem;
+  .user-comment-wrapeer{
+    .therapy-review{
+      padding: 5px 0;
+      line-height: 1.2;
+    }
+    .user-name{
+     h5{
+      font-weight: bold;
+      margin-bottom: 0;
+     }
+    }
+  }
+  .like-share-comment{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    *{
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .comment-wrapper{
+    gap: 0.5rem;
+    .user-comment-wrapeer{
+      .user-name{
+       h5{
+        font-size: 16px;
+       }
+      }
+      .therapy{
+        font-size: 14px !important;
+      }
+    }
+    .therapy-review{
+      padding: 0;
+    }
+  }
+  .card-bottomIcon {
+    span {
+      font-size: 14px;
+      .comment-text{
+        display: none;
+      }
+    }
+  }
+  small{
+    font-size: 14px;
+  }
+}
+
+.comment-wrapper{
+  .comment-outer-wrapper{
+    .profile-name {
+      margin: 10px 0px;
+    }
+    .date{
+      h5{
+        font-size: 12px;
+      }
+    }
+    .comment-body {
+      font-size: 13px;
+    }
+  }
+}
+.like-dislike-icon{
+  color: blue;
+}
+.reply-section {
+  font-size: 14px;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.h-125{
+  height: 125px;
+}
+
+.shop-detail{
+  margin-bottom: 0 !important;
+  margin-top: 0;
+  padding-top: 0 !important;
+}
+.orange-start {
+  height: 24px;
+}
+@media all and (max-width: 500px) {
+  .orange-start {
+    height: 15.4px;
+  }
+}
+.send-box {
+  margin-top: 10px;
+}
+.list-group-item:hover{
+    cursor: pointer;
+    background-color: #ccc;
+}
+.comment-header{
+    display: flex;
+    gap: 0.5rem;
+}

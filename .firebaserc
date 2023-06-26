@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "massage-now-241210": {
+      "hosting": {
+        "customer-pwa": [
+          "massage-now-241210"
+        ]
+      }
+    }
+  }
+}

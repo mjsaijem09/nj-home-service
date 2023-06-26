@@ -1,0 +1,114 @@
+<div class="container pt-4">
+    <div class="text-right">
+        <img (click)="navigateToHomePage()" height="26px" width="26px" src="assets/images/home-6-line.png" alt="home" class="active-icon">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mb-5 p-5 card-body">
+                <div class="text-center">
+                    <!-- <span class="text-warning">
+                        <img src="../../../assets/images/bookus-new.png">
+                    </span> -->
+                    <div class="companyLogo">
+                        <img src="assets/images/logo.svg" alt="logo">
+                    </div>
+                </div>
+                <!-- <p class="text-align-center login-txt">LOGIN TO YOUR ACCOUNT</p> -->
+                <div class="heading">
+                    <h3>Let’s get something</h3>
+                    <p>Good to see you back.</p>
+                </div>
+                <!-- Start Form-->
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)"> 
+                    <!--Email Input-->
+                    <div class="form-group mb-3">
+                        <div class="form-icon">
+                            <img src="assets/images/email.svg" alt="mail">
+                        </div>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <div class="field-filled">
+                            <img src="assets/images/checkbox-circle-line.svg" alt="see password">
+                        </div>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                        </div>
+                    </div>
+                    <!--End Email Input-->
+
+                    <!--Password-->
+                    <div class="form-group">
+                        <div class="form-icon">
+                            <img src="assets/images/lock.svg" alt="lock">
+                        </div>
+                        <input [type]="inputType" name="password" class="form-control"formControlName="password" placeholder="Password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                        <div class="see-password" (click)="show_hide_pw()">
+                            <img *ngIf="!pw_is_show" src="assets/images/auth/eye_off.svg" alt="off password">
+                            <img *ngIf="pw_is_show" src="assets/images/auth/eye_on.svg" alt="on password">
+                        </div>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <!--End Password Input-->
+
+                    <!--Forgot Password-->
+                    <div class="form-group forgot_pass">
+                        <a class="fg-pw" name="forget_password" (click)="navigateToForgetPassword()">Forgot Password?</a>
+                    </div>
+                    <!--End Forgot Password-->
+
+                    <!--Login Button-->
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill loginbtn" name="login" [disabled]="isLoading">Sign In</button>
+                    <!--End Login Button-->
+
+                    <p class="signup_btn">Don't have an account? <span><a (click)="navigateToSignup()">Sign Up</a></span></p>
+
+                    <!-- <h6 class="mt-3 text-center"> Don't Have an account ?</h6>
+                    <h6 class="mt-2 text-center signUp-btn"> <a (click)="navigateToSignup()">Sign Up</a></h6> -->
+
+                    <!-- <div class="row py-2">
+                        <div class="col-5">
+                            <hr>
+                        </div>
+                        <div class="col-2 text-center">
+                            or
+                        </div>
+                        <div class="col-5">
+                              <hr>
+                        </div>
+                    </div> -->
+                </form>
+                <!--End From-->
+
+                <!-- Login With Facebook-->
+                <!-- <div>
+                    <a class="btn-fb">
+                        <div class="fb-content">
+                            <div class="logo">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 facebookbtn">Login in with
+                                Facebook</button>
+                        </div>
+                    </a>
+                </div> -->
+                <!--End Login With Facebook-->
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #accountSetupSuccess let-modal>
+    <div class="custom-modal">
+        <div class=" modal-header">
+            <h4 class="modal-title">Congratulation</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body text-center">
+            <img src="../../../assets/images/login/success.svg" alt="">
+            <p>Your account is now set up.<br>continue with login.</p>
+            <button class="btn continue-login" (click)="modal.close('Close click')">Continue</button>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>

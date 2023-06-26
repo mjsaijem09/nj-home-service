@@ -1,0 +1,77 @@
+<div *ngIf="!isSubmitted" class="registration-container justify-content-md-center item-center">
+    <div class="form-box  col-10 col-sm-8 col-md-4 col-xl-3 item-center direction-column py-5" style="gap: 10px;">
+        <!-- <img class="nuskin-logo img-fluid" src="assets/icons/nuskin_logo_new.png" alt="NU SKIN"> -->
+        <div class="heading item-center direction-column">
+            <div class="main">Registration Form</div>
+            <div class="info-submit">Register for the free event with food and drink and learn how to earn passive
+                income</div>
+            <div class="info">June 10, 2022</div>
+        </div>
+        <div class="col-xl-9 col-12">
+            <label for="firstName" class="form-label">First Name *</label>
+            <input type="text" class="form-control" [ngClass]="{'input-error' : emptyCount > 0 && data.firstName == ''}"
+                [(ngModel)]="data.firstName" id="firstName">
+        </div>
+
+        <div class="col-xl-9 col-12">
+            <label for="lastName" class="form-label">Last Name *</label>
+            <input type="text" class="form-control" [ngClass]="{'input-error' : emptyCount > 0 && data.lastName == ''}"
+                [(ngModel)]="data.lastName" id="lastName">
+        </div>
+
+        <div class="col-xl-9 col-12">
+            <label for="phone" class="form-label">Phone Number *</label>
+            <input type="text" class="form-control" [ngClass]="{'input-error' : emptyCount > 0 && data.phone == ''}"
+                [(ngModel)]="data.phone" id="phone">
+        </div>
+
+        <div class="col-xl-9 col-12">
+            <label for="invitedBy" class="form-label">Invited By</label>
+            <input type="text" class="form-control" [(ngModel)]="data.invitedBy" id="invitedBy">
+        </div>
+
+        <div class="col-xl-9 col-12 mt-10">
+            <button type="button" class="btn btn-outline-success wd-100" (click)="firstPhaseSubmit()">Next</button>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="isSubmitted && emptyCount == 0" class="registration-container justify-content-md-center item-center">
+    <div class="form-box  col-10 col-sm-8 col-md-4 col-xl-3 item-center direction-column py-5" style="gap: 10px;">
+
+        <div class="heading item-center direction-column">
+            <div class="main">Registration Form</div>
+            <div class="info-submit">Submit the form to join our free event with food and drink</div>
+            <div class="info">June 10, 2022</div>
+        </div>
+
+        <div class="col-xl-9 col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="data.email" id="email">
+        </div>
+
+        <div class="col-xl-9 col-12">
+            <label for="dob" class="form-label">Date of birth</label>
+            <input type="date" [(ngModel)]="data.dob" [max]="maxDate" class="form-control" id="dob">
+        </div>
+
+        <div class="col-xl-9 col-12">
+            <label for="tin" class="form-label">TIN #</label>
+            <input type="text" class="form-control" [(ngModel)]="data.tin" id="tin">
+        </div>
+
+        <div class="col-xl-9 col-12">
+            <label for="address" class="form-label">Address</label>
+            <textarea type="text" class="form-control" [(ngModel)]="data.address" id="address"></textarea>
+        </div>
+
+        <div class="col-xl-9 col-12 mt-10">
+            <button type="button" class="btn btn-outline-success wd-100" (click)="submitRegistration()">Submit</button>
+        </div>
+
+        <div class="col-xl-9 col-12 mt-10">
+            <button type="button" class="btn btn-outline-success wd-100" (click)="isSubmitted = false">Cancel</button>
+        </div>
+    </div>
+</div>

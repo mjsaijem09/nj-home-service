@@ -1,0 +1,126 @@
+<div class="send-request-wrapper requestDiv-height" *ngIf="step1">
+  <div class="container">
+    <div class="custom card">
+      <div class="card-body">
+        <div class="request-card pt-0"><span class="w-50">Request To</span><span
+            class="span">{{bookingData?.therapist?.firstName}} {{bookingData?.therapist?.lastName}}</span></div>
+        <div class="request-card"><span class="w-50">Request For</span><span
+            class="span">{{bookingData?.service?.serviceName}}</span></div>
+        <div class="request-card"><span class="w-50">Duration</span><span
+            class="span">{{bookingData?.service?.serviceTime}}</span></div>
+        <div class="request-card"><span class="w-50">Cost</span><span
+            class="span">${{bookingData?.service?.servicePrice}}</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="date-time-wrapper">
+    <div class="container" style="margin-top: 10px;">
+      <div class="section-title text-center"
+        [ngStyle]="showError ? {'border': 'solid 1.5px red', 'padding': '5px'} : {'border': 'none' , 'padding': '5px'}">
+        Please list your available time for the booking below
+      </div>
+      <form [formGroup]="orderForm">
+        <ng-container *ngFor="let sched of schedArray">
+          <div [formGroup]="sched">
+            <div class="custom card mt-2">
+              <div class="card-body">
+                <div class="row">
+                  <div class="custom form-group col-12">
+                    <div class="custom input-group">
+                      <div class="input-group-prepend">
+                        <div class="custom input-group-text">
+                          <span class="material-icons-outlined"> calendar_today </span>
+                        </div>
+                      </div>
+                      <!-- <input class="custom form-control" placeholder="Date" name="dp" formControlName="date" ngbDatepicker
+                        [footerTemplate]="footerTemplate" #d="ngbDatepicker" (click)="d.toggle()"> -->
+
+                      <input class="custom form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                        #d="ngbDatepicker" [footerTemplate]="footerTemplate" formControlName="date"
+                        [maxDate]="{year: year+1, month: 1, day: 1}" [minDate]="{year: year, month: month, day: day}"
+                        (click)="d.toggle()">
+                    </div>
+                  </div>
+
+                  <ng-template #footerTemplate>
+                    <hr class="my-0">
+                    <button class="btn btn-primary btn-sm m-2 float-left"
+                      (click)="model = today; d.close()">Today</button>
+                    <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
+                  </ng-template>
+                  <div class="col-12">
+                    <label class="custom"><span class="material-icons-outlined"> schedule </span> I am available from</label>
+                  </div>
+                  <div class="col-5">
+                    <!-- <label class="custom"><span class="material-icons-outlined"> schedule </span> I am available
+                      from</label> -->
+                    <div class="start-time-wrapper">
+                      <input class="form-control" type="text" placeholder="From"
+                      [ngxTimepicker]="start" formControlName="startTime"
+                      [disabled]="!sched.value.date">
+                      <ngx-material-timepicker #start></ngx-material-timepicker>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <label class="form-control to-label">-</label>
+                  </div>
+                  <div class="col-5">
+                    <!-- <label class="invisible">Time</label> -->
+                    <div class="end-time-wrapper">
+                      <input class="form-control" placeholder="To"
+                      formControlName="endTime" disabled>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </form>
+      <div class="row top-offset-15">
+        <div class="container">
+          <button class="btn btn-blue w-100" (click)="addItem('btn')">Add other available time period</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section" *ngIf="step2">
+  <div class="container">
+    <div class="custom card">
+      <div class="card-body">
+        <div class="request-card pt-0 d-flex justify-content-between">Your Name<input type="text" [(ngModel)]="name"
+            class="border-none"></div>
+        <div class="request-card d-flex justify-content-between">Your Contact Number<input type="text"
+            [(ngModel)]="number" class="border-none"></div>
+        <div class="request-card d-flex justify-content-between">Your Email<input type="text" [value]="email"
+            class="border-none"></div>
+        <div class="request-card d-flex justify-content-between">Update My App Profile<div
+            class="position-ralative checkbox-container"><input type="checkbox" [(ngModel)]="updateProfile"
+              class="form-check-input"></div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <input type="text" class="form-control" placeholder="Notes to Business" [(ngModel)]="notes">
+
+      <h5 class="mt-4">Note</h5>
+      <p class="light-text">The business will contact you to confirm your booking. A booking request does not mean your
+        booking is confirmed</p>
+    </div>
+  </div>
+</div>
+<button *ngIf="!step2" class="btn btn-light-green submit_button" (click)="next()">NEXT</button>
+<button *ngIf="step2" class="btn btn-light-green submit_button" (click)="send()">SEND REQUEST</button>
+<ng-template #content let-modal>
+  <div class="modal-body">
+    <div class="bookus-success-wrapper text-center">
+      <img src="../../../../assets/images/sent.svg" alt="">
+      <div class="bookus-success mt-4">
+        Successfully Sent Request
+      </div>
+    </div>
+    <button type="button" class="btn btn-light-green w-100 mt-4" (click)="modal.close('Close click')"
+      [routerLink]="['/']">Okay</button>
+  </div>
+</ng-template>

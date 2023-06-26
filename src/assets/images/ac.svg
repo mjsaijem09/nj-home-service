@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" viewBox="0 0 35 30">
+  <g id="ac" transform="translate(-180 -390)">
+    <rect id="Rectangle_200" data-name="Rectangle 200" width="35" height="30" transform="translate(180 390)" fill="#1c1b1b" opacity="0"/>
+    <g id="Group_142" data-name="Group 142" transform="translate(28.928 44.423)">
+      <rect id="Rectangle_170" data-name="Rectangle 170" width="32.979" height="11.729" rx="4" transform="translate(152 350)" fill="none" stroke="#000" stroke-width="1"/>
+      <rect id="Rectangle_171" data-name="Rectangle 171" width="27.167" height="0.403" transform="translate(154.903 359.522)"/>
+      <path id="Path_124" data-name="Path 124" d="M140.7,118c-1.393,2.7,2.206,2.7-.116,4.761-.116.071-.465.213-.581.284" transform="translate(27.909 247.354)" fill="none" stroke="#000" stroke-width="1" fill-rule="evenodd"/>
+      <path id="Path_125" data-name="Path 125" d="M206.7,119c-1.394,2.606,2.206,2.676-.116,4.648a2.2,2.2,0,0,1-.581.282" transform="translate(-30.427 246.47)" fill="none" stroke="#000" stroke-width="1" fill-rule="evenodd"/>
+      <path id="Path_126" data-name="Path 126" d="M73.7,119c-1.393,2.606,2.206,2.606-.116,4.648a2.2,2.2,0,0,1-.581.282" transform="translate(87.129 246.47)" fill="none" stroke="#000" stroke-width="1" fill-rule="evenodd"/>
+      <path id="Path_127" data-name="Path 127" d="M173.7,119c-1.393,2.606,2.206,2.676-.116,4.648a2.2,2.2,0,0,1-.581.282" transform="translate(-1.259 246.47)" fill="none" stroke="#000" stroke-width="1" fill-rule="evenodd"/>
+      <path id="Path_128" data-name="Path 128" d="M107.7,118c-1.394,2.7,2.09,2.7-.232,4.761,0,.071-.348.213-.465.284" transform="translate(57.077 247.354)" fill="none" stroke="#000" stroke-width="1" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

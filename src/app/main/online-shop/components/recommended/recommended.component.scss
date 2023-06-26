@@ -1,0 +1,31 @@
+.recommended-section {
+    padding: 12px 0;
+    background-color: #ffffff;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 12px 10px;
+        h6 {
+            margin: 0;
+        }
+        a {
+            display: flex;
+            align-items: center;
+            color: red;
+            i {
+                font-size: 24px;
+                height: 16px;
+                width: 19px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+    .product-list {
+        .default-space::before {
+            content: "H";
+            visibility: hidden;
+        }
+    }
+}

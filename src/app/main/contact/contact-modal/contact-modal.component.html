@@ -1,0 +1,84 @@
+<div *ngIf="!isSuccess">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{newContact.header}}</h4>
+        <!-- <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button> -->
+    </div>
+    <form [formGroup]="form" (ngSubmit)="handleSubmmit(form)">
+    <div class="modal-body">
+        <div class="mb-3">
+            <div class="image-box" [ngStyle]="{'background-image' : 'url('+ imageUrl +')'}">
+                <label class="upload-btn" for="image">
+                    <span class="material-icons-outlined">
+                        photo_camera
+                    </span>
+                </label>
+                <input #profileImage type="file" id="image" accept="image/*" hidden
+                    (change)="rederImageUrl($event)" />
+            </div>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" [ngClass]="f.firstName.invalid && (submitted || f.firstName.touched) ? 'is-invalid' : f.firstName.valid ? 'is-valid' : ''" id="firstName" placeholder="firstName" formControlName="firstName">
+            <label for="firstName">First Name</label>
+            <div class="invalid-feedback">This field is required.</div>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="lastName" placeholder="lastName" formControlName="lastName">
+            <label for="lastName">Last Name</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" [ngClass]="f.email.invalid && (submitted || f.email.touched) ? 'is-invalid' : f.email.valid ? 'is-valid' : ''" id="email" placeholder="email" formControlName="email">
+            <label for="email">Email</label>
+            <div class="invalid-feedback">This field is required.</div>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" [ngClass]="f.phone1.invalid && (submitted || f.phone1.touched) ? 'is-invalid' : f.phone1.valid ? 'is-valid' : ''" id="phone1" placeholder="phone1" formControlName="phone1">
+            <label for="phone1">Phone</label>
+            <div class="invalid-feedback">This field is required.</div>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
+            <label for="address">Address</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" [ngClass]="f.relationship.invalid && (submitted || f.relationship.touched) ? 'is-invalid' : f.relationship.valid ? 'is-valid' : ''" id="relationship" placeholder="relationship" formControlName="relationship">
+            <label for="relationship">Relationship</label>
+            <div class="invalid-feedback">This field is required.</div>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="work" placeholder="work" formControlName="work">
+            <label for="work">Work</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn cancel-btn" (click)="onClose()">Cancel</button>
+        <button type="submit" class="btn save-btn" [disabled]="disabled">
+            <img *ngIf="disabled" src="/assets/loader/spinner.svg" width="22" alt="loading...">
+            <span *ngIf="!disabled">Save</span>
+        </button>
+    </div>
+</form>
+
+</div>
+
+<div *ngIf="isSuccess">
+    <div class="success-body">
+        <div class="success-icon">
+            <img src="/assets/images/success.svg" alt="Succes Update">
+        </div>
+        <div class="success-heading">
+            Successfully Updated Contact!
+        </div>
+        <div class="success-sub">
+            You have successfully updated one of your contacts.
+        </div>
+        <button class="cls-btn" (click)="onClose()">My Contacts
+            <span class="material-icons">
+                arrow_forward
+            </span>
+        </button>
+    </div>
+</div>
+<!-- <div class="loader text-center" *ngIf="isLoading">
+    <span class="text-theme-green fw-medium me-2">Loading data</span>
+    <img src="/assets/images/loader/circle-small-green.svg" alt="">
+</div> -->

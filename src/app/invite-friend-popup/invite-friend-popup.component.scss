@@ -1,0 +1,126 @@
+.card {
+    padding: 20px;
+}
+
+.info-txt {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #000000;
+}
+
+.invite-btn {
+    background: #EFF7E4;
+    border-radius: 18px;
+    font-family: Rubik;
+    border: none;
+    outline: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+    line-height: 17px;
+    text-transform: capitalize;
+    color: #90C63E;
+
+    &:focus {
+        border: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.form-group{
+    position: relative;
+    margin-bottom: 0px !important;
+    .form-icon{
+        position: absolute;
+        top: 15px;
+        left: 28px;
+        img{
+            width: 20px;
+        }
+    }
+}
+
+.form-control{
+    background: #FFFFFF !important;
+    border: 1px solid #90C63E !important;
+    border-radius: 30px !important;
+    padding: 17px 15px 17px 65px !important;
+    height: 55px;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(13, 13, 13, 0.9);
+    &:focus {
+        box-shadow: none;
+    }
+    &::placeholder{
+        font-size: 16px;
+        line-height: 19px;
+        color: black;
+        font-weight: 500;
+    }
+}
+
+.line-divider {
+    border: 0.5px solid #A6AEC1;
+}
+
+.fab-btn {
+    font-size: 50px;
+    color: #90C63E;
+}
+
+.receive-btn {
+    padding: 10px;
+    background: rgba(166, 174, 193, 0.23);
+    border: rgba(166, 174, 193, 0.23);
+    border-radius: 18px; font-family: Rubik;
+    font-style: normal;
+    width: 100%;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: capitalize;
+    color: #A6AEC1;
+    
+    &:focus {
+        border: none !important;
+        box-shadow: none !important;
+    }
+}
+
+
+.send-btn {
+    background: #90C63E;
+    border-radius: 21px;
+    width: 100%;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    border: none;
+    padding: 10px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+.cancel-btn {
+    background: #FD6D6D;
+    border: none;
+    padding: 10px;
+    border-radius: 21px;
+    width: 100%;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #FEE9E9;
+}

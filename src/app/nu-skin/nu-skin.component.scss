@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+.succes-registration {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Bad Script', cursive;
+    background: url("../../assets/icons/brand-story-background.svg") no-repeat;
+    background-position: center;
+
+}
+
+
+.box {
+    width: 40vw;
+    height: 40vw;
+    background-color: white;
+    opacity: .8;
+    border-radius: 50%;
+    text-align: center;       
+}
+
+.thank-you {
+    font-size: 50px;
+    text-align: center;
+    padding: 0;
+}
+
+.redirect {
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.item-center {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.direction-column {
+    flex-direction: column;
+}
+
+.contact-shortly {
+    font-size: 17px;margin-bottom: 10px;
+}
+
+.see-you {
+    font-size: 24px;margin-bottom: 10px;width: 80%;
+}
+
+@media screen and (max-width: 992px) {   
+    .box {
+        width: 65vw !important;
+        height: 65vw !important;
+    }
+}
+
+@media screen and (max-width: 768px) {   
+    .box {
+        width: 75vw !important;
+        height: 75vw !important;
+    }
+
+            
+    .thank-you {
+        font-size: 36px;
+    }
+
+    .redirect , .see-you {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {   
+    .box {
+        width: 95vw !important;
+        height: 95vw !important;
+
+    }
+}
+
+@media screen and (max-width: 375px) {   
+    .thank-you {
+        font-size: 24px ;
+        font-weight: bold;
+    }
+
+    .contact-shortly, .see-you {
+        font-size: 16px ;
+    }
+   
+    .redirect {
+        font-size: 20px;
+    }
+}

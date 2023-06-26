@@ -1,0 +1,52 @@
+<div class="container card-slot">
+   
+   <div class="row">
+     <div class="col-md-6 col-sm-6 col-xs-12"  >
+       <div class="card">
+         <div class="card-body">
+           <div class="row" *ngFor="let badge of scoreBadge"> 
+             <div class="col-4"  >
+                <div class="imageIcon">
+               <img class="shield " src="../../../assets/images/bronze_badge.svg">
+               <div class="centered">{{badge?.badgeScore}}</div>
+            </div>
+               <!-- <img src="../../../../assets/images/default_circle.svg" class="imgstyle"> -->
+             </div>
+             <div class="col-8">
+              <span class="current-score">Current Score:{{badge?.badgeScore}}/{{maxBadgeScore}}</span>
+               <p>
+                  <ngb-progressbar type="success" [value]="badge?.badgeScore"></ngb-progressbar>
+               </p>
+             </div>
+             <!-- <div class="col-8">
+               <h5 class="card-title text"></h5>
+               <div class="outerdiv-text" >
+                   <span class="card-text"></span>
+                   <span class="card-text"></span>
+               </div>
+               <h5 class="card-text"></h5>
+             </div> -->
+           </div>
+         </div>
+       </div>
+     </div>
+     
+   </div>
+ </div>
+
+<!-- <div class="container">
+    <img class="shield" src="../../../assets/images/sheild.svg">
+    <div class="centered">{{sheildData}}</div>
+</div> -->
+<div class="myScore" *ngFor="let score of scoreData">
+    <div class="scoreBlock">
+        <div class="border_type scoreList">
+            <div class="line-text">
+                <div class="scoreDetaiil">{{score?.type}} </div>
+                <span class="score">{{score?.points}}</span>
+            </div>
+           <div class="date">{{score?.createdAt | date:'dd/MM/yyyy'}}</div>
+        </div>
+       
+</div>
+</div>

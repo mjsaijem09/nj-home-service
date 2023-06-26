@@ -1,0 +1,94 @@
+<div class="main-wrapper">
+  <div class="container">
+    <div class="shop-wrapper">
+      <div class="row">
+        <div class="container d-flex">
+          <div class="shop-header">
+            <h4>Shop :</h4>
+          </div>
+          <div class="shop-name">
+            <h4>{{shopName}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="service-wrapper">
+      <div class="row">
+        <div class="container d-flex">
+          <div class="service-header">
+            <h4>For service :</h4>
+          </div>
+          <div class="service-name">
+            <h4>{{serviceName}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="duration-wrapper d-flex">
+      <div class="duration-header">
+        <h4>Duration:</h4>
+      </div>
+      <div class=" durati-and-ammount d-flex justify-content-between w-100">
+        <div class="duration-timing">
+          <h4>{{serviceTime}}</h4>
+        </div>
+        <div class="duration-ammount">
+          <h4>${{servicePrice}}</h4>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <div class="appointment-card-wrapper">
+    <div class="container">
+      <div class="main-content-wrapper">
+        <div class="container">
+          <div class="date-time-wrapper d-flex justify-content-between">
+            <div class="date-wrapper">
+              <label for="">Date</label>
+              <h4>{{startDate| date: 'dd-MM-yyyy'}}</h4>
+            </div>
+            <div class="time-wrapper">
+              <label for="">Time</label>
+              <h4>{{hour}}-{{end}}</h4>
+            </div>
+          </div>
+          <div class="book-for-wrapper">
+            <div class="booked-for">
+              <label for="">Book for</label>
+              <h4>{{loginData?.result.firstName}} {{loginData?.result.lastName}}</h4>
+            </div>
+          </div>
+          <div class="therapist-wrapper">
+            <div class="therapist">
+              <label for="">Therapist</label>
+              <h4>{{therapistName}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="confirm-button-wrapper" [ngStyle]="{'position': !ShowMobile ? 'absolute' : 'fixed'}">
+    <button class="btn btn-dark submit_button" (click)="openVerticallyCentered(content)">Confirm</button>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-body">
+    <div class="success-wrapper">
+      <div class="successs-icon mb-2">
+        <i class="fa fa-check-circle"></i>
+      </div>
+      <div class="success-message mb-4">
+        <h5>Successfully apointment booked</h5>
+      </div>
+    </div>
+    <div class="appointment-bookBtn text-center">
+      <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Ok</button>
+    </div>
+  </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Ok</button>
+    </div> -->
+</ng-template>
+  

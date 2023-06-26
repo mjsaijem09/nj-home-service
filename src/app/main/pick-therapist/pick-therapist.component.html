@@ -1,0 +1,127 @@
+<div class="herbal-center-wrapper" ngClass="this.isMobile ? 'mobile-view' : 'desktop-view'" *ngIf="isMobile">
+    <div class="pick-therapist-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <div class="profile-wrapper">
+                        <div class="pick-therapist section">
+                            <div class="preference" *ngIf="availableStaff.length > 1" [ngClass]="{'active': bookAnyone}" (click)="bookanyone()">
+                                <div class="preference__recBadge"> <span> Recommended </span> </div>
+                                <div class="outer-box">
+                                    <div class="anonymous-user-img">
+                                        <img src="{{bookAnyone ? 'assets/images/selected-user.svg' : 'assets/images/unselected-user.svg'}}" alt="anonymous-user" />
+                                    </div>
+                                    <div class="service-detail">
+                                        <div>
+                                            <div class="preference__book-anyone-header text-center">
+                                                <h6>Book Anyone</h6>
+                                                <p>Select This One Will Maximise The Availability</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uncheck">
+                                        <a>
+                                            <img src="{{bookAnyone ? 'assets/images/selected-shop.svg' : 'assets/images/unselected-shop.svg'}}" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="parentLoader" *ngIf="isLoading; else therapistListing;">
+                                <app-custom-spinner></app-custom-spinner>
+                            </div>
+                            <ng-template #therapistListing>
+                                <div class="services therapist">
+                                    <div class="services-wrapper">
+                                        <div *ngFor="let therapist of therapists; let i = index;">
+                                            <div class="outer-box" *ngIf="therapist.workschedule" (click)="selectTime(i, therapist)" [ngClass]="{'active': selectedTherapistIndex === i}">
+                                                <div class="service-img">
+                                                    <img [src]="imgLink(therapist?.image)" alt="therapist" (error)="setDefaultTherapistPic($event, therapist?.gender)">
+                                                </div>
+                                                <div class="service-detail">
+                                                    <div>
+                                                        <div class="header-info align-items-center">
+                                                            <h6>{{therapist?.firstName}}</h6>
+                                                            <p class="{{(therapist?.gender).toLowerCase()}}">{{therapist?.gender}}</p>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <app-star-rating [rating]="therapist?.rating?.star" [size]="18"></app-star-rating>
+                                                            <div class="overall-rating">
+                                                                <p *ngIf="therapist?.rating?.star !== undefined">{{(therapist?.rating?.star).toFixed(1)}} ({{therapist?.rating?.star_count}})</p>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="availability">
+                                                            <p><span><img src="assets/images/availability-clock.svg"></span>Available For {{checkAvailableDay(therapist?.waitingTime)}}</p>
+                                                        </div> -->
+                                                        <div class="therapist-intro">
+                                                            <p>{{therapist?.descriptions}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="availability availability-days">
+                                                        <div *ngIf="therapist?.availableToday" class="badge me-2"><img src="/assets/images/pick-therapist/ellipse.svg" alt="">Today</div>
+                                                        <div *ngIf="therapist?.availableTomorrow" class="badge"><img src="/assets/images/pick-therapist/ellipse.svg" alt="">Tomorrow</div>
+                                                    </div>
+                                                    <div class="btns">
+                                                        <a (click)="navigateToTherapistDetail(therapist)">More Info</a>
+                                                    </div>
+                                                </div>
+                                                <div class="uncheck">
+                                                    <a>
+                                                        <img src="{{selectedTherapistIndex === i ? 'assets/images/selected-shop.svg' : 'assets/images/unselected-shop.svg'}}" />
+                                                    </a>
+                                                 </div>
+                                            </div>
+                                            <div class="select-time-wrapper" [ngClass]="{'active': selectedTherapistIndex === i}">
+                                                <app-select-time *ngIf="selectedTherapistIndex == i" [isChild]="true" [staff]="therapist"></app-select-time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pick-therapist-desktop" *ngIf="!isMobile">
+    <div class="banner" align="center">
+        <h1 class="title">Pick Therapist</h1>
+        <div class="sub-title">No preference will maximise the availability</div>
+    </div>
+    <div class="container">
+        <div class="therapists">
+            <h3>Therapists</h3>
+            <div class="row">
+                <div class="col-4 mt-4" *ngFor="let therapist of therapists">
+                  <div class="card" *ngIf="therapist.workschedule">
+                    <div class="card-body">
+                      <div class="therapist-img" (click)="bookTherapist(therapist)">
+                        <img src="{{therapist?.image}}" alt="therapist" (error)="setDefaultTherapistPic($event, therapist?.gender)">
+                      </div>
+                      <div class="details">
+                        <div>
+                          <h6 (click)="bookTherapist(therapist)" class="mt-2">{{therapist?.firstName}}</h6>
+                          <div class="rating">
+                            <app-star-rating [rating]="therapist?.rating?.star" [size]="18"></app-star-rating>
+                            <div class="overall-rating">
+                              <p *ngIf="therapist?.rating?.star !== undefined" class="m-0 mutted-text">{{(therapist?.rating?.star).toFixed(1)}} ({{therapist?.rating?.star_count}})</p>
+                            </div>
+                          </div>
+                          <div class="therapist-intro mutted-text">
+                            {{therapist?.descriptions.slice(0, 80) + '...'}}
+                          </div>
+                        </div>
+                        <div class="btns">
+                          <a class="btn-{{(therapist?.gender).toLowerCase()}}">{{therapist?.gender}}</a>
+                          <a class="btn-bookus" (click)="selectShop()">Book us</a>
+                          <!-- <a data-toggle="collapse" href="#{{therapist?._id}}" (click)="bookTherapist(i, therapist)">Book us</a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

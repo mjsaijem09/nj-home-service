@@ -1,0 +1,25 @@
+<app-profile-section [shopDetails]="shopDetails"></app-profile-section>
+<app-shop-navbar (navOutput)="navOutput($event)" [activeNav]="activeNav"></app-shop-navbar>
+
+<swiper-container #parentSlide>
+    <swiper-slide id="shop">
+        <app-voucher-carousel></app-voucher-carousel>
+        <div class="p-2"></div>
+        <app-product-carousel displayBy="recommended" title="Recommended For You" [shop]="shopDetails"></app-product-carousel>
+        <div class="p-2"></div>
+        <app-intoduction></app-intoduction>
+        <div class="p-2"></div>
+        <app-banner-carousel></app-banner-carousel>
+        <div class="p-2"></div>
+        <div class="m-2">
+            <p class="mb-1">Just For You</p>
+            <app-product-listing [sortSetting]="false" [shopData]="shopDetails"></app-product-listing>
+        </div>
+    </swiper-slide>
+    <swiper-slide id="products">
+        <app-product-listing [sortSetting]="true" [shopData]="shopDetails"></app-product-listing>
+    </swiper-slide>
+    <swiper-slide id="categories">
+        <app-categories></app-categories>
+    </swiper-slide>
+</swiper-container>

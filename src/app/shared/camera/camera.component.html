@@ -1,0 +1,31 @@
+<div class="camera">
+    <video #videoElement [ngClass]="{ 'd-none': captureURL }"></video>
+    <button *ngIf="type === 'photo'" class="capture" [ngClass]="{ 'd-none': captureURL }" (click)="capture()">
+        <div class="circle"></div>
+    </button>
+    <div *ngIf="type === 'video'" class="progress-bar-container" [ngClass]="{ 'd-none': captureURL }" (click)="capture()">
+        <svg class="progress-bar" viewBox="0 0 100 100">
+          <circle class="progress-bar-track" cx="45" cy="45" r="47"/>
+          <circle *ngIf="progress >= 1" class="progress-bar-fill" cx="45" cy="45" r="47" [style.stroke-dasharray]="dashArrayValue" />
+        </svg>
+        <div class="video" [ngClass]="{'recording': progress >= 1}"></div>
+    </div>
+    <button *ngIf="!captureURL" type="button" class="btn btn-close" (click)="activeModal.close()"><i class="bi bi-x-lg"></i></button>
+    <div class="settings" *ngIf="!captureURL">
+        <button class="btn-switch" (click)="toggleCamera()"><i class="bi bi-arrow-repeat"></i>Switch</button>
+        <button class="btn-flash"><i class="bi bi-lightbulb" (click)="toggleFillLight()"></i>Flashlight</button>
+    </div>
+    <label for="open-gallery" class="open-gallery" *ngIf="!captureURL"><i class="bi bi-image"></i>Album</label>
+    <input type="file" id="open-gallery" class="d-none" (change)="selectMedia($event)" [accept]="type==='photo' ? 'image/*' : 'video/*'" />
+    <div class="output" [ngClass]="{ 'd-none': !captureURL }">
+        <button type="button" class="btn btn-back" (click)="deleteCapture()"><i class="bi bi-arrow-left"></i></button>
+        <img class="img-output" *ngIf="type === 'photo'" [src]="captureURL">
+        <video #videoOutput class="video-output" [hidden]="type !== 'video'" controls></video>
+        <button type="button" class="btn btn-upload" (click)="upload()" [disabled]="!mediaLoaded">
+            <img *ngIf="!mediaLoaded" src="assets/loader/spinner-white.svg" width="20">
+            Upload
+        </button>
+    </div>
+    
+    <canvas #canvasElement style="display: none;"></canvas>
+</div>

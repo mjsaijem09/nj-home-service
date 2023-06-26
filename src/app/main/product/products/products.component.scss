@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+    p.title {
+      font-size: 38px;
+      font-weight: 600;
+      margin: 0px;
+    }
+    button {
+      padding: 0;
+      font-weight: 400;
+      font-size: 20px;
+      color: #696969;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      img {
+        transform: rotate(180deg);
+        width: 30px;
+      }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .header {
+        display: none;
+    }
+}

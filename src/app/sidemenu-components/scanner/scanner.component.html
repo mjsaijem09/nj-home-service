@@ -1,0 +1,54 @@
+<div class="scanner-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-0">
+                <!-- <div class="scanner-header">
+                    <div class="cancel">
+                        <a (click)="goBack()">
+                            <img src="assets/images/cross-white.svg">
+                        </a>
+                    </div>
+                </div> -->
+                <div class="qrScanner" *ngIf="showScanner">
+                    <div class="scan-area"></div>
+                    <div class="scan-area2"></div>
+                    <div class="scan-progress"></div>
+                    <zxing-scanner (scanSuccess)="handleQRResult($event)"></zxing-scanner>
+                </div>
+                <!-- <div class="content-wrapper" *ngIf="showScanner">
+                    <h2>Scan QR Code</h2>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #successModal let-modal>
+    <div class="custom-modal failed">
+        <div class="modal-body">
+            <div class="modal-image">
+                <img src="assets/images/QR-code-scan/success.svg">
+            </div>
+            <h2>Would you like to share your profile?</h2>
+            <div class="actions">
+                <a class="btn bg-green" (click)="confirm()">Yes</a>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #failureModal let-modal>
+    <div class="custom-modal failed">
+        <div class="modal-body">
+            <div class="modal-image">
+                <img src="assets/images/QR-code-scan/failure.svg">
+            </div>
+            <h2>Error</h2>
+            <h5 *ngIf="deviceError">{{deviceError}}</h5>
+            <div class="actions">
+                <a class="btn bg-pink" (click)="tryAgain()">Try Again</a>
+                <a class="btn bg-grey" (click)="goBack()">Cancel</a>
+            </div>
+        </div>
+    </div>
+</ng-template>

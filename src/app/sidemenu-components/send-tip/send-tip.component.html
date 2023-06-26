@@ -1,0 +1,41 @@
+<div class="main">
+<div class="container content" *ngFor="let item of historyList">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12"  >
+        <div class="card" (click)="select(item)">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <img src="../../../../assets/images/default_circle.svg" class="imgstyle">
+              </div>
+              <div class="col-8">
+                <div class="selectIcon">
+                <h5 class="card-title text name">{{item?.staff?.firstName}} {{item?.staff?.lastName}} </h5>
+                <i class="fa fa-check-circle checkIcon" *ngIf="selected ===item._id" aria-hidden="true"></i>
+              </div>
+                <h5 class="card-text">{{item?.service?.name}}</h5>
+                <div class="outerdiv-text" >
+                  
+
+                    <span class="card-text">{{item?.day | date:'yyyy-MM-dd'}}</span>
+                    <span class="card-text">{{item?.startTime | date:'hh:mm a'}}</span>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="historyList.length == 0">
+        <div class="col-12">
+          <p class="text-center text-muted">Not Available</p>
+        </div>
+    </div>
+    </div>
+    <div class="tipbtn-wrapper" >
+        <button class="btn btn-primary" [disabled]="isDisabled" (click)="sendTip()">Send</button>
+    </div>
+  </div>
+</div>
+
+  

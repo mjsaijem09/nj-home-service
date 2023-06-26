@@ -1,0 +1,120 @@
+<div class="container main">
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12" >
+        <div class="backpackcard">
+            <div class="useraddres">
+                <div class="userto">
+                    <span>To</span>
+                    <h5>{{to}}</h5>
+                </div>
+                <div class="userfrom">
+                    <span>From</span>
+                    <h5>{{from}}</h5>
+                </div>
+            </div>
+            <div class="userdate">
+                <div class="date">
+                    <span>{{date| date}}</span>
+                </div>
+                <div class="money">
+                    <span>${{amount}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- card end -->
+<!-- letter start -->
+<div class="main" >
+  <div class=" row flex-row flex-nowrap">
+
+    <div class="col-12">
+      <div class="card card-block1"
+       [ngClass]="{
+         'card-1': colorType,
+         'card-2':colorType ,
+         'card-3':colorType ,
+         'card-4':colorType 
+       }"
+        >
+        <div class="to">
+          <p class="ml-2">To</p>
+          <p class="ml-2">{{to}}</p>
+        </div>
+        <div class="text-line-wrapper">
+                           <textarea name="" id=""  [ngClass]="{
+                            'card-1': colorType,
+                            'card-2':colorType ,
+                            'card-3':colorType ,
+                            'card-4':colorType 
+                          }" cols="22" rows="3">
+                          <p>{{write}}</p>
+                        </textarea>          
+                                   </div>
+        <div class="from">
+          <p class="ml-2 ">From</p>
+          <p class="ml-2">{{from}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- letter end -->
+<!-- email and mobile -->
+<div class="form form-height">
+<form class="addForm" [formGroup]="addRelationForm" (ngSubmit)="onSubmit()">
+
+<div class="mb-4">
+    <input type="text" class="inputType" formControlName="email" placeholder="Email"
+      [ngClass]="{ 'is-invalid': submitted && f.email.errors }" readonly  />
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+    </div>
+  </div>
+  <div class="mb-4">
+    <input type="text" class="inputType" formControlName="mobile" placeholder="Phone Number"
+      [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" readonly />
+    <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+      <div *ngIf="f.mobile.errors.required">Phone Number is required</div>
+    </div>
+  </div>
+
+  <!-- <div class="container"> -->
+    <div class="row">
+      <div class="col-12">
+        <div class="tipbtn-wrapper">
+          <button class="btn btn-primary" (click)="Cancel(content)">Cancel</button>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+  <div class="letter-wrapper">
+    <button class="btn btn-primary" (click)="confirm()" >Confirm</button>
+  </div>
+</form>
+</div>
+</div>
+
+
+<!-- Modal -->
+<ng-template #content let-modal>
+    <div class="modal-body">
+      <div class="success-wrapper">
+          <div class="successs-icon mb-2 ">
+             <h6>Book Us</h6>
+          </div>
+          <div class="success-message mb-4">
+              <h5>Are you sure you want to cancel gift card? </h5>
+          </div>
+      </div>
+    </div>
+    <!-- <div class="appointment-bookBtn">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">No</button>
+      </div> -->
+      <div class="appointment-bookBtn text-center ">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">No</button>
+      </div>
+    <div class="appointment-bookBtn text-center mt-2 pb-4">
+        <button type="button" class="btn btn-dark" (click)="goToHome()">Yes,Cancel it</button>
+      </div>
+  </ng-template>

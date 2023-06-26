@@ -1,0 +1,50 @@
+<div class="card-box">
+    <!-- flex row -->
+    <div class="card-image" [ngStyle]="{'background-image' : 'url('+ image  +')' , 'background-size' : _size}">
+    </div>
+    <div class="card-details">
+        <!-- flex column -->
+        <div class="details-main">
+            <div class="name_gender">
+                <p class="name" placement="top" ngbTooltip="{{data.firstName}} {{data.lastName}}">{{data.firstName}}
+                    {{data.lastName}}
+                    <!-- <span class="material-icons">
+                        male
+                    </span> -->
+                </p>
+                <!-- <span class="material-icons">
+                    female
+                </span> -->
+
+            </div>
+            <p class="role">{{data.work || 'None'}}</p>
+        </div>
+
+        <div class="details-sub">
+            <p class="info" placement="top" ngbTooltip="{{data.email}}">
+                <span class="material-icons">mail_outline</span>
+                <span class="text">{{data.email || '-'}}</span>
+            </p>
+            <p class="info" placement="top" ngbTooltip="{{data.phone1}}">
+                <span class="material-icons">phone_iphone</span>
+                <span class="text">{{data.phone1 || '-'}}</span>
+            </p>
+            <p class="info" placement="top" ngbTooltip="{{data.address}}">
+                <span class="material-icons-outlined">map</span>
+                <span class="text">{{data.address || '-'}}</span>
+            </p>
+            <div class="details-action">
+                <!-- flex row -->
+                <div class="relationship" *ngIf="data.relationship" placement="top" ngbTooltip="{{data.relationship}}">
+                    {{data.relationship}}
+                </div>
+                <button mat-button class="edit-btn" (click)="updateContact()">
+                    <span class="material-icons">
+                        edit
+                    </span>
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

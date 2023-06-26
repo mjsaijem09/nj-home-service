@@ -1,0 +1,109 @@
+.section-delivery-date {
+    margin: 50px 0;
+    position: relative;
+    .card {
+        box-shadow: 0px 8.83px 35.328px rgba(70, 96, 135, 0.05);
+        border-radius: 10px;
+        border: none;
+        border: solid 3px #fff;
+    }
+    .form-check-radio.card.active {
+        background: #EFF7E4;
+        border-color: #90C63E!important;
+        label {
+            color: #000000!important;
+        }
+        [type="radio"]:checked + label:before,
+        [type="radio"]:not(:checked) + label:before {
+            border-color: #90C63E!important;
+        }
+    }
+    .hr {
+        border-top: solid 1px #E1E3EA;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    
+    label.form-check-label {
+        width: 100%;
+    }
+    
+    .radio-container {
+        padding: 15px 0px;
+
+        [type="radio"]:checked,
+        [type="radio"]:not(:checked) {
+            position: absolute;
+            left: -9999px;
+        }
+        [type="radio"]:checked + label,
+        [type="radio"]:not(:checked) + label
+        {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            line-height: 20px;
+            display: inline-block;
+            color: #A6AEC1;
+            font-weight: 500;
+        }
+        [type="radio"]:checked + label:before,
+        [type="radio"]:not(:checked) + label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #A6AEC1;
+            border-radius: 100%;
+            background: #fff;
+        }
+        [type="radio"]:checked + label:after,
+        [type="radio"]:not(:checked) + label:after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #90c63e;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            border-radius: 100%;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+        [type="radio"]:not(:checked) + label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+        [type="radio"]:checked + label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    .deliver-date {
+        margin-bottom: 90px;
+    }
+    .btn-next {
+        background-color: #90C63E;
+        border-radius: 0;
+        color: #fff;
+        width: 100%;
+        padding: 15px 0;
+        position: fixed;
+        bottom: 0;
+    }
+    .btn-light-green {
+        background-color: #90C63E;
+        border-radius: 0;
+        color: #fff;
+        width: 100%;
+        padding: 15px 0;
+        bottom: 0;
+    }
+}
+p {
+    margin: 0px;
+}

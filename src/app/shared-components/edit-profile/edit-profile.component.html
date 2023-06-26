@@ -1,0 +1,254 @@
+<div class="myProfile ">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 col-sm-12 col-xs-12 padd-0">
+                <div class="profileForm">
+                    <div class="mobileView" >
+                        
+                            <i class="bi bi-arrow-left-short bi-icon-class backIcon" (click)="navigateBack()"></i>
+                           
+                            <img src="{{image ? image : '../../../assets/images/default_circle.svg'}}"  (click)="selectImage(content)" class="ml-3 profileImage capture" alt="badge" />
+                            <div id="app" *ngIf="cameraOn==true" >
+                                <div><video #video id="video" style="width:324px" autoplay></video></div>
+                                <div><button id="snap" (click)="capture()">Capture</button></div>
+                                <canvas #canvas id="canvas" style="width: 50px;
+                                height: 50px"></canvas>
+                                <!-- <ul>
+                                    <li *ngFor="let c of captures">
+                                        <img src="{{ c }}" height="50" />
+                                    </li>
+                                </ul> -->
+                            </div>  
+                    </div>
+
+                   
+
+                    <form class="textBoxHide" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+                        <div class="modal-div">
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="passwordEdit fullText" >
+                                    <div class="form-field">
+                                        <label for="exampleInputPassword1">First Name</label>
+                                        <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                            <div *ngIf="f.firstName.errors.pattern">Please enter valid one.</div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="passwordEdit fullText">
+                                    <div class="form-field">
+                                        <label for="exampleInputPassword1">Last Name</label>
+                                        <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name"
+                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                            <div *ngIf="f.lastName.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label>Date Of Birth</label>
+                                    <input type="date" class="form-control" formControlName="DOB" placeholder="Date Of Birth"
+                                    [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                            <!-- <div *ngIf="f.lastName.errors.required">DOB is required</div> -->
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label>Gender</label>
+                                    <input type="text" class="form-control" formControlName="gender" placeholder="Gender"
+                                    [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" />
+                                        <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                            <div *ngIf="f.gender.errors.required">Gender is required</div>
+                                            <div *ngIf="f.gender.errors.pattern">Please enter valid one.</div>
+                                            
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label>Phone number</label>
+                                    <input type="tel" class="form-control" formControlName="phone" placeholder="Phone"
+                                    [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                            <div *ngIf="f.phone.errors.required">Phone Numaber is required</div>
+                                            <div *ngIf="f.phone.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label>Email</label>
+                                    <input type="tel" class="form-control" formControlName="email" placeholder="email"
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required">Email is required</div>
+                                            <div *ngIf="f.email.errors.pattern">Please enter valid one.</div>
+                                            
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label>Address</label>
+                                    <i class="fa fa-plus-circle" aria-hidden="true" (click)="locationBox()"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label></label>
+                                    <input type="text" class="form-control" formControlName="area" placeholder="Address Line 1"
+                                    [ngClass]="{ 'is-invalid': submitted && f.area.errors }" />
+                                        <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
+                                            <div *ngIf="f.area.errors.required">Address 1 is required</div>
+                                            <div *ngIf="f.area.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label></label>
+                                    <input type="text" class="form-control" formControlName="street" placeholder="Address Line 2"
+                                    [ngClass]="{ 'is-invalid': submitted && f.street.errors }" />
+                                        <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                                            <div *ngIf="f.street.errors.required">Address 2 is required</div>
+                                            <div *ngIf="f.street.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label></label>
+                                    <input type="text" class="form-control" formControlName="city" placeholder="City/District"
+                                    [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                            <div *ngIf="f.city.errors.required">City is required</div>
+                                            <div *ngIf="f.city.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label></label>
+                                    <input type="text" class="form-control" formControlName="state" placeholder="State/Province"
+                                    [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
+                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                            <div *ngIf="f.state.errors.required">State is required</div>
+                                            <div *ngIf="f.state.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label></label>
+                                    <input type="tel" class="form-control" formControlName="pinCode" placeholder="Postal Code"
+                                    [ngClass]="{ 'is-invalid': submitted && f.pinCode.errors }" />
+                                        <div *ngIf="submitted && f.pinCode.errors" class="invalid-feedback">
+                                            <div *ngIf="f.pinCode.errors.required">Pincode is required</div>
+                                            <div *ngIf="f.pinCode.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-Inner d-flex align-items-center">
+                                
+                                <div class="form-field">
+                                    <label></label>
+                                    <input type="text" class="form-control" formControlName="country" placeholder="Country"
+                                    [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
+                                        <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                            <div *ngIf="f.country.errors.required">Country is required</div>
+                                            <div *ngIf="f.country.errors.pattern">Please enter valid one.</div>
+
+                                        </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                        <div class="save" style="text-align: center;">
+                            <button type="submit" class="saveButton">Save</button>
+                        </div>
+                        <!-- <div class="mobileEditbtn">
+                            <div class="editProfileForm">
+                                <button class="btn btn-primary" >Edit</button>
+                            </div>
+                        </div> -->
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="mobileEditbtn">
+        <div class="editProfileForm">
+            <button class="btn btn-primary" >Save</button>
+        </div>
+    </div> -->
+</div>
+
+<!-- modal for image -->
+  <ng-template #content let-modal>
+    <div class=" text-center mt-3" >
+      <h5 class=" text-center" >Book Us</h5>
+    </div>
+    <div class="text-center" >
+     <p class="text-center" >Pick Image</p>
+    </div>
+    <div class="modal-body">
+        <button class="camera">Gallery</button>
+    </div>
+    <div class="modal-body">
+        <button class="cameraButton" (click)="cameraOpen()">Camera</button>
+    </div>
+  
+  </ng-template>

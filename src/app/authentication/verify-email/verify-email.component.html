@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="back">
+        <button class="backButton" (click)="location.back()"><i class="bi bi-arrow-down-left"></i></button>
+    </div>
+    <div class=" pt-4" *ngIf="!verified">
+        <div class="mb-5 p-5">
+            <div class="text-center">
+                <div class="companyLogo">
+                    <img src="assets/images/logo.svg" alt="logo">
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <h3 class="heading mt-5">Hi {{userData?.firstName}}!, we are trying to verify your identity</h3>
+            <div class="text-container mt-4">
+                <p>We just sent a code to your email {{userData?.email}}. Please check your email for a message from the Bookus team, and enter the code here.</p>
+            </div>
+            <div class="form-floating mt-4">
+                <input 
+                autofocus
+                type="text" 
+                class="form-control rounded" 
+                id="verificationCode" 
+                placeholder="28C7R4B"
+                [(ngModel)]="verificationCode" 
+                (ngModelChange)="verifyOTP($event)"
+                [disabled]="disabled">
+                <label for="verificationCode">Enter code</label>
+            </div>
+            <p class="text-muted">Did not get the code? <button type="button" class="btn-resend" (click)="resentOTP()" [disabled]="waitfor>=1">Resend <span *ngIf="waitfor>=1">({{waitfor}}s)</span></button></p>
+            <a href="auth/verify-otp">or use phone number for verification</a>
+        </div>
+    </div>
+    <div class="verified" *ngIf="verified">
+        <p class="fs-2">Your account is verified!</p>
+        <i class="bi bi-patch-check"></i>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<div #shoppingCart class="shopping-cart">
+    <div class="product-group" *ngFor="let shop of data; let a = index">
+        <div class="product-shop">
+            <span class="checkbox" (click)="includeAllInShop(a, $event.currentTarget)">
+                <span class="material-icons check-mark">done</span>
+            </span>
+            <div class="d-flex align-items-center gap-2">
+                <div class="shop-logo d-flex align-items-center">
+                    <i *ngIf="!shop?.companyLogo" class="bi bi-shop"></i>
+                    <img *ngIf="shop?.companyLogo" [src]="shop?.companyLogo" alt="logo">
+                </div>
+                <h6 class="shop-name">{{shop?.locationName}}</h6>
+                <i class="bi bi-chevron-right"></i>
+            </div>
+        </div>
+        <div class="product-item" *ngFor="let product of shop?.products; let b = index">
+            <div class="d-flex align-items-center gap-2">
+                <span class="checkbox" [class.selected]="product?.toCheckout" (click)="data[a].products[b].toCheckout = !product.toCheckout">
+                    <span class="material-icons check-mark">done</span>
+                </span>
+                <img class="product-img" [src]="product?.productImages[0]?.productImage" alt="Product Image" (error)="default_img($event)" />
+            </div>
+            <div class="product-details">
+                <p class="product-name">{{product?.name}}</p>
+                <div class="product-variation" *ngIf="product?.variationLabel">
+                    {{product?.variationLabel}}: {{product?.selectedVariation?.variationName}} 
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="product-status-badge">Pre Order</div>
+                <p class="product-price" *ngIf="!product?.specialPrice">{{shop?.currency?.symbol}}{{product?.retailPrice}}</p>
+                <p class="product-price" *ngIf="product?.specialPrice"><span>{{shop?.currency?.symbol}}{{product?.retailPrice}}</span>{{shop?.currency?.symbol}}{{product?.specialPrice}}</p>
+                <div class="product-quantity">
+                    <div class="qty"><i class="bi bi-dash-lg"></i></div>
+                    <input type="number" value="1" />
+                    <div class="qty"><i class="bi bi-plus-lg"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="checkout-section">
+    <div class="select-voucher section">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex gap-2">
+                <i class="bi bi-ticket-perforated"></i>
+                <p>Platform Voucher</p>
+            </div>
+            <div class="d-flex gap-1">
+                <p>Select or enter code</p>
+                <i class="bi bi-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+    <div class="bookus-credit section">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex gap-2">
+                <i class="bi bi-wallet2"></i>
+                <p>No item selected</p>
+                <i class="bi bi-question-circle"></i>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <!-- <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label> -->
+            </div>
+        </div>
+    </div>
+    <div class="checkout section">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+                <span class="checkbox">
+                    <span class="material-icons check-mark">done</span>
+                </span>
+                <span class="label">All</span>
+            </div>
+            <div class="d-flex gap-2">
+                <div class="text-end">
+                    <p class="total">Total <span>P3,590</span></p>
+                    <p class="saved">Saved <span>P1.21k </span> <i class="bi bi-chevron-up"></i></p>
+                </div>
+                <button class="btn-checkout">Check Out (0)</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,237 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title">Comments</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="navigateBack()">
+    </button>
+</div> -->
+<!-- <div class="modal-body"> -->
+<div class="herbal-center-wrapper">
+    <div class="comment-section-wrapper">
+
+        <!-- Rating & Review DETAIL// -->
+        <div class="rating-review-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="profile-wrapper mt-2">
+                            <div class="comment">
+                                <div class="shop-reviews section">
+                                    <div *ngIf="selectedReview">
+                                        <div class="customer-feedback">
+                                            <div class="client-review-details">
+                                                <div class="client-details">
+                                                    <div class="client-img">
+                                                        <img src="{{selectedReview?.clientId?.image}}" alt="customer"
+                                                            (error)="setDefaultUserPic($event, selectedReview?.clientId?.gender)">
+                                        
+                                                    </div>
+                                                    <div class="customerRating">
+                                                        <div class="customer-name">
+                                                            <h6 *ngIf="selectedReview?.clientId">{{selectedReview?.clientId?.firstName}}
+                                                                {{selectedReview?.clientId?.lastName}}</h6>
+                                                            <h6 *ngIf="!selectedReview?.clientId">Anonymous</h6>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <app-star-rating [rating]="selectedReview?.star" [size]="18"></app-star-rating>
+                                                            <div class="time-added">
+                                                                <p class="mb-0">
+                                                                    {{ moment(selectedReview?.createdAt).fromNow() }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flag">
+                                                    <img src="assets/images/flag.svg" alt="flag">
+                                                </div>
+                                            </div>
+                                            <div class="feedback mt-3">
+                                                <div>{{selectedReview?.review}}</div>
+                                            </div>
+                                            <div class="like-icons">
+                                                <ul>
+                                                    <li><a (click)="likeComment(selectedReview?._id, true)">
+                                                            <img src="assets/images/thumb-up-fill.svg" *ngIf="checkLikeDislike(selectedReview, 'like')" alt="thumbs-up">
+                                                            <img src="assets/images/thumb-up.svg" *ngIf="!checkLikeDislike(selectedReview, 'like')" alt="thumbs-up">
+                                                        </a>{{selectedReview?.like?.length}}</li>
+                                                    <li><a (click)="dislikeComment(selectedReview?._id, true)">
+                                                            <img *ngIf="checkLikeDislike(selectedReview, 'dislike')" src="assets/images/thumb-down-fill.svg" alt="thumbs-down">
+                                                            <img *ngIf="!checkLikeDislike(selectedReview, 'dislike')" src="assets/images/thumb-down.svg" alt="thumbs-down">
+                                                        </a>{{selectedReview?.dislike?.length}}</li>
+                                                    <li (click)="displayComment = !displayComment"><a>
+                                                            <img src="assets/images/comment.svg" alt="comment" *ngIf="selectedReview?.comment?.length == 0">
+                                                            <img src="assets/images/comment-fill.svg" alt="comment" *ngIf="selectedReview?.comment?.length > 0">
+                                                        </a>{{selectedReview?.comment?.length}}</li>
+                                                    <li><a href=""><img src="assets/images/share-post.svg" alt="share"></a></li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="hr mt-3 mb-3"></div>
+                                        <div *ngIf="displayComment">
+                                        <ng-container *ngFor="let commentItem of data?.comment">
+                                        <div class="customer-feedback" >
+                                            <div class="client-review-details">
+                                                <div class="client-details">
+                                                    <div class="client-img">
+                                                        <img src="{{commentItem?.customerId?.image}}" alt="customer" (error)="setDefaultUserPic($event, commentItem?.customerId?.gender)">
+                                                        
+                                                    </div>
+                                                    <div class="customerRating">
+                                                        <div class="customer-name">
+                                                            <h6 *ngIf="commentItem?.customerId">{{commentItem?.customerId?.firstName}}
+                                                            {{commentItem?.customerId?.lastName}}</h6>
+                                                            <h6 *ngIf="!commentItem?.customerId">Anonymous</h6>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <!-- <ul>
+                                                                <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                                                                <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                                                                <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                                                                <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                                                                <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                                                            </ul> -->
+                                                            <div class="time-added">
+                                                                <p class="mb-0">
+                                                                    {{ moment(commentItem?.createdAt).fromNow() }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flag">
+                                                    <img src="assets/images/flag.svg" alt="flag">
+                                                </div>
+                                            </div>
+                                            <div class="feedback mt-3">
+                                                <div>{{commentItem?.body}}</div>
+                                            </div>
+                                            <div class="like-icons">
+                                                <ul>
+                                                    <li><a (click)="likeComment(commentItem?._id)">
+                                                            <img src="assets/images/thumb-up-fill.svg" *ngIf="commentItem.isLike" alt="thumbs-up">
+                                                            <img src="assets/images/thumb-up.svg" *ngIf="!commentItem.isLike" alt="thumbs-up">
+                                                        </a>{{commentItem?.like?.length}}</li>
+                                                    <li><a (click)="dislikeComment(commentItem?._id)">
+                                                            <img *ngIf="commentItem.isDislike" src="assets/images/thumb-down-fill.svg" alt="thumbs-down">
+                                                            <img *ngIf="!commentItem.isDislike" src="assets/images/thumb-down.svg" alt="thumbs-down">
+                                                        </a>{{commentItem?.dislike?.length}}</li>
+                                                    <li><a (click)="commentItem.isDisplyBlock = !commentItem.isDisplyBlock">
+                                                            <img src="assets/images/comment.svg" alt="comment" *ngIf="commentItem?.reply?.length == 0">
+                                                            <img src="assets/images/comment-fill.svg" alt="comment" *ngIf="commentItem?.reply?.length > 0"
+                                                            >
+                                                        </a>{{commentItem?.reply?.length}}</li>
+                                                    <li><a href=""><img src="assets/images/share-post.svg" alt="share"></a></li>
+                                                </ul>
+                                                <div class="reply">
+                                                    <a (click)="replyComment(commentItem)">Reply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="reply-block" *ngIf="commentItem.isDisplyBlock && commentItem.reply?.length > 0">
+                                            <ng-container *ngFor="let replyItem of commentItem.reply; let i = index">
+                                            <div class="customer-feedback">
+                                                <div class="client-review-details">
+                                                    <div class="client-details">
+                                                        <div class="client-img">
+                                                            <img src="{{replyItem?.customerId?.image}}" alt="customer"
+                                                                (error)="setDefaultUserPic($event, replyItem?.customerId?.gender)">
+                                            
+                                                        </div>
+                                                        <div class="customerRating">
+                                                            <div class="customer-name">
+                                                                <h6 *ngIf="replyItem?.customerId">{{replyItem?.customerId?.firstName}}
+                                                                    {{replyItem?.customerId?.lastName}}</h6>
+                                                                <h6 *ngIf="!replyItem?.customerId">Anonymous</h6>
+                                                            </div>
+                                                            <div class="rating">
+                                                              <div class="time-added">
+                                                                    <p class="mb-0">
+                                                                        {{ moment(replyItem?.createdAt).fromNow() }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="feedback mt-3">
+                                                    <div>{{replyItem?.reply}}</div>
+                                                </div>
+                                                <div class="like-icons">
+                                                    <ul>
+                                                        <li><a (click)="likeReply(replyItem?._id, commentItem)">
+                                                                <img src="assets/images/thumb-up-fill.svg" *ngIf="replyItem.isLike" alt="thumbs-up">
+                                                                <img src="assets/images/thumb-up.svg" *ngIf="!replyItem.isLike" alt="thumbs-up">
+                                                            </a>{{replyItem?.like?.length}}</li>
+                                                        <li><a (click)="dislikeReply(replyItem?._id,commentItem)">
+                                                                <img *ngIf="replyItem.isDislike" src="assets/images/thumb-down-fill.svg" alt="thumbs-down">
+                                                                <img *ngIf="!replyItem.isDislike" src="assets/images/thumb-down.svg" alt="thumbs-down">
+                                                            </a>{{replyItem?.dislike?.length}}</li>
+                                                        
+                                                    </ul>
+                                                   
+                                                </div>
+                                            </div>
+                                            <div class="hr mt-3 mb-3" *ngIf="i < (commentItem.reply.length - 1)"></div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="hr mt-3 mb-3"></div>
+                                        </ng-container>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- </div> -->
+<!-- <div class="modal-footer"> -->
+    <div class="container-fluid bottom">
+        <div class="row" *ngIf="selectedComment">
+            <div class="col"><div class="col-12 p-0" ><p class="mb-0">Reply to {{selectedComment?.customerId?.firstName}}
+            {{selectedComment?.customerId?.lastName}}</p></div></div>
+            <div class="col-auto" (click)="replyComment(selectedComment)"><span aria-hidden="true">&times;</span></div>
+        </div>
+        <div class="row">
+            <div class="col-12 p-0">
+                <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+                <div class="write-comment-wrapper">
+                    <div class="write-comment" *ngIf="anonymous">
+                        <div class="client-img"><img src="{{setDefaultAnonyPic(userData?.result?.gender)}}" alt="user" (click)="anonymous = false"></div>
+                        <p *ngIf="!anonymous" class="mb-0">Comment as anonymous</p>
+                        <input type="text" class="form-control" placeholder="Write Your Reply" formControlName="body" *ngIf="anonymous"
+                            [ngClass]="{ 'is-invalid': submitted && f.body.errors }">
+                        <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
+                            <div *ngIf="f.body.errors.required">
+                            </div>
+                        </div>
+                        <div class="share" *ngIf="anonymous">
+                            <button style="border: none;background: none;"><img src="assets/images/send.svg" alt="share"></button>
+                        </div>
+                    </div>
+                    <div class="write-comment" *ngIf="!anonymous">
+                        <div class="client-img">
+                            <img *ngIf="userData" [src]="userData?.result?.image" alt="user" (click)="anonymous = true" (error)="setDefaultUserPic($event, userData?.result?.gender)"></div>
+                            <p *ngIf="userData && anonymous" class="mb-0 flex-grow-1">Comment as {{userData?.result?.firstName}}</p>
+                            <input type="text" class="form-control" *ngIf="!anonymous" placeholder="Write Your Reply" formControlName="body" #bodyName
+                                [ngClass]="{ 'is-invalid': submitted && f.body.errors }">
+                            <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
+                                <div *ngIf="f.body.errors.required">
+                                </div>
+                            </div>
+                       
+                        <div class="share" *ngIf="!anonymous">
+                            <button style="border: none;background: none;"><img src="assets/images/send.svg" alt="share"></button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->

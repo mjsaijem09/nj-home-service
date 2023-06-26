@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12" *ngIf="user && !bookForData && !sendRequestData">
+            <app-select-time [queryParamsObj]="user" (changeContent)="selectTimeChanged($event)"></app-select-time>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" *ngIf="bookForData && !intakeFormData">
+            <app-book-for [selectTimeData]="bookForData" (bookForContent)="bookForContent($event)"></app-book-for>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" *ngIf="intakeFormData && !detailsPageData" >
+            <app-intake-form [intakeFormData]="intakeFormData" (intakeDataSelected)="intakeDataSelected($event)"></app-intake-form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" *ngIf="detailsPageData">
+            <app-book-appointment [detailsPageData]="detailsPageData" (bookAppointmentData)="bookAppointmentData($event)"></app-book-appointment>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" *ngIf="!bookForData && sendRequestData">
+            <app-send-request [sendRequestData]="sendRequestData" (requestData)="onrequestData($event)"></app-send-request>
+        </div>
+    </div>
+    
+</div>

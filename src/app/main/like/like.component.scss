@@ -1,0 +1,702 @@
+// .mt-my-5 {
+//     margin-top : 2.5rem !important;
+// }
+// .social-card-header{
+//     position: relative;
+//     display: -ms-flexbox;
+//     display: flex;
+//     -ms-flex-align: center;
+//     align-items: center;
+//     -ms-flex-pack: center;
+//     justify-content: center;
+//     height: 96px;
+// }
+// .card {
+//     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//     background: #FFFFFF;
+//     box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+//     border-radius: 10px;
+//     // transition: 0.3s;
+//   }
+//   .positionstyle{
+//       margin-bottom: 50px;
+//   }
+//   .card-text{
+//     text-align: left!important;
+// }
+// .rating{
+//  margin-left: 12px;
+// }
+// .subtext{
+//     font-size: 15px;
+//     margin-bottom: -2px;
+// }
+// .fonticon{
+//     display:flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     margin-bottom: 10px;
+//     h5 {
+//         margin-bottom: 0;
+//     }
+// }
+
+// .fa-whatsapp:before {
+//     margin-left: 16px;
+//     color: #28a745!important;
+// }
+// .card-title{
+//     font-size: 16px;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
+// .card-footer {
+//     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+// }
+// .card-custom {
+//   // padding: 15px;
+//   border-radius: 10px !important;
+// }
+
+// .therapist-card{
+//     max-width: 500px;
+//   }
+
+//   // .therapist-details{
+//   //   padding: 10px;
+//   //   display: flex;
+//   // }
+//   // .therapist-img {
+//   //   width: 60px;
+//   //   height: 60px;
+//   // }
+//   .therapist-text {
+//     margin-left: 10px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     font-size: 16px;
+//     font-weight: 500;
+//   }
+//   // .therapist-img img {
+//   //   width: 100%;
+//   //   border-radius: 50%;
+//   // }
+//   .star-wrapper img{
+//     margin: 0 2px;
+//     width: 15px;
+//   }
+//   .buttons-area {
+//     display: flex;
+//     background-color: #000000;
+//   }
+//   .buttons-area button {
+//     width: 100%;
+//     border-radius: 0;
+//     color: #fff;
+//     margin: 5px;
+//   }
+//   .buttons-area button:focus{
+//     color: #fff;
+//     outline:none;
+//     box-shadow: none;
+//   }
+//   .buttons-area .btn {
+//     border-right: 1px solid #fff;
+//   }
+//   .buttons-area .btn:last-child {
+//     border-right: none;
+//   }
+//   .buttons-area button:focus{
+//     color: #fff;
+//     outline:none;
+//     box-shadow: none;
+//   }
+//   .imgposition{
+//     margin-left: 9px;
+//   }
+
+//   .adjustCard {
+//     min-height: 458px;
+//     position: relative;
+//     .card-img-top {
+//       height: 280px;
+//       object-fit: cover;
+//     }
+//     .buttons-area {
+//       // position: absolute;
+//       bottom: 0;
+//       left: 0;
+//       width: 100%;
+//     }
+//   }
+//   .active{
+//    border-bottom: 3px solid white;
+//   }
+//   .shop,.therapist{
+//     text-decoration: underline !important;
+//   }
+
+//   // header for desktop
+//   .headerWeb {
+//     width: 100%;
+//     background-color: black;
+//     justify-content: space-between;
+//     margin-top: 70px;
+//     height: 35px;
+
+//     @media all and (max-width:767px) {
+//       display: none;
+//     }
+//   }
+//   .locationWeb {
+//     width: 100%;
+//     background-color: black;
+//     justify-content: space-between;
+//     margin-top: 5px;
+//     height: 35px;
+
+//     @media all and (max-width:767px) {
+//       display: none;
+//     }
+//   }
+
+//   .location {
+//     background-color: #90C63E;
+//     color: white;
+//     text-align: center;
+//   }
+
+//   .referalSource {
+//     background-color: #C3C3C3;
+//     color: white;
+//     text-align: center;
+
+//     @media all and (max-width:767px) {
+//       display: none;
+//     }
+
+//   }
+//   .locationText {
+//     padding-top: 6px;
+//     color: black;
+//     font-weight: 600;
+//   }
+//   .tabs {
+//     display: flex;
+//     align-items: center;
+//     * {
+//       border: 1px solid #e4d5d5;
+//       box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 0px 0 rgb(0 0 0 / 0%);
+//       color: grey;
+//       flex-basis: 170px;
+//     }
+//     .active{
+//       border-bottom: 3px solid #9e9a9a;
+//     }
+//     @media all and (max-width:767px){
+//       display: none;
+//     }
+//   }
+
+//   .schedule-tab{
+//     padding: 25px 25px;
+//   }
+
+//   .font-20{
+//     font-size: 20px;
+//   }
+//   .upcoming-card{
+//     max-width: 500px;
+//   }
+//   .therapist-details{
+//     display: flex;
+//     height: 65px;
+//   }
+//   .therapist-img {
+//     width: 20%;
+//   }
+//   .upcoming-right-block {
+//     // margin-left: 10px;
+//     // display: flex;
+//     // flex-direction: column;
+//     width: 100%;
+//     margin-bottom: 15px;
+//     justify-content: space-between;
+//     // padding-top: 20px;
+//     // justify-content: center;
+//   }
+//   // .upcoming-text{
+//   //   font-weight: 500;
+//   //   display: flex;
+//   //   justify-content: space-between;
+//   // }
+//   .upcoming-text img {
+//     width: 25px;
+//     margin: 0 5px;
+//   }
+//   .therapist-img img {
+//     width: 100%;
+//     // border-radius: 50%;
+//     padding-bottom: 40px;
+//     height: 90px;
+//     width: 56px;
+
+//   }
+//   .buttons-area {
+//     display: flex;
+//   }
+//   .buttons-area button {
+//     width: 100%;
+//     border-radius: 0;
+//     color: #fff;
+//     background-color: #000000;
+//     padding: 12px;
+//   }
+//   .buttons-area button:focus{
+//     color: #fff;
+//     outline:none;
+//     box-shadow: none;
+//   }
+//   .cardposition{
+//       margin-bottom: 50px;
+//   }
+//   .carddetailposition{
+//     padding-right: 0px;
+//     padding-left: 0px;
+//     margin-top: 12px !important;
+// }
+
+// .relationshipMain-page {
+//     margin-bottom: 70px;
+// }
+// .upcoming-card {
+//   .card-body {
+//     padding-bottom: 0;
+//   }
+//   .buttons-area {
+//     margin: 0 -20px;
+//   }
+// }
+// .delete-right {
+//   border-right: 1px solid #fff;
+// }
+// .relationpage-outerWrapper {
+//   margin-top: 45px;
+// }
+// .user-name-wrapper {
+// width:80%;
+
+// }
+//  .name-wrapper{
+//   white-space: nowrap;
+//   margin-left: 5px;
+//   font-family: Rubik;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 19px;
+
+//   text-transform: capitalize;
+
+//   color: #000000;
+//   margin-bottom: -5px;
+// }
+// .name-wrapper-location{
+//   width: 214px;
+// height: 16px;
+// left: 76px;
+// top: 379px;
+
+// font-family: Rubik;
+// font-style: normal;
+// font-weight: normal;
+// font-size: 14px;
+// line-height: 17px;
+// text-transform: capitalize;
+
+// color: #A6AEC1;
+// }
+// .name-wrapper-shop{
+//   white-space: nowrap;
+//   margin-left: 5px;
+//   font-family: Rubik;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 19px;
+
+//   text-transform: capitalize;
+
+//   color: #000000;
+// }
+// .button-custom{
+//   width: 83px;
+//   font-family: Rubik;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 12px;
+//   line-height: 14px;
+//   text-transform: capitalize;
+//   color: #FFFFFF;
+
+// }
+// .re-book{
+//   background-color: #90C63E;
+// }
+// .add{
+// background-color: #3E9DC6;
+// }
+// .delete{
+//   background-color: #FD6D6D;
+//   }
+// .button-custom-shop{
+//   width: 130px;
+//   font-family: Rubik;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 12px;
+//   line-height: 14px;
+//   text-transform: capitalize;
+//   color: #FFFFFF;
+// }
+// .button-call{
+//   width: 70px;
+//   font-family: Rubik;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 12px;
+//   line-height: 14px;
+//   text-transform: capitalize;
+//   color: #FFFFFF;
+//   background-color: #90C63E;
+// }
+// .button-hr{
+//   width: 70px;
+//   font-family: Rubik;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 12px;
+//   line-height: 14px;
+//   text-transform: capitalize;
+//   color: #3E9DC6;
+// }
+// .location-shop{
+//   // background-color: grey;
+//   color: darkgray;
+// }
+
+// .img-shop{
+//   width: 350px;
+//   height: 190px;
+//   border-radius: 25px;
+// }
+
+// .img-card-wrapper{
+//   position: absolute;
+//     /* bottom: -83px; */
+//     /* top: -21px; */
+//     bottom: -80px;
+//     margin: 0 9px;
+// }
+
+// .rating{
+//   display: flex;
+//   flex-direction: row;
+//   align-items: baseline;
+//   margin-left: 2px;
+//   margin-bottom: -13px;
+//   ul{
+//     padding: 0;
+//     margin: 0;
+//     text-align: left;
+//     li{
+//       display: inline-block;
+//       list-style-type: none;
+//       margin-right: 3px;
+//       img{
+//         width: 14px;
+//       }
+//     }
+//   }
+//   .total-rating{
+//     margin-left: 2px;
+//     p{
+//       font-weight: normal;
+//       font-size: 12px;
+//       line-height: 14px;
+//       color: #A6AEC1;
+//     }
+//   }
+// }
+// .name-call-wrapper{
+//     margin-bottom: -10px;
+
+// }
+
+// .tab-align{
+//   border-radius: 30px;
+//     /* background-color: grey; */
+//     background-color: #EDEDEE;
+//     width: 135px;
+//     height: 32px;
+//     margin-top: 5px;
+//     padding-top: 3px;
+
+// }
+// .active{
+//   color: #90C63E;
+// }
+// .tab-custom{
+//   margin-top: 25px;
+//     background-color: white;
+
+// }
+// .tab-main{
+//   margin-left: 10px;
+//     margin-right: 10px;
+// }
+
+
+* {
+  text-transform: capitalize;
+  font-weight: 400;
+}
+.shop-page {
+  margin-bottom: 60px;
+  .shop-therapist-tabs {
+    margin-top: 105px;
+    background-color: #fff;
+    padding-bottom: 10px;
+    .tabs-btn {
+      .tab-align {
+        background: transparent;
+        border-radius: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        &.active {
+          span {
+            background: #EFF7E4;
+            color: #90C63E;
+          }
+        }
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 32px;
+          font-size: 14px;
+          line-height: 17px;
+          color: #A6AEC1;
+          background: #F0F0F0;;
+          border-radius: 16px;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+  .shop-therapist-tab-content {
+    margin-top: 10px;
+    width: 100%;
+    .btns {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      a {
+        border-radius: 6px;
+        font-size: 12px;
+        line-height: 14px;
+        color: #FFFFFF;
+        padding: 7px 0;
+        width: 100%;
+        text-align: center;
+      }
+      .book-us {
+        background: #90C63E;
+      }
+      .delete {
+        background: #FD6D6D;
+      }
+      .add-tip {
+        background: #3E9DC6;
+      }
+    }
+    .shop-content {
+      .shop-content-wrapper {
+        position: relative;
+        margin-bottom: 136px;
+        .shop-image {
+          img {
+            width: 100%;
+            border-radius: 10px;
+            background-color: #fff;
+          }
+        }
+        .content {
+          position: absolute;
+          top: 75%;
+          left: 17px;
+          width: 91%;
+          background: #FFFFFF;
+          box-shadow: 0px 4px 64px rgba(15, 34, 67, 0.1);
+          border-radius: 10px;
+          padding: 9px 11px 16px;
+          .detail {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            .shop-name {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              h3 {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 21px;
+                color: #000000;
+                margin-bottom: 5px;
+              }
+              p {
+                font-size: 12px;
+                line-height: 14px;
+                color: #A6AEC1;
+                margin: 0;
+              }
+            }
+            .shop-contact {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              a {
+                box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+                border-radius: 3px;
+                font-size: 12px;
+                line-height: 14px;
+                width: 50px;
+                padding: 4px 0;
+                margin-left: 8px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                img {
+                  max-width: 13px;
+                  height: 13px;
+                  margin-right: 5px;
+                }
+              }
+              .direction {
+                background: #DEEEF4;
+                color: #3E9DC5;
+              }
+              .call {
+                background: #90C63E;
+                color: #FFFFFF;
+              }
+            }
+          }
+          .address {
+            margin-bottom: 20px;
+            p {
+              font-size: 14px;
+              line-height: 17px;
+              color: #A6AEC1;
+              img {
+                margin-right: 6px;
+              }
+            }
+          }
+        }
+      }
+      .emptyArray {
+        text-align: center;
+        margin-top: 40px;
+        img {
+          width: 210px;
+        }
+        h4 {
+          margin-top: 20px;
+          color: #90C63E;
+        }
+        p {
+          line-height: 25px;
+        }
+        .btn-green {
+          background: #90C63E;
+          border-radius: 10px;
+          color: #fff;
+          border: none;
+          padding: 10px 0;
+        }
+      }
+    }
+    .therapist-content {
+      .therapist-content-wrapper {
+        background: #FFFFFF;
+        box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+        border-radius: 10px;
+        padding: 17px 16px 23px;
+        width: 100%;
+        margin-bottom: 15px;
+        .user {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 9px;
+          margin-bottom: 20px;
+          img {
+            width: 45px;
+            height: 45px;
+            border-radius: 100%;
+            object-fit: cover;
+          }
+          .therapist-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            h3 {
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 19px;
+              color: #000000;
+              margin-bottom: 5px;
+
+            }
+          }
+        }
+        .btns {
+          gap: 10px;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .modal-content {
+  border-radius: .8rem !important;
+  border: none !important;
+}
+
+.modal-title {
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+@media screen and (min-width: 1024px) {
+  .shop-page .shop-therapist-tabs {
+    margin-top: 113px;
+    background-color: #fff;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+}

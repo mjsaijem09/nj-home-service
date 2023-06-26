@@ -1,0 +1,137 @@
+.comment-wrapper-head{
+    margin-top: 30px;
+}
+.card{
+    margin-top: 20px;
+    width: 110%;
+    box-shadow: 0 3px 7px 0 rgba(163, 159, 159, 0.5);
+}
+.card-body{
+    height: 122px;
+}
+ 
+.otherReviewDevider-wrapper{
+    width: 90%;
+    box-shadow: 0 3px 7px 0 rgba(163, 159, 159, 0.5);
+}
+.rounded-circle{
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    @media all and (max-width : 767px){
+        object-fit: cover;
+    height: 70px;
+    width: 70px;
+    }
+}
+.comments-rating{
+    display: flex;
+    justify-content: space-between;
+}
+.user-name{
+    font-size: 20px;
+    .user {
+        h4 {
+            @media all and (max-width: 767px) {
+                font-size: 22px;
+            }
+        }
+    }
+}
+ 
+  .therapy{
+    font-size: 59%;
+    font-weight: 400;
+  }
+  .therapy-review-description{
+    font-size: 59%;
+    font-weight: 400; 
+    @media all and (max-width: 767px) {
+       display: none;
+    }
+  }
+  .profile-picture-wrapper{
+      margin-right: 20px;
+      @media all and (max-width: 767px) {
+          margin-bottom: 20px;
+          margin-right: 10px;
+      }
+  }
+.therapy-review-description {
+    p {
+        font-size: 14px;
+    }
+}
+.mobile-social-items {
+    margin-top: 20px;
+    @media all and (max-width: 767px) {
+        display: block;
+    }
+    ul {
+        display: flex;
+        padding: 0;
+        list-style: none;
+        li {
+            margin-right: 20px;
+            a {
+                color: #000;
+            }
+            i {
+                margin: 0 5px;
+            }
+        }
+    }
+    .mobile-socialWrapper {
+        display: flex;
+        align-items: center;
+    }
+}
+.user-comment-wrapeer {
+    @media all and (max-width: 767px) {
+        width: 100%;
+    }
+}
+.rr-rating-innerWrapper-service {
+    @media all and (max-width: 767px) {
+        text-align: center;
+    }
+    h1 {
+        @media all and (max-width: 767px) {
+            font-size: 30px;
+        }
+    }
+    span {
+        @media all and (max-width: 767px) {
+            font-size: 17px;
+        }
+    }
+}
+.write-comment {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    padding: 0 20px;
+  }
+  .send_button{
+    border-radius: 50px;
+    margin-left: 5px;
+    height: 50px;
+    width: 50px;
+}
+.write-comment {
+    .comment {
+        max-width: 305px;
+        width: 100%;
+        .comment-input-field{
+            border-radius: 30px;
+            padding: 0 20px;
+            height: 50px;
+            width: 100%;
+        }
+    }
+}
+.comments-reply{
+    width: 87%;
+}

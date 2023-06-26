@@ -1,0 +1,440 @@
+<div class="parentLoader" *ngIf="isLoading">
+  <app-custom-spinner></app-custom-spinner>
+</div>
+
+<div class="myProfile" *ngIf="!isLoading">
+    <div class="side-head_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="side-head">
+                        <div class="user-details">
+                            <div class="user-profile-img" (click)="openPickImage(content)">
+                                <img *ngIf="!profileData?.image && !profileData?.gender" src="assets/images/carbon_user-avatar-filled.svg" alt="user-image" class="image-logo">
+                                <img *ngIf="profileData?.image" src="{{profileData?.image}}" alt="user-image" class="image-logo">
+                                <img *ngIf="!profileData?.image && profileData?.gender == 'Female'" src="assets/images/female-user.svg" alt="female-user" class="image-logo">
+                                <img *ngIf="!profileData?.image && profileData?.gender == 'Male'" src="assets/images/male-user.svg" alt="male-user" class="image-logo">
+                                <div class="verified-icon">
+                                    <img src="../../../assets/images/verified.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <div class="userName">
+                                    <div class="user-name">
+                                        <p>{{profileData?.firstName}} {{profileData?.lastName ? profileData?.lastName.split('')[0] + '.' : ''}}</p>
+                                    </div>
+                                    <div class="user-badge" [routerLink]="['/customer-level']">
+                                        <img src="assets/images/user-batch.svg">
+                                        <div class="batch-number">
+                                            <p>{{profileData?.level?.label}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating"  [routerLink]="['/level']">
+                                    <app-star-rating [rating]="4.7" [size]="18"></app-star-rating>
+                                    <div class="total-rating">
+                                        <p>4.7</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ml-auto"  [routerLink]="['/your-credit']">
+                                <div class="score" [ngStyle]="{'background-image': getBackgound(profileData?.badgeScore)}">
+                                    {{profileData?.badgeScore}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()"> 
+        <div class="profileForm_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="profile-form">
+                            <div class="form-group mb-3 ">
+                                <div class="form-icon">
+                                    <img src="assets/images/user-outline.svg" alt="user">
+                                </div>
+                                <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                                <div class="field-filled" *ngIf="f.firstName?.valid">
+                                    <img src="assets/images/checkbox-circle-line.svg" alt="checkbox">
+                                </div>
+                                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                    <div *ngIf="f.firstName.errors.pattern">please enter valid one.</div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-icon">
+                                    <img src="assets/images/user-outline.svg" alt="user">
+                                </div>
+                                <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+                                <div class="field-filled" *ngIf="f.lastName?.valid">
+                                    <img src="assets/images/checkbox-circle-line.svg" alt="checkbox">
+                                </div>
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                    <div *ngIf="f.lastName.errors.pattern">please enter valid one.</div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3 ">
+                                <div class="form-icon">
+                                    <i class="bi bi-calendar-heart"></i>
+                                </div>
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dob" ngbDatepicker [maxDate]="maxDate"
+                                #d="ngbDatepicker" (click)="d.toggle()" formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }">
+                                <!-- <input type="text" class="form-control" formControlName="dob" placeholder="Date of Birth"> -->
+                                <div class="field-filled" *ngIf="f.dob?.valid">
+                                    <img src="assets/images/checkbox-circle-line.svg" alt="checkbox">
+                                </div>
+                                <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                    <div *ngIf="f.dob.errors.required">Date of birth is required</div>
+                                    <div *ngIf="f.dob.errors.pattern">please enter valid one.</div>
+                                </div>
+                            </div>
+                            <div class="gender-wrapper form-group mb-3">
+                                <nav class="navbar navbar-expand-lg navbar-light">
+                                    <li class="nav-item dropdown form-control">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div class="selected-gender" *ngIf="selectedGender; else selectGender">
+                                                <img src="assets/images/gender-{{(selectedGender).toLowerCase()}}.svg" alt="gender">
+                                                <span>{{selectedGender}}</span>
+                                            </div>
+                                            <ng-template #selectGender>
+                                                <span>Select Gender</span>
+                                            </ng-template>
+                                            <!-- <div class="form-group mb-3 ">
+                                                <div class="form-icon">
+                                                    <img src="assets/images/gender-male.svg" alt="gender">
+                                                </div>
+                                                <input type="text" class="form-control" formControlName="gender" placeholder="Gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                <div class="field-filled">
+                                                    <img src="assets/images/checkbox-circle-line.svg" alt="checkbox">
+                                                </div>
+                                                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.gender.errors.required">Gender is required</div>
+                                                    <div *ngIf="f.gender.errors.pattern">please enter valid one.</div>
+                                                </div>
+                                            </div> -->
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" (click)="selectedGender = 'Male'">
+                                                <img src="assets/images/gender-male.svg" alt="gender">
+                                                <span>Male</span>
+                                            </a>
+                                            <a class="dropdown-item" (click)="selectedGender = 'Female'">
+                                                <img src="assets/images/gender-female.svg" alt="gender">
+                                                <span>Female</span>
+                                            </a>
+                                            <a class="dropdown-item" (click)="selectedGender = 'Unknown'">
+                                                <img src="assets/images/gender-unknown.svg" alt="gender">
+                                                <span>Unknown</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </nav>
+                            </div>
+                            <div class="form-group mb-3 ">
+                                <div class="form-icon">
+                                    <img src="assets/images/map.svg" alt="map">
+                                </div>
+                                <input type="text" class="form-control" formControlName="country" placeholder="Country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                                <div class="field-filled" *ngIf="f.country?.valid">
+                                    <img src="assets/images/checkbox-circle-line.svg" alt="checkbox">
+                                </div>
+                                <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                    <div *ngIf="f.country.errors.required">Country is required</div>
+                                    <div *ngIf="f.country.errors.pattern">please enter valid one.</div>
+                                </div>
+                            </div>
+                            <div class="mobile form-group mb-3">
+                                <div class="wrapper">
+                                    <ngx-intl-tel-input [cssClass]="'custom w-100'" class="mobile-wrapper" [preferredCountries]="preferredCountries"
+                                        [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true" [selectFirstCountry]="true"
+                                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Australia"
+                                        [phoneValidation]="true" [separateDialCode]="separateDialCode" [numberFormat]="PhoneNumberFormat.National"
+                                        name="phone" formControlName="mobile">
+                                    </ngx-intl-tel-input>
+                                </div>
+                                <div class="field-filled" *ngIf="f.mobile.valid">
+                                    <img src="assets/images/checkbox-circle-line.svg" alt="checkbox">
+                                </div>
+                                <div *ngIf="f.mobile.invalid" class="invalid">
+                                   Invalid phone number
+                                </div>
+                            </div>
+                            <div class="form-group mb-3 ">
+                                <div class="form-icon">
+                                    <img src="assets/images/email.svg" alt="mail">
+                                </div>
+                                <input type="email" class="form-control" readonly formControlName="email" placeholder="Email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                <div class="field-filled">
+                                    <img src="assets/images/checkbox-circle-line.svg" alt="checkbox">
+                                </div>
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.pattern">please enter valid one.</div>
+                                </div>
+                            </div>
+                            <div class="address-wrapper mb-3">
+                                <div class="heading mb-2 pointer" (click)="goToChangePassword()">
+                                    <img src="assets/images/lock.svg" alt="lock"> 
+                                    <p class="text-highlight">Change Password</p>
+                                </div>
+                                <!-- <input type="password" name="password" class="form-control"formControlName="password" placeholder="Change Password"> -->
+                            </div>
+                            <div class="address-wrapper">
+                                <div class="heading">
+                                    <img src="assets/images/map-pin-black.svg">
+                                    <p>Address</p>
+                                </div>
+                                <div class="form-group mb-3 ">
+                                    <input type="text" name="area" class="form-control" formControlName="area" placeholder="Address line 1"  [ngClass]="{ 'is-invalid': submitted && f.area.errors }">
+                                    <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
+                                        <div *ngIf="f.area.errors.required">Address line 1 is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3 ">
+                                    <input type="text" name="street" class="form-control" formControlName="street" placeholder="Address line 2"  [ngClass]="{ 'is-invalid': submitted && f.street.errors }">
+                                    <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                                        <div *ngIf="f.street.errors.required">Address line 2 is required</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group mb-3 col">
+                                        <input type="text" name="city" class="form-control" formControlName="city" placeholder="city/district"  [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                            <div *ngIf="f.city.errors.required">City is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3 col">
+                                        <input type="text" name="state" class="form-control" formControlName="state" placeholder="state/provice"  [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                            <div *ngIf="f.state.errors.required">State is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="number" name="zip" class="form-control"formControlName="zip" placeholder="postal code"  [ngClass]="{ 'is-invalid': submitted && f.zip.errors }">
+                                    <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
+                                        <div *ngIf="f.zip.errors.required">Postal code is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--div class="container">
+            <small>Form Value: {{profileForm.value|json}}</small>
+            <br>
+            <small>Form status: {{profileForm.status|json}}</small>
+        </div-->
+        <div class="book-us">
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="profile-Img" (click)="navigateBack()">
+                    <ng-container (click)="navigateBack()">
+                        <i class="bi bi-arrow-left-short bi-icon-class mobileView"></i>
+                    </ng-container>
+                    <img src="../../../assets/images/profile.png" class="w-100 mobileView">
+                    <img [src]="myProfiledata?.image || '../../../assets/images/default_circle.svg'" class="w-100 desktopView" style="max-height: 360px;">
+                </div>
+                <div class="profileName d-flex align-items-ceter">
+                    <h5 class="mb-0">{{myProfiledata?.firstName }}</h5>
+                    <img src="../../../assets/images/bronze_badge.svg" class="ml-3" alt="badge" />
+                </div>
+            </div>
+             <div class="col-md-6 col-sm-12 col-xs-12 padd-0">
+                <div class="profileForm">
+                    <div class="mobileView"> -->
+                        <!-- <div class="userImg">
+                            <img [src]="myProfiledata?.image || '../../../assets/images/default_circle.svg'"  />
+                            <div class="greenIcon">
+                                <img src="../../../assets/images/verified.svg" alt="verified" />
+                            </div>
+                        </div> -->
+                        <!-- <div class="userMobileName d-flex justify-content-start">
+                            <h5 class="mb-0 ms-0 user-name">{{myProfiledata?.firstName || 'Demo Name'}}</h5>
+                            <img class="greenIcon" src="../../../assets/images/verified.svg" alt="verified" />
+                        -->
+
+                                
+                            <!-- <img src="../../../assets/images/bronze_badge.svg" class="ml-3" alt="badge" /> -->
+                        <!-- <div class="red-icon d-flex justify-content-end" >
+                            <div class="circle" style="position: relative;" > -->
+                                <!-- <svg width="29" height="29" viewBox="0 0 29 29" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24.7848 24.6029C30.2519 19.1365 30.2519 10.2737 24.7848 4.80724C19.3178 -0.659193 10.4539 -0.659193 4.98688 4.80724C-0.480183 10.2737 -0.480183 19.1365 4.98688 24.6029C10.4539 30.0693 19.3178 30.0693 24.7848 24.6029Z" fill="url(#paint0_linear)"/>
+                                    <defs>
+                                    <linearGradient id="paint0_linear" x1="12152" y1="-2850.06" x2="1681.46" y2="14702.7" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.1" stop-color="#BB4633"/>
+                                    <stop offset="0.5" stop-color="#BB4633"/>
+                                    <stop offset="0.64" stop-color="#781F11"/>
+                                    <stop offset="0.8" stop-color="#501309"/>
+                                    <stop offset="0.92" stop-color="#380D06"/>
+                                    <stop offset="1" stop-color="#2E0903"/>
+                                    </linearGradient>
+                                    </defs>
+                                    </svg> -->
+
+                                    <!-- <div class="red-number" >
+                                        <svg  width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.52438 14.4268C5.39104 14.4268 5.27771 14.3801 5.18438 14.2868C5.09104 14.1934 5.04438 14.0801 5.04438 13.9468V3.58676L2.00438 5.92676C1.92438 5.99342 1.83104 6.02676 1.72438 6.02676C1.56438 6.02676 1.43104 5.95342 1.32438 5.80676L0.484375 4.72676C0.417708 4.62009 0.384375 4.52009 0.384375 4.42676C0.384375 4.26676 0.457708 4.13342 0.604375 4.02676L5.08438 0.566757C5.20438 0.473424 5.37104 0.426757 5.58438 0.426757H7.34438C7.49104 0.426757 7.60438 0.473424 7.68438 0.566757C7.77771 0.646757 7.82438 0.76009 7.82438 0.906757V13.9468C7.82438 14.0801 7.77771 14.1934 7.68438 14.2868C7.60438 14.3801 7.49104 14.4268 7.34438 14.4268H5.52438Z" fill="#8E2818"/>
+                                        </svg>
+                                    </div>
+                            </div>
+                            <div class="wedge-outer-wrapper  ">
+                                <svg width="28" height="28" viewBox="0 0 45 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M42.0192 34.0575C40.6484 37.7726 38.5752 41.0029 35.8566 43.6577C32.7621 46.6795 28.71 49.0806 23.8128 50.7934C23.6521 50.8494 23.4844 50.8953 23.3159 50.9292C23.0934 50.9732 22.8669 50.9969 22.6424 51H22.5984C22.3591 51 22.1187 50.9759 21.8802 50.9292C21.7117 50.8953 21.5463 50.8494 21.3864 50.7946C16.4834 49.0845 12.4262 46.6845 9.32859 43.6628C6.60879 41.0079 4.53605 37.7796 3.1672 34.0645C0.678132 27.3097 0.819764 19.8686 0.93377 13.8889L0.935716 13.797C0.958673 13.3033 0.973459 12.7846 0.98163 12.2119C1.02326 9.39984 3.25903 7.07341 6.07144 6.9166C11.9352 6.58937 16.4713 4.67695 20.3471 0.899181L20.381 0.868053C21.0245 0.27779 21.8354 -0.0117003 22.6424 0.000361872C23.4206 0.0104785 24.1957 0.299579 24.8163 0.868053L24.8494 0.899181C28.726 4.67695 33.2621 6.58937 39.1258 6.9166C41.9382 7.07341 44.174 9.39984 44.2156 12.2119C44.2238 12.7885 44.2386 13.3064 44.2615 13.797L44.2627 13.836C44.3763 19.8269 44.5172 27.2828 42.0192 34.0575Z" fill="#90C63E"/>
+                                    </svg>
+                                    <div class="wedge-score-wrapper">
+                                        <svg  width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.52438 14.4268C5.39104 14.4268 5.27771 14.3801 5.18438 14.2868C5.09104 14.1934 5.04438 14.0801 5.04438 13.9468V3.58676L2.00438 5.92676C1.92438 5.99342 1.83104 6.02676 1.72438 6.02676C1.56438 6.02676 1.43104 5.95342 1.32438 5.80676L0.484375 4.72676C0.417708 4.62009 0.384375 4.52009 0.384375 4.42676C0.384375 4.26676 0.457708 4.13342 0.604375 4.02676L5.08438 0.566757C5.20438 0.473424 5.37104 0.426757 5.58438 0.426757H7.34438C7.49104 0.426757 7.60438 0.473424 7.68438 0.566757C7.77771 0.646757 7.82438 0.76009 7.82438 0.906757V13.9468C7.82438 14.0801 7.77771 14.1934 7.68438 14.2868C7.60438 14.3801 7.49104 14.4268 7.34438 14.4268H5.52438Z" fill="#8F95A3"/>
+                                            </svg>
+                                    </div>
+                            </div> -->
+                            
+                                
+                                    
+                            <!-- <img src="../../../assets/images/verified.svg" alt="verified" /> -->
+
+                        <!-- </div> -->
+                    <!-- </div>
+                        <div class="rating">
+                            <ul>
+                              <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                              <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                              <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                              <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                              <li><img src="assets/images/star-fill.svg" alt="star"></li>
+                            </ul>
+                            <div class="total-rating">
+                              <p>4.7 (34 Ratings)</p>
+                            </div>
+                          </div>
+                        
+                    </div> -->
+                     <!-- <form>
+                        <div class="form-group mb-3">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="formIcon">
+                                    <i class="fa fa-key"></i>
+                                </div>
+                                <div class="passwordEdit">
+                                    <div class="form-field">
+                                        <label for="exampleInputPassword1">User Since 2021</label>
+                                        <input type="password" class="form-control" id="password" value="fdhjasifdja"  placeholder="Password">
+                                        <div class="passwordPencil">
+                                            <img src="../../../assets/images/edit_schedule.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="formIcon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <div class="form-field">
+                                    <label>Date Of Birth</label>
+                                    <p>{{myProfiledata?.dob | date:"dd-MM-yyyy"}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="formIcon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="form-field">
+                                    <label>Gender</label>
+                                    <p>{{myProfiledata?.gender}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="formIcon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div class="form-field">
+                                    <label>Phone</label>
+                                    <p>{{myProfiledata?.mobile}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="formIcon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div class="form-field">
+                                    <label>Email</label>
+                                    <p>{{myProfiledata?.email}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="form-Inner d-flex align-items-center">
+                                <div class="formIcon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="form-field">
+                                    <label>Address</label>
+                                    <p>{{myProfiledata?.address?.area}}, {{myProfiledata?.address?.street}}, {{myProfiledata?.address?.city}}, {{myProfiledata?.address?.state}}, {{myProfiledata?.address?.zip}}, {{myProfiledata?.address?.country}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editProfileForm">
+                            <button class="btn btn-primary" (click)="editProfile()">Edit</button>
+                        </div>
+                    </form>  -->
+                <!-- </div>
+            </div> 
+        </div> -->
+
+            <!-- <div class="customer-details-wrapper d-flex">
+                <div class="col-2 icon-detail">
+                    <img src="../../../assets/images/user-since.png" alt="">
+                </div>
+                <div class="col-10">
+                    User since 2021
+                </div>
+            </div> -->
+        
+    <!-- </div> -->
+    <!-- <div class="mobileEditbtn">
+        <div class="editProfileForm">
+            <button class="btn btn-primary" (click)="editProfile()">Edit</button>
+        </div>
+    </div> -->
+</div>
+
+<ng-template #content let-modal>
+    <div class="custom-modal">
+        <div class="modal-header">
+            <h4 class="modal-title">Book Us</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <p class="text-center mb-4">Pic Image</p>
+
+            <div class="row">
+                <div class="col-6 text-center" (click)="modal.close('');openCamera()"><div class="pick-div"><img src="../../../assets/images/camera.svg"/></div><div class="mt-1">Camera</div></div>
+                <div class="col-6 text-center" (click)="modal.close('');openSetImage()"><div class="pick-div"><img src="../../../assets/images/gallery.svg"/></div><div class="mt-1">Gallery</div></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+

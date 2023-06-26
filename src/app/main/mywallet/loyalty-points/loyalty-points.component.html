@@ -1,0 +1,85 @@
+<div class="loader text-center" *ngIf="isLoading">
+    <span class="text-theme-green fw-medium me-2">Loading data</span>
+    <img src="/assets/images/loader/circle-small-green.svg" alt="">
+</div>
+<div class="loyalty-points-container" *ngIf="!isLoading">
+    <div class="container mt-3">
+        <div class="heading-container">
+            <h5 class="">Shop Points</h5>
+        </div>
+
+    </div>
+    <div *ngIf="loyaltyPointsLength > 0">
+        <div class="container card-block mb-3" *ngFor="let loyaltyPoint of loyaltyPoints; let i=index">
+            <div>
+                <div class="shop-block mb-3">
+                    <div class="shop-name">{{loyaltyPoint.shopName}}</div>
+                    <div>
+                        <div class="money-tag">${{shopPointsTotal(loyaltyPoint.shopPointsList)}}</div>
+                    </div>
+                </div>
+                <div class="transactions-date pb-3 bb">{{loyaltyPoint?.shopPointsList[0].locationId?.descriptions}}
+                </div>
+
+            </div>
+            <div *ngIf="selectedBlock !== i">
+                <div class="text-center mt-3"><img src="../../../../../assets/images/green-arrow-down.svg" /> <span
+                        class="ml-3 green-text"
+                        (click)="openLoyality(loyaltyPoint?.shopPointsList[0].locationId._id, i)">view
+                        Transaction</span></div>
+            </div>
+            <div *ngIf="selectedBlock == i">
+                <div class="transactionsheader" *ngIf="loyalityPointList?.length > 0">
+                    <div class="">
+                        <h5 class="">Details</h5>
+                    </div>
+                </div>
+                <table class="table" *ngIf="loyalityPointList?.length > 0">
+                    <tbody>
+                        <tr *ngFor="let loyalityItem of loyalityPointList">
+                            <td>
+                                <div class="transaction-img "><img
+                                        [src]="loyalityItem?.have > 0 ? '../../../assets/images/point-gain.svg' : '../../../assets/images/point-redeeem.svg'" />
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="tableLeft">
+                                    <div class="transactions">Points {{loyalityItem?.have > 0 ? 'Gain' : 'Redeem'}}
+                                    </div>
+                                    <div class="transactions-date">{{loyalityItem?.service || 'Remedial massage'}}</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <div>
+                                    <div class="transactionsmoney" *ngIf="loyalityItem?.have > 0"> +
+                                        ${{loyalityItem?.have}}</div>
+                                    <div class="transactionsmoney-red" *ngIf="loyalityItem?.have <= 0"> -
+                                        ${{loyalityItem?.reedem}}
+                                    </div>
+                                    <div class="transactions-date"> {{loyalityItem?.createdAt |date: 'yyyy-MM-dd'}}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div *ngIf="selectedBlock == i">
+                <div class="text-center mt-3"><img src="../../../../../assets/images/red-arrow-up.svg" /> <span
+                        class="ml-3 red-text"
+                        (click)="closeLoyality(loyaltyPoint?.shopPointsList[0].locationId._id, i)">hide
+                        Transaction</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="loyaltyPointsLength == 0">
+        <div class="container card-block mb-3">
+            you don't have loyalty points yet
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="rating">
+    <img src="assets/images/star-rating/star-fill.svg" *ngIf="rating >= 1" [width]="size">
+    <img src="assets/images/star-rating/star-fill.svg" *ngIf="rating >= 2" [width]="size">
+    <img src="assets/images/star-rating/star-fill.svg" *ngIf="rating >= 3" [width]="size">
+    <img src="assets/images/star-rating/star-fill.svg" *ngIf="rating >= 4" [width]="size">
+    <img src="assets/images/star-rating/star-fill.svg" *ngIf="rating >= 5" [width]="size">
+    <img src="assets/images/star-rating/star-half.svg" *ngIf="rating % 1 !==0" [width]="size">
+    <img src="assets/images/star-rating/star-empty.svg" *ngIf="rating == 0" [width]="size">
+    <img src="assets/images/star-rating/star-empty.svg" *ngIf="rating <= 1" [width]="size">
+    <img src="assets/images/star-rating/star-empty.svg" *ngIf="rating <= 2" [width]="size">
+    <img src="assets/images/star-rating/star-empty.svg" *ngIf="rating <= 3" [width]="size">
+    <img src="assets/images/star-rating/star-empty.svg" *ngIf="rating <= 4" [width]="size">
+</div>

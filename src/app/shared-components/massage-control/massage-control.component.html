@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h6 class="text-center w-100"><b>{{ openModel?.title }}</b></h6>
+</div>
+<div class="modal-body">
+<div class="success-wrapper">
+    <div class="signature-info mb-4" *ngIf="type !='add-more-time' && type !='change-therapist'">
+        <p>{{ openModel?.content }}</p>
+    </div>
+    <div *ngIf="type=='add-more-time'">
+      <div *ngFor="let item of data.result">
+        <div class="p-2 extra-time" *ngIf="item.time > data.appointment.durationMin" (click)="addExtraTime(item, (item.time - data.appointment.durationMin), (item.price - (data.appointment.special_price || data.appointment.price)))">
+          <div>Add {{item.time - data.appointment.durationMin}} min for extra ${{item.price - (data.appointment.special_price || data.appointment.price)}}</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- THERAPIST LIST -->
+    <div *ngIf="type == 'change-therapist'">
+      <ul class="list-group">
+        <ng-container *ngIf="therapisList && therapisList.length > 0 else noTherapist;">
+          <li class="list-group-item curser-pointer" *ngFor="let item of therapisList" (click)="updateTherapist(item)">
+            {{ item?.firstName }} {{ item?.lastName }}
+          </li>
+        </ng-container>
+        <ng-template #noTherapist>
+          <h5 class="text-center"><b>Therapist not available</b></h5>
+        </ng-template>
+      </ul>
+    </div>
+</div>
+</div>
+<div class="modal-footer"  *ngIf="openModel?.buttons">
+  <button type="button" [class]="button.class" *ngFor="let button of openModel?.buttons; let i=index" (click)="action(button)">{{ button.text }}</button>
+</div>

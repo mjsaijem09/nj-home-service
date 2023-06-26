@@ -1,0 +1,372 @@
+
+<div class="top-spacing" *ngIf="isHomePage">
+  <!-- BANNER SECTION -->
+  <div class="home-banner">
+    <div class="container">
+      <div class="content">
+        <h1>Get that well-deserved pamper session.</h1>
+        <p>
+          With <span class="green-bold"><b class="text-theme-green">Bookus</b></span
+          >, you can now easily scroll through shops near you.
+          <!--Put
+          <br /> more description about Bookus
+          here and explain why customers <br /> need to use it.-->
+          Pampering session has never made this easy.
+        </p>
+        <a href="#categories" class="btn bg-theme-green text-white">Start Booking</a>
+      </div>
+    </div>
+  </div>
+  <!-- SEARCH SECTION -->
+  <div class="section-search-bar">
+    <div class="container">
+      <form>
+        <div class="row">
+          <div class="col-10">
+            <div class="search-field">
+              <input type="search" class="shadow-sm"
+                placeholder="Search Shop"
+                aria-label="Search Shop"
+                aria-describedby="search-addon"
+                [(ngModel)]="searchShopsText"
+                (ngModelChange)="searchShop($event)"
+                [ngModelOptions]="{standalone: true}"/>
+              <div class="searchIcon">
+                <i class="fa fa-search"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <button class="btn-search shadow-sm" (click)="navigateToSearchCity()">
+              <img src="assets/images/arrow-icon.svg" />
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="isloading" *ngIf="isLoading && isHomePage">
+    <img src="assets/loader/spinner.svg" />
+  </div>
+  <!-- CATEGORY SECTION -->
+  <div id="categories" class="category-carousel">
+    <div class="container">
+      <div class="header">
+        <p class="title">Top Categories</p>
+      </div>
+      <owl-carousel-o [options]="categoryListOptions">
+        <ng-container *ngFor="let category of topCategories; let i = index">
+          <ng-template
+            carouselSlide
+            class="slide"
+            carouselSlide
+            [id]="'category_' + i">
+            <div class="card pointer" (click)="navigateToCategoryShops(category?.category[0]?.name, category?._id)">
+              <div class="card-body">
+                <div class="category-img">
+                  <img [src]="imgLink(category?.image)"/>
+                </div>
+                <p class="category-name" *ngIf=" category && category.category && category.category[0]">
+                  {{ category?.category[0]?.name }}
+                </p>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+  <!-- FEATURE SHOP SECTION -->
+  <div class="shop-carousel" *ngIf="featuredShops && featuredShops.length">
+    <div class="container">
+      <div class="header">
+        <p class="title">Featured Shops</p>
+        <button type="button" class="btn btn-link" [routerLink]="['/featured-shops']" [state]="{data: featuredShops}">View All<img src="assets/images/arrow-right.svg"/></button>
+      </div>
+      <owl-carousel-o [options]="shopListOptions">
+        <ng-container *ngFor="let shop of featuredShops; let i = index">
+            <ng-template
+              carouselSlide
+              class="slide"
+              carouselSlide
+              [id]="'recentlyViewedShop_' + i">
+              <div class="card pointer" (click)="goToShop(shop?._id)">
+                <div class="card-top-img">
+                  <img [src]="imgLink(shop?.profileImg?.img)" (error)="setDefaultPic($event)" alt="...">
+                </div>
+                <ul class="service_offers">
+                  <li *ngIf="shop?.onlineBookingRules?.acceptOnlinePayment" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Online booking available">
+                    <img class="online-payment" src="assets/images/mobile-payment.svg" />
+                  </li>
+                  <li *ngIf="shop?.onlineGiftCard" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Giftcard available">
+                    <img class="online-giftcard" src="assets/images/giftcard.svg" />
+                  </li>
+                </ul>
+                <div class="card-body">
+                  <h5 class="card-title">{{ shop?.name }}</h5>
+                  <p class="text-muted address">{{addressFormat(shop)}}</p>
+                  <div class="rating-and-distance">
+                    <div class="ratings"><app-star-rating [rating]="shop?.rating?.star" [size]="14"></app-star-rating>
+                      <span class="rate">{{(shop?.rating?.star * 1).toFixed(1)}}</span>
+                      <span class="text-muted">{{shop?.rating?.star_count}} ratings</span></div>
+                    <div class="distance" *ngIf="shop?.distance">
+                      <img src="assets/images/location-red.svg" /> <span>{{ (shop?.distance * 1).toFixed(1) }}Km</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+  <!-- MOST BOOKED SHOP SECTION -->
+  <div class="shop-carousel" *ngIf="mostBookedShops && mostBookedShops.length">
+    <div class="container">
+      <div class="header">
+        <p class="title">Most Booked Shops</p>
+        <button type="button" class="btn btn-link" [routerLink]="['/most-booked-shops']" [state]="{data: mostBookedShops}">View All<img src="assets/images/arrow-right.svg"/></button>
+      </div>
+      <owl-carousel-o [options]="shopListOptions">
+        <ng-container *ngFor="let shop of mostBookedShops; let i = index">
+            <ng-template
+              carouselSlide
+              class="slide"
+              carouselSlide
+              [id]="'recentlyViewedShop_' + i">
+              <div class="card pointer" (click)="goToShop(shop?._id)">
+                <div class="card-top-img">
+                  <img [src]="imgLink(shop?.profileImg?.img)" (error)="setDefaultPic($event)" alt="...">
+                </div>
+                <ul class="service_offers">
+                  <li *ngIf="shop?.onlineBookingRules?.acceptOnlinePayment" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Online booking available">
+                    <img class="online-payment" src="assets/images/mobile-payment.svg" />
+                  </li>
+                  <li *ngIf="shop?.onlineGiftCard" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Giftcard available">
+                    <img class="online-giftcard" src="assets/images/giftcard.svg" />
+                  </li>
+                </ul>
+                <div class="card-body">
+                  <h5 class="card-title">{{ shop?.name }}</h5>
+                  <p class="text-muted address">{{addressFormat(shop)}}</p>
+                  <div class="rating-and-distance">
+                    <div class="ratings"><app-star-rating [rating]="shop?.rating?.star" [size]="14"></app-star-rating>
+                      <span class="rate">{{(shop?.rating?.star * 1).toFixed(1)}}</span>
+                      <span class="text-muted">{{shop?.rating?.star_count}} ratings</span></div>
+                    <div class="distance" *ngIf="shop?.distance">
+                      <img src="assets/images/location-red.svg" /> <span>{{ (shop?.distance * 1).toFixed(1) }}Km</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+  <!-- RECENTLY VIEWED SHOP SECTION -->
+  <div class="shop-carousel" *ngIf="recentlyViewedShops && recentlyViewedShops.length">
+    <div class="container">
+      <div class="header">
+        <p class="title">Recently Viewed</p>
+        <button type="button" class="btn btn-link" [routerLink]="['/recently-viewed-shops']" [state]="{data: recentlyViewedShops}">View All<img src="assets/images/arrow-right.svg"/></button>
+      </div>
+      <owl-carousel-o [options]="recentshopListOptions">
+        <ng-container *ngFor="let shop of recentlyViewedShops; let i = index">
+            <ng-template
+              carouselSlide
+              class="slide"
+              carouselSlide
+              [id]="'recentlyViewedShop_' + i">
+              <div class="card pointer hover-zoom" (click)="goToShop(shop?._id)">
+                <div class="card-top-img">
+                  <img [src]="imgLink(shop?.profileImg[0]?.img)" (error)="setDefaultPic($event)" alt="...">
+                </div>
+                <ul class="service_offers">
+                  <li *ngIf="shop?.onlineBookingRules?.acceptOnlinePayment" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Online booking available">
+                    <img class="online-payment" src="assets/images/mobile-payment.svg" />
+                  </li>
+                  <li *ngIf="shop?.onlineGiftCard" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Giftcard available">
+                    <img class="online-giftcard" src="assets/images/giftcard.svg" />
+                  </li>
+                </ul>
+                <div class="card-body">
+                  <h5 class="card-title">{{ shop?.name }}</h5>
+                  <p class="text-muted address">{{addressFormat(shop)}}</p>
+                  <div class="rating-and-distance">
+                    <div class="ratings"><app-star-rating [rating]="shop?.rating?.star" [size]="14"></app-star-rating>
+                      <span class="rate">{{(shop?.rating?.star * 1).toFixed(1)}}</span>
+                      <span class="text-muted">{{shop?.rating?.star_count}} ratings</span></div>
+                    <div class="distance" *ngIf="shop?.distance">
+                      <img src="assets/images/location-red.svg" /> <span>{{ (shop?.distance * 1).toFixed(1) }}Km</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+  <!-- NO SHOP SECTION -->
+  <div class="container px-3" *ngIf="featuredShops.length == 0 && mostBookedShops.length == 0 && recentlyViewedShops.length == 0">
+    <div class="no-nearby-shops mt-5 mb-5">
+      <div class="no-location-container text-center">
+        <img src="assets/images/nearby-locations.svg" />
+      </div>
+      <div class="content text-center">
+        <h5 class="text-theme-green">Sorry!</h5>
+        <p class="text-muted">
+          There's no shop available around you.<br />
+          Do you want to try a different location?
+        </p>
+        <a class="btn btn-primary" (click)="navigateToSearchCity()">Try It Now</a>
+      </div>
+    </div>
+  </div>
+  <!-- DOWNLOAD SECTION -->
+  <div class="download-our-app" *ngIf="downloadPWA">
+    <div class="container p-3">
+      <div class="row">
+        <div class="col-lg-1 col-md-12"></div>
+        <div class="col-lg-4 col-md-6 col-6">
+          <div class="app-screen">
+            <img src="assets/images/Phone11-pro-back.svg" style="width: 100%" />
+          </div>
+        </div>
+        <div class="app-info col-lg-6 col-md-6 col-6">
+          <div class="app-details">
+            <img class="logo" src="assets/images/BookUs_logo.png" style="width: 100%" />
+            <h1 class="heading">Download Our App</h1>
+            <div class="download-desktop">
+              <p class="mt-3">
+                Instant booking, edit appointments, check surrounding shops and more.
+              </p>
+              <button
+                class="btn bg-theme-green w-100 text-white mt-4"
+                style="padding: 15px 0"
+                (click)="installPWA()">Download Now
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-1 col-md-12"></div>
+        <div class="download-mobile">
+          <p class="mt-3 text-center">
+            Instant booking, edit appointments, check surrounding shops and more.
+          </p>
+          <button
+            class="btn bg-theme-green w-100 text-white mt-4"
+            style="padding: 15px 0"
+            (click)="installPWA()">Download Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="ios-guide-add-to-home-screen" *ngIf="iosDownloadGuide">
+      <p class="m-0">
+        Install this web app on your device by tapping
+        <span
+          ><img
+            src="/assets/images/user-guide-popups/ios-menu.svg"
+            width="24px"
+        /></span>
+        and then select <b>Add to Home Screen</b>
+      </p>
+      <div class="tip"></div>
+    </div>
+  </div>
+  <!-- BUSINESS PROPOSAL SECTION -->
+  <div class="daily-business-management">
+    <div class="container">
+      <div class="content text-center">
+        <h3>
+          Daily business management has never been this easy with Bookus and
+          - it’s <span class="green-bold">FREE</span>
+        </h3>
+        <img class="w-100 mt-4" src="assets/images/mobile-laptop-screen.png"
+          alt="mobile-laptop-screen"/>
+        <p class="mt-4">
+          Bookus can help you manage all your business needs including -
+          bookings, customer management, staff management, quality control,
+          marketing, performance report and more coming with our development
+          team.
+        </p>
+        <br>
+        <a href="https://home.thebookus.com/business"
+          target="_blank"
+          class="btn-to-business-page"
+          >Bookus for Business</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-shop-detail *ngIf="!isLoading && isBusinessPage"></app-shop-detail>
+<div *ngIf="isMobile && homeSubdomain" class="user-guide-popup">
+  <div *ngIf="home" class="home">
+    <div class="text">Click here to go back to home screen.</div>
+    <img
+      class="arrow"
+      src="/assets/images/user-guide-popups/pointer-down.svg"
+    />
+    <div class="btn" (click)="gotIt('home')">Got It</div>
+    <div class="icon">
+      <img src="assets/images/footer/home-green.svg" />
+    </div>
+  </div>
+  <div *ngIf="sched" class="sched">
+    <div class="text">
+      Click here to check all your upcoming and past appoinment.
+    </div>
+    <img
+      class="arrow"
+      src="/assets/images/user-guide-popups/pointer-down.svg"
+    />
+    <div class="btn" (click)="gotIt('sched')">Got It</div>
+    <div class="icon">
+      <img src="assets/images/footer/sched.svg" />
+    </div>
+  </div>
+  <div *ngIf="saved" class="saved">
+    <div class="text">Click here to check all your saved shops.</div>
+    <img class="arrow" src="/assets/images/user-guide-popups/pointer.svg" />
+    <div class="btn" (click)="gotIt('saved')">Got It</div>
+    <div class="icon">
+      <img src="assets/images/footer/fav.svg" />
+    </div>
+  </div>
+  <div *ngIf="notification" class="notification">
+    <div class="text">Click here to check all your latest updates.</div>
+    <img class="arrow" src="/assets/images/user-guide-popups/pointer.svg" />
+    <div class="btn" (click)="gotIt('notification')">Got It</div>
+    <div class="icon">
+      <img src="assets/images/footer/notif.svg" />
+    </div>
+  </div>
+  <div *ngIf="search" class="search">
+    <div class="text">Type the business name here to find the shop.</div>
+    <img class="arrow" src="/assets/images/user-guide-popups/pointer.svg" />
+    <div class="btn" (click)="gotIt('search')">Got It</div>
+    <div class="icon">
+      <i _ngcontent-upv-c6="" class="fa fa-search"></i>
+      <input
+        aria-describedby="search-addon"
+        aria-label="Search"
+        placeholder="Search "
+        type="search"
+      />
+    </div>
+  </div>
+  <div *ngIf="qrcode" class="qrcode">
+    <div class="text">
+      Use this scanner to quickly check in or input your detail in any shop with
+      Bookus software.
+    </div>
+    <img class="arrow" src="/assets/images/user-guide-popups/pointer.svg" />
+    <div class="btn" (click)="gotIt('qrcode')">Got It</div>
+    <div class="icon">
+      <img src="assets/images/qr.svg" />
+    </div>
+  </div>
+</div>

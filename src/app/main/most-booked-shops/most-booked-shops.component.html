@@ -1,0 +1,39 @@
+
+<div class="margin-top"></div>
+<div class="container">
+  <div class="header">
+    <button type="button" class="btn btn-link" [routerLink]="['/']"><img src="assets/images/arrow-right.svg"/></button>
+    <p class="title">Most Booked Shops</p>
+  </div>
+  <div class="row">
+    <div class="mt-4 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let shop of shops">
+      <div class="card pointer" (click)="goToShop(shop?._id)">
+        <div class="card-top-img">
+          <img [src]="imgLink(shop?.profileImg?.img)" (error)="setDefaultPic($event)" alt="...">
+        </div>
+        <ul class="service_offers">
+          <li *ngIf="shop?.onlineBooking">
+            <img class="online-payment" src="assets/images/mobile-payment.svg" />
+          </li>
+          <li *ngIf="shop?.onlineGiftCard">
+            <img class="online-giftcard" src="assets/images/giftcard.svg" />
+          </li>
+        </ul>
+        <div class="card-body">
+          <h5 class="card-title">{{ shop?.name }}</h5>
+          <p class="text-muted address">{{addressFormat(shop)}}</p>
+          <div class="rating-and-distance">
+            <div class="ratings"><app-star-rating [rating]="shop?.rating?.star" [size]="14"></app-star-rating>
+              <span class="rate">{{(shop?.rating?.star * 1).toFixed(1)}}</span>
+              <span class="text-muted">{{shop?.rating?.star_count}} ratings</span></div>
+            <div class="distance" *ngIf="shop?.distance">
+              <img src="assets/images/location-red.svg" /> <span>{{ (shop?.distance * 1).toFixed(1) }}Km</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>

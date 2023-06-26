@@ -1,0 +1,385 @@
+*{
+  text-transform: capitalize;
+  font-weight: 400;
+}
+ul{
+  margin: 0px;
+  padding: 0;
+}
+li{
+  list-style-type: none;
+}
+.herbal-center-wrapper{
+    margin-bottom: 45px;
+    position: relative;
+    .location-wrapper{
+      background-color: #90C63E;
+      justify-content: center;
+      .location-geo{
+          text-align: center;
+      }
+    }
+    .center-location-wrapper{
+      background-color: grey;
+      justify-content: center;
+      .center-name{
+        text-align: center;
+      }
+    }
+    .shop-detail{
+      .topImg{
+        position: relative;
+        text-align: center;
+        padding: 0px 15px;
+        height: 100%;
+        width: 100% !important;
+        img{
+          width: 250px !important;
+        }
+        .mt-35{
+          margin-top: 35px;
+        }
+        .centered {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          color: white;
+          background: black;
+          padding: 5px;
+          width: 100%;
+          padding: 3px 12px;
+        }
+      }
+      .detail-span{
+        margin-left: 5px;
+        font-size: 14px;
+      }
+      .rating-view-all{
+        cursor: pointer;
+      }
+      .font-14{
+        font-size: 14px;
+      }
+      .card{
+        width: 90%;
+        box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.21);
+      }
+      .shop-open-time{
+        padding: 10px 0;
+        .card-body {
+          display: flex;
+          align-items: center;
+          padding: 5px 15px;
+          gap: 1rem;
+          .badge{
+            width: 90px !important;
+          }
+          .detail-span{
+            font-size: 14px;
+          }
+        }
+      }
+      .mainActin-outerbtn {
+        display: none;
+      }
+    }
+    .shop-info{
+      .devider{
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 10px;
+      }
+      .facilities-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        // width: 50%;
+        overflow: auto;
+        width: 100%;
+        .facilityList-wrapper{
+          margin: 0 10px;
+          text-align: center;
+          .facilities-images{
+            object-fit: cover;
+            width: 35px;
+          }
+          p {
+            font-size: 13px;
+            margin-top: 5px;
+          }
+        }
+      }
+      .payment-wrapper {
+        font-size: 14px;
+        p{
+          padding-bottom: 0;
+          margin-bottom: 0;
+        }
+        .payment-icon{
+          overflow: auto;
+          .payment-list{
+            list-style: none;
+            padding: 0;
+            display: flex;
+            width: 50%;
+            .paymentList-wrapper{
+              margin: 0 10px;
+              text-align: center;
+              .payment-images-large{
+                object-fit: cover;
+                width: 60px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+
+    @media all and (max-width:760px) {
+        margin-top: 50px;
+        height: calc(100vh - 100px);
+        overflow: auto;
+        overflow-x: hidden;
+    }
+    p{
+      margin-bottom: 0;
+    }
+    
+    h5 {
+      font-size: 17px;
+      font-weight: 600;
+    }
+}
+
+.desktop-view{
+  .detail-span{
+    font-size: 17px;
+  }
+  .location-geo {
+    font-size: 20px;
+    padding: 6px 0px;
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+  .center-location-name {
+    .center-name {
+      font-size: 20px;
+      padding: 6px 0px;
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+  }
+  .shop-open-time {
+    .card-body {
+      .badge {
+        width: 140px !important;
+        font-size: 14px;
+      }
+      .detail-span{
+        font-size: 17px;
+      }
+    }
+  }
+  .facility-wrapper{
+    .facilities-heading {
+      h5{
+        margin-top: 15px !important;
+        font-size: 20px;
+      }
+    }
+    .facilities-list{
+      width: 100%;
+      .facilities-provided{
+        .facilities-images{
+          width: 50px;
+        }
+        p{
+          font-size: 15px;
+        }
+      }
+    }
+  }
+  .payment-wrapper{
+    .payment-heading {
+      h5{
+        font-size: 20px;
+      }
+    }
+    .payment-provided{
+      .payment-images-large {
+        width: 80px;
+      }
+      p{
+        font-size: 15px;
+      }
+    }
+  }
+  .introduction-wrapper{
+    .introduction-heading {
+      h5{
+        font-size: 20px;
+      }
+    }
+    .introduction-paragraph-wrapper{
+      p{
+        font-size: 15px;
+      }
+    }
+  }
+  .offer-wrapper{
+    .offer-heading {
+      h5{
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+    }
+    .offer-card-wrapper
+    {
+      padding-left: 25px !important;
+      margin-left: 0px;
+    }
+    .scrolling-wrapper{
+      padding-left: 0 !important;
+    }
+  }
+}
+
+.mobile-view{
+  padding: 0;
+  padding-top: 30px !important;
+  .shop-info{
+    padding-inline: 10px;
+  }
+  .store-details{
+    padding-inline: 10px;
+  }
+  .mainActin-outerbtn{
+    display: block !important;
+    button{
+      display: block;
+      position: fixed;
+      height: inherit;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+
+.btn {
+    border-radius: 0;
+}
+
+
+
+
+
+
+
+
+.payment-images{
+    object-fit: cover;
+    width: 50px;
+}
+
+.introduction-paragraph-wrapper{
+    p{
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+}
+
+.offer-value-wrapper {
+    align-items: center;
+    h5 {
+        font-size: 28px;
+    }
+    span {
+        margin-left: 10px;
+        s {
+            color: #afaaaa;
+        }
+        h5 {
+            font-weight: normal;
+            font-size: 16px;
+        }
+    }
+}
+.offer-name-wrapper {
+    h6 {
+        // font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // width: 184px;
+    }
+}
+.customWidth {
+    width: 318px;
+    margin-left: 10px;
+}
+
+
+.mobile-scheduleBtn {
+    display: none;
+    @media all and (max-width: 767px) {
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+}
+.mainAction-outerbtn-mobile{
+    display: none;
+    @media all and (max-width: 767px) {
+        display: block;
+    }
+}
+.offer-wrapper {
+    @media all and (max-width: 767px) {
+        padding-bottom: 0px;
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+
+body{
+  overflow: hidden;
+}
+
+.offer-icon-wrapper {
+  margin-top: -10px;
+  img{
+    width: 30px;
+  }
+}
+
+.scrolling-wrapper{
+  .card-body{
+    justify-content: initial;
+    gap: 2rem;
+  }
+}
+
+
+
+
+
+
+.fa-heart.active{
+  color: red;
+}
+
+
+

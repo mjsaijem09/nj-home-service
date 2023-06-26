@@ -1,0 +1,49 @@
+<div class="my-request-wrapper">
+  <div class="container">
+    <div class="card-wrapper mt-3h" *ngFor="let request of requestedData">
+      <div class="card">
+        <div class="card-body">
+          <div class="store-details d-flex">
+            <div class="card-image-wrapper">
+              <img src="{{request.location[0].profileImg.img}}" class="rounded-circle store-image" alt="">
+            </div>
+            <div class="card-store-details w-100 ms-3">
+                <div class="store-details d-flex justify-content-between">
+                <div class="store-name">
+                    <h6>{{request.services[0].name}}</h6>
+                </div>
+                <div class="store-price">
+                    <h6>${{(request.services[0].pricing_option[0]?.specialPrice)}}</h6>
+                </div>
+                </div>
+                <div class="user-details d-flex justify-content-between">
+                <div class="user-name">
+                    <h6>{{request.therapist[0].firstName}} {{request.therapist[0].lastName}}</h6>
+                </div>
+                <div class="time-for-user">
+                    <h6>{{request.services[0].pricing_option[0]?.duration}}</h6>
+                </div>
+                </div>
+             <div class="request-status-wrapper">
+                 <h6><font style="color: rgb(23, 196, 0);">{{request.status}}</font></h6>
+             </div>
+            </div>
+          </div>
+          <div class="store-center-name">
+              <h6>{{request.location[0].name}}</h6>
+          </div>
+          <div class="duration-wrapper">
+              <h6>{{request.date[0].date|date:'d-M-yy'}} &nbsp; {{request.date[0].time.startTime|date:'h:mm'}} am - {{request.date[0].time.endTime|date:'h:mm'}} am</h6>
+          </div> 
+          <div class="cancel-button-wrapper">
+              <button class="btn btn-dark w-100"*ngIf="request.status!=='rejected'&&request.status!=='accepted'&&request.status!=='cancel'" (click)="cancelRequest(request)">Cancel Request</button>
+              <button class="btn btn-dark w-100"*ngIf="request.status==='accepted'" disabled>Accepted</button>
+              <button class="btn btn-dark w-100"*ngIf="request.status==='cancel'" disabled>Cancelled</button>
+              <button class="btn btn-dark w-100"*ngIf="request.status==='rejected'" disabled>Rejected</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 

@@ -1,0 +1,92 @@
+<div class="row header-block" *ngIf="!imageChangedEvent || displayCopper">
+    <div class="col-auto" (click)="goToMyprofile()">
+        <img src="../../../../assets/images/profile-cross.svg" />
+    </div>
+    <div class="col text-left">
+        <input type="file" *ngIf="camera" capture="camera" class="head-input" style="margin: 0;" (change)="changeImage($event)" #fileInput
+            accept='image/*'>
+        <input type="file"  *ngIf="!camera" class="head-input" style="margin: 0;" (change)="changeImage($event)"
+            accept='image/*'>
+    </div>
+    <div class="col-auto" *ngIf="file" (click)="confirmPopup(content)">
+        <img src="../../../../assets/images/profile-check.svg" />
+    </div>
+</div>
+
+<div class="upload-img" *ngIf="!imageChangedEvent || displayCopper">
+    <div class="head-img-avtar">
+        <!-- <div class="dummu-image" *ngIf="!profileData?.image || profileData?.image.length == 0">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+            <p class="select-photo">{{'Select Photo'}}</p>
+        </div> -->
+        <!-- <div  class="dummu-image" > -->
+        
+        <img *ngIf="!profileData?.image && !profileData?.gender" src="assets/images/carbon_user-avatar-filled.svg"
+        alt="user-image" class="image-logo">
+        <img *ngIf="profileData?.image" src="{{profileData?.image}}" alt="user-image" class="image-logo">
+        <img *ngIf="!profileData?.image && profileData?.gender == 'Female'" src="assets/images/female-user.svg"
+            alt="female-user" class="image-logo">
+        <img *ngIf="!profileData?.image && profileData?.gender == 'Male'" src="assets/images/male-user.svg" alt="male-user"
+            class="image-logo">
+        <!-- </div> -->
+        <!-- <input type="file"  *ngIf="camera" class="head-input" capture="user" (change)="changeImage($event)" accept='image/*'>
+        <input type="file"  *ngIf="!camera" class="head-input" (change)="changeImage($event)" accept='image/*'> -->
+    </div>
+</div>
+
+<div class="row header-block" *ngIf="imageChangedEvent && !displayCopper">
+    <div class="col-auto" (click)="deletePhoto()">
+        <input type="file" *ngIf="camera" class="head-input" capture="user" (change)="changeImage($event)" accept='image/*'>
+        <input type="file" *ngIf="!camera" class="head-input" (change)="changeImage($event)" accept='image/*'>
+        <img src="../../../../assets/images/profile-back.svg" />
+    </div>
+    <div class="col text-right">
+        <img src="../../../../assets/images/profile-check2.svg"  (click)="openSetImage()"/>
+    </div>
+</div>
+<div class="upload-img mb-2" *ngIf="imageChangedEvent && !displayCopper">
+    <div class="head-img-avtar">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [containWithinAspectRatio]="false"
+            [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+            [canvasRotation]="0" [transform]="transform" [alignImage]="'center'" [style.display]="showCropper ? null : 'none'"
+            (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady($event)"
+            (loadImageFailed)="loadImageFailed()"></image-cropper>
+    </div>
+    
+</div>
+
+<div class="bottom-div" *ngIf="imageChangedEvent && !displayCopper">
+    <!-- <mat-slider name="range" [min]="0" [max]="3" [step]="0.1" id="range" value="1" (input)="scaleZoom($event)">
+    </mat-slider> -->
+    <div class="d-flex mb-3">
+        <img src="../../../../assets/images/profile-zoom-out.svg" />
+        <ngx-slider [(value)]="scale" [options]="options" (valueChange)="scaleZoom($event)"></ngx-slider>
+        <img src="../../../../assets/images/profile-zoom-in.svg" />
+    </div>
+    <div class="d-flex  mb-3">
+        <img src="../../../../assets/images/profile-rotate.svg"/>
+        <ngx-slider [(value)]="rotate" [options]="options2" (valueChange)="rotateImage($event)"></ngx-slider>
+    </div>
+   
+    
+</div>
+
+<ng-template #content let-modal>
+    <div class="custom-modal">
+        <div class="modal-header">
+            <h4 class="modal-title">Update Profile</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to update profile picture?</p>
+
+            <div class="actions">
+                <button type="button" class="btn btn-accept" (click)="modal.close('Close click'); goToMyprofile()">No</button>
+                <button type="button" class="btn btn-cancel" (click)="upProfile()">Yes</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>

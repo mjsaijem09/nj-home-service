@@ -1,0 +1,100 @@
+<!-- header view for desktop start -->
+<div classs="row">
+  <div class="col-md-12 headerWeb location" id="myHeader">
+      <div class="locationText" >Your location:Malbourne,VC</div>
+  </div>
+<div class="col-md-12 headerWeb referalSource" id="myHeader">
+  <div class="locationText">Nail Services</div>
+  
+</div>
+
+</div>
+<!-- header view for desktop end -->
+<div class="main-wrapper mb-2">
+  <div class="container">
+    <hr class="top-hr">
+    <div class="total-ammount-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="container d-flex justify-content-between">
+            <div class="total-heading">
+              <h4>Total Ammount</h4>
+            </div>
+            <div class="total-ammount d-flex">
+              <i class="fa fa-dollar"></i>
+              <h4>{{servicePrice}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="bottom-hr">
+    <div class="payment-option-check">
+    <div class="form-check" >
+        <input class="form-check-input" type="radio" name="Radios" id="Radios1" value="option1" (click)="selectPaymentType('card')" [disabled]="false" >
+       <img src="../../../../assets/images/card.svg" class="wallet-image" alt=""> <label class="form-check-label" for="Radios1">
+          Card payment
+        </label>
+        <div class="payment-card-block" *ngIf="showDetail==='card'"> 
+          <form action="" >
+            <ngx-stripe-card
+              [options]="cardOptions"
+              [elementsOptions]="elementsOptions"
+          readonly ></ngx-stripe-card> 
+          </form>
+        </div>
+
+      </div>
+      <div class="form-check card-radio-selection">
+        <input class="form-check-input" type="radio" name="Radios" id="Radios2" value="option2" (click)="selectPaymentType('wallet')" [disabled]="isDisabledCard">
+        <img src="../../../../assets/images/wallet.svg" class="wallet-image" alt=""> <label class="form-check-label" for="Radios2">
+          Wallet payment
+        </label>
+        <span class="ammount-available">${{walletBalance}}</span>
+      </div>
+      <div class="form-check disabled card-radio-selection">
+        <input class="form-check-input" type="radio" name="Radios" id="Radios3" value="option3" (click)="selectPaymentType('loyality')" [disabled]="isDisabledCard">
+        <img src="../../../../assets/images/wallet.svg" class="wallet-image" alt=""> <label class="form-check-label" for="Radios3">
+          My loyality payment
+        </label>
+        <span class="ammount-available">${{loyalityPoint}}</span>
+      </div>
+    </div>
+    <div class="container">
+        <h6 class="book-appointment-instructions">Use your point to book appointment</h6>
+    </div>
+  </div>
+<div class="button-wrapper mt-4">
+  <div class="container">
+    <div class="pay-button">
+      <button class="btn btn-dark w-100" (click)="createToken()" [disabled]="false" ><b>Pay</b></button>
+    </div>
+   <div class="pay-at-shop-button mt-2">
+    <button class="btn btn-light w-100" (click)="pay()"><b>Pay at store</b></button>
+   </div>
+
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-body">
+    <div class="success-wrapper">
+        <div class="successs-icon mb-2">
+           <h6>BookUs</h6>
+        </div>
+        <div class="success-message mb-4">
+            <h5>Apointment booked successfully </h5>
+        </div>
+    </div>
+    <div class="appointment-bookBtn text-center">
+      <button type="button" class="btn btn-dark" (click)="goToHome()">Ok</button>
+    </div>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Ok</button>
+  </div> -->
+</ng-template>
+
+

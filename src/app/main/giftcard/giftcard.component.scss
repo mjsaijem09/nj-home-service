@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Spirax&display=swap');
+
+.section {
+    padding-top: 80px;
+}
+.giftcard-section {
+    .wrapper {
+        text-align: center;
+        padding: 250px 0;
+    }
+}   
+
+.container {
+    position: relative;
+}
+
+
+.theme {
+    width: 69px;
+}
+.theme {
+    .card{
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 6px 14px 0px #0f224308;
+        border: solid 1px #fff;
+    }
+    .selected {
+        background-color: #f5fbeb;
+        box-shadow: 0px 3px 10px 0px #e1f1c9;
+        border: solid 1px #91c73e;
+    }
+} 
+.theme .card img {
+    width: 100%;
+    height: 45px;
+}
+.theme-name {
+    color: #A6AEC1;
+    font-size: 14px;
+}
+.theme-value {
+    color: #A6AEC1;
+    font-size: 13px;
+    padding: 0 6px;
+}
+
+.coin img {
+    width: 13px!important;
+    margin-right: 4px;
+}
+
+.pills {
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    background-color: #90C63E;
+    justify-content: center;
+    border-radius: 50px;
+    padding-top: 1px;
+}
+
+.card-theme-container {
+    position: relative;
+    margin: 0 auto;
+}
+.gc-style h3 {
+    font-family: 'Spirax', cursive;
+    color: #fff;
+}
+.card.gc-style {
+    height: 180px;
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    margin: auto;
+    width: 330px;
+}
+.gc-letter {
+    margin: -15px;
+    padding: 15px;
+}
+.gc-letter .card {
+    background-color: rgb(255 255 255 / 75%);
+    border: none;
+    box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+    border-radius: 10px;
+}
+.no-border {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    text-align: justify;
+}
+
+.btn-light-green {
+    background-color: #90C63E;
+    color: #fff!important;
+    width: 100%;
+    border-radius: 0;
+    padding: 15px 0;
+}
+
+.btn.btn-submit {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+p.swipe-left {
+    text-align: right;
+    font-size: 10px;
+    color: #A6AEC1;
+}
+
+p.swipe-left span {
+    position: relative;
+    animation-name: swipe-indicator;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes swipe-indicator {
+    0%   {left:0}
+    10%  {left:-10px}
+    20%  {left:-5px}
+    30%  {left:-10px}
+    40%  {left:0px}
+    50%  {left:0px}
+    60%  {left:0px}
+    70%  {left:-10px}
+    80%  {left:-5px}
+    90%  {left:-10px}
+    100%  {left:0px}
+}
+.mobile {
+    display: none;
+}
+.desktop {
+    display: block;
+    .banner {
+        height: 420px;
+        background: #FAFCF5;
+        position: relative;
+        h1 {
+            color: #90C63E;
+            position: absolute;
+            top: 210px;
+            left: 220px;
+        }
+        img.confetti {position: absolute;left: 0;bottom: 0;width: 1310px;}
+        img.illustration {position: absolute;right: 140px;bottom: 0;width: 420px;}
+    }
+    .user-guide {
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+        margin-top: 90px;
+        .step {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            width: 100%;
+            .guide {
+                width: 100%;
+                .title {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    p {
+                        font-weight: 500;
+                        font-size: 18px;
+                        color: #90C63E;
+                    }
+                    span.border-indicator {
+                        border-top: 1px solid #F0F0F0;width: 100%;height: 1px;
+                    }
+                }
+                .some-texts {
+                    color: rgba(0, 0, 0, 0.45);
+                }
+            }
+            .num {
+                width: 28px;
+                height: 25px;
+                display: flex;
+                justify-content: center;
+                color: rgba(0, 0, 0, 0.25);
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                border-radius: 32px;}
+            &.active .num {background: #90C63E;
+                border: 1px solid #508401;color: #ffffff;}
+        }
+    }
+    .gc-theme {
+        .header-title {
+            display: flex;
+            justify-content: space-between;
+            h4 {color: #A6AEC1;}
+            button.btn.btn-next {
+                background: #90C63E;
+                border-radius: 5px;
+                color: #ffffff;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 25px;
+                img {width: 16px;}
+            }
+        }
+        .theme-selection-container {
+            background: #FFFFFF;
+            box-shadow: 0px 8px 64px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            .theme-value {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                border: 1px solid #F2C42C;
+                border-radius: 35.235px;
+                padding: 3px 0px!important;
+                width: 64px;
+                margin: 0 auto;
+            }
+            .theme {
+                width: 125px;
+                .card {
+                    height: 125px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        width: 100%;
+                        height: 75px!important;
+                    }
+                } 
+            }
+        }
+    }
+    .sample-template {
+        h4 {color: #A6AEC1;}
+        .gc-letter {
+            box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+            border-radius: 10px;
+            .card {
+                border: none;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1023px) {
+    .mobile {
+        display: block;
+    }
+    .desktop {
+        display: none;
+    }
+}

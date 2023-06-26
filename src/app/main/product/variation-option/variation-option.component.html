@@ -1,0 +1,54 @@
+<div>
+    <!-- <div class="offcanvas-header">
+        <h4 class="offcanvas-title">Offcanvas title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeOffcanvas.dismiss('Cross click')"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>One fine body&hellip;</p>
+        <div class="text-end">
+            <button type="button" class="btn btn-outline-dark" (click)="activeOffcanvas.close('Close click')">Close</button>
+        </div>
+    </div> -->
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between">
+            <div class="variation-details">
+                <img [src]="variant?.variationPicture" class="variation-img" (error)="$event.target.src=product?.productImages[0]?.productImage">
+                <div class="info">
+                    <p class="note">Pre-order (ships in 7 days)</p>
+                    <p class="price"><span *ngIf="product?.retailPrice != price">{{currency?.symbol}}{{product?.retailPrice}}</span>{{currency?.symbol}}{{price}}</p>
+                    <p class="stock">Stock: 2</p>
+                </div>
+            </div>
+            <button type="button" class="btn-close" aria-label="Close" (click)="activeOffcanvas.dismiss('close')"></button>
+        </li>
+        <li class="list-group-item">
+            <p>{{product?.variationLabel}}</p>
+            <div class="variantion-items">
+                <ng-container *ngFor="let item of product?.variations; let i = index">
+                    <button [class.active]="variant?._id === item?._id" (click)="selectVariation(item)">{{item?.variationName}}</button>
+                </ng-container>
+            </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center pt-3 pb-4">
+            <p class="m-0">Quantity</p>
+            <div class="add-quantity">
+                <div class="qty minus" [class.disabled]="quantity <= 1" (click)="changeQty('minus')">
+                    <i class="bi bi-dash-lg"></i>
+                </div>
+                <input type="number" [(ngModel)]="quantity" />
+                <div class="qty add" (click)="changeQty('add')">
+                    <i class="bi bi-plus-lg"></i>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="action-btns">
+                <ng-container *ngIf="!product.updateVariation">
+                    <button [class.btn-add-to-cart]="variant && quantity" (click)="dismiss('add-to-cart', variant)">Add to Cart</button>
+                    <button [class.btn-buy-now]="variant && quantity" (click)="dismiss('buy-now', variant)">Buy Now</button>
+                </ng-container>
+                <button [class.btn-buy-now]="variant && quantity" *ngIf="product.updateVariation" (click)="dismiss('change', variant)">Confirm</button>
+            </div>
+        </li>
+    </ul>
+</div>

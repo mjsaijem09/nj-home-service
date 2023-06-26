@@ -1,0 +1,17 @@
+<div class="product-sort-nav" *ngIf="sortSetting">
+    <ul>
+        <li [class.active]="activeNav === 'popular'" (click)="sortBy('popular')">Popular</li>
+        <li [class.active]="activeNav === 'latest'" (click)="sortBy('latest')">Latest</li>
+        <li [class.active]="activeNav === 'top-sales'" (click)="sortBy('top-sales')">Top Sales</li>
+        <li [class.active]="activeNav === 'price'" (click)="sortBy('price')">Price <i class="bi bi-arrow-up-short"></i><i class="bi bi-chevron-expand"></i><i class="bi bi-arrow-down-short"></i></li>
+    </ul>
+</div>
+<div class="product-list" *ngIf="products">
+    <div class="row">
+        <ng-container *ngFor="let product of products; let i = index">
+            <div class="item col-6">
+                <app-product-card [data]="product" [shop]="shopData"></app-product-card>
+            </div>
+        </ng-container>
+    </div>
+</div>

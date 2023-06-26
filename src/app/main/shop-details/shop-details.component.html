@@ -1,0 +1,193 @@
+<div class="herbal-center-wrapper" [ngClass]="{'mobile-view': this.isMobile, 'desktop-view': !this.isMobile}">
+  <div class="container">
+    <div class="row" *ngIf="!isMobile">
+      <div class="col-12">
+        <div class="location-wrapper">
+          <div class="location">
+            <h4 class="location-geo">Your Location:&nbsp; Melbourne,VC</h4>
+          </div>
+        </div>
+        <div class="center-location-wrapper">
+          <div class="center-location-name">
+            <h4 class="center-name">{{shopDetails?.companyName}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SHOP DETAIL// -->
+    <div class="row shop-detail">
+      <div class="col-12">
+        <div class="topImg">
+          <img src="{{(shopDetails && shopDetails.profileImage && shopDetails.profileImage.length) ? (shopDetails.profileImage[0].img) : '../../../assets/images/no_image.png'}}" class="w-100" alt="">
+          <div class="mt-35">
+            <div class="centered d-flex justify-content-between">
+              <div class="store-name">
+                <span>{{shopDetails?.companyName}}</span>
+              </div>
+              <div class="store-like">
+                <i class="fa fa-heart" [ngClass]="{'active': isFavouriteShop}" (click)="addShopTofavourite()"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="profile-wrapper mt-2">
+          <div class="store-details">
+            <div class="store-location-detail d-flex justify-content-between mb-1">
+              <div class="location-name">
+                <i class="fa fa-map-marker"></i><span class="detail-span">{{shopDetails?.companyStreet}}</span>
+              </div>
+              <div class="location-icon">
+                <a href="http://maps.google.com/?q={{shopDetails?.companyStreet}}"><img src="../../../assets/images/directions.svg" alt=""></a>
+                <!-- <a href="geo:{{shopDetails?.geo_location.coordinates[1]}},{{shopDetails?.geo_location.coordinates[0]}}"><img src="../../../assets/images/directions.svg" alt=""></a> -->
+              </div>
+            </div>
+            <div class="store-average  mb-1">
+              <i class="fa fa-dollar"></i><span class="detail-span">Average $20 per Person</span>
+            </div>
+            <div class="number-of-therapist mb-1">
+              <i class="fa fa-user"></i><span class="detail-span">{{shopDetails?.totalTherapist}} Therapist</span>
+            </div>
+            <div class="totalstore-rating d-flex justify-content-between mb-1">
+              <div class="rating-number ">
+                <i class="fa fa-star"></i><span class="detail-span">{{shopDetails?.locationRating?.star.toFixed(1)}}
+                  ({{shopDetails?.locationRating?.star_count}} Ratings)</span>
+              </div>
+              <div class="rating-view-all font-14">
+                <a (click)="goTOReview()">View All</a>
+              </div>
+            </div>
+            <div class="store-timming d-flex justify-content-between mb-1">
+              <div class="time-of-appointments">
+                <i class="fa fa-clock-o"></i><span class="detail-span">9.30am - 9.30pm</span>
+              </div>
+              <div class="show-more-time">
+                <button type="button" class="btn btn-sm" (click)="collapse.toggle()" [attr.aria-expanded]="isCollapsed" aria-controls="collapseExample">
+                  <i class="fa fa-chevron-down"></i>
+                </button>
+              </div>
+            </div>
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+              <div class="card shop-open-time">
+                <div class="card-body" *ngFor="let timing of timingAvailable">
+                  <span class="badge badge-dark">{{timing?.day_of_week}}</span>
+                  <span class="detail-span">{{timing?.start|date:'shortTime'}} - {{timing?.end|date:'shortTime'}}</span>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="mainActin-outerbtn">
+              <div class="action-btn d-flex align-items-center" *ngIf="!isMobile">
+                <div class="col-md-6">
+                  <a class="btn btn-success w-100" href="tel:{{shopDetails?.companyPhone}}">Call</a>
+                </div>
+                <div class="col-md-6">
+                  <a class="btn btn-danger w-100"
+                    href="mailto:{{shopDetails?.companyEmail}}?Subject=Hello%20User">Email</a>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2" >
+                <button class="btn btn-dark btn-lg w-100" (click)="goToService()">View Schedule</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row shop-info">
+      <div class="col-12">
+        <!-- FACILITIES -->
+        <div class="facility-wrapper mt-0" *ngIf="shopDetails?.facilities && shopDetails?.facilities.length > 0">
+          <div class="facilities-heading">
+            <h5>Facilities</h5>
+          </div>
+          <div class="facilities-icon devider">
+            <ul class="facilities-list">
+              <li class="facilityList-wrapper" *ngFor="let facilities of shopDetails?.facilities">
+                <div class="facilities-provided">
+                  <img class="facilities-images" src="{{facilities.icon}}" alt="">
+                  <p>{{facilities?.name}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- PAYMENTS -->
+        <div class="payment-wrapper mt-3" *ngIf="shopDetails?.payment && shopDetails?.payment.length > 0">
+          <div class="payment-heading">
+            <h5>Payment Methods</h5>
+          </div>
+          <div class="payment-icon devider">
+            <ul class="payment-list">
+              <li class="paymentList-wrapper" *ngFor="let payment of shopDetails?.payment">
+                <div class="payment-provided">
+                  <img class="payment-images-large" src="{{payment?.icon}}" alt="">
+                  <p>{{payment?.name}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- INFORMATION -->
+        <div class="introduction-wrapper mt-3" *ngIf="shopDetails?.descriptions">
+          <div class="introduction-heading">
+            <h5>Introduction</h5>
+          </div>
+          <div class="introduction-paragraph-wrapper">
+            <p>{{shopDetails?.descriptions}}</p>
+          </div>
+        </div>
+        <!-- ACTION MOBILE -->
+        <div class="mainAction-outerbtn-mobile" *ngIf="isMobile">
+          <div class="action-btn d-flex align-items-center">
+            <div class="col-md-6">
+              <a class="btn btn-success w-100" href="tel:{{shopDetails?.companyPhone}}">Call</a>
+            </div>
+            <div class="col-md-6">
+              <a class="btn btn-danger w-100" href="mailto:{{shopDetails?.companyEmail}}?Subject=Hello%20User">Email</a>
+            </div>
+          </div>
+        </div>
+        <!-- OFFER -->
+        <div class="offer-wrapper mt-3" *ngIf="serviceData && serviceData.length > 0">
+          <div class="offer-heading">
+            <h5>Offers</h5>
+          </div>
+          <div class="offer-card-wrapper d-flex flex-row flex-nowrap overflow-auto">
+            <div class="row">
+              <div class="pl-4 scrolling-wrapper row flex-row flex-nowrap pb-4"> 
+                <ng-container *ngFor="let services of serviceData">
+                  <div class="card customWidth px-0">
+                    <div class="card-block card-horiz  ">
+                      <div>
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                          <div class="offer-wrapper d-flex">
+                            <div class="offer-icon-wrapper">
+                              <img src="../../../assets/images/payment/offer.svg" width="50px" height="50px" alt="">
+                            </div>
+                            <div class="offer-name-wrapper ms-3">
+                              <h6>{{ services?.name}}</h6>
+                              <span>{{services?.duration}}</span>
+                            </div>
+                          </div>
+                          <div class="offer-value-wrapper d-flex me-1 justify-content-between">
+                            <h6>${{services?.specialPrice}}</h6><span>
+                              <s>
+                                <h6>${{services?.price}}</h6>
+                              </s>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

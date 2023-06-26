@@ -1,0 +1,24 @@
+<div class="shop-details-section">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-2">
+            <img [src]="shop?.companyLogo" alt="Shop Logo" class="shop-img">
+            <div class="shop-detail">
+                <p class="name">{{shop?.locationName}}</p>
+                <p class="active-status">Active 1 day ago</p>
+                <p class="location"><i class="bi bi-geo-alt"></i>{{shop?.companyCity}}</p>
+            </div>
+        </div>
+        <button class="view-shop">View Shop</button>
+    </div>
+    <div class="d-flex gap-3 mt-2">
+        <div class="stat">
+            <p><span>106</span> Product</p>
+        </div>
+        <div class="stat">
+            <p><span>4.9</span> Rating</p>
+        </div>
+        <div class="stat">
+            <p><span>38%</span> Chat Response</p>
+        </div>
+    </div>
+</div>

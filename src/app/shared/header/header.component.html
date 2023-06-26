@@ -1,0 +1,660 @@
+<div class="main-wrapper">
+  <div id="mySidenav" #sidenav class="sidenav">
+    <div class="side-head_wrapper">
+      <div class="container">
+        <div class="row" *ngIf="customerDetails?.result">
+          <div class="col-12">
+            <div class="side-head">
+              <div class="user-details">
+                <div class="user-profile-img">
+                  <img class="image-logo" *ngIf="!customerDetails?.result?.image && !customerDetails?.result?.gender"
+                    src="assets/images/carbon_user-avatar-filled.svg" alt="user-image">
+                  <img class="image-logo" *ngIf="customerDetails?.result?.image"
+                    src="{{customerDetails?.result?.image}}" alt="user-image" (error)="updateUrl($event)">
+                  <img class="image-logo"
+                    *ngIf="!customerDetails?.result?.image && customerDetails?.result?.gender === 'Female'"
+                    src="assets/images/female-user.svg" alt="female-user">
+                  <img class="image-logo"
+                    *ngIf="!customerDetails?.result?.image && customerDetails?.result?.gender === 'Male'"
+                    src="assets/images/male-user.svg" alt="male-user">
+                  <div class="verified-icon" *ngIf="customerDetails?.result">
+                    <img src="../../../assets/images/verified.svg" alt="">
+                  </div>
+                </div>
+                <div class="user-info">
+                  <div class="userName">
+                    <div class="user-name">
+                      <p *ngIf="customerDetails?.result">{{customerDetails?.result?.firstName}}
+                        {{customerDetails?.result?.lastName ? customerDetails?.result?.lastName.split('')[0] + '.' :
+                        ''}}</p>
+                    </div>
+                    <div class="user-badge" *ngIf="customerDetails?.result" [routerLink]="['/customer-level']">
+                      <img src="assets/images/user-batch.svg">
+                      <div class="batch-number">
+                        <p>{{customerDetails?.result?.level?.label}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rating" *ngIf="customerDetails?.result">
+                    <app-star-rating [rating]="customerDetails?.result?.rating?.star" [size]="18"></app-star-rating>
+                    <div class="total-rating">
+                      <p>{{customerDetails?.result?.rating?.star}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="guest-header">
+          <section class="section-user-detail">
+            <div class="row" *ngIf="!customerDetails">
+              <div class="col-12">
+                <div class="welcome-guest">
+                  <h6>Welcome To <span>BookUs!</span> </h6>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-7">
+                <div class="user-detail">
+                  <div class="user-img" (click)="showSidemenu('hello')">
+                    <img src="assets/images/carbon_user-avatar-filled.svg">
+                  </div>
+                  <div class="user-name">
+                    <h6>Guest User</h6>
+                    <p (click)="navigateToSearchCity()"><span><img
+                          src="assets/images/location.svg"></span>{{lookupAddress}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="account-balance">
+                  <a (click)="navigateToSignIn()">sign In</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div>
+    <div class="side-menu_wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="side-menu">
+              <ul>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/')">
+                    <img class="default" src="assets/images/home.svg">
+                    <img class="selected" src="assets/images/my-account/home.svg">
+                    home
+                  </a>
+                </li>
+                <li *ngIf="customerDetails?.result">
+                  <a class="dropdown-item" (click)="navigateTo('/my-profile')">
+                    <img class="default" src="assets/images/my-profile.svg">
+                    <img class="selected" src="assets/images/my-account/my profile.svg">
+                    My Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/mywallet')">
+                    <img class="default" src="assets/images/my-wallet.svg">
+                    <img class="selected" src="assets/images/my-account/my wallet.svg">
+                    My Wallet
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/my-purchases')">
+                    <img class="default" src="assets/images/sidebar/purse.svg">
+                    <img class="selected" src="assets/images/sidebar/purse.svg">
+                    My Purchases
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateToGiftCard()">
+                    <img class="default" src="assets/images/my-bagpack.svg">
+                    <img class="selected" src="assets/images/my-account/my backpack.svg">
+                    My Giftcards
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/contacts')">
+                    <img class="default" src="assets/images/my-relationship.svg">
+                    <img class="selected" src="assets/images/my-account/my relationship.svg">
+                    My Contacts
+                  </a>
+                </li>
+                <!-- <li (click)="navigateTo('main/home/your-credit')">
+                  <a class="dropdown-item">
+                    <img class="default" src="assets/images/credit.svg">
+                    <img class="selected" src="assets/images/my-account/credit-active.svg">
+                    My Credit
+                  </a>
+                </li>
+                <li (click)="navigateTo('main/home/customer-level')">
+                  <a class="dropdown-item">
+                    <img class="default" src="assets/images/level.svg">
+                    <img class="selected" src="assets/images/my-account/level-active.svg">
+                    My Level
+                  </a>
+                </li>
+                <li (click)="navigateTo('main/home/level')">
+                  <a class="dropdown-item">
+                    <img class="default" src="assets/images/rate.svg">
+                    <img class="selected" src="assets/images/my-account/rate-active.svg">
+                    My Rate
+                  </a>
+                </li> -->
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo()">
+                    <img class="default" src="assets/images/list-my-shop.svg">
+                    <img class="selected" src="assets/images/my-account/list.svg">
+                    List my Shop
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/invite-friend']">
+                    <img class="default" src="assets/images/invite-a-friend.svg">
+                    <img class="selected" src="assets/images/my-account/voucher.svg">
+                    Invite a Friend
+                  </a>
+                </li>
+                <!--li>
+                  <a class="dropdown-item" (click)="openModelReportBug()">
+                    <img class="default" src="assets/images/report-a-bug.svg">
+                    <img class="selected" src="assets/images/my-account/report.svg">
+                    Report a Bug
+                  </a>
+                </li-->
+                <!--li>
+                  <a class="dropdown-item" (click)="navigateTo()">
+                    <img class="default" src="assets/images/faq.svg">
+                    <img class="selected" src="assets/images/my-account/faq.svg">
+                    FAQ
+                  </a>
+                </li-->
+                <!--li>
+                  <a class="dropdown-item" (click)="openModelOnlineSupport()">
+                    <img class="default" src="assets/images/support.svg">
+                    <img class="selected" src="assets/images/my-account/support.svg">
+                    Online Support
+                  </a>
+                </li-->
+                <li *ngIf="!customerDetails?.result">
+                  <a class="dropdown-item" (click)="navigateToSignIn()">
+                    <img class="default" src="assets/images/logout.svg">
+                    <img class="selected" src="assets/images/my-account/logout.svg">
+                    Login
+                  </a>
+                </li>
+                <li *ngIf="customerDetails?.result">
+                  <a class="dropdown-item" (click)="logoutUserModal(logoutModal)">
+                    <img class="default" src="assets/images/logout.svg">
+                    <img class="selected" src="assets/images/my-account/logout.svg">
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="parentHeader" *ngIf="ShowMobile">
+    <!-- Guest Header -->
+    <header *ngIf="isHomeHeader && !categoryRoute && !customerDetails && !locationService?.headerTitle"
+      class="fixed-top bg-white guest-header">
+      <section class="section-user-detail">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="welcome-guest">
+                <h6>Welcome To <span>BookUs!</span> </h6>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-7">
+              <div class="user-detail">
+                <div class="user-img" (click)="showSidemenu('hello')">
+                  <img src="assets/images/carbon_user-avatar-filled.svg">
+                </div>
+                <div class="user-name">
+                  <h6>Guest User</h6>
+                  <p (click)="navigateToSearchCity()"><span><img
+                        src="assets/images/location.svg"></span>{{lookupAddress}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="account-balance">
+                <a (click)="navigateToSignIn()">sign In</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <header *ngIf="isHomeHeader && !categoryRoute && customerDetails && !locationService?.headerTitle"
+      class="fixed-top bg-white">
+      <section class="section-user-detail">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="header_flex">
+                <div class="user-detail">
+                  <div class="user-img" (click)="showSidemenu('hello')">
+                    <img *ngIf="!clientData?.image && !clientData?.gender"
+                      src="assets/images/carbon_user-avatar-filled.svg" alt="user-image">
+                    <img *ngIf="clientData?.image" [src]="imgLink(clientData?.image)" alt="user-image"
+                      (error)="updateUrl($event)">
+                    <img *ngIf="!clientData?.image && clientData?.gender === 'Female'"
+                      src="assets/images/female-user.svg" alt="female-user">
+                    <img *ngIf="!clientData?.image && clientData?.gender === 'Male'" src="assets/images/male-user.svg"
+                      alt="male-user">
+                    <div class="verified-user" *ngIf="clientData?.verified">
+                      <img src="assets/images/verified-user.svg" class="verified">
+                    </div>
+                  </div>
+                  <div class="user-name">
+                    <h2>{{customerDetails?.result?.firstName}} {{customerDetails?.result?.lastName ?
+                      customerDetails?.result?.lastName.split('')[0] + '.' : ''}}
+                      <span [routerLink]="['/customer-level']">{{customerDetails?.result?.level?.label}}</span>
+                    </h2>
+                    <p (click)="navigateToSearchCity()"><span><img
+                          src="assets/images/location.svg"></span>{{lookupAddress}}</p>
+                  </div>
+                </div>
+                <div class="balance_qr">
+                  <div class="account-balance" [routerLink]="['/mywallet']">
+                    <p>Account Balance</p>
+                    <h2 *ngIf="customerDetails?.result?.walletBalance !== undefined">
+                      ${{accBalance | number:'1.2-2':'en-US'}}</h2>
+                    <!-- ${{(customerDetails?.result?.walletBalance).toFixed(2)}}</h2> -->
+                  </div>
+                  <div class="qr-code" (click)="toggleScanner()">
+                    <a><img src="assets/images/qr.svg" alt="qr-code"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+
+    <header class="fixed-top bg-white"
+      *ngIf="(!isHomeHeader && categoryRoute && categoryRoute !== 'Shop Detail' && categoryRoute !== 'Therapist Detail' && categoryRoute !== 'Customer Detail') || locationService?.headerTitle || presentUrl === 'rate'">
+      <div class="container-fluid">
+        <div class="header-container">
+          <div (click)="navigateToHome(presentUrl)">
+            <!-- <i class="bi bi-arrow-left-circle-fill"></i> -->
+            <img src="assets/images/arrow-left-black.svg" alt="back-arrow">
+          </div>
+          <div class=" header-title">
+            <p class="bold-header authheader catefroyRoute">{{locationService?.headerTitle ?
+              locationService?.headerTitle : categoryRoute | titlecase}}</p>
+            <ng-container *ngIf="startBookingTime">
+              <countdown [config]="bookingTimeConfig" (event)="handleEvent($event, content)"></countdown>
+            </ng-container>
+          </div>
+          <div class="ml-auto">
+            <img *ngIf="!isBusinessPage; else mainSite" (click)="navigateToHomePage()"
+              src="assets/images/footer/home-green.svg" alt="home" class="active-icon" />
+            <ng-template #mainSite>
+              <img (click)="navigateToMainPage()" src="assets/images/footer/home-green.svg" alt="home" class="active-icon" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Header Shop Detail, Therapist Detail  -->
+    <header class="fixed-top"
+      *ngIf="!isHomeHeader && !authHeader && (presentUrl === 'Shop Detail' || presentUrl === 'Therapist Detail'|| presentUrl === 'Customer Detail')">
+      <div class="container-fluid">
+        <div class="row text-white header-container header-back-heart">
+          <div class="back"
+            *ngIf="presentUrl != 'schedule' && presentUrl != 'like' && presentUrl != 'notifications' && presentUrl != 'rate'"
+            (click)="navigateToHome(presentUrl)">
+            <a><img src="assets/images/arrow-left.svg" alt="back"></a>
+          </div>
+          <div class="heart"
+            *ngIf="presentUrl != 'schedule' && presentUrl != 'like' && presentUrl != 'notifications' && presentUrl != 'rate' && presentUrl != 'Shop Detail'">
+            <a>
+              <img *ngIf="!isBusinessPage; else mainSite" (click)="navigateToHomePage()"
+                src="assets/images/footer/home-green.svg" alt="home" class="active-icon">
+              <ng-template #mainSite>
+                <img (click)="navigateToMainPage()" src="assets/images/footer/home-green.svg" alt="home"
+                  class="active-icon" />
+              </ng-template>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <header class="fixed-top" *ngIf="isHomeHeader && authHeader && categoryRoute">
+      <div class="container-fluid bg-dark">
+        <div class="row bg-dark text-white header-container">
+          <div (click)="navigateToHome(presentUrl)">
+            <i class="bi bi-arrow-left-circle-fill"></i>
+          </div>
+          <div class="mt-1 header-title">
+            <p class="bold-header authheader catefroyRoute">{{categoryRoute | titlecase}}</p>
+            <ng-container *ngIf="startBookingTime">
+              <countdown [config]="bookingTimeConfig" (event)="handleEvent($event, content)"></countdown>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <header class="fixed-top" *ngIf="isBusinessPage && !categoryRoute">
+      <div class="container-fluid">
+        <div class="row text-white header-container header-back-heart">
+          <div class="heart main-page">
+            <a><img (click)="navigateToMainPage()" src="assets/images/footer/home-green.svg" alt="home"
+                class="active-icon"></a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+<nav class="desktop navbar fixed-top shadow-sm p-0" *ngIf="!ShowMobile && !authHeader">
+  <!-- the small header -->
+  <div class="auth-header">
+    <div class="container">
+      <div class="flex-header">
+        <div class="auth-user" *ngIf="customerDetails;">
+          <div class="user-detail">
+            <div class="user-img">
+              <img [src]="customerDetails?.result?.image" class="user-pic" alt="user picture" (error)="userImage($event)">
+              <div class="verified-user" *ngIf="clientData?.verified"><img src="assets/images/verified-user.svg" class="verified" width="26px"></div>
+            </div>
+            <div class="user-name">
+              <h6 class="m-0">{{customerDetails?.result?.firstName}} {{customerDetails?.result?.lastName ?
+                customerDetails?.result?.lastName.split('')[0] + '.' : ''}}
+                <div class="user-badge pointer" [routerLink]="['/customer-level']">
+                  <div class="level bronze">{{customerDetails?.result?.level?.label}}</div>
+                  <img src="assets/images/user-batch.svg" alt="" class="rank-badge">
+                </div>
+              </h6>
+            </div>
+          </div>
+          <div class="balance_qr">
+            <div class="account-balance">
+              <p>Account Balance</p>
+              <h6 *ngIf="customerDetails?.result?.walletBalance !== undefined">
+                ${{accBalance | number:'1.2-2':'en-US'}}</h6>
+            </div>
+          </div>
+        </div>
+        <div class="guest-user" *ngIf="!customerDetails;">
+          <div class="user">
+            <img src="assets/images/user-green.svg" alt="guest-user" width="30">
+            <a class="navbar-brand">Guest User</a>
+          </div>
+        </div>
+        <div class="notification-and-cart">
+          <div class="navbar-nav auth-route" *ngIf="!customerDetails;">
+            <a class="nav-link" href="auth/login">Login</a>
+            <a class="nav-link" href="auth/register">Register</a>
+          </div>
+          <div class="notification" *ngIf="customerDetails;">
+            <a class="dropdown-toggle notif-icon" role="button" id="notification-list" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="assets/images/header/bell.svg">
+              <span class="notif-count" *ngIf="notifCount > 0">{{notifCount}}</span>
+            </a>
+            <div class="dropdown-menu notifList" aria-labelledby="notification-list">
+              <app-notifications></app-notifications>
+            </div>
+          </div>
+          <div class="cart">
+            <button class="product-cart dropdown-toggle" role="button" id="items-in-cart" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="assets/images/header/shopping-cart.svg" alt="cart">
+              <span class="cart-items" *ngIf="cartData?.length > 0">{{cartData?.length}}</span>
+            </button>
+            <app-items-in-cart class="dropdown-menu cart-item-list" aria-labelledby="items-in-cart" [cartData]="cartData">
+            </app-items-in-cart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- the big header  *ngIf="router.url === '/'"-->
+  <div class="search-header">
+    <div class="container">
+      <div class="d-flex align-items-center">
+        <a class="navbar-brand" [routerLink]="['/']">
+          <img src="assets/images/BookUs_logo.png" alt="business logo" width="100">
+        </a>
+        <div class="filters-and-menu">
+          <div class="filters">
+            <div class="input-group flex-nowrap search-box shadow-sm w-100">
+              <span class="input-group-text" id="addon-wrapping">
+                <img src="assets/images/icon-search.svg" alt="search-icon">
+              </span>
+              <input 
+              type="text"
+              class="form-control"
+              placeholder="Search for the business or a service"
+              [(ngModel)]="searchShopsText"
+              aria-label="Search for the business or a service"
+              aria-describedby="addon-wrapping"
+              (ngModelChange)="searchShop($event)">
+            </div>
+            <button type="button" class="btn bg-white shadow-sm w-100" (click)="navigateToSearchCity()">
+              <img src="assets/images/map-pin-line.svg"> {{lookupAddress}}
+            </button>
+            <a class="btn p-0" href="/business" target="_blank" role="button" style="width: 273px;">For Business</a>
+          </div>
+          <ul class="nav nav-pills" *ngIf="customerDetails;">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                <img src="assets/images/header/burger-menu.svg" alt="menu" width="25">
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/my-profile')">
+                    <img class="default" src="assets/images/my-profile.svg">
+                    <img class="selected" src="assets/images/my-account/my profile.svg">
+                    My Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/mywallet')">
+                    <img class="default" src="assets/images/my-wallet.svg">
+                    <img class="selected" src="assets/images/my-account/my wallet.svg">
+                    My Wallet
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateToGiftCard()">
+                    <img class="default" src="assets/images/my-bagpack.svg">
+                    <img class="selected" src="assets/images/my-account/my backpack.svg">
+                    My Giftcards
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateToPage('schedule')">
+                    <img class="default" src="assets/images/my-schedule.svg">
+                    <img class="selected" src="assets/images/my-account/schedule.svg">
+                    My Schedule
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/contacts')">
+                    <img class="default" src="assets/images/my-relationship.svg">
+                    <img class="selected" src="assets/images/my-account/my relationship.svg">
+                    My Contacts
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/like')">
+                    <img class="default" src="assets/images/notification1.svg">
+                    <img class="selected" src="assets/images/my-account/notification.svg">
+                    Favorite
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/like')">
+                    <img class="default" src="assets/images/list-my-shop.svg">
+                    <img class="selected" src="assets/images/my-account/list.svg">
+                    List my Shop
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="navigateTo('/invite-friend')">
+                    <img class="default" src="assets/images/invite-a-friend.svg">
+                    <img class="selected" src="assets/images/my-account/voucher.svg">
+                    Invite a Friend
+                  </a>
+                </li>
+                <!--li>
+                  <a class="dropdown-item" (click)="openModelReportBug()">
+                    <img class="default" src="assets/images/report-a-bug.svg">
+                    <img class="selected" src="assets/images/my-account/report.svg">
+                    Report a Bug
+                  </a>
+                </li-->
+                <!--li>
+                  <a class="dropdown-item">
+                    <img class="default" src="assets/images/faq.svg">
+                    <img class="selected" src="assets/images/my-account/faq.svg">
+                    FAQ
+                  </a>
+                </li-->
+                <!--li>
+                  <a class="dropdown-item" (click)="openModelOnlineSupport()">
+                    <img class="default" src="assets/images/support.svg">
+                    <img class="selected" src="assets/images/my-account/support.svg">
+                    Online Support
+                  </a>
+                </li-->
+                <li>
+                  <a class="dropdown-item" (click)="logoutUserModal(logoutModal)">
+                    <img class="default" src="assets/images/logout.svg">
+                    <img class="selected" src="assets/images/my-account/logout.svg">
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="fix-time-div" *ngIf="todayAppointment && todayAppointment.length > 0"
+  (click)="openServiceStatusPopup(content2)" [ngStyle]="{'bottom': !isHomeHeader || !ShowMobile ? '0px' : '46px'}">
+  <p *ngIf="todayAppointment.length === 1">Ongoing Service : <countdown
+      [config]="{ leftTime: selectedAppointmentData.countdown, format: 'HH:mm:ss' }"
+      (event)="handleServiceEvent($event, content)"></countdown>
+  </p>
+  <p *ngIf="todayAppointment.length === 1">{{selectedAppointmentData.service.name}}</p>
+  <p *ngIf="todayAppointment.length > 1" class="p-2">Check your ongoing service <i
+      class="bi bi-chevron-right text-white ms-3"></i></p>
+</div>
+
+<!-- Modal -->
+<ng-template #content2 let-modal>
+  <div class="modal-header bg-dark">
+    <h6 class=""><i class="bi bi-arrow-left text-white me-3" (click)="closeContent2()"></i>Ongoing Service</h6>
+  </div>
+  <div class="modal-body" *ngIf="selectedAppointmentData">
+    <div class="text-center" style="width: 226px;height: 226px;margin: 0 auto"
+      *ngIf="selectedAppointmentData.status === 'started'">
+      <circle-progress [percent]="percentage" [title]="time | minutePipe " [radius]="100"></circle-progress>
+    </div>
+
+    <div class="text-center" style="width: 226px;height: 226px;margin: 0 auto"
+      *ngIf="selectedAppointmentData.status === 'arrived'">
+      <button type="button" class="btn btn-dark book-another-therapist start-btn"
+        (click)="startAppointment()">Start</button>
+    </div>
+    <div class="ongoing-service-info mt-3">
+      <div class="image-avtar">
+        <img src="../../../assets/images/no_image.png" alt="rere" />
+      </div>
+      <div class="info-div">
+        <div class="d-flex justify-content-between">
+          <h5 class="font-weight-bold mb-0">{{selectedAppointmentData.service.name}}</h5>
+          <span class="">${{selectedAppointmentData.special_price || selectedAppointmentData.price}}</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="">{{selectedAppointmentData.staff.firstName}}</span>
+          <span class="">{{selectedAppointmentData.duration.hour + 'h'}}
+            {{selectedAppointmentData.duration.min + 'min'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3" [ngClass]="{'disabled-div': selectedAppointmentData.status === 'arrived'}">
+      <div><button class="btn book-another-therapist w-100" [disabled]="nomoreTime"
+          [ngClass]="{'btn-gray': nomoreTime, 'btn-green': !nomoreTime}"
+          (click)="openMassageControlPopup('add-more-time')">{{nomoreTime ? 'No More Time Available' : 'Add MoreTime'}}</button>
+      </div>
+      <div class="mt-3"><button class="btn btn-blue book-another-therapist w-100"
+          (click)="openMassageControlPopup('change-therapist')">Change Therapist</button></div>
+      <div class="mt-3"><button class="btn btn-yellow book-another-therapist w-100"
+          (click)="openMassageControlPopup('add-tip')">Add Tip</button></div>
+      <div class="mt-3"><button class="btn btn-white book-another-therapist w-100"
+          (click)="openMassageControlPopup('stop-service')">Stop Service</button></div>
+    </div>
+
+  </div>
+  <div class="modal-body bg-dark" *ngIf="!selectedAppointmentData">
+    <div class="" *ngFor="let item of todayAppointment" (click)="openServiceStatusPopup(content2, item)">
+      <p class="mb-0" *ngIf="item.endTime">Ongoing Service : <countdown
+          [config]="{ leftTime: item.countdown, format: 'HH:mm:ss' }" (event)="handleServiceEvent($event, content)">
+        </countdown>
+      </p>
+      <p>{{item.service?.name}}</p>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h6 class="book-another-therapist-title">Bookus</h6>
+  </div>
+  <div class="modal-body">
+    <div class="success-wrapper">
+      <div class="signature-info mb-4">
+        <p>Given booking time is finished, You need to select another time slot.</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn book-another-therapist" (click)="selectAnotherTimeSlot()">Select Another
+      Time Slot</button>
+  </div>
+</ng-template>
+
+<!-- Modal Logout -->
+<ng-template #logoutModal let-modal>
+  <div class="custom-modal">
+    <div class="modal-header">
+      <h4 class="modal-title" style="color: white;">Book Us</h4>
+    </div>
+    <div class="modal-body text-center">
+      <p class="mb-4" style="text-transform: none ; margin-top: 20px;">Are you sure you want to logout?</p>
+      <div class="d-flex justify-content-center gap-2 w-100">
+        <button class="btn btn-primary w-100 border-none" (click)="modal.dismiss('Cross click')">No,Keep Me Logged
+          In</button>
+        <button class="btn btn-cancel-light w-100 border-none" (click)="logoutUser()">Yes</button>
+      </div>
+    </div>
+    <div class="modal-footer"></div>
+  </div>
+</ng-template>

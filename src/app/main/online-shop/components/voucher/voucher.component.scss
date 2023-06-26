@@ -1,0 +1,95 @@
+.voucher {
+    position: relative;
+    display: flex;
+    .content {
+        display: flex;
+        justify-content: space-between;
+        color: red;
+        width: 100%;
+        .details {
+            padding: 20px 15px;
+            background-color: #ff000014;
+            border: solid 1px #ff00001c;
+            width: 100%;
+            border-left: unset;
+            border-right: unset;
+            p.discount {
+                margin: 0;
+                line-height: 16px;
+            }
+            small.min-spend {
+                line-height: 14px;
+                font-weight: 300;
+            }
+            small.expiration-date {
+                color: #817474;
+                font-size: 10px;
+                font-weight: 400;
+                line-height: 10px;
+            }
+            .voucher-bandge {
+                font-size: 12px;
+                border: solid 1px;
+                padding: 0 3px;
+                width: fit-content;
+            }
+        }
+        .action {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #ff000014;
+            border: solid 1px #ff00001c;
+            border-left: solid 1px;
+            border-left-style: dashed;
+            border-color: #8c7e7e42;
+            button.btn-claim {
+                background-color: red;
+                color: #ffffff;
+                border: unset;
+                border-radius: 2px;
+                padding: 5px 15px;
+                font-size: 14px;
+            }
+        }
+    }
+    .tier-strips {
+        background: linear-gradient(90deg,transparent 0 0.25rem,#fff4f4 0.25rem);
+        border-top: 1px solid #fbc9c0;
+        border-bottom: 1px solid #fbc9c0;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        display: flex;
+        min-width: 0.3125rem;
+        margin-left: 1px;
+        border-radius: 0.1875rem 0 0 0.1875rem;
+        .cr23f {
+            top: 0;
+            left: 0;
+            position: absolute;
+            height: 100%;
+            width: 0.3125rem;
+            .rc2 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0.25rem;
+                height: 100%;
+                background: radial-gradient(circle at 0,at .375rem,transparent 0,rgba(0,0,0,.03) .1875rem,#fbc9c0 0,#fbc9c0 .25rem,#fff4f4 0);
+                background: radial-gradient(circle at 0 0.375rem,transparent 0,rgba(0,0,0,.03) 0.1875rem,#fbc9c0 0,#fbc9c0 0.25rem,#fff4f4 0);
+                background-size: 0.25rem 0.625rem;
+                background-repeat: repeat-y;
+                .g37rt {
+                    background: repeating-linear-gradient(#fbc9c0,#fbc9c0 0.1875rem,transparent 0,transparent 0.625rem);
+                    background-size: 1px 0.625rem;
+                    width: 1px;
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

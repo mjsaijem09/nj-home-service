@@ -1,0 +1,518 @@
+.isloading {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 50px;
+  }
+}
+.top-spacing {
+  margin-top: 30px;
+  min-height: 100vh;
+}
+@media screen and (max-width: 768px) {
+  .top-spacing {
+    margin-top: 130px;
+  }
+}
+// Hero banner section
+.home-banner {
+  position: relative;
+  height: 108vh;
+  background-image: url("../../../assets/images/Group_2343.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  .content {
+    max-width: 580px;
+  }
+  p {
+    font-size: 19px;
+  }
+  h1 {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .home-banner {
+    display: none;
+  }
+}
+// Hero banner section ends
+//------------------------
+// Search Section
+.section-search-bar {
+  .search-field {
+    position: relative;
+    input {
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 19px;
+      padding: 10px 15px;
+    }
+    .searchIcon {
+      position: absolute;
+      right: 13px;
+      top: 13px;
+    }
+  }
+  .col-2 {
+    padding-left: 0px!important;
+    display: flex;
+    align-items: stretch;
+    button.btn-search {
+      border: none;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 7px;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .section-search-bar {
+    .search-field {
+      input {
+        font-size: 16px;
+      }
+    }
+  }  
+}
+@media screen and (min-width: 768px) {
+  .section-search-bar {
+    margin-top: 130px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .section-search-bar {
+    display: none;
+  }
+}
+// Search Section Ends
+// -------------------
+// Category Carousel Section
+.category-carousel {
+  margin-top: 3rem;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    p.title {
+      font-size: 38px;
+      font-weight: 600;
+    }
+  }
+  .card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    transition: all .9s;
+    .card-body {
+      padding: 50px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      .category-img {
+        img {
+          width: 60px;
+        }
+      }
+      p.category-name {
+        font-size: 22px;
+        font-weight: 900;
+      }
+    }
+    &:hover {
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .category-carousel {
+    margin-top: 2rem;
+    .card {
+      .card-body {
+        padding: 10px 0!important;
+        gap: 10px;
+        .category-img img {
+          width: 30px;
+        }
+        p.category-name {
+          font-size: 12px;
+          margin-bottom: 0px;
+          font-weight: 500;
+        }
+      }
+    }
+  }  
+}
+@media screen and (max-width: 768px) {
+  .category-carousel {
+    .card {
+      .card-body {
+        padding: 25px 0;
+        .category-img img {
+        }
+        p.category-name {
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }  
+}
+// Category Carousel Section Ends
+// -------------------
+// Shop Carousel Section
+.shop-carousel {
+  margin-top: 3rem;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    p.title {
+      font-size: 38px;
+      font-weight: 600;
+      margin: 0px;
+    }
+    button {
+      padding: 0;
+      font-weight: 400;
+      font-size: 20px;
+      color: #696969;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+  }
+  .card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    transition: all .9s;
+    &:hover {
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+      .card-top-img img {
+        transform: scale(1.1);
+      }
+    }
+    .card-top-img {
+      height: 180px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .9s;
+      }
+    }
+    
+    ul.service_offers {
+      position: absolute;
+      top: 15px;
+      left: -15px;
+      display: flex;
+      gap: 10px;
+      li {
+        background: #fff;
+        height: 35px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        img.online-payment {
+          height: 25px;
+          object-fit: contain;
+        }
+        img.online-giftcard {
+          width: 30px;
+          object-fit: contain;
+        }
+      }
+    }
+    .card-body {
+      .card-title, .address {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0px;
+      }
+      .rating-and-distance {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        .ratings {
+          display: flex;
+          gap: 5px;
+          app-star-rating {
+            width: 21px;
+            overflow: hidden;
+          }
+        }
+        .distance {
+          display: flex;
+          gap: 3px;
+          img {
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 349px) {
+  .shop-carousel {
+    .card {
+      .card-top-img {
+        height: 180px!important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .shop-carousel {
+    .card {
+      .card-top-img {
+        height: 130px;
+      }
+      ul.service_offers {
+        top: 10px;
+        left: -20px;
+        gap: 10px;
+        li {
+          height: 26px;
+          width: 37px;
+          border-radius: 4px;
+          img.online-payment {
+            height: 18px;
+          }
+          img.online-giftcard {
+            width: 23px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .shop-carousel {
+    margin-top: 1rem;
+    .card {
+      .card-body {
+        padding: 10px;
+        h5.card-title {
+          font-size: 16px;
+        }
+        p.address {
+          font-size: 14px;
+        }
+        .rating-and-distance {
+          font-size: 14px;
+          .ratings {
+            gap: 3px;
+          }
+          .distance img {
+            width: 16px;
+          }
+        }
+      }  
+    }  
+  }
+}
+
+// Shop Carousel Section Ends
+//---------------------------
+// Download section
+.download-our-app {
+  padding: 40px 0px;
+  .app-screen {
+    width: 100%;
+    text-align: center;
+    background-repeat: no-repeat;
+    img {
+      object-fit: contain;
+    }
+  }
+  .app-details {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    img.logo {
+      width: 100%;
+      max-width: 286px;
+      margin-bottom: 20px;
+
+    }
+    h1 .heading {
+      font-weight: 700;
+      font-size: 50px;
+      line-height: 60px;
+      color: #000000;
+    }
+    p {
+      font-weight: 500;
+      font-size: 21px;
+      line-height: 31px;
+      color: #A6AEC1;
+      margin: 0;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 22px;
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+  .download-desktop {
+    display: block;
+  }
+  .download-mobile {
+    display: none;
+  }
+}
+@media screen and (max-width: 425px) {
+  .download-our-app {
+    .app-info {
+      padding-left: 0px;
+      .download-our-app {
+        .app-details {
+          h1.heading {
+            font-size: 31px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .download-our-app {
+    .app-details {
+      justify-content: end;
+      img.logo {
+        max-width: 175px;
+      }
+      h1.heading {
+        font-size: 35px;
+      }
+    }
+    .download-desktop {
+      display: none;
+    }
+    .download-mobile {
+      display: block;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .download-our-app {
+    .app-details {
+      h1.heading {
+        font-size: 28px;
+      }
+    }
+  }
+}
+.ios-guide-add-to-home-screen {
+  position: fixed;
+  z-index: 999999;
+  left: 10px;
+  right: 10px;
+  bottom: 15px;
+  background: #000000bf;
+  border-radius: 5px;
+  padding: 10px;
+  p {
+    color: #F2F8FF;
+    font-size: 13px;
+  }
+  .tip {
+    background: #000000bf;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    width: 20px;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -15%;
+    margin: auto;
+  }
+}
+// Download Section Ends
+// -------------------------
+// Business Proposal Section
+.daily-business-management {
+  background-color: #eff7e4;
+  padding: 50px 0;
+  .content {
+    padding: 0;
+    max-width: 790px;
+    margin: 0 auto;
+    p {
+      font-size: 22px;
+      color: #2c4900b0;
+      margin: 15px 0;
+    }
+    a.btn-to-business-page {
+      background: #90c63e;
+      color: #ffffff;
+      font-size: 18px;
+      padding: 10px 30px;
+      border-radius: 5px;
+    }
+  }
+}
+@media screen and (max-width: 947px) {
+  .daily-business-management {
+    padding-bottom: 100px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .daily-business-management {
+    .content {
+      h3 {
+        font-size: 21px;
+        span.green-bold {
+          color: #90c63e;
+        }
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
+// Business Proposal Section Ends
+@media screen and (max-width: 500px) {
+  .header {
+    p.title {
+      font-size: 19px!important;
+      font-weight: 500px!important;
+    }
+    button {
+      font-size: 16px!important;
+      img {
+        display: none;
+      }
+    }
+  }
+}

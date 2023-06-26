@@ -1,0 +1,30 @@
+.scrollable-container.overflow {
+    max-height: 581px;
+    overflow-y: auto;
+    margin-right: -16px;
+    padding-right: 10px;
+}
+.item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+    img {
+        width: 90px;
+        border: solid 1px #e8e8e8;
+        height: 110px;
+        object-fit: cover;
+    }
+    span.material-icons {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    &:hover {
+        background: #f1f1f1;
+    }
+}
+.hr {
+    border-top: solid 1px #e6e6e6;
+    margin: 10px 0;
+}

@@ -1,0 +1,107 @@
+.upload-img{
+    height: calc(100vh - 60px);
+    background: #191a18;
+}
+.header-block{
+    background-color: #0f0f0f36;
+    position: absolute;
+    vertical-align: middle;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    margin: 0;
+    z-index: 99999999999999999;
+}
+
+.head-img {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    // min-width: 200px;
+    min-height: 211px;
+    width: 87%;
+    height: 53%;
+    border: 1px dashed #0770b7;
+    margin: 0 10px;
+    overflow: hidden;
+    text-align: center;
+}
+.image-logo {
+    max-width: 100%;
+}
+
+.select-photo{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #FFFFFF;
+    margin: 0;
+}
+.bottom-div{
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    padding: 10px;
+    background-color: #0f0f0f36;
+}
+
+.head-img-avtar {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    min-width: 100%;
+    min-height: 170px;
+    // width: 87%;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+    border: 1px solid #c8c8c8;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.head-input {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 80%;
+    margin-top: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+::ng-deep{
+    .ngx-slider{
+        margin: 20px 0 15px !important;
+    }
+    .ngx-slider .ngx-slider-pointer {
+    cursor: pointer;
+    width: 21px !important;
+    height: 21px !important;
+    top: -9px !important;
+    background-color: #90C63E !important;
+    z-index: 3 !important;
+    border-radius: 16px !important;
+}
+.ngx-slider .ngx-slider-pointer:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    border-radius: 4px;
+    background: transparent !important;
+}
+.ngx-slider-ceil, .ngx-slider-floor, .ngx-slider-model-value{
+    visibility: hidden !important;
+}
+}

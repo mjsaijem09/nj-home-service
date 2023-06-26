@@ -1,0 +1,364 @@
+
+<div class="rr-wrapper container-fluid desktop-view" [ngClass]="{'shop-detail': shopDetail}">
+    <div class="rr-pageheading">
+        <div class="container">
+            <h5>Reviews & Ratings</h5>
+        </div>
+    </div>
+    <section>
+        <div class="container1">
+            <div class="row">
+                <div class="col-lg-12 p-0">
+                    <div class="accordion" id="accordionExample">
+                        <!--Overall Rating-->
+                        <div class="card">
+                            <ng-container *ngFor="let overallItem of overallDetails">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="clearfix mb-0">
+                                        <a class="btn btn-link collapsed mobile-response-head" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <div class="row w-100">
+                                                <div class="col-md-4 rating">
+                                                    <h5>Overall Rating</h5>
+                                                </div>
+                                                <div class=" col-md-4 starImages">
+                                                    <img src="../../../assets/images/green_star.svg" alt=""
+                                                        class="starsSvgimg">
+                                                </div>
+                                                <div class="col-md-3 review">
+                                                    <h5>{{overallItem?.rating?.star |number : '1.0-0'}}
+                                                        <span>({{overallItem?.rating?.star_count}} Review)</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-md-1 fontIcondown">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse show fade" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body mobile-response-head">
+                                        <div class="rr-rating-star">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                                        <div class="starIcon">
+                                                            <div class="iconwrapper">
+                                                                <img src="../../../assets/images/green_star.svg" alt=""
+                                                                    class="starsSvg">
+                                                                <span>{{overallItem?.rating?.stars?.five_star_count}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="starIcon">
+                                                            <div class="iconwrapper">
+                                                                <img src="../../../assets/images/yellow_star.svg" alt=""
+                                                                    class="starsSvg">
+                                                                <span>{{overallItem?.rating?.stars?.four_star_count}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="starIcon">
+                                                            <div class="iconwrapper">
+                                                                <img src="../../../assets/images/orange.svg" alt=""
+                                                                    class="starsSvg orange-start">
+                                                                <span>{{overallItem?.rating?.stars?.three_star_count}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="starIcon">
+                                                            <div class="iconwrapper">
+                                                                <img src="../../../assets/images/dark_orange.svg" alt=""
+                                                                    class="starsSvg">
+                                                                <span>{{overallItem?.rating?.stars?.two_star_count}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="starIcon">
+                                                            <div class="iconwrapper">
+                                                                <img src="../../../assets/images/red_star.svg" alt=""
+                                                                    class="starsSvg">
+                                                                <span>{{overallItem?.rating?.stars?.one_star_count}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                                        <div class="outer-progressLine">
+                                                            <ngb-progressbar type="success" [value]="countOverollRating(overallItem?.rating?.stars, overallItem?.rating?.stars?.five_star_count)"
+                                                                [height]="height">
+                                                            </ngb-progressbar>
+                                                        </div>
+                                                        <div class="outer-progressLine">
+                                                            <ngb-progressbar type="warning" [value]="countOverollRating(overallItem?.rating?.stars, overallItem?.rating?.stars?.four_star_count)"
+                                                                [height]="height">
+                                                            </ngb-progressbar>
+                                                        </div>
+                                                        <div class="outer-progressLine">
+                                                            <ngb-progressbar type="info" [value]="countOverollRating(overallItem?.rating?.stars, overallItem?.rating?.stars?.three_star_count)" [height]="height">
+                                                            </ngb-progressbar>
+                                                        </div>
+                                                        <div class="outer-progressLine">
+                                                            <ngb-progressbar type="secondary" [value]="countOverollRating(overallItem?.rating?.stars, overallItem?.rating?.stars?.two_star_count)"
+                                                                [height]="height"> </ngb-progressbar>
+                                                        </div>
+                                                        <div class="outer-progressLine">
+                                                            <ngb-progressbar type="danger" [value]="countOverollRating(overallItem?.rating?.stars, overallItem?.rating?.stars?.one_star_count)"
+                                                                [height]="height">
+                                                            </ngb-progressbar>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                                        <div class="rr-rating-innerWrapper-service">
+                                                            <h1>{{overallItem?.rating?.star_count}}</h1>
+                                                            <span></span>
+                                                            <span class="ratingCount">Overall Ratings</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-1 col-sm-1 col-md-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <!-- <hr class="otherReviewDevider-wrapper"> -->
+                        <div class="otherReview-wrapper ">
+                            <div class="container">
+                                <div class="review-headers">
+                                  <div class="review-title">
+                                      <h4>Reviews</h4>
+                                  </div>
+                                  <div class="count-review">
+                                      <span> {{ commentlist.length }} Reviews</span>
+                                  </div>
+                                  <div class="sorting-dropdown">
+                                      <select class="form-control sort-review" [(ngModel)]="sortingReview" (change)="getCommentDetails()">
+                                          <option value="byId">Select sort review</option>
+                                          <option value="lowRated">lowest rating</option>
+                                          <option value="highRated">highest rating</option>
+                                          <option value="recentRating">most recent rating</option>
+                                          <option value="mostDiscussed">most discussed rating</option>
+                                          <option value="mostLiked">most liked rating</option>
+                                      </select>
+                                  </div>
+                                  <div class="search-input">
+                                    <input id="typeahead-format" type="text" class="form-control searchbox"
+                                    [(ngModel)]="searchReviews" [ngbTypeahead]="search"
+                                    [resultFormatter]="formatter" />
+                                    <div class="searchIcon" (click)="getCommentDetails()">
+                                        <i class="fa fa-search"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="content-wrapper" style="margin-top: 20px;">
+                                <div class="container mb-4" *ngFor="let d of commentlist">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="card card-wrapper">
+                                            <div class="card-body">
+                                                <div class="comment-wrapper d-flex">
+                                                    <div class="profile-picture-wrapper">
+                                                        <div class="circle">
+                                                            <img src="../../../assets/images/tree-736885__340.jpg"
+                                                                class="rounded-circle" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-comment-wrapeer">
+                                                        <div class="comments-rating">
+                                                            <div class="user-name">
+                                                                <div class="user">
+                                                                    <h5 class="mb-0" *ngIf="d?.clientId?.firstName">{{d?.clientId?.firstName}}
+                                                                        {{d?.clientId?.lastName}}</h5>
+                                                                    <h5 *ngIf="!d?.clientId?.firstName">Anonymous</h5>
+                                                                </div>
+                                                                <div class="therapy-rating">
+                                                                    <span
+                                                                        class="therapy">{{d?.appointmentId?.service?.name}}</span>
+                                                                    &nbsp;<span>
+                                                                        <ng-template #t let-fill="fill">
+                                                                            <span class="star"
+                                                                                [class.full]="fill === 100">
+                                                                                <span class="half"
+                                                                                    [style.width.%]="fill">&#9733;</span>&#9733;
+                                                                            </span>
+                                                                        </ng-template>
+
+                                                                        <ngb-rating [(rate)]="d.star"
+                                                                            [starTemplate]="t" [readonly]="true"
+                                                                            [max]="5"></ngb-rating>
+
+                                                                    </span>
+                                                                </div>
+                                                                <div class="therapy-review" *ngIf="d?.review">
+                                                                    <small>{{d?.review}}</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flag" (click)="handleEvent(d?._id, content)">
+                                                                <img src="../../../assets/images/report.svg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="like-share-comment">
+                                                            <div class="comment-like">
+                                                              <span *ngIf="d && d.like">{{(d?.like).length}}</span>
+                                                              <i class="fa fa-thumbs-up {{ checkLikeDislike(d, 'like') }}" (click)="likeComment(d?._id)"></i>
+                                                            </div>
+                                                            <div class="comment-dislike">
+                                                              <span *ngIf="d && d.dislike">{{(d?.dislike).length}}</span>
+                                                              <i class="fa fa-thumbs-down {{ checkLikeDislike(d, 'dislike') }}" (click)="dislikeComment(d?._id)"></i>
+                                                            </div>
+                                                            <div class="comment-icon">
+                                                              <div class="card-bottomIcon" (click)="d.iscommentShow=!d.iscommentShow">
+                                                                <i class="fa fa-commenting-o"></i>
+                                                                <span><span class="comment-text">Comment</span> ({{ d.comment.length }})</span>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Comment section start-->
+                                                        <div class="comment-outer-wrapper" *ngIf="d.iscommentShow || (commentReviewId && commentReviewId == d?._id)">
+                                                            <ng-container *ngFor="let commentItem of d.comment ">
+
+                                                                <div class="commentProfile w-100">
+                                                                    <div class="profile-name d-flex align-items-center">
+                                                                        <div class="Imgcircle me-3">
+                                                                            <img src="../../../assets/images/tree-736885__340.jpg"
+                                                                                alt="" class="images">
+                                                                        </div>
+                                                                        <div class="commentDetails w-100">
+                                                                            <div class="commentName me-4 justify-content-between">
+                                                                                <div class="comment-header">
+                                                                                    <h5>{{commentItem?.customerId?.firstName}}
+                                                                                        {{commentItem?.customerId?.lastName}}
+                                                                                    </h5>
+                                                                                    <span>
+                                                                                      {{ moment(commentItem?.createdAt).fromNow() }}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="comment-action" *ngIf="loginData">
+                                                                                    <div class="dropdown list-group">
+                                                                                        <i class="fa fa-ellipsis-v cursor-pointer" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true"></i>
+                                                                                        <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton">
+                                                                                            <li class="list-group-item" (click)="openPopup(commentEdit, commentItem?._id, d?._id, commentItem?.body)">Edit</li>
+                                                                                            <li class="list-group-item" (click)="openPopup(commentDelete, commentItem?._id, d?._id)">Delete</li>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="comment-body">
+                                                                              {{commentItem?.body}}
+                                                                            </div>
+                                                                            <div class="like-share-comment">
+                                                                              <div class="comment-like">
+                                                                                <span *ngIf="commentItem && commentItem.like">{{(commentItem?.like).length}}</span>
+                                                                                <i class="fa fa-thumbs-up {{ checkLikeDislike(commentItem, 'like') }}" (click)="likeDislikeComment(d?._id, commentItem?._id, 'like', $event)"></i>
+                                                                              </div>
+                                                                              <div class="comment-dislike">
+                                                                                <span *ngIf="commentItem && commentItem.dislike">{{(commentItem?.dislike).length}}</span>
+                                                                                <i class="fa fa-thumbs-down {{ checkLikeDislike(commentItem, 'dislike') }}" (click)="likeDislikeComment(d?._id, commentItem?._id, 'dislike', $event)"></i>
+                                                                              </div>
+                                                                              <div class="reply-section cursor-pointer" (click)="replyComment(commentItem, $event)">
+                                                                                Reply
+                                                                              </div>
+                                                                          </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ng-container>
+                                                            <!--Form start-->
+                                                            <div class="send-box">
+                                                                <form [formGroup]="commentForm" (ngSubmit)="onSubmit(d._id)">
+                                                                    <div class="row mobile-flex">
+                                                                        <div class="form-group col-md-11">
+                                                                            <input type="text" class="form-control"
+                                                                                placeholder="Write Your Reply"
+                                                                                formControlName="body"
+                                                                                [ngClass]="{ 'is-invalid': submitted && f.body.errors }">
+                                                                            <div *ngIf="submitted && f.body.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div *ngIf="f.body.errors.required">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-1 form-group">
+                                                                            <div class="fontIcon">
+                                                                                <button
+                                                                                    style="background-color: white;border: none;"><i
+                                                                                        class="fa fa-telegram"
+                                                                                        aria-hidden="true"></i></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <!--Form End-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ng-container *ngIf="shopDetail && copyCommentlist.length > 3">
+                                  <div class="showmore-buttons text-center">
+                                    <button class="btn btn-dark mb-2" *ngIf="!showMore" (click)="showMoreList()">Show More</button>
+                                    <button class="btn btn-dark mb-2" *ngIf="showMore" (click)="showMoreList()">Show Less</button>
+                                  </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h6 class="book-another-therapist-title">Reason To Report</h6>
+  </div>
+  <div class="modal-body">
+    <div class="success-wrapper form-group">
+        <textarea class="form-control h-125" [(ngModel)]="reportComment" placeholder="Please explain the reason to report the content"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark w-100" (click)="addReport()">Submit</button>
+  </div>
+</ng-template>
+
+
+<!-- Modal -->
+<ng-template #commentDelete let-modal>
+    <div class="modal-header">
+        <h6 class="book-another-therapist-title"><b>Delete Review Confirmation</b></h6>
+    </div>
+    <div class="modal-body">
+      <div class="success-wrapper form-group">
+         <p><b>Are you sure you want to delete comment ?</b></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="closePopup()">No</button>
+      <button type="button" class="btn btn-dark" (click)="deleteReview()">Yes</button>
+    </div>
+  </ng-template>
+
+  <ng-template #commentEdit let-modal>
+    <div class="modal-header">
+        <h6 class="book-another-therapist-title"><b>Edit Review</b></h6>
+    </div>
+    <div class="modal-body">
+      <div class="success-wrapper form-group">
+         <div class="form-group">
+            <textarea class="form-control" [(ngModel)]="reviewCommentObj.body"></textarea>
+         </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="closePopup()">Close</button>
+      <button type="button" class="btn btn-dark" (click)="editReview()">Save</button>
+    </div>
+  </ng-template>

@@ -1,0 +1,113 @@
+<!-- <p>send-giftcard works!</p> -->
+
+<!-- message div -->
+<div class="container">
+<div class="mygiftcard-section" style="padding: 71px 0 15px 0;">
+    <div class="row letter-bg" #outerSection>
+        <!-- <img class="bg-image" src="{{letter_bg}}" /> -->
+        <div class=" col-12 whiteBg-div" #innerSection [ngStyle]="{'width': (outerSection.offsetWidth - 45)+'px'}">
+            <div class="message">
+                <span class="bold-font">To,</span> <br />
+                <span class="bold-font">{{giftCardToName}}</span> <br /> <br />
+
+                {{message}} <br /> <br />
+
+                <span class="bold-font">From</span> <br />
+                <span class="bold-font">{{giftCardFromName}}</span>
+            </div>
+        </div>
+        <img [ngStyle]="{'height': (innerSection.offsetHeight + 30)+'px'}" class="bg-image" src="{{letter_bg}}" />
+    </div>
+    <!-- gift card image -->
+    <div class="row">
+        <div class="col-12 giftCard-img">
+            <div [ngStyle]="{'color': textColor}" class="amount">
+                {{voucherPrice}}
+            </div>
+            <div [ngStyle]="{'color': textColor}" class="code">
+                {{voucherId}}</div>
+            <img class="img-div" src="{{giftImage}}" />
+        </div>
+    </div>
+    <!-- line divider -->
+    <div class="row">
+        <div class="col-12" style="padding: 26px">
+            <div class="line-divider"></div>
+        </div>
+    </div>
+    <!-- quick reply header -->
+    <div class="row">
+        <div class="col-12 quickReply-header">
+            Reply From Tom
+        </div>
+    </div>
+    <!-- quick reply card -->
+    <div class="row">
+        <div class="col-12" style="    padding-bottom: 20px; padding-left: 26px;
+        padding-right: 26px;">
+            <div class="quickReply-card">
+                <!-- message -->
+                <div class="message-txt">
+                    <span>Thanks for your gift card james.
+                        Love u</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- line divider -->
+    <div class="row">
+        <div class="col-12" style="padding-right: 26px; padding-left: 26px;">
+            <div class="line-divider"></div>
+        </div>
+    </div>
+    <!-- Redeem header -->
+    <div class="row">
+        <div class="col-9 redeem-header">Send One More with same shop ?</div>
+        <div class="col-3 sendBtn-div" style="padding-left: 10px;">
+            <button class="header-send-btn">Send</button>
+        </div>
+    </div>
+    <!-- redeem instruction step 1 image -->
+    <div class="row">
+        <div class="col-12" style="padding: 26px;">
+            <div class="shop-card">
+                <div class="shop-image-div">
+                    <img class="shop-thumbnail" src="assets/images/giftcard/shop_thumbnail.png" />
+                </div>
+                <div class="shop-info">
+                    <div style="display: flex;">
+                        <div style="width: 70%;">
+
+                            <div class="shop-name">{{shopName}}</div>
+                            <div style="padding: 10px 0px;">
+                                <app-star-rating [rating]="5" [size]="18"></app-star-rating>
+                                <div class="total-rating">
+                                    <p style="margin-bottom: 0px;">{{(shopRating?.star).toFixed(1)}}
+                                        ({{shopRating?.star_count}})</p>
+                                </div>
+                            </div>
+
+                            <div class="address">{{shopStreet}}</div>
+                            <div class="address">{{shopCity}}, <span>{{shopState}}</span>
+                            </div>
+                        </div>
+                        <div class="direction-div">
+                            <img class="arrow-img" src="assets/images/giftcard/direction-line.svg" />
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <div class="btn-col">
+                            <button class="shop-btn bg-red">call Us</button>
+                        </div>
+                        <div class="btn-col">
+                            <button class="shop-btn bg-red bg-green">book us</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

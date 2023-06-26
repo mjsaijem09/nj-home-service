@@ -1,0 +1,50 @@
+<div class="reschedule-main">
+    <div class="container">
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex align-items-center">
+                    <img src="{{imgLink(shopData?.profileImage[0].img)}}" alt="Shop" class="booking-img">
+                    <div>
+                        <p class="item-title">{{data?.location?.name}}</p>
+                        <div class="mutted-text">{{address}}</div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <p class="item-title">Massage</p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="light-text">{{data?.service?.name}} - {{serviceTime}}</div>
+                            <div class="mutted-text">{{serviceDuration}} min with {{data?.staff?.firstName}}</div>
+                        </div>
+                        <div class="light-text">${{data?.price}}</div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <p class="item-title">{{startTime}} at {{startAt}} <span *ngIf="actionType === 'rebook'">(past)</span></p>
+                    <div class="mutted-text">{{serviceTime}} duration, ends at {{endAt}}</div>
+                </li>
+                <li class="list-group-item" *ngIf="actionType === 'rebook'">
+                    <div class="mutted-text">Proceed to select date and time for your rebooking.</div>
+                </li>
+                <li class="list-group-item" *ngIf="data?.payment[0]?.name == 'payInStore'">
+                    <p class="item-title">Pay at the store</p>
+                    <div class="mutted-text">Payment will be collected at the end of the session.</div>
+                </li>
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <p class="item-title">Total</p>
+                        <p class="item-title">${{data?.price}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="resched-message text-center">
+            <h5 class="header-text mt-5">Are you sure you want to {{actionType}} this {{actionType === 'rebook' ? 'past' : ''}} appointment of yours?</h5>
+            <p class="message"></p>
+            <div class="action-btns d-flex justify-content-center mt-5">
+                <button class="btn-primary round" (click)="proceed()">Proceed</button>
+                <button class="btn-cancel round" (click)="navigateToHome()">Back To Home</button>
+            </div>
+        </div>
+    </div>
+</div>

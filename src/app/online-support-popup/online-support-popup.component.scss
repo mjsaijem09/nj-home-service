@@ -1,0 +1,131 @@
+.header {
+    background-color: #90c63e;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.footer {
+    background: #90C63E;
+    border-radius: 0px 0px 10px 10px;
+    height: 9px;
+}
+
+.headerText {
+    margin-left: auto;
+    color: white;
+    font-size: 17px;
+    line-height: 20px;
+    padding: 18px;
+    margin-bottom: 0;
+}
+
+.mainIcon {
+    display: flex;
+    .icon {
+      font-size: 30px;
+      color: white;
+      margin-top: 5px;
+    }
+}
+
+.call-info {
+    display: flex;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #90C63E;
+
+  .call-icon {
+      color: #90C63E;
+      display: flex;
+  }
+}
+
+.center {
+    text-align: center;
+}
+
+.card {
+    padding: 16px 16px 0px 16px;
+    background-color: #ffffff;
+
+  .info-div {
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 18px;
+        // text-align: center;
+        text-transform: capitalize;
+        color: #000000;
+  }
+
+  .card-details {
+    background: #ffffff;
+    margin: 23px 0 0;
+
+        textarea {   
+        background: #ffffff;
+        border-radius: 14px;
+        width: 100%;
+        border: 0.5px solid #A6AEC1;
+        color: #000000;
+        box-shadow: none;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 19px 16px;
+        &::placeholder {
+            font-size: 12px;
+            line-height: 14px;
+            text-transform: capitalize;
+            color: #A6AEC1;
+        }
+
+        &:focus{
+          border: 0.5px solid #A6AEC1;
+          outline: none;
+        }
+
+      }
+    }
+}
+
+.row-padding {
+  padding: 10px 0px;
+}
+
+.btn-row-pad {
+  padding: 20px 0px;
+}
+
+.send-btn {
+    background: #90C63E;
+    border-radius: 21px;
+    width: 100%;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    border: #90C63E;
+    padding: 10px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+.cancel-btn {
+    background: #FD6D6D;
+    border: #FD6D6D;
+    padding: 10px;
+    border-radius: 21px;
+    width: 100%;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #FEE9E9;
+}

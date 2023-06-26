@@ -1,0 +1,348 @@
+<div *ngIf="isMobile" class="schedule-page" [ngClass]="{'mobile-view': isMobile, 'desktop-view': !isMobile}">
+    <div class="section schedule-section">
+        <div class="schedule-tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tabs-btn">
+                            <div class="row" *ngIf="isMobile">
+                                <div class="col-6 text-center" (click)="showContent('upcoming')">
+                                    <div class="tab-align" [ngClass]="{'active':currTab =='upcoming'}">
+                                        <span>Upcoming</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 text-center" (click)="showContent('history')">
+                                    <div class="tab-align" [ngClass]="{'active':currTab =='history'}">
+                                        <span>History</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parentLoader" *ngIf="isLoading">
+            <app-custom-spinner></app-custom-spinner>
+        </div>
+        <div class="schedule-tab-content" *ngIf="!isLoading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12" *ngIf="isMobile">
+                        <div class="upcoming-content" *ngIf="currTab === 'upcoming'">
+                            <div class="upcoming-content-wrapper mb-3" *ngFor="let upcoming of appointmentsUpcoming">
+                                <div class="user">
+                                    <img [src]="upcoming?.locationDetail && upcoming?.locationDetail[0] && upcoming?.locationDetail[0].profileImg && upcoming?.locationDetail[0].profileImg[0] && upcoming?.locationDetail[0].profileImg[0].img" alt="shop" (error)="setDefaultShopImage($event)">
+                                    <div class="therapist-info">
+                                        <h3>{{ upcoming?.service?.name }}</h3>
+                                        <div class="time">
+                                            <p>
+                                                {{upcoming?.startTime | date:'shortTime'}} - 
+                                                {{upcoming?.endTime | date:'shortTime'}} 
+                                                {{upcoming?.day | date:'d MMM y'}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="points">
+                                        <p><img src="assets/images/coin.svg">{{ upcoming?.special_price || upcoming?.price }}</p>
+                                    </div>
+                                </div>
+                                <div class="therapist-shop-details">
+                                    <div class="shop-detail">
+                                        <h3>{{ upcoming?.staff?.firstName }} {{ upcoming?.staff?.lasttName }}</h3>
+                                        <p>{{ upcoming?.locationDetail && upcoming?.locationDetail[0] && upcoming?.locationDetail[0].name }}</p>
+                                    </div>
+                                    <div class="shop-contact">
+                                        <a class="pay"><img src="assets/images/dollar-sign.svg" alt="direction">{{upcoming.appointment_paid_online ? 'Paid' : 'Pay'}}</a>
+                                        <a *ngIf="upcoming?.locationDetail && upcoming?.locationDetail[0] && upcoming?.locationDetail[0].street" class="direction" href="http://maps.google.com/?q={{upcoming?.locationDetail[0].street}}" target="_blank"><img src="assets/images/direction.svg"
+                                                alt="direction">Map</a>
+                                        <a *ngIf="upcoming?.locationDetail && upcoming?.locationDetail[0] && upcoming?.locationDetail[0].phone" class="bg-green" href="tel:{{upcoming?.locationDetail[0].phone}}" class="call"><img src="assets/images/phone.svg" alt="phone">Call</a>
+                                    </div>
+                                </div>
+                                <div class="btns" *ngIf="!upcoming.appointment_paid_online">
+                                    <a class="book-us" (click)="editAction(editFailed, upcoming)">Edit</a>
+                                    <!-- <a class="delete" (click)="showPopup(confirmation, failed, upcoming)">Cancel</a> -->
+                                    <a class="delete" (click)="cancelAction(confirmation, failed, upcoming)">Cancel</a>
+                                </div>
+                            </div>
+                            <div class="emptyArray" *ngIf="appointmentsUpcoming.length === 0">
+                                <img src="assets/images/schedule/no-upcoming.svg" alt="">
+                                <h4>Sorry !</h4>
+                                <p>You do not have any appointment yet.</p>
+                                <p>Let's go and discover shops around you.</p>
+                                <button class="btn-green w-100" [routerLink]="['/search-shop']">Let’s Go</button>
+                            </div>
+                        </div>
+                        <div class="upcoming-content history-content" *ngIf="currTab === 'history'">
+                            <div class="upcoming-content-wrapper mb-3" *ngFor="let history of appointmentsHistory">
+                                <div class="user">
+                                    <img [src]="history?.locationDetail && history?.locationDetail[0] && history?.locationDetail[0].profileImg && history?.locationDetail[0].profileImg[0] && history?.locationDetail[0].profileImg[0].img" alt="shop" (error)="setDefaultShopImage($event)">
+                                    <div class="therapist-info">
+                                        <h3>{{ history?.service?.name }}</h3>
+                                        <div class="time">
+                                            <p>
+                                                {{history?.startTime | date:'shortTime'}} - 
+                                                {{history?.endTime | date:'shortTime'}} 
+                                                {{history?.day | date:'d MMM y'}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="points">
+                                        <p><img src="assets/images/coin.svg">{{ history?.special_price || history?.price }}</p>
+                                    </div>
+                                </div>
+                                <div class="therapist-shop-details">
+                                    <div class="shop-detail">
+                                        <h3>{{ history?.staff?.firstName }} {{ history?.staff?.lasttName }}</h3>
+                                        <p>{{ history?.locationDetail && history?.locationDetail[0] && history?.locationDetail[0].name }}</p>
+                                    </div>
+                                    <div class="shop-contact">
+                                        <a *ngIf="history?.locationDetail && history?.locationDetail[0] && history?.locationDetail[0].street" class="direction" href="http://maps.google.com/?q={{history?.locationDetail[0].street}}" target="_blank"><img src="assets/images/direction.svg" alt="direction">Map</a>
+                                    </div>
+                                </div>
+                                <div class="earn-points">
+                                    <div class="points-earned" *ngIf="history?.service?.loyaltyPointRecieve">
+                                        <p *ngIf="history?.checkout && !history?.staff_rating?.star">Earn Points</p>
+                                        <p *ngIf="history?.checkout && history?.staff_rating?.star">Points Earned</p>
+                                        <span *ngIf="history?.checkout && !history?.staff_rating?.star">Write a review to earn {{ history?.service?.loyaltyPointRecieve || 0 }} Pts</span>
+                                        <span *ngIf="history?.checkout && history?.staff_rating?.star">{{ history?.service?.loyaltyPointRecieve || 0 }} Pts earned</span>
+                                    </div>
+                                    <div class="review">
+                                        <p *ngIf="history?.checkout && history?.staff_rating?.star">Thank you for sharing your toughts</p>
+                                        <p *ngIf="history?.checkout && !history?.staff_rating?.star" (click)="moveAddReview(history)">Add Review</p>
+                                       
+                                        <p *ngIf="!history?.checkout">Waiting for checkout</p>
+                                        <div class="rating" *ngIf="history?.checkout">
+                                            <app-star-rating [rating]="history?.staff_rating?.star" [size]="18"></app-star-rating>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btns">
+                                    <a class="book-us" (click)="rebook(history)">Re-book</a>
+                                    <a class="invoice">Invoice</a>
+                                    <a class="add-tip">Add Tip</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="schedule-desktop" *ngIf="!isMobile">
+    <div class="banner">
+        <img src="" alt="">
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="schedule-tabs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="tabs-btn">
+                                    <div class="row">
+                                        <div class="col-6 text-center" (click)="showContent('upcoming')">
+                                            <div class="tab-align" [ngClass]="{'active':currTab =='upcoming'}">
+                                                <span>Upcoming</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 text-center" (click)="showContent('history')">
+                                            <div class="tab-align" [ngClass]="{'active':currTab =='history'}">
+                                                <span>History</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr">
+                <div class="parentLoader" *ngIf="isLoading">
+                    <app-custom-spinner></app-custom-spinner>
+                </div>
+                <div class="schedule-tab-content" *ngIf="!isLoading">
+                    <div class="row"*ngIf="currTab === 'upcoming'">
+                        <div class="col-lg-6" *ngFor="let upcoming of appointmentsUpcoming">
+                            <div class="upcoming-content" >
+                                <div class="upcoming-content-wrapper mb-4">
+                                    <div class="profile">
+                                        <div class="flex">
+                                            <img [src]="upcoming?.staff.image" alt="therapist" (error)="setDefaultShopImage($event)" class="avatar">
+                                            <div class="ml-3">
+                                                <div class="service">{{ upcoming?.service?.name }}</div>
+                                                <div class="duration-n-date">
+                                                    {{upcoming?.startTime | date:'shortTime'}} - 
+                                                    {{upcoming?.endTime | date:'shortTime'}} 
+                                                    {{upcoming?.day | date:'d MMM y'}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="appointment-amount">${{ upcoming?.special_price || upcoming?.price }}</div>
+                                    </div>
+                                    <div class="therapist">
+                                        <div>
+                                            <h3 class="name">{{ upcoming?.staff?.firstName }} {{ upcoming?.staff?.lasttName }}</h3>
+                                            <p class="shop">{{ upcoming?.locationDetail && upcoming?.locationDetail[0] && upcoming?.locationDetail[0].name }}</p>
+                                        </div>
+                                        <div class="shop-contact">
+                                            <a class="pay"><img src="assets/images/dollar-sign.svg" alt="direction">{{upcoming.appointment_paid_online ? 'Paid' : 'Pay'}}</a>
+                                            <a *ngIf="upcoming?.locationDetail && upcoming?.locationDetail[0] && upcoming?.locationDetail[0].street" class="direction" href="http://maps.google.com/?q={{upcoming?.locationDetail[0].street}}" target="_blank"><img src="assets/images/direction.svg"
+                                                    alt="direction">Map</a>
+                                            <a *ngIf="upcoming?.locationDetail && upcoming?.locationDetail[0] && upcoming?.locationDetail[0].phone" class="bg-green" href="tel:{{upcoming?.locationDetail[0].phone}}" class="call"><img src="assets/images/phone.svg" alt="phone">Call</a>
+                                        </div>
+                                    </div>
+                                    <div class="actions"  *ngIf="!upcoming.appointment_paid_online">
+                                        <a class="btn-edit" (click)="editAction(editFailed, upcoming)">Edit</a>
+                                        <a class="btn-cancel" (click)="cancelAction(confirmation, failed, upcoming)">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 emptyArray" *ngIf="appointmentsUpcoming.length === 0">
+                            <img src="assets/images/schedule/no-upcoming.svg" alt="">
+                            <h4>Sorry !</h4>
+                            <p>You do not have any appointment yet.</p>
+                            <p>Let's go and discover shops around you.</p>
+                            <button class="btn-green w-100" [routerLink]="['/search-shop']">Let’s Go</button>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="currTab === 'history'">
+                        <div class="col-lg-6" *ngFor="let history of appointmentsHistory">
+                            <div class="upcoming-content history-content" >
+                                <div class="upcoming-content-wrapper mb-4 {{history.status}}">
+                                    <div class="profile">
+                                        <div class="flex">
+                                            <img [src]="history?.staff.image" alt="therapist" (error)="setDefaultShopImage($event)" class="avatar">
+                                            <div class="ml-3">
+                                                <div class="service">{{ history?.service?.name }}</div>
+                                                <div class="duration-n-date">
+                                                    {{history?.startTime | date:'shortTime'}} - 
+                                                    {{history?.endTime | date:'shortTime'}} 
+                                                    {{history?.startTime | date:'d MMM y'}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="amount-and-status">
+                                            <div class="status {{history.status}}">{{history.status}}</div>
+                                            <div class="appointment-amount">
+                                                ${{ history?.special_price || history?.price }}
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <div class="therapist">
+                                        <div>
+                                            <h3 class="name">{{ history?.staff?.firstName }} {{ history?.staff?.lasttName }}</h3>
+                                            <p class="shop">{{ history?.locationDetail && history?.locationDetail[0] && history?.locationDetail[0].name }}</p>
+                                        </div>
+                                        <div class="shop-contact">
+                                            <a *ngIf="history?.locationDetail && history?.locationDetail[0] && history?.locationDetail[0].street" class="direction" href="http://maps.google.com/?q={{history?.locationDetail[0].street}}" target="_blank"><img src="assets/images/direction.svg"
+                                                    alt="direction">Map</a>
+                                        </div>
+                                    </div>
+                                    <div class="earn-points" *ngIf="history.status !== 'cancelled'">
+                                        <div class="points-earned" *ngIf="history?.service?.loyaltyPointRecieve">
+                                            <p *ngIf="history?.checkout && !history?.staff_rating?.star">Earn Points</p>
+                                            <p *ngIf="history?.checkout && history?.staff_rating?.star">Points Earned</p>
+                                            <span *ngIf="history?.checkout && !history?.staff_rating?.star">Write a review to earn {{ history?.service?.loyaltyPointRecieve || 0 }} Pts</span>
+                                            <span *ngIf="history?.checkout && history?.staff_rating?.star">{{ history?.service?.loyaltyPointRecieve || 0 }} Pts earned</span>
+                                        </div>
+                                        <div class="review" *ngIf="history?.checkout && history?.staff_rating?.star">
+                                            <p>Thank you for sharing your toughts</p>
+                                            <div class="rating" *ngIf="history?.checkout">
+                                                <app-star-rating [rating]="history?.staff_rating?.star" [size]="18"></app-star-rating>
+                                            </div>
+                                        </div>
+                                        <div class="review" *ngIf="history?.checkout && !history?.staff_rating?.star" (click)="moveAddReview(history)">
+                                            <p>Add review</p>
+                                            <div class="rating" *ngIf="history?.checkout">
+                                                <app-star-rating [rating]="5" [size]="18"></app-star-rating>
+                                            </div>
+                                        </div>
+                                        <div class="review" *ngIf="!history?.checkout">
+                                            <p>Waiting for checkout</p>
+                                        </div>
+                                    </div>
+                                    <div class="actions" *ngIf="history.status === 'completed'">
+                                        <a class="book-us" (click)="rebook(history)">Re-boook</a>
+                                        <a class="invoice" (click)="sendInvoice(history)">Invoice</a>
+                                        <a class="add-tip" (click)="addTip(history)">Add Tip</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 emptyArray" *ngIf="appointmentsHistory.length === 0">
+                            <img src="assets/images/schedule/no-upcoming.svg" alt="">
+                            <h4>Sorry !</h4>
+                            <p>You do not have any appointment yet.</p>
+                            <p>Let's go and discover shops around you.</p>
+                            <button class="btn-green w-100" [routerLink]="['/search-shop']">Let’s Go</button>
+                        </div>
+                    </div>
+                </div>
+            </div
+        ></div>
+    </div>
+</div>
+<div class="mb-5"></div>
+<ng-template #confirmation let-modal>
+    <div class="custom-modal">
+        <div class="modal-header">
+        <h4 class="modal-title">Cancel Appointment</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Are you sure you want to cancel this appointment?</p>
+        <div class="actions">
+            <button type="button" class="btn btn-accept" (click)="modal.close('Close click')">No</button>
+            <button type="button" class="btn btn-cancel" (click)="remove()">Yes</button>
+        </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #failed let-modal>
+    <div class="custom-modal failed">
+        <div class="modal-header">
+        <h4 class="modal-title">Cancel Failed</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Self Cancel Function is disabled {{cancelAndEditRestrictionTime}} hour before your appointment. Please contact the shop.</p>
+
+        <div class="actions">
+            <a *ngIf="selectedAppointment?.locationDetail && selectedAppointment?.locationDetail[0] && selectedAppointment?.locationDetail[0].phone" class="btn bg-green" href="tel:{{selectedAppointment?.locationDetail[0].phone}}"><img class="me-2" src="assets/images/phone.svg" alt="phone">Call</a>
+            <a *ngIf="selectedAppointment?.locationDetail && selectedAppointment?.locationDetail[0] && selectedAppointment?.locationDetail[0].street" class="btn direction" href="http://maps.google.com/?q={{selectedAppointment?.locationDetail[0].street}}" target="_blank"><img class="me-2" src="assets/images/direction.svg"
+                alt="direction">Map</a>
+        </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #editFailed let-modal>
+    <div class="custom-modal failed">
+        <div class="modal-header">
+        <h4 class="modal-title">Edit Failed</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Self Edit Function is disabled {{cancelAndEditRestrictionTime}} hour before your appointment. Please contact the shop.</p>
+        <div class="actions">
+            <a *ngIf="selectedAppointment?.locationDetail && selectedAppointment?.locationDetail[0] && selectedAppointment?.locationDetail[0].phone" class="btn bg-green" href="tel:{{selectedAppointment?.locationDetail[0].phone}}"><img class="me-2" src="assets/images/phone.svg" alt="phone">Call</a>
+            <a *ngIf="selectedAppointment?.locationDetail && selectedAppointment?.locationDetail[0] && selectedAppointment?.locationDetail[0].street" class="btn direction" href="http://maps.google.com/?q={{selectedAppointment?.locationDetail[0].street}}" target="_blank"><img class="me-2" src="assets/images/direction.svg"
+                alt="direction">Map</a>
+        </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>

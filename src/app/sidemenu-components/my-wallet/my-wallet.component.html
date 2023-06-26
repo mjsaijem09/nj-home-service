@@ -1,0 +1,55 @@
+<div class="parentLoader"*ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<div class="walletMainpage" *ngIf="!isLoading"> 
+    <div class="container">
+        <div class="row py-4 bg-white">
+            <div class="col-auto" (click)="goBack()"><img src="../../../assets/images/arrow-left-black.svg" /></div>
+            <div class="col header-title">Wallet</div>
+        </div>
+        <div class="row bg-white">
+            <div class="col"><div class="tab-active">Wallet</div></div>
+            <div class="col p-0" [routerLink]="['/nav/credit-card']"> <div class="tab">Credit Cards</div></div>
+            <div class="col pb-3" [routerLink]="['/nav/my-points']"> <div class="tab">Loyalty Pts</div></div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="p-3 amount-div">
+            <div class="title">Wallet Balance</div>
+            <div class="amount">${{walletList.walletBalance}}</div>
+        </div>
+
+        <div class="add-money mt-3" (click)="openAddMoney()">Add Money</div>
+    </div>
+    <div class="container">
+        <div class="" *ngIf="walletList.result?.length == 0">
+            <div class="no-trans">No Transaction</div>
+        </div>
+        <div class="transactionsheader" *ngIf="walletList.result?.length > 0">
+            <div class="">
+                <h5 class="">Transactions</h5>
+            </div>
+        </div>
+        <table class="table" *ngIf="walletList.result?.length > 0">
+            <tbody>
+                <tr *ngFor="let walletItem of walletList.result">
+                    <td><div class="transaction-img "><img src="../../../assets/images/money-bag.png" /></div>
+                       
+                    </td>
+                    <td>
+                        <div class="tableLeft">
+                            <div class="transactions">{{walletItem?.wallet}}</div>
+                            <div class="transactions-date">{{walletItem?.createdAt |date: 'yyyy-MM-dd'}}</div>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div>
+                            <span [ngClass]="{'transactionsmoney': walletItem.amount.sign == '+', 'transactions-negative': walletItem.amount.sign !== '+'}"> {{walletItem?.amount.sign}} ${{walletItem?.amount}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

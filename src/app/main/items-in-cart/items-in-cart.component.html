@@ -1,0 +1,32 @@
+<form>
+    <div class="card-body pt-2 pb-1 pl-3 pr-3">
+        <div *ngIf="cartData?.length < 1" class="text-center">
+            <p class="text-muted">No item.</p>
+        </div>
+        <ng-container *ngIf="cartData && cartData?.length >= 1">
+            <div class="scrollable-container" [class.overflow]="cartData?.length > 5">
+                <ng-container *ngFor="let item of cartData">
+                    <div class="item mb-2 pointer">
+                        <span class="pointer material-icons" (click)="removeToCart(item)">close</span>
+                        <img [src]="item?.productImages[0]?.productImage" alt="product image" (click)="profile(item._id)" (error)="setDefaultPic($event)">
+                        <div class="item-details" (click)="profile(item._id)">
+                            <p class="name m-0" style="line-height: 19px; padding-right: 24px;">{{item?.name}}</p>
+                            <p class="name m-0 text-gray">{{item?.shop?.currency?.symbol}}{{item?.price | number:'1.2-2':'en-US'}} <span class="text-decoration-line-through text-light-gray fw-normal" *ngIf="item?.specialPrice">{{item?.shop?.currency?.symbol}}{{item?.retailPrice | number:'1.2-2':'en-US'}}</span></p>
+                            <p class="name m-0 text-gray">Qty: {{item?.orderedQuantity}}</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="hr"></div>
+            <div class="d-flex justify-content-between">
+                <p class="m-0 text-gray">Subtotal</p>
+                <p class="m-0 text-gray">{{totalForALLItems() | number:'1.2-2':'en-US'}}</p>
+            </div>
+            <div class="hr"></div>
+            <div class="d-flex justify-content-between">
+                <button class="btn text-theme-green p-0" (click)="viewCart()">View Cart</button>
+                <button class="btn fw-medium p-0" (click)="checkout()">Checkout</button>
+            </div>
+        </ng-container>
+    </div>
+</form>

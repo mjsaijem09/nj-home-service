@@ -1,0 +1,312 @@
+<div class="parentLoader" *ngIf="isLoading">
+    <app-custom-spinner></app-custom-spinner>
+</div>
+<div class="top-spacing" *ngIf="isMobile">
+    <div class="current-points-wrapper" *ngIf="isMobile">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="current-point">
+                        <p>Current Point you have: <span>{{loyaltyPoints}}
+                                pts</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- tab link start for Mobile-->
+    <div class="tab-main head" id="header-sticky" *ngIf="isMobile">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="navbar-header">
+                        <ul class="slider-nav d-flex">
+                            <li *ngFor="let item of serviceNameList; let
+                                i=index;">
+                                <!-- <a class="navbar-toggle massage" [id]="item.name" (click)="activeButton(item.name);scroll(item.name)" data-toggle="collapse" data-target="#myNavbar"> -->
+                                <a class="navbar-toggle massage btn btn-dark
+                                    d-flex"
+                                    [ngClass]="{'active' : currentSection ===
+                                    item.name.split(' ').join('_') || (i==0 &&
+                                    currentSection=='')}"
+                                    (click)="scrollTo(item.name)"
+                                    data-toggle="collapse"
+                                    data-target="#myNavbar">
+                                    <span>{{item.name}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- tab link end for Mobile-->
+
+    <div class="container" [ngClass]="{'service-b': isMobile}">
+        <div [ngClass]="{'card': !isMobile}">
+            <!-- tab link start for Desktop-->
+            <div class="row" class="tab-main" *ngIf="!isMobile">
+                <div class="col-4 text-center text-white tab-custom"
+                    (click)="showContent(tab.TabValue)"
+                    *ngFor="let tab of tabLinks">
+                    <div class="tab-align" [ngClass]="{'active':currTab ==
+                        tab.TabValue}">
+                        <span>
+                            {{tab.TabDescription}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- tab link end for Desktop-->
+
+            <div class="" id="parentDiv" scrollSpy [spiedTags]="['DIV']"
+                (sectionChange)="onSectionChange($event)">
+                <!-- SHOP DETAIL -->
+                <ng-container *ngFor="let item of serviceGroupList; let
+                    i=index">
+                    <!-- massage Ui -->
+                    <div class="massage-wrapper" 
+                    [id]="item.name.split(' ').join('_')">
+                        <div class="massage">
+                            <p class="massage-name">{{ item.name }}</p>
+                            <h4 class="description-name">{{ item.description }}</h4>
+                        </div>
+                    </div>
+                    <!-- service name ui -->
+                    <div class="service" *ngFor="let itm of item.services; let
+                        j=index">
+                        <div class="check-service-currency-wrapper pointer">
+                            <div class="custom">
+                                <div
+                                    *ngIf="itm.subServices[0]?.services?.pricing_option?.length > 1">
+                                    <img
+                                        src="assets/images/more.svg"
+                                        *ngIf="!itm.closed" style="width: 22px;"
+                                        (click)="itm.closed= !itm.closed" />
+                                </div>
+                                <div
+                                    *ngIf="itm.subServices[0]?.services?.pricing_option?.length > 1">
+                                    <img
+                                        src="assets/images/service-check-disable.png"
+                                        *ngIf="itm.closed" style="width: 22px;"
+                                        (click)="itm.closed= !itm.closed" />
+                                </div>
+                                <div
+                                    *ngIf="itm.subServices[0]?.services?.pricing_option?.length
+                                    == 1">
+                                    <div class="check"
+                                        *ngIf="selectedService?.serviceTime !==
+                                        itm.subServices[0]?.services?.pricing_option[0]?.duration
+                                        || selectedService?.serviceId !==
+                                        itm.subServices[0]?.services?._id"
+                                        (click)="selectService(itm.subServices[0],
+                                        itm.subServices[0]?.services?.pricing_option[0])">
+                                    </div>
+                                    <div
+                                        *ngIf="selectedService?.serviceTime ==
+                                        itm.subServices[0]?.services?.pricing_option[0]?.duration
+                                        && selectedService?.serviceId ==
+                                        itm.subServices[0]?.services?._id">
+                                        <img
+                                            src="assets/images/checkbox.png"
+                                            style="width: 22px;" />
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between
+                                    w-100" (click)="itm.subServices[0] && itm.subServices[0].services && itm.subServices[0].services.pricing_option && itm.subServices[0].services.pricing_option.length > 1 ? itm.closed= !itm.closed : selectService(itm.subServices[0],
+                                    itm.subServices[0]?.services?.pricing_option[0])">
+                                    <div class="service-wrapper">
+                                        <div style="padding-left: 10px;">{{itm?.name}}</div>
+                            
+                                        <div class="time"
+                                            *ngIf="itm.subServices[0]?.services?.pricing_option?.length
+                                            == 1">
+                                            <div>{{itm.subServices[0]?.services?.pricing_option[0]?.duration
+                                                || ''}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="currency-wrapper"
+                                        *ngIf="itm.subServices[0]?.services?.pricing_option?.length
+                                        == 1">
+                                        <p>{{currency?.symbol}}{{itm.subServices[0]?.services?.pricing_option[0]?.specialPrice
+                                            ||
+                                            itm.subServices[0]?.services?.pricing_option[0]?.price
+                                            ||
+                                            0}}</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!--  sub-price-->
+                        <div class="" [ngClass]="{'active': itm.closed,
+                            'select-service-wrapper':
+                            itm.subServices[0]?.services?.pricing_option?.length>
+                            1}">
+                            <div class="check-service-currency-wrapper"
+                                *ngFor="let im of itm.subServices[0]?.services?.pricing_option; let k=index; let isLast = last;">
+                                <div class="custom-unique" *ngIf="itm.subServices[0]?.services?.pricing_option?.length>1" [class.last]="isLast">
+                                    <div class="check"
+                                        *ngIf="selectedService?.serviceTime !==
+                                        im?.duration ||
+                                        selectedService?.serviceId !==
+                                        itm.subServices[0]?.services._id"
+                                        (click)="selectService(itm.subServices[0],
+                                        im)">
+                                    </div>
+                                    <div
+                                        *ngIf="selectedService?.serviceTime ==
+                                        im?.duration &&
+                                        selectedService?.serviceId ==
+                                        itm.subServices[0]?.services?._id">
+                                        <img
+                                            src="assets/images/checkbox.png"
+                                            style="width: 22px;" />
+                                    </div>
+                                    <div class="flex-grow-1" (click)="selectService(itm.subServices[0],
+                                        im)">
+                                        <div class="d-flex
+                                            justify-content-between w-100">
+                                            <div class="service-wrapper">
+                                                <div>{{itm?.name}}</div>
+
+                                            </div>
+                                            <div class="currency-wrapper">
+                                                <p><span class="orig-price" *ngIf="im?.specialPrice">{{currency?.symbol}}{{im?.price}}</span>{{currency?.symbol}}{{im?.specialPrice ||
+                                                    im?.price || 0}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="time">
+                                            <div>{{im?.duration || ''}} |
+                                                loyalty point needed for redeem
+                                                : <span class="green-text">{{
+                                                    im?.loyaltyPointCanRedeem ||
+                                                    0 }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div
+                                    *ngIf="itm.subServices[0]?.services?.pricing_option.length
+                                    == 1"
+                                    [ngClass]="{'custom':
+                                    itm.subServices[0]?.services?.pricing_option.length
+                                    == 1}">
+                                    <div style="width: 32px;"></div>
+                                    <div class="service-description">
+
+
+                                        <div class="py-3"
+                                            *ngIf="itm.subServices[0]?.services?.description"
+                                            style="padding-left: 10px;">{{
+                                            itm.subServices[0]?.services?.description}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="text-center text-muted mt-5" *ngIf="serviceGroupList && serviceGroupList.length == 0">
+                    No services available.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="book-us" *ngIf="serviceGroupList &&
+                            serviceGroupList.length> 0">
+        <a (click)="goToNext()">Next </a>
+    </div>
+</div>
+
+<div class="large-device" *ngIf="!isMobile">
+    <div class="container">
+        <br>
+        <br>
+        <div class="select-service">
+            <div class="card service-nav">
+              <div class="card-body">
+                <owl-carousel-o [options]="customOptions">
+                  <ng-container *ngFor="let group of serviceGroupList">
+                    <ng-template carouselSlide [id]="'cat-'+group.name">
+                      <a class="category" [class.active] = "group.name === activeCategory" (click)="scrollTo(group.name)">{{group.name}}</a>
+                    </ng-template>  
+                  </ng-container>
+                </owl-carousel-o>
+                <div class="text-center text-muted" *ngIf="serviceGroupList && serviceGroupList.length == 0">
+                    No services available.
+                </div>
+              </div>
+            </div>
+            <div class="scrollable-container" scrollSpy [spiedTags]="['DIV']">
+                <div id="accordion" *ngFor="let group of serviceGroupList">
+                    <h4 id="{{removeSpace(group.name)}}" class="pt-4">{{group.name}}</h4>
+                    <div class="card" *ngFor="let service of group.services">
+                      <div class="card-header">
+                        <button type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-'+service.subServices[0].services._id" aria-expanded="false">
+                            <div class="sevice-group">
+                                <div class="ellipse-indicator">
+                                    <div class="ellipse">
+                                      <div class="dots"></div>
+                                    </div>
+                                </div>
+                                <div class="sevice-group-details">
+                                <div>
+                                  <div class="sevice-name">{{service.name}}</div>
+                                  <div class="service-time">{{priceOption(service.subServices[0].services.pricing_option, 'duration')}}</div>
+                                </div>
+                                <div>
+                                  <div class="service-time">From</div>
+                                  <div class="sevice-name">{{priceOption(service.subServices[0].services.pricing_option, 'price')}}</div>
+                                </div>  
+                              </div>
+                            </div>
+                        </button>
+                      </div>
+                      <div [id]="'flush-'+service.subServices[0].services._id" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                        <div class="card-body" *ngFor="let option of service.subServices[0].services.pricing_option">
+                            <label class="container-radio">
+                              <input type="radio" name="radio" (click)="selectService(service.subServices[0], option)"
+                                  value="{{option.price}}"
+                                  style="top: -15px;width: 98%;height: 60px;">
+                              <span class="checkmark"></span>
+                            </label>
+                            <div class="sevice-item">
+                              <div class="sevice-item-details">
+                                <div>
+                                  <div class="sevice-name">{{service.name}}</div>
+                                  <div class="service-time">{{option.duration}}</div>
+                                </div>
+                                <div>
+                                  <div class="sevice-price">
+                                    <span class="original-price" *ngIf="option.specialPrice">
+                                        {{currency?.symbol}}{{option.price}}
+                                    </span> 
+                                    {{currency?.symbol}}{{option.specialPrice ? option.specialPrice : option.price}}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="confirm" *ngIf="selectedService != null">
+        <div class="container">
+            <div class="details">
+                <div class="name">{{selectedService?.serviceName}} - {{selectedService?.serviceTime}}</div>
+                <div class="amount">{{currency?.symbol}}{{selectedService?.servicePrice}}</div>
+            </div>
+            <button class="btn-confirm" (click)="goToNextDesktop()">Book now</button>
+        </div>
+    </div>
+</div>

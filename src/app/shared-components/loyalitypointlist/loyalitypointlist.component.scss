@@ -1,0 +1,151 @@
+.bg-header {
+  background-color: #90c63e;
+}
+.transactions {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
+  color: #000000;
+}
+.transactionsmoney {
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
+
+  color: #90c63e;
+}
+.transactionsmoney-red {
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
+
+  color: #fd6d6d;
+}
+.transactions-date {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: capitalize;
+  color: #a6aec1;
+}
+.transaction-img {
+  width: 40px;
+  height: 40px;
+  background: #eff7e4;
+  border-radius: 50%;
+  text-align: center;
+}
+.location-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
+  color: #0d0d0d;
+  margin: 20px 0;
+}
+.tableLeft {
+  span {
+    &:nth-of-type(1) {
+      margin-bottom: 10px;
+      // color: #000;
+      font-weight: 500;
+      font-size: 20px;
+    }
+  }
+}
+.transactionsheader {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-transform: capitalize;
+  margin-top: 25px;
+  color: #000000;
+}
+.table {
+  width: 100%;
+  color: #212529;
+  td {
+    border: none;
+  }
+}
+
+.header-title {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 23px;
+  text-transform: capitalize;
+
+  color: #fff;
+}
+
+.tab-active {
+  background: #eff7e4;
+  border-radius: 16px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #90c63e;
+  text-align: center;
+  padding: 8px;
+}
+.tab {
+  background: #ededee;
+  border-radius: 16px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #a6aec1;
+  text-align: center;
+  padding: 8px;
+}
+
+.amount-div {
+  background: #ffffff;
+  box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06),
+    0px 0px 1px rgba(15, 34, 67, 0.08);
+  border-radius: 5px;
+
+  .title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+  }
+  .amount {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 31px;
+    color: #000000;
+    margin-top: 6px;
+  }
+
+  .dis {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #a6aec1;
+  }
+}
+
+.add-money {
+  background: #90c63e;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  padding: 12px;
+  width: 100%;
+}
+.no-trans {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 23px;
+  text-transform: capitalize;
+  color: #a6aec1;
+  text-align: center;
+  margin-top: 20%;
+}

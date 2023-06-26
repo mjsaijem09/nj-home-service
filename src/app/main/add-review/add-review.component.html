@@ -1,0 +1,214 @@
+<div class="add-review-section" id="customer-review-form" fxLayout="column">
+    <div class="ovrlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="isSubmitted">
+        <div id="review-form" class="popup">
+            <div fxLayout="column" class="text-center" fxLayoutAlign="start
+                center" fxLayoutGap="20px">
+                <div>
+                    <img src="/assets/images/submit-review.png">
+                </div>
+                <div class="info-div">thanks for taking time review your therepist!
+                </div>
+                <div class="dis-div">Your review will not only help our therapist to improve, but also help other customers to make their decisions.</div>
+                <!--div class="w-100">
+                    <div class="fast-check">For Fast Check-in And Booking</div>
+                    <div class="my-4">
+                        <div class="mb-4">
+                            <a href="https://apps.apple.com/us/app/the-bookus/id1548946462" target="_new"><img src="/assets/images/AppStoreBadge.svg" /></a>
+                        </div>
+                        <div>
+                            <a href="https://play.google.com/store/apps/details?id=com.massage_now_user" target="_new"><img src="/assets/images/GooglePlayBadge.svg" /></a>
+                        </div>
+                    </div>
+                    <div class="dis-div">Download Bookus App Today and bookus thousands of other services tomorrow</div>
+                </div-->
+                <div class="d-flex">
+                    <div class="go-btn" (click)="goBack('checkTherapist')">
+                        <span>Check {{reviewCredentials.therapistName}}</span>
+                    </div>
+                    <div class="go-btn" (click)="goBack('Rebook')">
+                        Rebook
+                        <img *ngIf="rebookLoader" src="assets/images/loader/circle-small.svg" alt="...">
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="go-btn" (click)="goBack('CheckShop')">
+                        <span>Check Shop</span>
+                    </div>
+                    <div class="go-btn" (click)="goBack('HomePage')">
+                        <span>Home page</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="ovrlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="isOnSubmitted">
+        <div id="review-form" class="popup">
+            <div fxLayout="column" class="text-center" fxLayoutAlign="start
+                center" fxLayoutGap="20px">
+                <div>
+                    <img src="/assets/images/submit-review.png">
+                </div>
+                <div class="info-div">You have already submitted review for this appoinment
+                </div>
+                <div class="dis-div">Your review will not only help our therapist to improve, but also help other customers to make their decisions.</div>
+                <!--div class="w-100">
+                    <div class="fast-check">For Fast Check-in And Booking</div>
+                    <div class="my-4">
+                        <div class="mb-4">
+                            <a href="https://apps.apple.com/us/app/the-bookus/id1548946462" target="_new"><img src="/assets/images/AppStoreBadge.svg" /></a>
+                        </div>
+                        <div>
+                            <a href="https://play.google.com/store/apps/details?id=com.massage_now_user" target="_new"><img src="/assets/images/GooglePlayBadge.svg" /></a>
+                        </div>
+                    </div>
+                    <div class="dis-div">Download Bookus App Today and bookus thousands of other services tomorrow</div>
+                </div-->
+                <div class="d-flex">
+                    <div class="go-btn" (click)="goBack('checkTherapist')">
+                        <span>Check {{reviewCredentials.therapistName}}</span>
+                    </div>
+                    <div class="go-btn" (click)="goBack('Rebook')">
+                        Rebook
+                        <img *ngIf="rebookLoader" src="assets/images/loader/circle-small-white.svg" alt="...">
+                    </div>
+                    
+                </div>
+                <div class="d-flex">
+                    <div class="go-btn" (click)="goBack('CheckShop')">
+                        <span>Check Shop</span>
+                    </div>
+                    <div class="go-btn" (click)="goBack('HomePage')">
+                        <span>Home page</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="review-form-wrapper" fxLayout="column" fxLayoutAlign="center
+        center">
+        <div id="review-form">
+            <div class="header-div">
+                <div class="header-title">Review Your therapist</div>
+                <div class="back-btn-wrapper" (click)="goBack('')">
+                    <a><img src="assets/images/arrow-left.svg" alt="back-icon"></a>
+                </div>
+            </div>
+            <div class="review-block">
+                <!-- <form name="forgotPasswordForm" [formGroup]="reviewForm" (ngSubmit)="submitReview(reviewForm)" novalidate> -->
+                <div class="pd-20">
+                    <div class="row" fxLayout="row" fxLayoutAlign="start
+                        center">
+                        <div class="col-auto">
+                            <div class="img-div"><img src="{{reviewCredentials?.therapistImage}}" (error)="setDefaultTherapistPic($event,
+                                    reviewCredentials?.therapistGender)"></div>
+                        </div>
+                        <div class="col p-0">
+                            <div class="row mb-2" fxLayout="row" fxLayoutAlign="space-between center">
+                                <div class="t-name col-auto text-left">{{reviewCredentials.therapistName}}</div>
+                                <div class="date col text-right">{{reviewCredentials?.date | date}}</div>
+                            </div>
+                            <div class="rating" fxLayout="row" fxLayoutAlign="start center" *ngIf="reviewCredentials">
+                                <app-star-rating [rating]="reviewCredentials?.rateCount" [size]="16"></app-star-rating>
+                                <div class="overall-rating">
+                                    <p>{{reviewCredentials?.rateCount| number:'1.1-1'}} ({{reviewCredentials?.reviewCount}})
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" fxLayout="row" fxLayoutAlign="start
+                                center">
+                                <div class="col">
+                                    <div class="s-name">{{reviewCredentials?.duration}} {{reviewCredentials?.serviceName}} at
+                                        <span class="l-name">{{
+                                            reviewCredentials.locationName }}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pd-20 bb mt-3">
+                    <div class="row" fxLayout="row" fxLayoutAlign="start start">
+                        <div class="col-12">
+                            <label class="form-check-label text-left pointer" for="anonymousCheck">
+                                <input type="checkbox" class="form-check-input
+                                    ms-0" id="anonymousCheck"
+                                    [(ngModel)]="anonymousCheck">
+                                <span class="tick-wrapper ms-4">
+                                    Tick here to show your name on this review,
+                                    otherwise we will keep it anonymous.
+                                </span>
+                            </label>
+
+                            <label class="form-check-label text-left mt-2 pointer" for="redFlagCheck">
+                                <input type="checkbox" class="form-check-input
+                                                                ms-0" id="redFlagCheck" [(ngModel)]="redFlagCheck">
+                                <span class="tick-wrapper ms-4">
+                                    Tick here if your therapist try to offer you inappropriate services.
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="pd-20 bb text-left">
+                    <div class="q-title">How was Skills Rating?</div>
+                    <div class="q-description">How was your therapist’s professional skills?</div>
+                    <div class="rating pointer">
+                        <ngx-stars [color]="'#F7C942'" [size]="3" [maxStars]="5" (ratingOutput)="skillsRate($event)"></ngx-stars>
+                    </div>
+                </div>
+                <div class="pd-20 bb text-left">
+                    <div class="q-title">How was Communication Skills?</div>
+                    <div class="q-description">Did your therapist Communicate with you during the treatment</div>
+                    <div class="rating pointer">
+                        <ngx-stars [color]="'#F7C942'" [size]="3" [maxStars]="5" (ratingOutput)="communicationRate($event)"></ngx-stars>
+                    </div>
+                </div>
+                <div class="pd-20 bb text-left">
+                    <div class="q-title">How was Service Rating?</div>
+                    <div class="q-description">Was your therapist friendly? Smile to you? Ask you if you need water after treatment
+                    </div>
+                    <div class="rating pointer">
+                        <ngx-stars [color]="'#F7C942'" [size]="3" [maxStars]="5" (ratingOutput)="serviceRate($event)"></ngx-stars>
+                    </div>
+                </div>
+                <div class="pd-20 bb text-left">
+                    <div class="q-title">Over all</div>
+                    <div class="rating mb-3" *ngIf="isOverAllRating">
+                        <ngx-stars [color]="'#F7C942'" readonly="true" [initialStars]="overAllRating" [size]="3"></ngx-stars>
+                    </div>
+                    
+                    <div>
+                        <textarea rows="3" [(ngModel)]="reviewTheRapist" placeholder="Review the therapist"></textarea>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+                <div class="pd-20 text-left">
+                    <div class="q-title">Rate {{ reviewCredentials.locationName }}</div>
+                    <div class="q-description">Review the shop based on cleaniness, management and facility.</div>
+                    <div class="rating mb-3">
+                        <ngx-stars class="pointer" #shoprate [color]="'#F7C942'" [size]="3" [maxStars]="5" (ratingOutput)="MassageRate($event)"></ngx-stars>
+                    </div>
+                    <div>
+                        <textarea rows="3" [(ngModel)]="reviewTheBusiness" placeholder="Review the shop"></textarea>
+                    </div>
+                </div>
+                <div class="submit-button-wrapper">
+                    <button mat-raised-button (click)="submitReview()" class="btn submit-button" aria-label="Submit_review">
+                        SUBMIT
+                    </button>
+                </div>
+                <!-- </form> -->
+            </div>
+            <div class="footer-block">
+                <a style="margin-right: 20px" href="https://apps.apple.com/us/app/the-bookus/id1548946462" target="_new">
+                    <img width="150px" src="assets/images/AppStoreBadge.svg" />
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.massage_now_user" target="_new">
+                    <img width="150px" src="assets/images/GooglePlayBadge.svg" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

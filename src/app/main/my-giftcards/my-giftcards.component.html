@@ -1,0 +1,22 @@
+<!-- gift card -->
+<div class="container">
+<div class="mygiftcard-section">
+    <!-- navbar -->
+    <div class="nav row">
+        <!-- received tab -->
+        <div class="col-6 offsetLeft-32">
+            <div class="pills" [class.active]="selected === 'received'" (click)="selectedTab('received')">Received
+            </div>
+        </div>
+        <!-- sent tab -->
+        <div class="col-6 offsetRight-32">
+            <div class="pills" [class.active]="selected === 'sent'" (click)="selectedTab('sent')">Sent</div>
+        </div>
+    </div>
+    <!-- container -->
+    <div class="mt-3">
+        <app-sent-card *ngIf="selected === 'sent'"></app-sent-card>
+        <app-received-card *ngIf="selected === 'received'"></app-received-card>
+    </div>
+</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="head-amount">
+    <hr class="top-hr">
+    <div class="total-ammount-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="container d-flex justify-content-between">
+            <div class="total-heading">
+              <h4>Total Amount</h4>
+            </div>
+            <div class="total-ammount d-flex">
+              <i class="fa fa-dollar"></i>
+              <h4>{{amount}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="bottom-hr">
+    </div>
+    
+    <div class="form-check" >
+        <!-- <input class="form-check-input" type="radio" name="Radios" id="Radios1" value="option1" (click)="selectPaymentType('card')" [disabled]="isDisabledCard" > -->
+       <!-- <img src="../../../../assets/images/card.svg" class="wallet-image" alt="">  -->
+       <!-- <label class="form-check-label" for="Radios1">
+          Card payment
+        </label> -->Hi all. I am trying to make sure salary gets disburse in today’s date. 
+        <div class="payment-card-block" > 
+            <ngx-stripe-card
+              [options]="cardOptions"
+              [elementsOptions]="elementsOptions">
+          </ngx-stripe-card> 
+        </div>
+    
+      </div>
+    
+      <div class="tipbtn-wrapper">
+        <button class="btn btn-primary" (click)="createToken()">Verify</button>
+    </div>
+    <div class="tipbtn-wrapper" *ngIf="tokenId">
+        <button class="btn btn-primary" (click)="checkOut()">Pay</button>
+    </div>

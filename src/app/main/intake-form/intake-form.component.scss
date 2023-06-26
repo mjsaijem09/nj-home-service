@@ -1,0 +1,183 @@
+.margin-top {
+  margin-top: 130px;
+}
+.coming-soon {
+  width: 400px !important;
+}
+
+.button-wrapper {
+  hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 2px solid rgb(0 0 0 / 41%);
+  }
+
+  .button-right {
+    margin: 10px 0px;
+    float: right;
+  }
+
+  .button-left {
+    margin: 10px 0px;
+    float: left;
+  }
+}
+
+.bs-stepper-content {
+  font-size: 13px;
+}
+
+input::placeholder{
+  font-size: 13px;
+}
+.question{
+  font-weight: bold;
+}
+.form-group {
+  margin-top: 0.3rem;
+}
+.massage-info-wrapper * {
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+}
+.form-check {
+  display: flex;
+  align-items: center;
+}
+.bs-stepper-circle {
+  font-size: 12px;
+}
+.bs-stepper-label {
+  font-size: 15px;
+}
+.gender-wrapper label:first-child {
+  margin-left: 13px;
+}
+.modal-header h6 {
+  font-weight: 600;
+  font-size: 18px;
+}
+.signature-info {
+  font-size: 14px;
+  p{
+    border-bottom: 1px solid #c6c4c8;
+    padding-bottom: 9px;
+  }
+}
+hr{
+  margin: 0 !important;
+}
+.col-md-6{
+  padding: 0;
+}
+.gap-1{
+  gap: 1rem;
+}
+.gender-wrapper{
+  h6{
+    margin-bottom: 0;
+  }
+  label{
+    margin-left: 0 !important;
+  }
+  .container{
+    padding: 0 !important;
+  }
+}
+
+// Customizations
+.bs-stepper-header {
+  margin: unset;
+}
+.step button.step-trigger {
+  padding: 0px;
+}
+
+.step.active button.step-trigger {
+  background: #91c73e;
+  color: #fff;
+  border-radius: 50px;
+  width: 100%;
+}
+.step button.step-trigger {
+  width: 24px;
+  overflow: hidden;
+}
+
+.step button.step-trigger span.bs-stepper-label {
+  font-size: 12px;
+  margin: 0 10px 0 0;
+  font-weight: 500;
+}
+.step button.step-trigger span.bs-stepper-circle {
+  margin: 0;
+}
+.step.active button.step-trigger span.bs-stepper-circle {
+  background: #91c73e;
+}
+.bs-stepper-header {
+  margin: unset;
+  justify-content: space-between;
+  align-items: center;
+}
+.arrow {
+  width: 100%;
+  border-top: solid 2px #9da3a9;
+}
+
+.button-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px;
+  background: #ffffff;
+  gap: 13px;
+}
+
+button.btn-green {
+  background: #91c73e;
+  color: #ffffff;
+}
+button.btn-outline {
+  border: solid 2px #91c73e;
+  color: #91c73e;
+}
+button.btn {
+  width: 100%;
+}
+
+// Consent section
+.signature-section {
+  display: flex;
+  max-width: 340px;
+  width: 100%;
+}
+.signature-area {
+  border-bottom: solid 1px #000;
+  color: #c4c4c4;
+  width: 60%;
+  text-align: center;
+  position: relative;
+}
+.signature-area img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 201px;
+}
+
+@media screen and (min-width: 1024px) {
+  .margin-top {
+    margin-top: 140px;
+  }
+}
+
+// NEW
+label {
+  cursor: pointer;
+}

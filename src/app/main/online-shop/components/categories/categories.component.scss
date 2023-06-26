@@ -1,0 +1,27 @@
+.category-list {
+    ul.list-group {
+        li.list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            .product {
+                display: flex;
+                gap: 10px;
+                img.product-img {
+                    width: 35px;
+                    height: 35px;
+                    object-fit: cover;
+                }
+                .details {
+                    line-height: 19px;
+                }
+            }
+            &:last-child {
+                border-bottom-right-radius: unset;
+                border-bottom-left-radius: unset;
+                border: unset;
+            }
+        }
+    }
+}

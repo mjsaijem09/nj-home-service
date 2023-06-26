@@ -1,0 +1,251 @@
+<div class="parentLoader"*ngIf="isLoading">
+  <app-custom-spinner></app-custom-spinner>
+</div>
+<div [ngStyle]="{'margin-top': smallDevice ? '67px' : '0px' }"></div>
+<div class="notification" *ngIf="!isLoading">
+  <div class="container" [ngClass]="{'mt-5':router.url.includes('notifications'), 'mb-5':router.url.includes('notifications')}">
+    <div class="row" *ngFor="let data of notificationList">
+      <div class="col-12" *ngIf="data.status == '8'">
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="profile-section">
+              <img [src]="data?.appointmentId?.location?.profileImg && data?.appointmentId?.location?.profileImg[0].img"
+                alt="therapist" (error)="setDefaultShopImage($event)" class="user-avtar me-2">
+              <div class="details">
+                <p class="note">Your appointment has been booked with <span>{{data?.appointmentId?.staff?.firstName}}</span> for {{data?.appointmentId?.service_pricing_name}} service.</p>
+                <p class="mutted-text">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>              
+            </div>
+            <div class="appointment-details">
+              <div class="service-details col">
+                <div class="name-n-duration">
+                  <img src="/assets/images/notification/service-icon.svg">
+                  <p class="name">{{data.appointmentId?.duration.hour > 0 ? data.appointmentId?.duration.hour + ' hr' : ''}}
+                  {{data.appointmentId?.duration.min > 0 ? data.appointmentId?.duration.min + ' min' : ''}}
+                  {{data.appointmentId?.service?.name}}</p>
+                </div>
+                <div class="date">
+                  <img src="/assets/images/notification/calendar-icon.svg">
+                  <p class="sched-date">{{data?.appointmentId?.createdAt | date:'dd MMM hh:mm a' }}</p>
+                </div>
+              </div>
+              <div class="actions">
+                <img *ngIf="data.read" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+                <img *ngIf="!data.read" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '9'">
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="profile-section">
+              <img [src]="data?.appointmentId?.location?.profileImg && data?.appointmentId?.location?.profileImg[0].img"
+                alt="therapist" (error)="setDefaultShopImage($event)" class="user-avtar me-2">
+              <div class="details">
+                <p class="note">You have a booking with <span>{{data?.appointmentId?.staff?.firstName}}</span> for {{data?.appointmentId?.service_pricing_name}} service.</p>
+                <p class="mutted-text">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>              
+            </div>
+            <div class="appointment-details">
+              <div class="service-details col">
+                <div class="name-n-duration">
+                  <img src="/assets/images/notification/service-icon.svg">
+                  <p class="name">{{data.appointmentId?.duration.hour > 0 ? data.appointmentId?.duration.hour + ' hr' : ''}}
+                  {{data.appointmentId?.duration.min > 0 ? data.appointmentId?.duration.min + ' min' : ''}}
+                  {{data.appointmentId?.service?.name}}</p>
+                </div>
+                <div class="date">
+                  <img src="/assets/images/notification/calendar-icon.svg">
+                  <p class="sched-date">{{data?.appointmentId?.createdAt | date:'dd MMM hh:mm a' }}</p>
+                </div>
+              </div>
+              <div class="actions" *ngIf="!data.read">
+                <button class="btn-confirm" (click)="confirmNotif(data)">Confirm</button>
+              </div>
+              <div class="actions" *ngIf="data.read">
+                <img src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '10' || data.status == '5'">
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="profile-section">
+              <img [src]="data?.appointmentId?.location?.profileImg && data?.appointmentId?.location?.profileImg[0].img" alt="therapist" (error)="setDefaultShopImage($event)" class="user-avtar me-2">
+              <div class="details">
+                <p class="note">Your appointment with {{data?.appointmentId?.staff?.firstName}} {{data?.appointmentId?.staff?.lastName}} has been cancelled</p>
+                <p class="mutted-text">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>              
+            </div>
+            <div class="appointment-details">
+              <div class="service-details col">
+                <div class="name-n-duration">
+                  <img src="/assets/images/notification/service-icon.svg">
+                  <p class="name">
+                    {{data.appointmentId?.duration.hour > 0 ? data.appointmentId?.duration.hour + ' hr' : ''}}  
+                    {{data.appointmentId?.duration.min > 0 ? data.appointmentId?.duration.min + ' min' : ''}}  
+                    {{data.appointmentId?.service?.name}}</p>
+                </div>
+                <div class="date">
+                  <img src="/assets/images/notification/calendar-icon.svg">
+                  <p class="sched-date">{{data?.appointmentId?.createdAt | date:'dd MMM hh:mm a' }}</p>
+                </div>
+              </div>
+              <div class="actions col-auto p-0">
+                <button class="btn-edit">cancelled</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '3'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+             
+              <div class="img-notify"><div class="bonze">{{data?.label || 1}}</div> <img [src]="'/../assets/images/bonze/' + (data?.label || 1) +'.png'" /></div>
+              <div class="post">
+                <p class="action">As you get more cheers <img src="/assets/images/notification-cheers.svg"/>,
+                your level up!</p>
+                <!-- <p class="comment">"Amy is a great therapist, ....."</p> -->
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+            <img *ngIf="!data.read" src="/assets/images/notification/unlike.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '1'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+              <div class="img-notify" style="padding: 0;">
+                <img
+                  src="/assets/images/notication-giftcard.svg" width="100%"/>
+              </div>
+              <div class="post">
+                <p class="action">You have received giftcard from</p>
+                <p class="comment">{{data.receivedFrom}}.</p>
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read == true" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '2'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+              <div class="img-notify" style="padding: 0;">
+                <img
+                  src="/assets/images/notification-review.svg" width="100%"/>
+              </div>
+              <div class="post">
+                <p class="action">You have received rating from</p>
+                <p class="comment">[USERNAME].</p>
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read == true" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '4'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+              <div class="img-notify" style="padding: 0;">
+                <img src="/assets/images/notification-review.svg" width="100%"/>
+              </div>
+              <div class="post">
+                <p class="action">You have get request for therapist reply.</p>
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read == true" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '6'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+              <div class="img-notify" style="padding: 0;">
+                <img
+                  src="/assets/images/notification-review.svg" width="100%"/>
+              </div>
+              <div class="post">
+                <p class="action">You have received tip card from </p>
+                <p class="comment">[USERNAME].</p>
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read == true" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '7'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+              <div class="img-notify" style="padding: 0;">
+                <img
+                  src="/assets/images/notification-review.svg" width="100%"/>
+              </div>
+              <div class="post">
+                
+                <p class="comment">[USERNAME] <span class="action"> has disliked your photo. </span></p>
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read == true" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '11'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+              <div class="img-notify" style="padding: 0;">
+                <img
+                  src="/assets/images/notification-star.svg" width="100%"/>
+              </div>
+              <div class="post">
+                
+                <p class="comment">You have received {{data?.points}} <span class="action">Loyalty points from {{data?.locationName ? data?.locationName : 'Shop Name'}}</span></p>
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read == true" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+            <img *ngIf="!data.read" src="/assets/images/notification/unlike.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="data.status == '12'">
+        <div class="card liked mt-3">
+          <div class="card-body">
+            <div class="details">
+              <div class="img-notify" style="padding: 0;">
+                <img src="/assets/images/notification-star.svg" width="100%"/>
+              </div>
+              <div class="post">
+                <p class="comment">Congratulation, <span class="action"> Your palm level up.</span></p>
+                <p class="date-time">{{ moment(data?.createdAt).fromNow() }}</p>
+              </div>
+            </div>
+            <img *ngIf="data.read == true" src="/assets/images/notification/like-icon.svg" class="liked m-0" (click)="confirmNotif(data)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-muted w-100 pt-3 pb-2" *ngIf="notificationList.length == 0">
+      You dont have notifications at the moment.
+    </div>
+  </div>
+</div>

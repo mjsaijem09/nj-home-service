@@ -1,0 +1,114 @@
+<div *ngIf="!loading">
+    <div class="parentFooter" *ngIf="ShowMobile && isHomeFooter">
+        <footer class="fixed-bottom bg-white footer-design">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between ms-3 me-3">
+                    <div class="text-center footer-icon_wrapper" (click)="navigate('/')">
+                        <button type="button" class="btn footer-icon" [ngClass]="{'active' : presentUrl == '/'}">
+                            <img src="assets/images/footer/home.svg" alt="home-tab">
+                            <img src="assets/images/footer/home-green.svg" alt="home-tab" class="active-icon">
+                        </button>
+                    </div>
+                    <div class="text-center footer-icon_wrapper" (click)="navigate('/schedule')">
+                        <button type="button" class="btn footer-icon" [ngClass]="{'active' : presentUrl == '/schedule'}">
+                            <img src="assets/images/footer/sched.svg" alt="schedule-tab">
+                            <img src="assets/images/footer/sched-green.svg" alt="schedule-tab" class="active-icon">
+                        </button>
+                    </div>
+                    <div class="text-center footer-icon_wrapper" (click)="navigate('/like')">
+                        <button type="button" class="btn footer-icon" [ngClass]="{'active' : presentUrl == '/like'}">
+                            <img src="assets/images/footer/fav.svg" alt="favourite">
+                            <img src="assets/images/footer/fav-green.svg" alt="favourite" class="active-icon">
+                        </button>
+                    </div>
+                    <div class="text-center footer-icon_wrapper" (click)="viewCart()" >
+                        <div *ngIf="cartData?.length > 0" class="has_notification">{{cartData.length}}</div>
+                        <button type="button" class="btn footer-icon" [ngClass]="{'active' : presentUrl == '/product/cart'}">
+                            <img src="assets/images/footer/cart.svg" alt="notification">
+                            <img src="assets/images/footer/cart-green.svg" alt="notification" class="active-icon">
+                        </button>
+                    </div>
+                    <div class="text-center footer-icon_wrapper" (click)="navigate('/notifications')" >
+                        <div *ngIf="notifCount > 0" class="has_notification">{{notifCount}}</div>
+                        <button type="button" class="btn footer-icon" [ngClass]="{'active' : presentUrl == '/notifications'}">
+                            <img src="assets/images/footer/notif.svg" alt="notification">
+                            <img src="assets/images/footer/notif-green.svg" alt="notification" class="active-icon">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="secondFooter" *ngIf="!ShowMobile && isHomeFooter">
+        <footer class="footercolor">
+            <div class="container text-center text-md-left">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="logo_section">
+                            <a href="#" class="footer_logo">
+                                <img src="assets/images/BookUs_logo.png" alt="company_logo" class="bookusLogo">
+                            </a>
+                            <ul class="social-media mt-4">
+                                <li>
+                                    <a><img src="assets/images/instagram.svg" alt="instagram"></a>
+                                </li>
+                                <li>
+                                    <a><img src="assets/images/dribble.svg" alt="dribble"></a>
+                                </li>
+                                <li>
+                                    <a><img src="assets/images/twitter.svg" alt="twitter"></a>
+                                </li>
+                                <li>
+                                    <a><img src="assets/images/youTube.svg" alt="youTube"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-section">
+                            <h6>About BookUs</h6>
+                            <ul>
+                                <li><a class="textcolor">Career at BookUs</a></li>
+                                <li><a class="textcolor">Customer Support</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-section">
+                            <h6>For Business</h6>
+                            <ul>
+                                <li><a class="textcolor">For Partners</a></li>
+                                <li><a class="textcolor">Pricing</a></li>
+                                <li><a class="textcolor">Support For Partners</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-section">
+                            <h6>Legal</h6>
+                            <ul>
+                                <li><a class="textcolor">Booking Terms</a></li>
+                                <li><a class="textcolor">Privacy Policy</a></li>
+                                <li><a class="textcolor">Website Terms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--div class="col-md-3">
+                        <div class="footer-section">
+                            <h6>Free mobile app</h6>
+                            <ul>
+                                <li style="margin-bottom: 28px;"><a class="textcolor" href="https://apps.apple.com/us/app/the-bookus/id1548946462" target="_new"><img src="assets/images/AppStoreBadge.svg" alt="apple-store"></a></li>
+                                <li><a class="textcolor" href="https://play.google.com/store/apps/details?id=com.massage_now_user"><img src="assets/images/GooglePlayBadge.svg"></a></li>
+                            </ul>
+                        </div>
+                    </div-->
+                    <div class="clearfix"></div>
+                   
+                </div>
+            </div>
+        </footer>
+        <div class="copyright-section">
+            <p>© 2021 Bookus. All rights reserved</p>
+        </div>
+    </div>
+</div>

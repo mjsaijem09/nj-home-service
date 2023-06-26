@@ -1,0 +1,317 @@
+.top-spacing {
+    padding-top: 80px;
+    padding-bottom: 55px;
+    }
+
+.customer-level-badge-wrapper{
+    width: 345px;
+    height: 366px;
+    left: 20px;
+    top: 125px;
+    
+    /* on dark/900 */
+    
+    background: #FFFFFF;
+    box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+    border-radius: 5px;
+    .customer-level-wrapper{
+        width: 205px;
+        height: 21px;
+        left: 40px;
+        top: 148px;
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        text-transform: capitalize;
+        color: #0D0D0D;
+        padding: 5%;
+        white-space: nowrap;
+        
+    }
+    .frame-meter-wrapper{
+        position: relative;
+        width: 286px;
+        height: 286px;
+        padding: 8%;
+    }
+    
+}    
+.progress-1{
+  position: relative;
+  margin: 11% 22%;
+  float:left;
+  text-align: center;
+}
+.barOverflow{ /* Wraps the rotating .bar */
+  position: relative;
+  overflow: hidden; /* Comment this line to understand the trick */
+  width: 200px; height: 100px; /* Half circle (overflow) */
+  margin-bottom: -14px; /* bring the numbers up */
+}
+.bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 10px solid #90C63E;
+    border-bottom-color: #EDEFF3;
+    border-right-color: #EDEFF3;
+}
+.badge-type-level{
+   .badge-wrapper{
+       position: absolute;
+       left: 54%;
+       top: 25%;
+   } 
+   .badge-size{
+    height: 34.35682678222656px;
+    width: 34.905975341796875px;
+    border-radius: 0px;
+   }
+   .badge-type{
+    width: 124px;
+    height: 15px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #A6AEC1;
+    padding: 5%;
+    white-space: nowrap;
+    margin-left: -42%;
+   }
+   .level{
+    width: 65px;
+    height: 24px;    
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    text-align: center;
+    color: #CE5744;
+    margin-left: -15%;
+   }
+   .level-score-wrapper{
+    position: absolute;
+    top: 65%;
+    display: flex;
+    .level-1{
+        width: 50px;
+        height: 19px;
+       
+        
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+        
+        text-transform: capitalize;
+        
+        color: #000000;
+        margin-left: -32%;
+        
+    }
+    .level-5{
+        margin-left: 391%;
+        white-space: nowrap;
+    }
+   }
+}
+
+.badge-type-customer{
+    .type-1{
+        width: 53px;
+        height: 53px;
+        background: rgba(144, 198, 62, 0.1);
+        border-radius: 10px;
+        margin-top: -18%;
+        margin-left: 2%;
+    }
+    .badge-1{
+        width: 29px;
+        margin-top: 45%;
+        margin-left: -5%;
+    }
+    .type-text{
+        width: 46px;
+        height: 17px;
+       
+        
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        /* identical to box height */
+        
+        text-align: center;
+        text-transform: capitalize;
+        
+        color: #A6AEC1;
+        margin-top: 80%;
+        margin-left: -63%;
+        
+    }
+}
+.understand-rate-wrapper{
+    
+    /* on dark/900 */
+    
+    margin-top: 5%;
+    .understand-wrapper{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        text-transform: capitalize;
+        color: #0D0D0D;
+        // padding: 5% 5% 0 5%;
+        white-space: nowrap;
+        
+    }
+    .description1-wrapper{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 22px;
+        text-transform: capitalize;
+        color: #A6AEC1;
+        // padding: 0 5% 5%  5%;
+        
+    }
+}
+.coin-block{
+    width: 60.21px;
+    height: 28.66px;
+    left: 289px;
+    top: 810px;
+
+    background: #F8EFCC;
+    border-radius: 13px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 5px;
+    color: #F2C42C;
+    margin: auto;
+}
+.badge-block{
+    background: #FFFFFF;
+    box-shadow: 0px 8px 64px rgba(15, 34, 67, 0.06), 0px 0px 1px rgba(15, 34, 67, 0.08);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.badge-title{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #BB4633;
+    margin-left: 20px;
+}
+.badge-title2{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #9A979F;
+    margin-left: 20px;
+}
+.badge-title3{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #FFA64D;
+    margin-left: 20px;
+}
+.badge-title4{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #737373;
+    margin-left: 20px;
+}
+.badge-title5{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #16228C;
+    margin-left: 20px;
+}
+.badge-lable{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    text-transform: capitalize;
+    color: #A6AEC1;
+}
+.bonze1 {
+      position: absolute;
+      margin-left: calc(50% - 20px);
+      margin-top: 2px;
+      color: #BB4633;
+    }
+.bonze2 {
+      position: absolute;
+      margin-left: calc(50% - 20px);
+      margin-top: 2px;
+      color: #9A979F;
+    }
+.bonze3 {
+      position: absolute;
+      margin-left: calc(50% - 20px);
+      margin-top: 2px;
+      color: #FFA64D;
+    }
+.bonze4 {
+      position: absolute;
+      margin-left: calc(50% - 20px);
+      margin-top: 2px;
+      color: #737373;
+    }
+.bonze5 {
+      position: absolute;
+      margin-left: calc(50% - 20px);
+      margin-top: 2px;
+      color: #16228C;
+    }
+.bb{
+    border-bottom: 1px solid #ddd;
+}
+
+.showmore{
+    background: linear-gradient(
+186.6deg, rgb(255 255 255 / 0%) 11.11%, rgb(255 255 255 / 0%) 11.11%, rgb(242 242 242 / 90%) 67.71%);
+    height: 100px;
+    margin-top: -79px;
+    .lable{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+        text-transform: capitalize;
+        color: #90C63E;
+        text-align: center;
+        padding-top: 75px;
+        cursor: pointer;
+    }
+}

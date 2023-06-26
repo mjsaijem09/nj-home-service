@@ -1,0 +1,19 @@
+<div class="recent-view-wrapper container-fluid" [ngClass]="{'mobile-view': this.isMobile, 'desktop-view': !this.isMobile}">
+  <label for=""> <h5><b>RECENT VIEW</b></h5></label>
+  <div class="recent-view-list">
+      <ul class="pl-0">
+          <li *ngFor="let recentData of recentlyViewedList">
+              <div class="recent-view">
+                  <div class="card">
+                      <img class="card-img-top" src="{{ (recentData && recentData.profileImg && recentData.profileImg.img ) ? recentData.profileImg.img : '../../../assets/images/no_image.png'}}" alt="Card image cap">
+                      <div class="card-body">
+                        <h6 class="card-title mb-1">{{recentData?.company.businessName}}</h6>
+                        <p class="card-text mb-1"><i class="fa fa-star" aria-hidden="true"></i>
+                          {{recentData?.rating.star | number : '1.1-1'}} {{recentData?.rating.star_count}} Ratings</p>
+                      </div>
+                    </div>
+              </div>
+          </li>
+      </ul>
+  </div>
+</div>

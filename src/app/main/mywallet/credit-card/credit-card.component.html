@@ -1,0 +1,151 @@
+<div class="loader text-center" *ngIf="isLoading">
+    <span class="text-theme-green fw-medium me-2">Loading card</span>
+    <img src="/assets/images/loader/circle-small-green.svg" alt="">
+</div>
+<div class="credit-card-section" *ngIf="!isLoading">
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngIf="url === '/mywallet'">
+                <div class="title">My Payment Methods</div>
+                <div class="mutted-text">Securely save your card details for hassle free payments.</div>
+            </li>
+            <li class="list-group-item">
+                <div class="label" *ngIf="cards.length >= 1">
+                    <p>Set as default</p>
+                    <p>Credit Card Number</p>
+                </div>
+                <div class="cards">
+                    <div *ngFor="let card of cards" class="container-radio" [class.active]="defaultCard === card.id">
+                        <label>
+                            <div class="radio-cont">
+                                <input type="radio" (click)="selectCard(switch_card_modal, card.id)" name="card" style="top: 0;left: 0;width: 80%;height: 40px;" [checked]="defaultCard === card.id" >
+                                <span class="checkmark"></span>
+                                <div class="info">
+                                    <img *ngIf="card.brand == 'MasterCard'" src="/assets/images/wallet/mc.svg" alt="card">
+                                    <img *ngIf="card.brand == 'Visa'" src="/assets/images/wallet/vc.svg" alt="card">
+                                    <img *ngIf="card.brand == 'American Express'" src="/assets/images/wallet/am.svg" alt="card">
+                                    <div class="name">{{brandName(card.brand)}} *** {{card.last4}}</div>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="actions" *ngIf="url === '/mywallet'">
+                            <!-- <img src="/assets/images/wallet/edit.svg" alt=""> -->
+                            <img (click)="ramoveCard(delete_card_modal, card.id)" src="/assets/images/wallet/bin.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="parentLoader" *ngIf="isLoading">
+                        <app-custom-spinner></app-custom-spinner>
+                    </div>
+                    <div *ngIf="cards.length <= 0 && !isLoading" class="nocard text-center">
+                        <img src=".././../../assets/images/wallet/nocard.svg" alt="">
+                        <p class="mutted-text mt-3">
+                            Sorry, you did not add any card yet.
+                        </p>
+                    </div>
+                </div>
+                <button *ngIf="cards.length >= 1 && url === '/mywallet'" class="btn-new_add_card w-100" (click)="add_card(add_new_card)">Add New Card</button>
+                <a *ngIf="cards.length >= 1 && url != '/mywallet'" class="btn-add_card w-100" (click)="add_card(add_new_card)">+Add New Card</a>
+                <button *ngIf="cards.length <= 0 && url === '/mywallet'" class="btn-new_add_card w-100" (click)="add_card(add_new_card)">Add Card</button>
+                <a *ngIf="cards.length <= 0 && url != '/mywallet'" class="btn-add_card w-100" (click)="add_card(add_new_card)">+Add Card</a>
+            </li>
+        </ul>
+    </div>
+    <!-- <div class="add_card" (click)="add_card(add_new_card)">
+        <img src="/assets/images/wallet/add_icon.svg" alt="">
+    </div> -->
+</div>
+<ng-template #add_new_card let-modal>
+    <div class="custom-modal add_card">
+        <div class="modal-header">
+            <h4 class="modal-title">Add New Credit Card</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+            </div>
+            <div class="modal-body">
+                <p class="mutted-text">Securely save your card details for hassle free payments.</p>
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="inputEmail4">Card Holder Full Name</label>
+                        <input type="email" class="form-control"  [class.is-invalid]="!ch && submitted" id="inputEmail4" [(ngModel)]="ch" placeholder="Add Card Holder Full Name" required>
+                        <div class="invalid-feedback" *ngIf="!ch && submitted">
+                            Card holder full name is required.
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="inputPassword4">Card Number</label>
+                        <input type="text" class="form-control" [class.is-invalid]="!cc && submitted" id="inputPassword4" maxlength="19" [(ngModel)]="cc" placeholder="Credit or Debit Card Number" (ngModelChange)="cc_format($event)">
+                        <div class="invalid-feedback" *ngIf="!cc && submitted">
+                            Card number is required.
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="inputPassword4">Expiry Date</label>
+                        <input type="text" class="form-control" [class.is-invalid]="!ed && submitted" id="inputPassword4" maxlength="9" [(ngModel)]="ed" placeholder="MM / YY" (ngModelChange)="ed_format($event)">
+                        <div class="invalid-feedback" *ngIf="!ed && submitted">
+                            Expiry date is required.
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="inputPassword4">CVV</label>
+                        <input type="number" class="form-control" [class.is-invalid]="!cv && submitted" id="inputPassword4" maxlength="4" [(ngModel)]="cv" placeholder="123">
+                        <div class="invalid-feedback" *ngIf="!cv && submitted">
+                            CVV is required.
+                        </div>
+                    </div>
+                </div>
+                <p class="mutted-text d-flex align-items-center gap-5">
+                    Pay Securely With 
+                    <span>
+                        <img src="/assets/images/wallet/visa.svg" class="m-0" alt="">
+                    </span>
+                    <span>
+                        <img src="/assets/images/wallet/master_card.svg" class="m-0" alt="">
+                    </span>
+                </p>
+                <div class="actions">
+                    <button type="submit" class="btn btn-accept" (click)="save_card()">Save</button>
+                    <div class="btn btn-cancel" (click)="modal.dismiss('Cross click')">Cancel</div>
+                </div>
+            </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+<ng-template #delete_card_modal let-modal>
+    <div class="custom-modal add_card">
+        <div class="modal-header">
+            <h4 class="modal-title">Delete Credit Card</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+            </div>
+            <div class="modal-body text-center">
+                <img class="mt-3 mb-3" src="/assets/images/wallet/trash.svg" alt="delete">
+                <p>Are you sure to delete this card?</p>
+                <div class="actions">
+                    <button type="submit" class="btn btn-accept" (click)="modal.dismiss('Cross click')">No</button>
+                    <div class="btn btn-cancel" (click)="delete_card()">Yes</div>
+                </div>
+            </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
+<ng-template #switch_card_modal let-modal>
+    <div class="custom-modal add_card">
+        <div class="modal-header">
+            <h4 class="modal-title">Switch The Default Card</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+            </div>
+            <div class="modal-body text-center">
+                <img class="mt-3 mb-3" src="/assets/images/wallet/card.svg" alt="delete">
+                <p>Are you sure you want to switch the default card to this card?</p>
+                <div class="actions">
+                    <button type="submit" class="btn btn-accept" (click)="switch_card()">Yes</button>
+                    <div class="btn btn-cancel" (click)="cancelSwitch()">No</div>
+                </div>
+            </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</ng-template>
