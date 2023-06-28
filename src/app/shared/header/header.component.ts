@@ -654,6 +654,11 @@ export class HeaderComponent
       this.categoryRoute = 'Rate Product';
       this.presentUrl = 'Rate Product';
     }
+    if (this.router.url.includes('/freelance/register')) {
+      this.isHomeHeader = false;
+      this.categoryRoute = null;
+      this.authHeader = true;
+    }
     console.log('ROUTE', this.router.url);
     console.log('PRESENT URL', this.presentUrl);
     console.log('CATEGORY ROUTE', this.categoryRoute);
