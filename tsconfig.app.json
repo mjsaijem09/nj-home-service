@@ -3,7 +3,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": ["w3c-image-capture", "webrtc"]
+    "types": ["w3c-image-capture", "webrtc", "googlemaps"]
   },
   "files": [
     "src/main.ts",
