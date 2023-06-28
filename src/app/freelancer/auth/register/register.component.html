@@ -1,0 +1,161 @@
+<div class="register-container p-2">
+    <div class="heading" *ngIf="heading.step >=1">
+        <div class="steps-progress">{{heading.step}} of 4</div>
+        <h4 class="mt-3">{{heading.title}}</h4>
+        <p>{{heading.subtitle}}</p>
+    </div>
+    <div class="get-started-heading" *ngIf="heading.step == 0">
+        <h4>{{heading.title}}</h4>
+    </div>
+    <br>
+    <br>
+    <div class="get-started" *ngIf="heading.step == 0">
+        <app-get-started></app-get-started>
+        <p>Discover the freedom to offer your diverse <br> range of therapeutic services.</p>
+    </div>
+    <div class="select-category" *ngIf="heading.step == 1">
+        <app-category-list (output)="categoryOutput($event)"></app-category-list>
+    </div>
+    <form *ngIf="heading.step == 2">
+        <div class="d-flex gap-3">
+            <div class="form-floating w-100 mb-3">
+                <input
+                class="form-control"
+                [class.is-invalid]="formSubmitted && !isValidName(payload.firstName)"
+                id="first-name"
+                placeholder="First Name" 
+                [ngModelOptions]="{ standalone: true }" 
+                [(ngModel)]="payload.firstName" 
+                (ngModelChange)="fromChange($event)">
+                <label for="first-name">First Name</label>
+                <div class="invalid-feedback">
+                    <div *ngIf="payload.firstName?.length == 0">First Name is required.</div>
+                    <div *ngIf="!isValidName(payload.firstName) && payload.firstName?.length != 0">Invalid name.</div>
+                </div>
+            </div>
+            <div class="form-floating w-100 mb-3">
+                <input
+                class="form-control"
+                id="last-name"
+                placeholder="Last Name"
+                [ngModelOptions]="{ standalone: true }" 
+                [(ngModel)]="payload.lastName" 
+                (ngModelChange)="fromChange($event)">
+                <label for="last-name">Last Name</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="name@example.com"
+            [ngModelOptions]="{ standalone: true }" 
+            [(ngModel)]="payload.email" 
+            (ngModelChange)="fromChange($event)">
+            <label for="email">Email address</label>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">+63</span>
+            <div class="form-floating" [class.is-invalid]="formSubmitted && !isValidPhone(payload.phone)">
+                <input
+                type="number"
+                class="form-control"
+                [class.is-invalid]="formSubmitted && !isValidPhone(payload.phone)"
+                id="phone"
+                placeholder="9123456780"
+                [ngModelOptions]="{ standalone: true }" 
+                [(ngModel)]="payload.phone" 
+                (ngModelChange)="fromChange($event)" required>
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="invalid-feedback">
+                <div *ngIf="payload.phone?.length == 0">Phone number is required.</div>
+                <div *ngIf="!isValidPhone(payload.phone) && payload.phone?.length != 0">Invalid phone number.</div>
+            </div>
+        </div>
+        <div class="d-flex gap-3">
+            <div class="form-floating w-100 mb-3">
+                <select
+                class="form-select"
+                id="gender"
+                aria-label="Floating label select example"
+                [ngModelOptions]="{ standalone: true }" 
+                [(ngModel)]="payload.gender" 
+                (ngModelChange)="fromChange($event)">
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                  <option value="">prefer not to say</option>
+                </select>
+                <label for="gender">Select Gender</label>
+            </div>
+            <div class="form-floating w-100 mb-3">
+                <input
+                type="date"
+                class="form-control"
+                id="dob"
+                placeholder="Date of Birth"
+                [ngModelOptions]="{ standalone: true }" 
+                [(ngModel)]="payload.dob" 
+                (ngModelChange)="fromChange($event)">
+                <label for="dob">Date of Birth</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input
+            class="form-control"
+            [class.is-invalid]="formSubmitted && !isValidUsername(payload.username)"
+            id="username"
+            placeholder="johndoe123"
+            [ngModelOptions]="{ standalone: true }" 
+            [(ngModel)]="payload.username" 
+            (ngModelChange)="fromChange($event)">
+            <label for="username">Username</label>
+            <div class="invalid-feedback">
+                <div *ngIf="payload.username?.length != 0 && !isValidUsername(payload.username)">Username must be at least 5+ characters</div>
+                <div *ngIf="payload.username?.length == 0">Please your password.</div>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input
+            type="password"
+            class="form-control"
+            [class.is-invalid]="formSubmitted && !isValidPassword(payload.password)"
+            id="password"
+            placeholder="johndoe123"
+            [ngModelOptions]="{ standalone: true }" 
+            [(ngModel)]="payload.password" 
+            (ngModelChange)="fromChange($event)">
+            <label for="password">Password</label>
+            <div class="invalid-feedback">
+                <div *ngIf="payload.password?.length != 0 && !isValidPassword(payload.password)">Password must be at least 6+ characters</div>
+                <div *ngIf="payload.password?.length == 0">Password is required.</div>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input
+            type="password"
+            class="form-control"
+            [class.is-invalid]="formSubmitted && !isConfirmedPasswordMatch(payload.password, payload.confirmPassword)"
+            id="confirm-password"
+            placeholder="johndoe123"
+            [ngModelOptions]="{ standalone: true }" 
+            [(ngModel)]="payload.confirmPassword" 
+            (ngModelChange)="fromChange($event)">
+            <label for="confirm-password">Confirm Password</label>
+            <div class="invalid-feedback">
+                <div *ngIf="payload.confirmPassword?.length != 0 && !isConfirmedPasswordMatch(payload.password, payload.confirmPassword)">Password and Confirm Password not matched!</div>
+                <div *ngIf="payload.confirmPassword?.length == 0">Please your password.</div>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="heading.step == 3">
+        <app-map (output)="getCoordinates($event)"></app-map>
+    </div>
+    <div class="submit">
+        <button *ngIf="heading.step == 0" type="submit" class="btn-continue" (click)="proceedTo(1)">Get Started</button>
+        <button *ngIf="heading.step == 1" type="submit" class="btn-continue" [disabled]="disableCategory" (click)="proceedTo(2)">Continue <i class="bi bi-arrow-right"></i></button>
+        <button *ngIf="heading.step == 2" type="submit" class="btn-continue" (click)="proceedTo(3)">Continue <i class="bi bi-arrow-right"></i></button>
+        <button *ngIf="heading.step == 3" type="submit" class="btn-continue" (click)="proceedTo(4)">Confirm Location <i class="bi bi-arrow-right"></i></button>
+    </div>
+</div>
