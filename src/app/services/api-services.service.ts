@@ -169,4 +169,12 @@ export class ApiServicesService {
       .get(`${environment.socket_url}/api/nu_skin/${path}`, { params: params })
       .pipe(catchError(this.formatErrors));
   }
+  // NJ API
+  nj_base_url = environment.api_url.replace('pwa', 'njmobile');;
+  post_nj(path: string, body: Object = {}): Observable<any> {
+    return this.http
+      .post(`${this.nj_base_url}${path}`, JSON.stringify(body))
+      .pipe(catchError(this.formatErrors));
+  }
+
 }
