@@ -1,0 +1,14 @@
+<app-loader *ngIf="!isLoading"></app-loader>
+
+<div class="category-list" *ngIf="isLoading">
+    <ng-container *ngFor="let category of categoryList; let i = index">
+        <button class="btn-category active" [class.active]="category.selected" (click)="selectCategory(category, i)">
+            <img [src]="category.img" [alt]="category.name">
+            {{category.name}}
+            <span class="badge position-absolute top-0 start-100 translate-middle p-2 rounded-circle">
+                <i class="bi bi-check"></i>
+                <span class="visually-hidden">New alerts</span>
+            </span>
+        </button>
+    </ng-container>
+</div>
