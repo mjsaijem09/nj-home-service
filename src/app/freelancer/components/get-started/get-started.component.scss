@@ -1,0 +1,16 @@
+.get-started {
+    position: relative;
+    text-align: right;
+    img.img-1 {
+        width: 85%;
+        position: relative;
+        z-index: 0;
+    }
+    img.img-2 {
+        width: 50%;
+        left: 0;
+        top: -70px;
+        position: absolute;
+        z-index: 1;
+    }
+}
