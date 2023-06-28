@@ -32,9 +32,9 @@ const routes: Routes = [
       //   component: LandingComponent,
       // },
       {
-        path: 'event',
+        path: 'freelance',
         loadChildren: () =>
-          import('./nu-skin/nu-skin.module').then((m) => m.NuSkinModule),
+          import('./freelancer/freelancer.module').then((m) => m.FreelancerModule),
       },
         // otherwise redirect to home
       { path: '**', redirectTo: '', pathMatch: 'full' },
