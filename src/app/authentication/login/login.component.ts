@@ -9,7 +9,6 @@ import { ApiServicesService } from 'src/app/services/api-services.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { BookingService } from 'src/app/services/booking.service';
 import { LocationService } from 'src/app/services/location.service';
-import { LOGIN } from '../../shared/url';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth.service';
 declare var google: any;
@@ -31,6 +30,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   subs: Subscription;
   registerData: any;
   accountSetup: any;
+  loginURI = 'customer/login'
   constructor(
     private formBuilder: UntypedFormBuilder,
     private apiService : ApiServicesService,
@@ -63,9 +63,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    const url = this.route.url; // Get the current URL
+    const segments = url.split('/'); // Split the URL into segments
+    const lastSegment = segments[segments.length - 1]; // Get the last segment
+    if(lastSegment === 'login-as-freelance') {
+      this.loginURI = 'therapist/login'
+    }
     this.bookingData = this.bookingService.bookingData;
     this.instanceLoader(false);
     console.log(this.bookingData.pathUrl);
+    
     if(!this.bookingData.pathUrl) {
       this.bookingData.pathUrl = '/';
     }
@@ -125,22 +132,25 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   submitLogin(form:any) {
     console.log(form);
-    this.apiService.post(LOGIN,form.value).subscribe(res=>{
-      console.log(res);
-      this.instanceLoader(false);
-      this.setCookie('customerLogin', JSON.stringify(res))
-      this.setCookie('customerToken', res.token)
-      if (this.bookingData.pathUrl) {
-        console.log(this.bookingData.pathUrl)
-        this.route.navigateByUrl(this.bookingData.pathUrl);
-      } else {
-        this.route.navigateByUrl('/')
-        .then(() => {
-          window.location.reload();
-        });
-      }
-      this.apiService.setLoginData(res);
-      this.getPosition();
+    this.apiService.post_nj(this.loginURI,form.value).subscribe(
+      res => {
+        console.log(res);
+        return;
+        res.userType = this.loginURI.includes('customer') ? 'customer' : 'freelancer';
+        this.instanceLoader(false);
+        this.setCookie('customerLogin', JSON.stringify(res))
+        this.setCookie('customerToken', res.token)
+        if (this.bookingData.pathUrl) {
+          console.log(this.bookingData.pathUrl)
+          this.route.navigateByUrl(this.bookingData.pathUrl);
+        } else {
+          this.route.navigateByUrl('/')
+          .then(() => {
+            window.location.reload();
+          });
+        }
+        this.apiService.setLoginData(res);
+        this.getPosition();
     },err=>{
       if (err.body === "User not found") {
         this.toastService.error(err.body);
