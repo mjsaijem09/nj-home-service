@@ -1,0 +1,39 @@
+.card-freelance {
+    border-radius: 10px;
+    background: var(--on-dark-900, #FFF);
+    cursor: pointer;
+
+/* elevation/100 */
+    box-shadow: 0px 0px 1px 0px rgba(15, 34, 67, 0.08), 0px 8px 64px 0px rgba(15, 34, 67, 0.06);
+    border: none;
+    .card-body {
+        img.profile-pic {
+            border-radius: 10px;
+            width: 95px;
+            height: 128px;
+            object-fit: cover;
+        }
+        .details {
+            h6.name {
+                span.gender {
+                    i.bi.bi-gender-female {
+                        color: #FD6D6D;
+                    }
+                    i.bi.bi-gender-male {
+                        color: #638FD4;
+                    }
+                    
+                }
+            }
+            
+            .rating {
+                small.rate {
+                    color: #A6AEC1;
+                }
+            }
+            p.short-description {
+                color: #A6AEC1;
+            }
+        }
+    }
+}

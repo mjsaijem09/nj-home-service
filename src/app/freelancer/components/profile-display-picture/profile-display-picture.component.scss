@@ -1,0 +1,74 @@
+.profile-display-picture {
+    position: relative;
+    .header-action {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        left: 0;
+        right: 0;
+        padding: 10px 10px;
+        button.btn.btn-icon {
+            border-radius: 10px;
+            background-color: rgba(38, 38, 38, .19);
+            color: #ffffff;
+            font-size: 22px;
+            /* elevation/100 */
+            box-shadow: 0px 0px 1px 0px rgba(15, 34, 67, 0.08), 0px 8px 64px 0px rgba(15, 34, 67, 0.06);
+        }
+    }
+    img.profile-img {
+        width: 100%;
+        height: 325px;
+        object-fit: cover;
+    }
+    .details {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        padding: 10px;
+        h5.name {
+            color: #ffffff;
+        }
+        .start-rating {
+            display: flex;
+            align-items: center;
+            gap: 10PX;
+            p.rate {
+                color: #ffffff;
+                margin-bottom: 0px;
+            }
+        }
+        p.fav-count {
+            color: #ffffff;
+            margin: 0px;
+            i.bi.bi-heart-fill {
+                color: red;
+                animation-name: love;
+                animation-duration: 1s;
+                // animation-delay: 1s;
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        top: 230px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(transparent, #00000099);
+    }
+}
+
+@keyframes love {
+    0%   {font-size: 12px;}
+    25%  {font-size: 13px;}
+    50%  {font-size: 14px;}
+    75%  {font-size: 15px;}
+    100% {font-size: 16px;}
+  }

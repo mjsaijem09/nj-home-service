@@ -1,0 +1,11 @@
+<div class="review-list-section">
+    <ul class="list-group list-group-flush" [class.minimize]="minimize">
+        <li class="list-group-item">
+            <app-review-item></app-review-item>
+        </li>
+        <li class="list-group-item">
+            <app-review-item></app-review-item>
+        </li>
+    </ul>
+    <button class="btn btn-show-more w-100" *ngIf="minimize">Show More</button>
+</div>

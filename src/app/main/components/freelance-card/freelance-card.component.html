@@ -1,0 +1,22 @@
+<div class="card card-freelance mb-3" [routerLink]="['/freelance', data._id]">
+    <div class="card-body p-2">
+        <div class="d-flex gap-3">
+            <img [src]="data?.profileImage" class="profile-pic" (error)="defaultPicture($event, data?.gender)">
+            <div class="details">
+                <h6 class="name">
+                    {{data?.firstName}} 
+                    <span class="gender" *ngIf="data?.gender">
+                        <i class="bi bi-gender-female" *ngIf="data?.gender === 'Female'"></i>
+                        <i class="bi bi-gender-male" *ngIf="data?.gender === 'Male'"></i>
+                    </span>
+                </h6>
+                <div class="rating mb-2">
+                    <app-star-rating [rating]="3.5" [size]="18"></app-star-rating>
+                    <small class="rate">3.5 (34)</small>
+                </div>
+                <p class="short-description mb-0" *ngIf="data?.description">{{data?.description}}</p>
+                <p class="short-description mb-0" *ngIf="!data?.description">We are a full service spa centre, providing our clients with the absolute best service.</p>
+            </div>
+        </div>
+    </div>
+</div>

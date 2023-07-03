@@ -1,0 +1,23 @@
+<div class="profile-display-picture">
+    <div class="header-action">
+        <button class="btn btn-icon" (click)="location.back()"><i class="bi bi-arrow-left"></i></button>
+        <button class="btn btn-icon"><i class="bi bi-heart"></i></button>
+        <!-- <i class="bi bi-heart-fill"></i> -->
+    </div>
+    <img class="profile-img" [src]="data?.profileImage" alt="Display Picture" (error)="handleIMGError($event, data?.gender)" />
+    <div class="details">
+        <div>
+            <h5 class="name">
+                {{data?.firstName}} {{data?.lastName}} 
+                <span class="gender" *ngIf="data?.gender">
+                    <i class="bi bi-gender-{{data?.gender.toLowerCase()}}"></i>
+                </span>
+            </h5>
+            <div class="start-rating">
+                <app-star-rating [rating]="3.5" [size]="18"></app-star-rating>
+                <P class="rate">3.5 (34)</P>        
+            </div>
+        </div>
+        <P class="fav-count"><i class="bi bi-heart-fill"></i> by 35 people</P>
+    </div>
+</div>

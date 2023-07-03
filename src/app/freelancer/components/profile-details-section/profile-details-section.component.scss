@@ -1,0 +1,45 @@
+.profile-details-section {
+    ul.list-group.list-group-flush {
+        li.list-group-item {
+            background-color: unset;
+            &.intro p {
+                color: #A6AEC1;
+                span {
+                    color: #90C63E;
+                }
+            }
+            &.intro-2 {
+                button.btn-item {
+                    border: none;
+                    background-color: unset;
+                    color: #A6AEC1;
+                    padding: 5px 25px 10px 0;
+                    i.bi {
+                        margin-right: 5px;
+                        font-size: 21px;
+                    }
+                }
+            }
+            &.intro-3 {
+                display: flex;
+                justify-content: space-between;
+                button.btn-item {
+                    border: none;
+                    background-color: unset;
+                    color: #A6AEC1;
+                    padding: 5px 25px 10px 0;
+                    i.bi {
+                        margin-right: 5px;
+                        font-size: 21px;
+                    }
+                }
+                button.btn-view {
+                    padding: 0px;
+                    border: unset;
+                    background-color: unset;
+                    color: #90C63E;
+                }
+            }
+        }
+    }
+}
