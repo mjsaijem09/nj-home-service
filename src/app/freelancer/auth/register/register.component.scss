@@ -2,6 +2,26 @@
   background-color: #ffffff;
   height: 100vh;
   position: relative;
+  .navigate {
+    button {
+      &.btn {
+        border: unset;
+        box-shadow: unset;
+      }
+      &.btn-back {
+        font-size: 19px;
+        padding-left: 0px;
+      }
+      &.btn-signin {
+        color: #90c63e;
+        font-weight: 500;
+      }
+    }
+    p.text {
+      font-size: 14px;
+      margin: 0px;
+    }
+  }
   .heading {
     text-align: center;
     .steps-progress {

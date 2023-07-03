@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit {
     address: '',
     gender: '',
     profileImage: '',
-    username: '',
     password: '',
     confirmPassword: '',
     category: [],
@@ -64,7 +63,13 @@ export class RegisterComponent implements OnInit {
   }
 
   proceedTo(step) {
+    console.log(step);
     switch (step) {
+      case 0:
+        this.heading.step = step;
+        this.heading.title = 'Get Started with Freelancing!';
+        this.heading.subtitle = 'Discover the freedom to offer your diverse &#10; range of therapeutic services.';
+        break;
       case 1:
         this.heading.step = step;
         this.heading.title = 'Select Category';
@@ -80,7 +85,6 @@ export class RegisterComponent implements OnInit {
         let validArr = [
           this.isValidName(this.payload.firstName),
           this.isValidPhone(this.payload.phone),
-          this.isValidUsername(this.payload.username),
           this.isValidPassword(this.payload.password),
           this.isConfirmedPasswordMatch(this.payload.password, this.payload.confirmPassword),
         ];
@@ -92,9 +96,6 @@ export class RegisterComponent implements OnInit {
           console.log("payload: ",this.payload);
           this.register();
         }
-        // this.heading.step = step;
-        // this.heading.title = 'Setup Location';
-        // this.heading.subtitle = 'Setting up your location will help us lead your client';
         break;
       case 4:
         this.heading.step = step;
@@ -105,11 +106,16 @@ export class RegisterComponent implements OnInit {
         break;
     }
   }
-
+  registeredData
   register() {
     this._http.post_nj(`therapist/registration`, this.payload)
     .subscribe(res => {
       console.log(res);
+      this.registeredData = res.result;
+      localStorage.setItem('registeredData', JSON.stringify(this.registeredData));
+      this.heading.step = 3;
+      this.heading.title = 'Setup Location';
+      this.heading.subtitle = 'Setting up your location will help us lead your client';
     })
   }
 
@@ -122,11 +128,6 @@ export class RegisterComponent implements OnInit {
   isValidPhone(phone: string): boolean {
     const pattern = /^9[1-9]\d{8}$/;
     return pattern.test(phone);
-  }
-
-  isValidUsername(username): boolean {
-    const pattern = /^[a-zA-Z0-9_]{5,}$/;
-    return pattern.test(username);
   }
 
   isValidPassword(password: string): boolean {
