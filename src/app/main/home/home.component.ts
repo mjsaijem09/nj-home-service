@@ -40,9 +40,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   showMobile!: boolean;
 
   topCategories: any = [];
-  featuredShops: any = [];
-  mostBookedShops: any = [];
-  recentlyViewedShops: any = [];
 
   subscription!: Subscription;
   userLocation = {
@@ -80,69 +77,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     },
   };
 
-  shopListOptions: OwlOptions = {
-    loop: true,
-    autoplay: true,
-    center: false,
-    dots: false,
-    nav: false,
-    items: 3,
-    margin: 30,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    navText: [
-      "<i class='fa fa-chevron-left'></i>",
-      "<i class='fa fa-chevron-right'></i>",
-    ],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      320: {
-        items: 1.5,
-      },
-      600: {
-        items: 2,
-      },
-      768: {
-        items: 2.5,
-      },
-      1024: {
-        items: 3,
-      }
-    },
-  };
-  recentshopListOptions: OwlOptions = {
-    loop: true,
-    autoplay: false,
-    center: false,
-    dots: false,
-    nav: false,
-    items: 3,
-    margin: 30,
-    navText: [
-      "<i class='fa fa-chevron-left'></i>",
-      "<i class='fa fa-chevron-right'></i>",
-    ],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      320: {
-        items: 1.5,
-      },
-      600: {
-        items: 2,
-      },
-      768: {
-        items: 2.5,
-      },
-      1024: {
-        items: 3,
-      }
-    },
-  };
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.ScreenWidth = event.target.innerWidth;
@@ -235,9 +169,38 @@ export class HomeComponent implements OnInit, AfterViewInit {
         name: res.name,
       };
       this.fetchHomeData();
+      this.initCategoryList();
     });
   }
-
+  fetchHomeData() {
+    
+  };
+  initCategoryList() {
+    this.isLoading = true;
+    this.apiService
+      .get(
+        `get_home_page?latt=${this.userLocation.latitude}6&long=${this.userLocation.longitude}&dis=50`
+      )
+      .subscribe(
+        (res) => {
+          this.isLoading = false;
+          res.category.forEach(element => {
+            let item = {
+              id: element.category[0]._id,
+              name: element.category[0].name,
+              img: element.image,
+              selected: false
+            }
+            this.categoryList.push(item);
+            this.topCategories.push(item);
+          });
+        },
+        (err) => {
+          this.isLoading = true;
+          console.log(err);
+        }
+      );
+  }
   askLocationPermession() {
     this.modalService.open(AskToChageLocationComponent, {centered: true});
   }
@@ -250,81 +213,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {}
 
-  fetchHomeData() {
-    this.isLoading = true;
-    this.apiService
-      .get(
-        `get_home_page?latt=${this.userLocation.latitude}6&long=${this.userLocation.longitude}&dis=50`
-      )
-      .subscribe(
-        (res) => {
-          this.isLoading = false;
-          let allData: any = [];
-          this.categoryList.forEach((element: any) => {
-            element.category.forEach((ele: any) => {
-              let obj: any = {};
-              if (ele.language === 'english') {
-                obj['name'] = ele.name;
-                obj['_id'] = element._id;
-                obj['image'] = element.image;
-                obj['categoryId'] = ele._id;
-                allData.push(obj);
-              }
-            });
-          });
-          allData.forEach((ele: any) => {
-            let img = [];
-            img = ele.image.split('/uploads');
-            ele.image = `${environment.image_url}/uploads${img[1]}`;
-          });
-          this.categoryData = allData;
-          this.topCategories = [...res.category, ...res.category];
-          this.featuredShops = res.featuredShop;
-          this.mostBookedShops = res.mostBookedShop;
-          if (
-            res.customer &&
-            res.customer.recentlyViewedLocations &&
-            res.customer.recentlyViewedLocations.length
-          ) {
-            this.recentlyViewedShops = _.reverse(
-              res.customer.recentlyViewedLocations
-            );
-          }
-          if (
-            (this.featuredShops && this.featuredShops.length) ||
-            (this.mostBookedShops && this.mostBookedShops.length) ||
-            (this.recentlyViewedShops && this.recentlyViewedShops.length)
-          ) {
-            this.noLocationConatiner = false;
-          };
-          this._ui.setHomeComplete(true);
-        },
-        (err) => {
-          this.isLoading = false;
-          console.log(err);
-        }
-      );
-  }
 
-  recentalyViewData() {
-    let customerDetails =
-      this.getCookie('customerLogin') &&
-      JSON.parse(this.getCookie('customerLogin')!);
-    let customerToken = this.getCookie('customerToken');
-    const obj = new HttpParams()
-      .set('devicePlateform', 'android')
-      .set(' deviceToken', customerToken);
-    this.homeService
-      .recentlyView(obj, customerDetails)
-      .subscribe((response: any) => {
-        (this.recentlyViewedList = response.location),
-          (this.walletBalance = response.result.walletBalance),
-          localStorage.setItem(
-            'walletbalance',
-            JSON.stringify(this.walletBalance)
-          );
-      });
-  }
   selectCategory(item: any) {
     console.log('here', item);
     localStorage.setItem('categorySelected', JSON.stringify(item));
