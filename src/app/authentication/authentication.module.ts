@@ -18,6 +18,7 @@ import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
     { path:'login', component:LoginComponent},
+    { path:'login-as-freelance', component:LoginComponent},
     { path:'forgot-password', component:ForgotPasswordComponent},
     { path:'register', component:RegisterComponent},
     { path: 'invite/:code',  component:RegisterComponent},
