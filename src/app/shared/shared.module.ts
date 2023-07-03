@@ -15,7 +15,7 @@ import { CustomSpinnerComponent } from './custom-spinner/custom-spinner.componen
 import { ChatboxComponent } from './chatbox/chatbox.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { CameraComponent } from './camera/camera.component';
-
+import { LoaderComponent } from './loader/loader.component';
 @NgModule({
     declarations: [
         SplashScreenComponent,
@@ -26,7 +26,8 @@ import { CameraComponent } from './camera/camera.component';
         CustomSpinnerComponent,
         ChatboxComponent,
         ClickedOutsideDirective,
-        CameraComponent
+        CameraComponent,
+        LoaderComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +51,8 @@ import { CameraComponent } from './camera/camera.component';
         CustomSpinnerComponent,
         ChatboxComponent,
         ClickedOutsideDirective,
-        CameraComponent
+        CameraComponent,
+        LoaderComponent
     ]
 })
 export class SharedModule { }
