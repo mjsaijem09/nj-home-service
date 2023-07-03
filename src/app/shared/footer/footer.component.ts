@@ -4,7 +4,6 @@ import { filter } from 'rxjs/operators';
 // 
 import { NotificationService } from 'src/app/services/notification.service';
 import { ApiServicesService } from 'src/app/services/api-services.service';
-import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-footer',
@@ -18,21 +17,15 @@ export class FooterComponent implements OnInit {
   loading = true;
   notifCount: any;
   user = this.getCookie('customerLogin') && JSON.parse(this.getCookie('customerLogin')!);
-  cartData: any = [];
 
   constructor(
     private route: Router,
     private notification: NotificationService,
     private http: ApiServicesService,
-    private cartService: CartService
   ) {
     setInterval(() => {
       this.getScreenSize();
     }, 100);
-    this.cartService.getCartData()
-    .subscribe(res => {
-      this.cartData = res;
-    })
    }
    getScreenSize(){
     let ScreenWidth = window.innerWidth
@@ -155,6 +148,9 @@ export class FooterComponent implements OnInit {
             this.isHomeFooter = false;
           }
         }
+        if(this.route.url.includes('freelance')) {
+          this.isHomeFooter = false;
+        }
       // }else{
       //   this.isHomeFooter = true;
       // }
@@ -182,9 +178,7 @@ export class FooterComponent implements OnInit {
       this.hasNotif();
     }
   }
-  viewCart() {
-    this.route.navigate(['product/cart'], { state: { checkoutData: this.cartData } });
-  }
+  
   getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
