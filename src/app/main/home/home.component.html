@@ -61,13 +61,13 @@
             class="slide"
             carouselSlide
             [id]="'category_' + i">
-            <div class="card pointer" (click)="navigateToCategoryShops(category?.category[0]?.name, category?._id)">
+            <div class="card pointer" (click)="navigateToCategoryShops(category?.name, category?.id)">
               <div class="card-body">
                 <div class="category-img">
-                  <img [src]="imgLink(category?.image)"/>
+                  <img [src]="category?.img"/>
                 </div>
-                <p class="category-name" *ngIf=" category && category.category && category.category[0]">
-                  {{ category?.category[0]?.name }}
+                <p class="category-name">
+                  {{ category?.name }}
                 </p>
               </div>
             </div>
@@ -76,140 +76,11 @@
       </owl-carousel-o>
     </div>
   </div>
-  <!-- FEATURE SHOP SECTION -->
-  <div class="shop-carousel" *ngIf="featuredShops && featuredShops.length">
-    <div class="container">
-      <div class="header">
-        <p class="title">Featured Shops</p>
-        <button type="button" class="btn btn-link" [routerLink]="['/featured-shops']" [state]="{data: featuredShops}">View All<img src="assets/images/arrow-right.svg"/></button>
-      </div>
-      <owl-carousel-o [options]="shopListOptions">
-        <ng-container *ngFor="let shop of featuredShops; let i = index">
-            <ng-template
-              carouselSlide
-              class="slide"
-              carouselSlide
-              [id]="'recentlyViewedShop_' + i">
-              <div class="card pointer" (click)="goToShop(shop?._id)">
-                <div class="card-top-img">
-                  <img [src]="imgLink(shop?.profileImg?.img)" (error)="setDefaultPic($event)" alt="...">
-                </div>
-                <ul class="service_offers">
-                  <li *ngIf="shop?.onlineBookingRules?.acceptOnlinePayment" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Online booking available">
-                    <img class="online-payment" src="assets/images/mobile-payment.svg" />
-                  </li>
-                  <li *ngIf="shop?.onlineGiftCard" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Giftcard available">
-                    <img class="online-giftcard" src="assets/images/giftcard.svg" />
-                  </li>
-                </ul>
-                <div class="card-body">
-                  <h5 class="card-title">{{ shop?.name }}</h5>
-                  <p class="text-muted address">{{addressFormat(shop)}}</p>
-                  <div class="rating-and-distance">
-                    <div class="ratings"><app-star-rating [rating]="shop?.rating?.star" [size]="14"></app-star-rating>
-                      <span class="rate">{{(shop?.rating?.star * 1).toFixed(1)}}</span>
-                      <span class="text-muted">{{shop?.rating?.star_count}} ratings</span></div>
-                    <div class="distance" *ngIf="shop?.distance">
-                      <img src="assets/images/location-red.svg" /> <span>{{ (shop?.distance * 1).toFixed(1) }}Km</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-          </ng-container>
-      </owl-carousel-o>
-    </div>
-  </div>
-  <!-- MOST BOOKED SHOP SECTION -->
-  <div class="shop-carousel" *ngIf="mostBookedShops && mostBookedShops.length">
-    <div class="container">
-      <div class="header">
-        <p class="title">Most Booked Shops</p>
-        <button type="button" class="btn btn-link" [routerLink]="['/most-booked-shops']" [state]="{data: mostBookedShops}">View All<img src="assets/images/arrow-right.svg"/></button>
-      </div>
-      <owl-carousel-o [options]="shopListOptions">
-        <ng-container *ngFor="let shop of mostBookedShops; let i = index">
-            <ng-template
-              carouselSlide
-              class="slide"
-              carouselSlide
-              [id]="'recentlyViewedShop_' + i">
-              <div class="card pointer" (click)="goToShop(shop?._id)">
-                <div class="card-top-img">
-                  <img [src]="imgLink(shop?.profileImg?.img)" (error)="setDefaultPic($event)" alt="...">
-                </div>
-                <ul class="service_offers">
-                  <li *ngIf="shop?.onlineBookingRules?.acceptOnlinePayment" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Online booking available">
-                    <img class="online-payment" src="assets/images/mobile-payment.svg" />
-                  </li>
-                  <li *ngIf="shop?.onlineGiftCard" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Giftcard available">
-                    <img class="online-giftcard" src="assets/images/giftcard.svg" />
-                  </li>
-                </ul>
-                <div class="card-body">
-                  <h5 class="card-title">{{ shop?.name }}</h5>
-                  <p class="text-muted address">{{addressFormat(shop)}}</p>
-                  <div class="rating-and-distance">
-                    <div class="ratings"><app-star-rating [rating]="shop?.rating?.star" [size]="14"></app-star-rating>
-                      <span class="rate">{{(shop?.rating?.star * 1).toFixed(1)}}</span>
-                      <span class="text-muted">{{shop?.rating?.star_count}} ratings</span></div>
-                    <div class="distance" *ngIf="shop?.distance">
-                      <img src="assets/images/location-red.svg" /> <span>{{ (shop?.distance * 1).toFixed(1) }}Km</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-          </ng-container>
-      </owl-carousel-o>
-    </div>
-  </div>
-  <!-- RECENTLY VIEWED SHOP SECTION -->
-  <div class="shop-carousel" *ngIf="recentlyViewedShops && recentlyViewedShops.length">
-    <div class="container">
-      <div class="header">
-        <p class="title">Recently Viewed</p>
-        <button type="button" class="btn btn-link" [routerLink]="['/recently-viewed-shops']" [state]="{data: recentlyViewedShops}">View All<img src="assets/images/arrow-right.svg"/></button>
-      </div>
-      <owl-carousel-o [options]="recentshopListOptions">
-        <ng-container *ngFor="let shop of recentlyViewedShops; let i = index">
-            <ng-template
-              carouselSlide
-              class="slide"
-              carouselSlide
-              [id]="'recentlyViewedShop_' + i">
-              <div class="card pointer hover-zoom" (click)="goToShop(shop?._id)">
-                <div class="card-top-img">
-                  <img [src]="imgLink(shop?.profileImg[0]?.img)" (error)="setDefaultPic($event)" alt="...">
-                </div>
-                <ul class="service_offers">
-                  <li *ngIf="shop?.onlineBookingRules?.acceptOnlinePayment" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Online booking available">
-                    <img class="online-payment" src="assets/images/mobile-payment.svg" />
-                  </li>
-                  <li *ngIf="shop?.onlineGiftCard" placement="right" tooltipClass="icon-tooltip" ngbTooltip="Giftcard available">
-                    <img class="online-giftcard" src="assets/images/giftcard.svg" />
-                  </li>
-                </ul>
-                <div class="card-body">
-                  <h5 class="card-title">{{ shop?.name }}</h5>
-                  <p class="text-muted address">{{addressFormat(shop)}}</p>
-                  <div class="rating-and-distance">
-                    <div class="ratings"><app-star-rating [rating]="shop?.rating?.star" [size]="14"></app-star-rating>
-                      <span class="rate">{{(shop?.rating?.star * 1).toFixed(1)}}</span>
-                      <span class="text-muted">{{shop?.rating?.star_count}} ratings</span></div>
-                    <div class="distance" *ngIf="shop?.distance">
-                      <img src="assets/images/location-red.svg" /> <span>{{ (shop?.distance * 1).toFixed(1) }}Km</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-          </ng-container>
-      </owl-carousel-o>
-    </div>
+  <div class="p-3">
+    <app-freelance-list category="massage" sort="rating" title="Top Therapist"></app-freelance-list>
   </div>
   <!-- NO SHOP SECTION -->
-  <div class="container px-3" *ngIf="featuredShops.length == 0 && mostBookedShops.length == 0 && recentlyViewedShops.length == 0">
+  <div class="container px-3" >
     <div class="no-nearby-shops mt-5 mb-5">
       <div class="no-location-container text-center">
         <img src="assets/images/nearby-locations.svg" />
@@ -302,7 +173,6 @@
   </div>
 </div>
 
-<app-shop-detail *ngIf="!isLoading && isBusinessPage"></app-shop-detail>
 <div *ngIf="isMobile && homeSubdomain" class="user-guide-popup">
   <div *ngIf="home" class="home">
     <div class="text">Click here to go back to home screen.</div>
