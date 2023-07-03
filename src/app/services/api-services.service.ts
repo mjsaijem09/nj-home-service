@@ -176,5 +176,9 @@ export class ApiServicesService {
       .post(`${this.nj_base_url}${path}`, JSON.stringify(body))
       .pipe(catchError(this.formatErrors));
   }
-
+  get_nj(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+    return this.http
+      .get(`${this.nj_base_url}${path}`, { params: params })
+      .pipe(catchError(this.formatErrors));
+  }
 }
