@@ -654,7 +654,7 @@ export class HeaderComponent
       this.categoryRoute = 'Rate Product';
       this.presentUrl = 'Rate Product';
     }
-    if (this.router.url.includes('/freelance/register')) {
+    if (this.router.url.includes('/freelance')) {
       this.isHomeHeader = false;
       this.categoryRoute = null;
       this.authHeader = true;
