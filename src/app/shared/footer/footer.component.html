@@ -21,13 +21,6 @@
                             <img src="assets/images/footer/fav-green.svg" alt="favourite" class="active-icon">
                         </button>
                     </div>
-                    <div class="text-center footer-icon_wrapper" (click)="viewCart()" >
-                        <div *ngIf="cartData?.length > 0" class="has_notification">{{cartData.length}}</div>
-                        <button type="button" class="btn footer-icon" [ngClass]="{'active' : presentUrl == '/product/cart'}">
-                            <img src="assets/images/footer/cart.svg" alt="notification">
-                            <img src="assets/images/footer/cart-green.svg" alt="notification" class="active-icon">
-                        </button>
-                    </div>
                     <div class="text-center footer-icon_wrapper" (click)="navigate('/notifications')" >
                         <div *ngIf="notifCount > 0" class="has_notification">{{notifCount}}</div>
                         <button type="button" class="btn footer-icon" [ngClass]="{'active' : presentUrl == '/notifications'}">
