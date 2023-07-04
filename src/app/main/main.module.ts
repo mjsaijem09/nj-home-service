@@ -68,6 +68,10 @@ import { MainComponent } from './main.component';
 import { OnlineShopModule } from './online-shop/online-shop.module';
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { FreelanceListComponent } from './components/freelance-list/freelance-list.component';
+import { FilterComponent } from './filter/filter.component';
+import { FreelanceCardComponent } from './components/freelance-card/freelance-card.component';
+import { AddLocationComponent } from './add-location/add-location.component';
 
 const route : Routes = [
   {
@@ -206,6 +210,14 @@ const route : Routes = [
     component:SearchShopComponent 
   },
   {
+    path: 'search',
+    component: FilterComponent 
+  },
+  {
+    path: 'add-location',
+    component: AddLocationComponent 
+  },
+  {
     path: 'category/:categoryName/:categoryId',
     component: CategorySelectionComponent,
   },
@@ -233,6 +245,10 @@ const route : Routes = [
   },
   {
     path: 'therapist/:therapist',
+    component: TherapistDetailComponent,
+  },
+  {
+    path: 'freelancer/:id',
     component: TherapistDetailComponent,
   },
   {
@@ -358,6 +374,10 @@ const route : Routes = [
     AppointmentSuccessPopupComponent,
     PaymentSuccessPopupComponent,
     MainComponent,
+    FreelanceListComponent,
+    FilterComponent,
+    FreelanceCardComponent,
+    AddLocationComponent,
   ],
   imports: [
     CommonModule,
