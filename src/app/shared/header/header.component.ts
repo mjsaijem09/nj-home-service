@@ -461,6 +461,16 @@ export class HeaderComponent
         this.categoryRoute = 'Search Shop';
         this.presentUrl = 'Search Shop';
       }
+      if (this.router.url.includes('search')) {
+        this.isHomeHeader = false;
+        this.categoryRoute = 'Search now';
+        this.presentUrl = 'Search now';
+      }
+      if (this.router.url.includes('add-location')) {
+        this.isHomeHeader = false;
+        this.categoryRoute = 'Add Location';
+        this.presentUrl = 'Add Location';
+      }
       if (this.router.url.includes('search-city')) {
         this.isHomeHeader = false;
         this.categoryRoute = 'Search City';
