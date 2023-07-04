@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxStarsModule } from 'ngx-stars';
-import { NgxStripeModule } from 'ngx-stripe';
 import { HammerModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -40,7 +39,6 @@ const route: Routes = [
     NgxStarsModule,
     NgxMaterialTimepickerModule,
     SharedComponentModule,
-    NgxStripeModule.forRoot('pk_test_VK47XeSEIbfr4iKhfmVHAtsr00cnZhNzel'),
     CarouselModule,
     NgxIntlTelInputModule,
     NgxStarsModule,
