@@ -19,8 +19,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SwipeAngularListModule } from 'swipe-angular-list';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-
 import { AppRoutingModule } from './app-routing.module';
+import { NgxStripeModule } from 'ngx-stripe';
+
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { SharedModule } from './shared/shared.module';
@@ -77,12 +78,14 @@ register();
         NotificationPopupsModule,
         CarouselModule,
         PickerModule,
+        NgxStripeModule.forRoot('pk_test_VK47XeSEIbfr4iKhfmVHAtsr00cnZhNzel'),
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
             // Register the ServiceWorker as soon as the app is stable
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000'
         }),
+        
     ],
     exports: [SharedModule],
     providers: [
