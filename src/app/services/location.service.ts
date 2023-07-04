@@ -21,6 +21,7 @@ export class LocationService {
             name: "Perth",
         }
     );
+    locationRadius = new Subject;
     userSearch = new BehaviorSubject<any>('');
     currentCoordinates = new BehaviorSubject<any>({});
     headerTitle: any 
@@ -87,5 +88,45 @@ export class LocationService {
             }
         })
         
+    }
+
+    // new
+    set_location(map){
+        // Get the center coordinates from the map
+        // Create a LatLng object
+        const coordinates = new google.maps.LatLng(map.coordinates.lat, map.coordinates.lng);
+        // Create a geocoder object
+        const geocoder = new google.maps.Geocoder();
+        // Perform reverse geocoding
+        geocoder.geocode({ location: coordinates }, (results, status) => {
+            if (status === google.maps.GeocoderStatus.OK) {
+                if (results.length > 0) {
+                    const address = results[0].address_components;
+                    let province
+                    let city
+                    address.forEach(element => {
+                        if (element.types.includes('locality')) {
+                            province = element.long_name
+                        }
+                        if (element.types.includes('administrative_area_level_2')) {
+                            city = element.long_name
+                        }
+                    });
+                    const obj = {
+                        location: {province, city},
+                        distanceRadius: map.distanceRadius,
+                        coordinates: {lat: coordinates.lat(), lng: coordinates.lng()}
+                    }
+                    this.locationRadius.next(obj);
+                    localStorage.setItem('location-radius', JSON.stringify(obj));
+                }
+            } else {
+                console.error('Reverse Geocoding failed due to: ' + status);
+            }
+        });
+    }
+
+    get_location() {
+        return this.locationRadius.asObservable();
     }
 }
