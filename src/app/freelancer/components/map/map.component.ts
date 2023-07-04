@@ -33,13 +33,16 @@ export class MapComponent implements OnInit {
   }
 
   initMap() {
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
+    const mapOptions = {
       zoom: 19,
       streetViewControl: false,
       mapTypeControl: false,
       zoomControl: false,
       fullscreenControl: false
-    });
+    }
+    const mapContainer = this.mapElement.nativeElement;
+    
+    this.map = new google.maps.Map(mapContainer, mapOptions);
   
     // Get the user's current location
     if (navigator.geolocation) {
