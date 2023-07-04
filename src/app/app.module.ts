@@ -19,8 +19,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SwipeAngularListModule } from 'swipe-angular-list';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { AppRoutingModule } from './app-routing.module';
 import { NgxStripeModule } from 'ngx-stripe';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -85,7 +86,6 @@ register();
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000'
         }),
-        
     ],
     exports: [SharedModule],
     providers: [
