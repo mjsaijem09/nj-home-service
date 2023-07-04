@@ -1,0 +1,24 @@
+.filter-search {
+    .filter-section {
+        margin-top: 65px;
+        padding: 10px 10px;
+        background-color: #ffffff;
+        .search-input {
+            position: relative;
+            i.bi.bi-search {
+                position: absolute;
+                left: 13px;
+                top: 13px;
+            }
+            input {
+                padding-left: 36px;
+                border-radius: 0.36rem;
+            }
+            i.bi.bi-x-lg {
+                position: absolute;
+                right: 13px;
+                top: 13px;
+            }
+        }
+    }
+}

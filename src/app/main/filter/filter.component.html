@@ -1,0 +1,38 @@
+<div class="filter-search">
+    <div class="filter-section">
+        <div class="search-input mb-3">
+            <i class="bi bi-search"></i>
+            <input class="form-control form-control-lg" type="text" placeholder="Search a service or a freelancer.">
+            <i class="bi bi-x-lg"></i>
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <select class="form-select" id="select-category">
+                    <option selected>Select Category</option>
+                    <option value="1">Massage</option>
+                    <option value="2">Hair</option>
+                    <option value="3">Nail</option>
+                    <option value="3">Beauty</option>
+                </select>
+            </div>
+            <div class="col-3">
+                  <select class="form-select" id="select-category">
+                    <option selected>Select gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Any</option>
+                  </select>
+            </div>
+            <div class="col-3">
+                  <select class="form-select" id="Sort-by">
+                    <option value="1" selected>Nearest</option>
+                    <option value="2">Rating</option>
+                    <option value="3">Lowest Rate</option>
+                  </select>
+            </div>
+        </div>
+    </div>
+    <div class="filter-list p-3">
+        <app-freelance-list category="massage" sort="rating" title="Today's Picks"></app-freelance-list>
+    </div>
+</div>
