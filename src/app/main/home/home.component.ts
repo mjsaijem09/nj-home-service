@@ -265,7 +265,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.locationService.setUserSearch(e);
     this.router.navigate(['/search-shop']);
   }
-
+  filterSearch(e) {
+    this.locationService.setUserSearch(e);
+    this.router.navigate(['/search']);
+  }
   navigateToSearchCity() {
     this.router.navigate(['/search-city'], {
       queryParams: {

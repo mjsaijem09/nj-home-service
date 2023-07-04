@@ -29,7 +29,7 @@
                 aria-label="Search Shop"
                 aria-describedby="search-addon"
                 [(ngModel)]="searchShopsText"
-                (ngModelChange)="searchShop($event)"
+                (ngModelChange)="filterSearch($event)"
                 [ngModelOptions]="{standalone: true}"/>
               <div class="searchIcon">
                 <i class="fa fa-search"></i>
