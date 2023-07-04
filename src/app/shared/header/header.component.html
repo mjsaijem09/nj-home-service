@@ -303,7 +303,7 @@
               <countdown [config]="bookingTimeConfig" (event)="handleEvent($event, content)"></countdown>
             </ng-container>
           </div>
-          <div class="ml-auto">
+          <div class="ms-auto">
             <img *ngIf="!isBusinessPage; else mainSite" (click)="navigateToHomePage()"
               src="assets/images/footer/home-green.svg" alt="home" class="active-icon" />
             <ng-template #mainSite>
