@@ -16,6 +16,7 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { CameraComponent } from './camera/camera.component';
 import { LoaderComponent } from './loader/loader.component';
+import { GooglePlacesDirective } from '../directives/google-places.directive';
 @NgModule({
     declarations: [
         SplashScreenComponent,
@@ -27,7 +28,8 @@ import { LoaderComponent } from './loader/loader.component';
         ChatboxComponent,
         ClickedOutsideDirective,
         CameraComponent,
-        LoaderComponent
+        LoaderComponent,
+        GooglePlacesDirective
     ],
     imports: [
         CommonModule,
@@ -52,7 +54,8 @@ import { LoaderComponent } from './loader/loader.component';
         ChatboxComponent,
         ClickedOutsideDirective,
         CameraComponent,
-        LoaderComponent
+        LoaderComponent,
+        GooglePlacesDirective
     ]
 })
 export class SharedModule { }
