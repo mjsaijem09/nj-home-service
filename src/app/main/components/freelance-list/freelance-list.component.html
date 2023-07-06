@@ -1,13 +1,5 @@
 <app-loader *ngIf="isLoading"></app-loader>
 <div *ngIf="!isLoading">
-    <div class="heading" *ngIf="title">
-        <h5 class="mb-3">{{title}}</h5>
-        <div class="location" [routerLink]="['/add-location']">
-            <span *ngIf="location"><i class="bi bi-geo-alt-fill"></i> {{location?.location?.province}}, {{location?.location?.city}}. {{location?.distanceRadius}} km</span>
-            <span *ngIf="!location">Add Location</span>
-            
-        </div>
-    </div>
     <ng-container *ngFor="let item of list; let i = index">
         <app-freelance-card [data]="item"></app-freelance-card>
     </ng-container>
