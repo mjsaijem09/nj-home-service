@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.location.back();
     }
     this.loginForm = this.formBuilder.group({
-      email: [this.registerData.data.email ? this.registerData.data.email : '', [Validators.required]],
+      username: [this.registerData.data.username ? this.registerData.data.username : '', [Validators.required]],
       password: [this.registerData.data.password ? this.registerData.data.password : '', [Validators.required]]
     })
     this.accountSetup = this.route.getCurrentNavigation()?.extras?.state?.accountSetup;
@@ -77,8 +77,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.bookingData.pathUrl = '/';
     }
     this.activeRoute.queryParams.subscribe(res=>{
-      if (res && res.email) {
-        this.loginForm.controls.email.setValue(res.email);
+      if (res && res.username) {
+        this.loginForm.controls.username.setValue(res.username);
       }
       if (res && res.password) {
         this.loginForm.controls.password.setValue(res.password);
@@ -156,7 +156,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.toastService.error(err.body);
         setTimeout(() => {
           this.instanceLoader(false);
-          this.route.navigate(['auth/register'],{queryParams: {email:form.value.email, password : form.value.password}});
+          this.route.navigate(['auth/register'],{queryParams: {username:form.value.username, password : form.value.password}});
         }, 1000);
         console.log(err);
       } else {

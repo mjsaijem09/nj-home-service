@@ -20,20 +20,20 @@
                 </div>
                 <!-- Start Form-->
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)"> 
-                    <!--Email Input-->
+                    <!--Username Input-->
                     <div class="form-group mb-3">
                         <div class="form-icon">
                             <img src="assets/images/email.svg" alt="mail">
                         </div>
-                        <input type="email" class="form-control" formControlName="email" placeholder="Email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <input class="form-control" formControlName="username" placeholder="username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
                         <div class="field-filled">
                             <img src="assets/images/checkbox-circle-line.svg" alt="see password">
                         </div>
-                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
                         </div>
                     </div>
-                    <!--End Email Input-->
+                    <!--End Username Input-->
 
                     <!--Password-->
                     <div class="form-group">
