@@ -21,4 +21,14 @@
             }
         }
     }
+    .filter-list {
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            .location {
+                color: #90c63e;
+                cursor: pointer;
+            }
+        }
+    }
 }

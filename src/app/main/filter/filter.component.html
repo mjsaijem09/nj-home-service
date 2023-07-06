@@ -2,37 +2,44 @@
     <div class="filter-section">
         <div class="search-input mb-3">
             <i class="bi bi-search"></i>
-            <input class="form-control form-control-lg" type="text" placeholder="Search a service or a freelancer.">
+            <input class="form-control form-control-lg" type="text" placeholder="Search a service or a freelancer." name="text" (input)="search($event)">
             <i class="bi bi-x-lg"></i>
         </div>
         <div class="row g-3">
             <div class="col">
-                <select class="form-select" id="select-category">
-                    <option selected>Select Category</option>
-                    <option value="1">Massage</option>
-                    <option value="2">Hair</option>
-                    <option value="3">Nail</option>
-                    <option value="3">Beauty</option>
+                <select class="form-select" id="select-category" name="category" (input)="search($event)">
+                    <option value="">Select Category</option>
+                    <ng-container *ngFor="let category of categoryList">
+                        <option [value]="category?.id">{{category?.name}}</option>
+                    </ng-container>
                 </select>
             </div>
             <div class="col-3">
-                  <select class="form-select" id="select-category">
-                    <option selected>Select gender</option>
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
-                    <option value="3">Any</option>
+                  <select class="form-select" id="select-category" name="gender" (input)="search($event)">
+                    <option value="">Gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="">Any</option>
                   </select>
             </div>
             <div class="col-3">
-                  <select class="form-select" id="Sort-by">
-                    <option value="1" selected>Nearest</option>
-                    <option value="2">Rating</option>
-                    <option value="3">Lowest Rate</option>
+                  <select class="form-select" id="Sort-by" name="sortBy" (input)="search($event)">
+                    <option value="nearest">Nearest</option>
+                    <option value="rating">Rating</option>
+                    <option value="lowest_rate">Lowest Rate</option>
                   </select>
             </div>
         </div>
     </div>
     <div class="filter-list p-3">
-        <app-freelance-list category="massage" sort="rating" title="Today's Picks"></app-freelance-list>
+        <div class="heading">
+            <h5 class="mb-3">Today's Picks</h5>
+            <div class="location" [routerLink]="['/add-location']">
+                <span *ngIf="location"><i class="bi bi-geo-alt-fill"></i> {{location?.location?.province}}, {{location?.location?.city}}. {{location?.distanceRadius}} km</span>
+                <span *ngIf="!location">Add Location</span>
+                
+            </div>
+        </div>
+        <app-freelance-list></app-freelance-list>
     </div>
 </div>
